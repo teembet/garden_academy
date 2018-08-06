@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Tenants xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
+
+  <Tenant>
+    <Name></Name>
+    <SchoolEmail></SchoolEmail>
+    <Code>fedbida</Code>
+    <ConnectionString>Data Source=.\SQLEXPRESS; trusted_connection=yes;Initial Catalog=EduApplyDB; MultipleActiveResultSets=true; </ConnectionString>
+    <HostName>localhost:8676</HostName>
+    <Theme>ABU</Theme>
+    <EtranzactTerminalId>0110008410</EtranzactTerminalId>
+    <Pmb>P.M.B. 5363, ADO-EKITI, EKITI STATE, NIGERIA</Pmb>
+    <SchoolEmail>apply@eksu.edu.ng</SchoolEmail>
+    <SplashersAdminEamil>omokahfe@splasherstech.com</SplashersAdminEamil>
+  </Tenant>
+
+  <Tenant>
+    <Name></Name>
+    <SchoolEmail></SchoolEmail>
+    <Code>fedbida</Code>
+    <ConnectionString>Data Source=.; trusted_connection=yes;Initial Catalog=EduApply; MultipleActiveResultSets=true; </ConnectionString>
+    <!--<ConnectionString>Data Source=.\SQLEXPRESS; trusted_connection=yes;Initial Catalog=EduApplyDB; MultipleActiveResultSets=true; </ConnectionString>-->
+    <HostName>192.168.129.15</HostName>
+    <Theme>ABU</Theme>
+    <EtranzactTerminalId> 0110008410</EtranzactTerminalId>
+    <Pmb>P.M.B. 5363, ADO-EKITI, EKITI STATE, NIGERIA</Pmb>
+    <SchoolEmail>apply@eksu.edu.ng</SchoolEmail>
+  </Tenant>
+
+  <Tenant>
+    <Name></Name>
+    <SchoolEmail></SchoolEmail>
+    <Code>febida</Code>
+    <ConnectionString>Data Source=.; trusted_connection=yes;Initial Catalog=EduApply; MultipleActiveResultSets=true; </ConnectionString>
+    <!--<ConnectionString>Data Source=.\SQLEXPRESS; trusted_connection=yes;Initial Catalog=EduApplyDB; MultipleActiveResultSets=true; </ConnectionString>-->
+    <HostName>197.253.3.122</HostName>
+    <Theme>ABU</Theme>
+    <EtranzactTerminalId> 0110008410</EtranzactTerminalId>
+    <Pmb>P.M.B. 5363, ADO-EKITI, EKITI STATE, NIGERIA</Pmb>
+    <SchoolEmail>apply@eksu.edu.ng</SchoolEmail>
+  </Tenant>
+  
+  <Tenant>
+    <Name></Name>
+    <SchoolEmail></SchoolEmail>
+    <Code>febida</Code>
+    <ConnectionString>Data Source=.; trusted_connection=yes;Initial Catalog=oaucdlNewApply; MultipleActiveResultSets=true; </ConnectionString>
+    <!--<ConnectionString>Data Source=.\SQLEXPRESS; trusted_connection=yes;Initial Catalog=EduApplyDB; MultipleActiveResultSets=true; </ConnectionString>-->
+    <HostName>64.91.230.133:8051</HostName>
+    <Theme>ABU</Theme>
+    <EtranzactTerminalId> 0110008410</EtranzactTerminalId>
+	<Pmb>P.M.B. 5363, ADO-EKITI, EKITI STATE, NIGERIA</Pmb>
+    <SchoolEmail>apply@eksu.edu.ng</SchoolEmail>
+    <HelpPhrase></HelpPhrase>
+    <SplashersAdminEamil>omokahfe@silveredgeprojects.com</SplashersAdminEamil>
+  </Tenant>
+  
+  <Tenant>
+    <Name></Name>
+    <SchoolEmail></SchoolEmail>
+    <Code>febida</Code>
+    <ConnectionString>Data Source=.; trusted_connection=yes;Initial Catalog=oaucdlNewApply; MultipleActiveResultSets=true; </ConnectionString>
+    <!--<ConnectionString>Data Source=.\SQLEXPRESS; trusted_connection=yes;Initial Catalog=EduApplyDB; MultipleActiveResultSets=true; </ConnectionString>-->
+    <HostName>edutechapply.splasherstech.com</HostName>
+    <Theme>ABU</Theme>
+    <EtranzactTerminalId> 0110008410</EtranzactTerminalId>
+	<Pmb>P.M.B. 5363, ADO-EKITI, EKITI STATE, NIGERIA</Pmb>
+    <SchoolEmail>apply@eksu.edu.ng</SchoolEmail>
+    <HelpPhrase></HelpPhrase>
+    <SplashersAdminEamil>omokahfe@silveredgeprojects.com</SplashersAdminEamil>
+  </Tenant>
+  
+  <Tenant>
+    <Name></Name>
+    <SchoolEmail></SchoolEmail>
+    <Code>febida</Code>
+    <ConnectionString>Data Source=.; trusted_connection=yes;Initial Catalog=oaucdlNewApply; MultipleActiveResultSets=true; </ConnectionString>
+    <!--<ConnectionString>Data Source=.\SQLEXPRESS; trusted_connection=yes;Initial Catalog=EduApplyDB; MultipleActiveResultSets=true; </ConnectionString>-->
+    <HostName>apply.oaucdl.edu.ng</HostName>
+    <Theme>ABU</Theme>
+    <EtranzactTerminalId> 0110008410</EtranzactTerminalId>
+	<Pmb>P.M.B. 5363, ADO-EKITI, EKITI STATE, NIGERIA</Pmb>
+    <SchoolEmail>apply@eksu.edu.ng</SchoolEmail>
+    <HelpPhrase></HelpPhrase>
+    <SplashersAdminEamil>omokahfe@silveredgeprojects.com</SplashersAdminEamil>
+  </Tenant>
+
+
+</Tenants>

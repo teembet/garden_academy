@@ -1,0 +1,282 @@
+﻿@using EduApply.Web.Models
+@model EduApply.Web.Models.JambBiodataModel
+
+@{
+    ViewBag.Title = "Direct Entry Upload";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    int successfulUploads = TempData["successfulUploads"] == null ? 0 : Convert.ToInt32(TempData["successfulUploads"]);
+    int updatedUploads = TempData["updatedUploads"] == null ? 0 : Convert.ToInt32(TempData["updatedUploads"]);
+    int failedUploads = TempData["failedUploads"] == null ? 0 : Convert.ToInt32(TempData["failedUploads"]);
+}
+
+@*<h2>Jamb Breakdown Upload</h2>*@
+
+@using (Html.BeginForm("JambBiodataUpload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 style="color: red">Note: Only csv files are accepted for upload, click @Html.ActionLink("here", "DownloadPreFormatedDoc", "Upload", new { fileName = "DirectEntryBiodata.csv" }, null) to get a preformatted document</h4>
+
+        <hr />
+
+        <div class="form-group required">
+            @Html.LabelFor(model => model.SessionId, "Session", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.SessionId, new SelectList(Model.Sessions, "Id", "Name", Model.SessionId), "<--Select-->", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SessionId)
+            </div>
+        </div>
+        <div class="form-group required">
+            <label class="control-label col-md-2">Select File</label>
+            <div class="col-md-4">
+                <input type="file" id="jambBiodata" name="jambBiodata" value="" class="form-control" data-val="true" data-val-required="Select File" />
+                @Html.ValidationMessage("jambBiodata", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.NameOfFile, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NameOfFile, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NameOfFile)
+                </div>
+            </div>*@
+        @*<div class="form-group">
+                <label class="control-label col-md-2">Name of file</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" id="NameOfFile" name="nameOfFile" data-val="true" data-val-required="Enter a name for the file you are uploading" />
+                    @Html.ValidationMessage("nameOfFile", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="UploadList" value="Upload CSV" class="btn btn-primary" />
+                @*<a href="#" id="downloadButton" class="btn btn-success">Download</a>*@
+            </div>
+        </div>
+
+        @if (successfulUploads > 0 && failedUploads == 0 && updatedUploads == 0)
+        {
+            <div class="row">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <p>@successfulUploads records successfully uploaded</p>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+        else if (updatedUploads > 0 && successfulUploads == 0 && failedUploads == 0)
+        {
+            <div class="row">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <p>@updatedUploads records succesfully updated</p>
+                    </div>
+                </div>
+            </div>
+
+        }
+        else if (failedUploads > 0 && successfulUploads == 0 && updatedUploads == 0)
+        {
+            <div class="row">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <p>No record uploaded</p>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+        else if (failedUploads != 0 || successfulUploads != 0 || updatedUploads != 0)
+        {
+            <div class="row">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="alert alert-info alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <p>New records added: @successfulUploads, Updated Records:@updatedUploads, Failed : @failedUploads</p>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger alert-dismissible" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @*<div class="panel panel-primary">
+                    <div class="panel-heading">Uploaded List for Session</div>*@
+                <div id="jambListContainer">
+                    <table class="table table-striped table-responsive" id="jambBiodataTable">
+                        <thead>
+                            <tr><th>RegNum</th><th>LastName</th><th>FirstName</th><th>MiddleName</th><th>ProgramCode</th><th>CourseCode</th><th>Gender</th>@*<th></th><th></th>*@</tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*</div>*@
+}
+
+
+<script>
+    $(function () {
+        toastr.options =
+{
+    "closeButton": false,
+    "debug": false,
+    "progressBar": false,
+    "positionClass": "toast-top-center",
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+};
+
+
+        $("#SessionId").change(function () {
+            //var selectedItem = $(this).val();
+            getJambBreakDown();
+        });
+
+        //$("#UploadList").click(function () {
+        //    var response;
+        //    var nameOfFile = $("#NameOfFile").val();
+        //    checkIfNameExist();
+        //    if (response) {
+        //        toastr.error("Name entered for uploaded file already exist, Please enter another name");
+        //        return false;
+        //    }
+
+        //    function checkIfNameExist() {
+        //        $.ajax({
+        //            cache: false,
+        //            type: "GET",
+        //            async: false,
+        //            url: "/EduApply/Upload/CheckForDuplicateName",
+        //            //url: "/Upload/CheckForDuplicateName",
+        //            data: { "nameOfFile": nameOfFile },
+        //            success: function (data) {
+        //                response = data;
+        //            },
+        //            error: function (xhr, ajaxOptions, thrownError) {
+        //                alert('Error occured');
+        //                return false;
+        //            }
+        //        });
+        //    }
+        //});
+
+        $("#downloadButton").click(function () {
+            var regNums = [];
+            $("#jambBiodataTable tr:gt(0)").each(function () {
+                var row = $(this);
+                var registrationNumber = $.trim(row.find('td:eq(0)').html());
+                if (registrationNumber != "") {
+                    regNums.push(registrationNumber);
+                }
+
+            });
+            if (regNums.length == 0) {
+                toastr.info("No record to download");
+                return false;
+            }
+            downloadResult(regNums);
+        });
+    });
+
+
+
+    function getJambBreakDown() {
+
+        $(document).ready(function () {
+            $('#jambBiodataTable').dataTable({
+                destroy: true,
+                "bSort" : false,
+                "bServerSide": true,
+                "sAjaxSource": "/Upload/GetJambBiodataForSession?sessionId=" + $("#SessionId").val(),
+                "bProcessing": true,
+                "aoColumns": [
+                        //{ "sName": "Id" },
+                        { "sName": "RegNum" },
+                        { "sName": "LastName" },
+                        { "sName": "FirstName" },
+                        { "sName": "MiddleName" },
+                        { "sName": "ProgramCode" },
+                        { "sName": "CourseCode" },
+                        { "sName": "Gender" }
+
+                ]
+            });
+        });
+    }
+
+
+
+    function deleteJambBreakDown(id) {
+        var res = confirm("Are you sure you want to delete this Result?");
+        if (res) {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "/Upload/DeleteJambResult",
+                //url: "/EduApply/Upload/DeleteJambResult",
+                data: { "id": id },
+                success: function () {
+                    var sessionId = $("#SessionId").val();
+                    getJambBreakDown(sessionId);
+                }
+            });
+        }
+    }
+
+    function editJambBreakDown(id) {
+        //  window.location = '/EduApply/Upload/EditJambBreakdown?id=' + id;
+        window.location = '/Upload/EditJambBreakdown?id=' + id;
+    }
+
+    function downloadResult(regNums) {
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            //before passing an array to a controller from ajax traditional must be set to true or else controller wont recieve the array
+            traditional: true,
+            // url: "/EduApply/Download/CreateExcelForJambBreakDown",
+            url: "/Download/CreateExcelForJambBreakDown",
+            data: { "regNums": regNums },
+            success: function (filename) {
+                //   window.location = '/EduApply/Download/DownloadExcel?file=' + filename;
+                window.location = '/Download/DownloadExcel?file=' + filename;
+                //  toastr.success("Download Complete");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Error occured');
+                return false;
+            }
+        });
+    }
+</script>
+
+@*<script>
+        $(function () {
+            $("#jambListTable").DataTable();
+        });
+    </script>*@

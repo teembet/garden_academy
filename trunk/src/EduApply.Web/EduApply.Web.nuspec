@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>EduApply.Web</id>
+    <version>1.0.0</version>
+    <authors>Splasherstech</authors>
+	<description>Edutech Apply forms</description>
+  </metadata>
+  <files>
+	<file src="*" exclude="packages.config;*.cs;*.csproj;*.user;*.nuspec" />
+	<file src="fonts\**" exclude="**\*.cs" target="fonts" />
+	<file src="images\**" exclude="**\*.cs" target="images" />
+	<file src="bin\**" exclude="**\*.pdb;**\*.dll.config" target="bin" />
+	<file src="Content\**" target="Content" />
+	<file src="..\..\Database\**" target="Database" />
+	<file src="Scripts\**" target="Scripts" />
+	<file src="Views\**" target="Views" />
+	<file src="EmailTemplates\**" target="EmailTemplates" />
+	<file src="PrintTemplates\**" target="PrintTemplates" />
+	<file src="Tenancy\**" target="Tenancy" />
+  </files>
+</package>

@@ -1,0 +1,201 @@
+﻿@model IEnumerable<EduApply.Web.Models.VenueModel>
+
+@{
+    ViewBag.Title = "Venue Configuration";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    int successfulUploads = TempData["successfulUploads"] == null ? 0 : Convert.ToInt32(TempData["successfulUploads"]);
+    int updatedUploads = TempData["updatedUploads"] == null ? 0 : Convert.ToInt32(TempData["updatedUploads"]);
+    int failedUploads = TempData["failedUploads"] == null ? 0 : Convert.ToInt32(TempData["failedUploads"]);
+}
+
+@*<h2>Venue Configuration</h2>*@
+<hr />
+<div class="row">
+
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li>@Html.ActionLink("Session", "Index", "Session")</li>
+            <li>@Html.ActionLink("Program", "Index", "Program")</li>
+            <li>@Html.ActionLink("Faculty", "Index", "Faculty")</li>
+            <li>@Html.ActionLink("Department", "Index", "Department")</li>
+            <li>@Html.ActionLink("Course of Study", "Index", "Course")</li>
+            <li class="active">@Html.ActionLink("Venue", "Index", "Venue")</li>
+            <li>@Html.ActionLink("Exam Venue", "Index", "ExamVenue")</li>
+            <li>@Html.ActionLink("Venue Mapping", "Mapper", "VenueMapping")</li>
+        </ul>
+    </div>
+
+    <div class="col-md-12 margin-top">
+        @if (successfulUploads > 0 && failedUploads == 0 && updatedUploads == 0)
+        {
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>All records in file successfully uploaded</p>
+            </div>
+
+        }
+        else if (updatedUploads > 0 && successfulUploads == 0 && failedUploads == 0)
+        {
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>@updatedUploads records succesfully updated</p>
+            </div>
+
+        }
+        else if (failedUploads > 0 && successfulUploads == 0 && updatedUploads == 0)
+        {
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>No record uploaded</p>
+            </div>
+
+        }
+        else if (failedUploads != 0 || successfulUploads != 0 || updatedUploads != 0)
+        {
+
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>New records added: @successfulUploads, Updated Records:@updatedUploads, Failed : @failedUploads</p>
+            </div>
+
+        }
+        @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger alert-dismissible" })
+
+        <div class="form-group">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+            <a href="#" class="btn btn-success" id="uploadVenueButton">Upload Venues</a>
+        </div>
+
+        <div class="form-group" id="uploadModule" style="display: none">
+            <div class="thumbnail">
+                <div style="padding: 5px">
+                    @using (Html.BeginForm("VenueUpload", "Venue", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="row required">
+                            <div class="col-md-12">
+                                <label>Select File (.csv only):   click @Html.ActionLink("here", "DownloadPreFormatedDoc", "Upload", new { fileName = "VenueUpload.csv" }, null) to get a preformatted document</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9"><input type="file" id="venueUpload" name="venueUpload" value="" class="form-control" data-val="true" data-val-required="No file selected" /></div>
+                            <div class="col-md-3"><input type="submit" id="UploadVenue" value="Submit" class="btn btn-primary" /></div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Venues</div>
+            <table class="table-striped table-responsive" id="VenueTable">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Venue</th>
+                        <th>Capacity</th>
+                        <th>Active</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        var counter = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@counter</td>
+                                <td>
+                                    @item.Name
+                                </td>
+                                <td>
+                                    @item.Capacity
+                                </td>
+                                <td>
+                                    @item.Active
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { venueId = item.Id }, new { @class = "btn btn-success btn-xs" }) |
+                                    @if (item.Active)
+                                    {
+                                        @Html.ActionLink("Deactivate", "Deactivate", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Activate", "Activate", new { id = item.Id }, new { @class = "btn btn-primary btn-xs" })
+                                    }
+
+                                </td>
+                            </tr>
+                                    counter++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#VenueTable").DataTable();
+        toastr.options =
+        {
+            "closeButton": false,
+            "debug": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+    })
+</script>
+
+@if (TempData["Created"] != null && TempData["Created"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Venue Successfully Created");
+        })
+    </script>
+}
+@if (TempData["Edited"] != null && TempData["Edited"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Details of Venue Successfully Changed");
+        })
+    </script>
+}
+@if (TempData["Deactivate"] != null && TempData["Deactivate"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Venue Deactivated");
+        })
+    </script>
+}
+@if (TempData["Activate"] != null && TempData["Activate"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Venue Activated");
+        })
+    </script>
+}
+<script>
+    $(function () {
+        $("#uploadVenueButton").click(function () {
+            $("#uploadModule").slideToggle(1000);
+        });
+    });
+</script>

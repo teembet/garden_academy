@@ -1,0 +1,131 @@
+﻿@using EduApply.Logic.Interfaces
+@using EduApply.Logic.Service
+@using EduApply.Logic.Utility
+<!DOCTYPE html>
+<html>
+@{
+    var theme = EngineContext.Resolve<Theme>();
+    var schoolName = theme.SchoolName;
+    var http = EngineContext.Resolve<HttpContextBase>();
+    var configurationService = EngineContext.Resolve<IConfigurationService>();
+    var localTime = configurationService.GetCurrentWestAfricanDateTime();
+    //var logo = @UrlHelper.GenerateContentUrl("images/" + theme.Logo, http);
+
+    var logo = @Url.Content("/images/" + theme.Logo);
+}
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - Apply Portal</title>
+        <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+        <link href="~/Content/toastr.css" rel="stylesheet" />
+        <link href="~/Content/jquery.dataTables_themeroller.css" rel="stylesheet" />
+        <link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
+        <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+      
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script src="~/Scripts/toastr.js"></script>
+        <script src="~/Scripts/jquery.ui.widget.js"></script>
+        <script src="~/Scripts/jquery.fileupload.js"></script>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <script src="~/Scripts/jquery-ui.js"></script>
+        <script src="~/Scripts/timepicker.js"></script>
+        <script src="~/Scripts/jquery.dataTables.js"></script>
+        <script src="~/Scripts/jquery.dataTables.rowReordering.js"></script>
+        <link href="~/Styles/Theme.css" rel="stylesheet" />
+ 
+
+    </head>
+    <body>
+        <noscript>This Website uses Javascript, Please enable it in your browser</noscript>
+        <div >
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-static-top border navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-brand margin-left-header" style="width: 50px" href="#">
+                    <img id="" class="logo" src=@logo />
+                </div>
+                <div class="navbar-header ">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                 
+
+                </div>
+
+           
+                <ul class="nav  navbar-top-links navbar-right">
+                    @Html.Partial("_ApplicantLoginPartial")
+                </ul>
+            </nav>
+
+        </div>
+        <div class="sidebar " role="navigation">
+            <div class="sidebar-nav navbar-collapse collapse">
+                <ul class="nav in sidebar menu-margin" id="" >
+
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class= "active">@Html.ActionLink("Application", "Index", "Application")</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div>
+            <div class="top-form col-sm-9 col-sm-offset-1 col-md-10 margin-left-medium">
+                <h3 class="form-header  centering" style="color: #000">@Session["AppFormName"].ToString() - @Session["AppNum"].ToString()</h3>
+            </div>
+            <div class="col-sm-9 col-sm-offset-1 col-md-10 margin-left-medium" style="">
+                @RenderBody()
+            </div>
+            </div>
+        <footer class="container margin-left-medium  centering text-center" style="margin-top:20px">
+            <hr />
+            <p>&copy; @localTime.Year - Application Portal</p>
+        </footer>
+
+
+            @*@Scripts.Render("~/bundles/jquery")*@
+            @Scripts.Render("~/bundles/bootstrap")
+            @Scripts.Render("~/bundles/jqueryval")
+            @RenderSection("scripts", required: false)
+
+            <script>
+                $(function () {
+                    toastr.options =
+                    {
+                        "closeButton": false,
+                        "debug": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-center",
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    checkSupportForInputTypeDate();
+
+                    function checkSupportForInputTypeDate() {
+                        jQuery.validator.methods.date = function (value, element) {
+                            var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+                            var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+                            if (!isSafari || !isChrome) {
+                                var d = new Date();
+                                return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                            } else {
+                                return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                            }
+                        };
+                    }
+                });
+            </script>
+</body>
+</html>

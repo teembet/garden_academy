@@ -1,0 +1,20 @@
+﻿@model IEnumerable<EduApply.Web.Models.EducationalDetailsModel>
+<div class="container">
+    <hr/>
+    <h4>Educational Details</h4>
+    <hr />
+    @foreach (var edu in Model)
+    {
+        <div class="form-group">
+            <div class="col-md-4"><p><strong>School Name: </strong>@edu.SchoolName</p></div>
+            <div class="col-md-4"><p><strong>Qualification: </strong>@edu.Qualification</p></div>
+            <div class="col-md-4"><p><strong>Class of Degree: </strong>@edu.ClassOfDegree</p></div>
+            <div class="col-md-4"><p><strong>Entry Year: </strong>@edu.EntryYear</p></div>
+            <div class="col-md-4"><p><strong>Graduation Month: </strong>@edu.GraduationMonth</p></div> 
+            <div class="col-md-4"><p><strong>Graduation Year: </strong>@edu.GraduationYear</p></div> 
+            <div class="row"></div>
+        </div>
+        
+    }
+
+</div>

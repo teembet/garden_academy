@@ -1,0 +1,18 @@
+﻿@model IEnumerable<EduApply.Data.Entities.WorkExperience>
+<div class="container">
+    <hr/>
+    <h4>Employment History</h4>
+    <hr />
+
+    @foreach (var we in Model)
+    {
+        <div class="form-group">
+            <div class="col-md-4"><p><strong>Organization: </strong>@we.Organization</p></div>
+            <div class="col-md-8"><p><strong>Job Description: </strong>@we.JobDescription</p></div>
+
+            <div class="col-md-4"><p><strong>Position: </strong>@we.Position</p></div>
+            <div class="col-md-4"><p><strong>From: </strong>@we.FromDate.ToString("dd-MMM-yyyy")</p></div>
+            <div class="col-md-4"><p><strong>To: </strong>@(we.ToDate != null ? Convert.ToDateTime(we.ToDate).ToString("dd-MMM-yyyy") : "Still work here")</p></div>
+        </div>
+    }
+</div>

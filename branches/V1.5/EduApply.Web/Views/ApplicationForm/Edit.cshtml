@@ -1,0 +1,478 @@
+﻿@using EduApply.Data.Entities
+@using EduApply.Web.Models
+@model EduApply.Web.Models.ApplicationFormModel
+
+@{ ViewBag.Title = "Edit Application Form";
+ Layout = "~/Views/Shared/AdminLayout.cshtml";}
+
+
+@*<h2>Edit Application Form</h2>*@
+<hr />
+@Html.ValidationSummary()
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-6">
+            <input type="hidden" name="Id" value="@Model.Id" />
+            @*@Html.HiddenFor(model=>model.Id)*@
+            <div class="form-group required">
+                <label>Name</label>
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control default-width" })
+            </div>
+            <div class="form-group required">
+                <label class="control-label block-display">Start Date</label>
+                @Html.TextBoxFor(model => model.StartDate, Model.StartDate.ToString("dd-MMM-yyyy h:mm tt"), new { @id = "StartDate2", @class = "form-control custom-disable-textbox", @readonly = true })
+            </div>
+            <div class="form-group required">
+                <label class="control-label block-display">End Date</label>
+                @Html.TextBoxFor(model => model.EndDate, Model.EndDate.ToString("dd-MMM-yyyy h:mm tt"), new { @id = "EndDate2", @class = "form-control custom-disable-textbox", @readonly = true })
+            </div>
+            <div class="form-group required">
+                <label class="control-label">Form Category</label>
+                @Html.DropDownListFor(model => model.FormCategoryId, new SelectList(Model.FormCategories, "Id", "Name", Model.FormCategoryId), "<--Select-->", new { @class = "form-control default-width" })
+                @Html.ValidationMessageFor(model => model.FormCategoryId, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group required">
+                <label class="control-label">Session</label>
+                @Html.DropDownListFor(model => model.SessionId, new SelectList(Model.Sessions, "Id", "Name", Model.SessionId), "<--Select-->", new { @class = "form-control default-width" })
+                @Html.ValidationMessageFor(model => model.SessionId, "", new { @class = "text-danger" })
+            </div>
+            @*<div class="form-group">
+                    <label class="control-label">Map Form To</label>
+                    @Html.DropDownListFor(model => model.MappedToFormId, new SelectList(Model.ApplicationForms, "Id", "Name", Model.MappedToFormId), "Not Applicable", new { @class = "form-control default-width" })
+                    @Html.ValidationMessageFor(model => model.MappedToFormId, "", new { @class = "text-danger" })
+                </div>*@
+            <div class="form-group required">
+                <label>Fee (Naira)</label>
+                @Html.TextBoxFor(model => model.Fee, null, new { @class = "form-control default-width" })
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    @Html.CheckBoxFor(model => model.AllowMultipleApplications)
+                    @Html.LabelFor(model => model.AllowMultipleApplications)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">Workflow Order: Drag and Drop to reorder</div>
+                <table id="workFlowTable" class="table">
+                    @if (Model.WorkFlowList.Count() == 0)
+                    {
+                        <tr>
+                            <td>No WorkFlow Configuration in place</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        var orderIndex = 1;
+                        <thead>
+                            <tr><th>S/N</th><th>Workflow</th><th>Enable</th><th>Is Compulsory</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in @Model.WorkFlowList)
+                            {
+                                <tr id="@orderIndex">
+                                    <td>@orderIndex</td>
+                                    <td>@item.Name</td>
+                                    @if (item.Enabled)
+                                    {
+                                        <td><input type="checkbox" value="@item.Id" name="workFlowItems" checked="" /></td>
+                                    }
+                                    else
+                                    {
+                                        <td><input type="checkbox" value="@item.Id" name="workFlowItems" /></td>
+                                    }
+                                    @if (item.IsCompulsory)
+                                    {
+                                        <td><input type="checkbox" value="@item.Id" name="isCompulsoryItems" checked="" /></td>
+                                    }
+                                    else
+                                    {
+                                        <td><input type="checkbox" value="@item.Id" name="isCompulsoryItems" /></td>
+                                    }
+
+                                </tr>
+                                    orderIndex++;
+                            }
+
+                        </tbody>
+                    }
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Templates in @Model.Name</div>
+        <table class="table table-striped" id="formTemplateTable">
+            @if (Model.FormTemplates.Any())
+            {
+                <tr>
+                    <th>Form Templates</th>
+                    <th>Add To Form </th>
+                    <th>Minimum Entry</th>
+                    <th>Maximum Entry</th>
+                    <th>&nbsp;</th>
+                </tr>
+                foreach (FormTemplateModel frm in Model.FormTemplates)
+                {
+                    <tr>
+                        <td>@frm.Name</td>
+                        @if (Model.FormTempletIdz.Contains(frm.Id))
+                        {
+                            <td>
+                                <input type="checkbox" name="IdsToAdd" value="@frm.Id" checked="">
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <input type="checkbox" name="IdsToAdd" value="@frm.Id">
+                            </td>
+                        }
+
+                        @if (frm.Code == "REG" || frm.Code == "BD" || frm.Code == "PU" || frm.Code == "PC" || frm.Code == "JR")
+                        {
+                            <td>
+                                <input type="text" value="@frm.MinEntry" class="form-control" name="MinEntry" disabled="" />
+                            </td>
+                            <td>
+                                <input type="text" value="@frm.MaxEntry" class="form-control" name="MaxEntry" disabled="" />
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.TextBoxFor(form => frm.MinEntry, new { Name = @frm.Code + "_MinEntry", @class = "form-control " })
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(form => frm.MaxEntry, new { Name = @frm.Code + "_MaxEntry", @class = "form-control" })
+                            </td>
+                        }
+                        <td>
+                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#@frm.Name">
+                                Preview
+                            </button>
+                        </td>
+                    </tr>
+                }
+
+            }
+            else
+            {
+                <tr><td colspan="5">No Templates has been configured yet</td></tr>
+            }
+        </table>
+    </div>
+
+    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+    <button id="submitFormButton" type="submit" class="btn btn-success">Save</button>
+    @Html.ActionLink("Advanced Settings", "AdvancedSettings", "ApplicationForm", new { @formId = Model.Id }, new { @class = "btn btn-primary" })
+}
+
+<div class="modal fade" id="Bio-Data" tabindex="-1" role="dialog" aria-labelledby="biodataLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="biodataLabel">Preview</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_Biodata", ViewData["BiodataModel"] as PersonalInformationModel)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="O-Level-Result" tabindex="-1" role="dialog" aria-labelledby="oLevelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="oLevelLabel">Preview</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_OLevelResultDetails2", ViewData["OLevelTemplateModel"] as OLevelResultDetailsViewModel)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Educational_Details" tabindex="-1" role="dialog" aria-labelledby="educationalDetailsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="educationalDetailsLabel">Preview</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_EducationalDetails", new List<EducationalDetails>())
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Work_Experience" tabindex="-1" role="dialog" aria-labelledby="workExperienceLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="workExperienceLabel">Preview</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_WorkExperience", new List<WorkExperience>())
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Referee" tabindex="-1" role="dialog" aria-labelledby="referenceLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="referenceLabel">Preview</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_Reference", new List<Reference>())
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Passport_Upload" tabindex="-1" role="dialog" aria-labelledby="uploadPassportLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadPassportLabel">Preview</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_UploadPassport", new PictureModel())
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Certificate_Upload" tabindex="-1" role="dialog" aria-labelledby="uploadCertificateLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="uploadCertificateLabel">Preview</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_UploadCertificate", new List<Certificate>())
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ProgramCourse" tabindex="-1" role="dialog" aria-labelledby="programCourseLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="programCourseLabel">Preview</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_ProgramCourse", ViewData["AppProgramCourseModel"] as ApplicantsProgramCourseModel)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RegNoValidation" tabindex="-1" role="dialog" aria-labelledby="regNumValidationLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="regNumValidationLabel">Preview</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_regNumValidation", new RegNumValidationModel())
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="JambResultDetails" tabindex="-1" role="dialog" aria-labelledby="JambResultDetails" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="JambResultDetailsLabel">Preview</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_JambBreakDownDetails", ViewData["JambResultDetails"] as ManualJambBreakDownModel)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+
+        //$("#workFlowTable").dataTable().rowReordering({ sURL: "/EduApply/ApplicationForm/UpdateRowMoved" });
+        $("#workFlowTable").dataTable().rowReordering({ sURL: "/EduApply/ApplicationForm/UpdateRowMoved" });
+        $('#frmPosTb').dataTable();
+        $("#workFlowTable_length").hide();
+        $("#workFlowTable_filter").hide();
+        $("#workFlowTable_info").hide();
+        $("#workFlowTable_paginate").hide();
+        $('#StartDate2,#EndDate2').datetimepicker({
+            showOn: "button",
+            buttonImage: "/EduApply/images/calendar.gif",
+            //buttonImage: "/images/calendar.gif",
+            buttonImageOnly: true,
+            buttonText: "Select date",
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1960:2060'
+        });
+
+
+
+        $("#submitFormButton").click(function () {
+            var formName = $("#Name").val();
+            var formFee = $("#Fee").val();
+
+            if (formName == "") {
+                $("#Name").addClass("input-validation-error").removeClass("valid");
+                return false;
+            }
+
+            if (formFee == "") {
+                $("#Fee").addClass("input-validation-error").removeClass("valid");
+                return false;
+            }
+
+            var checkedAtLeastOne = false;
+            var checkedAtLeastOneTemplate = false;
+
+            $('#workFlowTable tr').each(function (i, row) {
+                var $actualrow = $(row);
+                var $checkbox = $actualrow.find('td:eq(2) input[type="checkbox"]');
+                if ($checkbox.is(":checked")) {
+                    checkedAtLeastOne = true;
+                }
+            });
+            if (!checkedAtLeastOne) {
+                alert("No Workflow Item Selected");
+                return false;
+            }
+
+            var fillRow = $("#workFlowTable tr:eq(2)");
+            var $fillCheckBox = fillRow.find('td:eq(2) input[type="checkbox"]');
+            if ($fillCheckBox.is(":checked")) {
+                $('#formTemplateTable tr').each(function (i, row) {
+                    var $actualrow = $(row);
+                    var $checkbox = $actualrow.find('td:eq(1) input[type="checkbox"]');
+                    if ($checkbox.is(":checked")) {
+                        checkedAtLeastOneTemplate = true;
+                    }
+                });
+                if (!checkedAtLeastOneTemplate) {
+                    alert("You have to select at least one form template if fill is selected in workflow");
+                    return false;
+                }
+            }
+        });
+        $("#Name").change(function () {
+            var formName = $("#Name").val();
+            if (formName == "") {
+                $("#Name").addClass("input-validation-error").removeClass("valid");
+            } else {
+                $("#Name").addClass("valid").removeClass("input-validation-error");
+
+            }
+        });
+        $("#Fee").change(function () {
+            var formFee = $("#Fee").val();
+            if (formFee == "") {
+                $("#Fee").addClass("input-validation-error").removeClass("valid");
+            } else {
+                $("#Fee").addClass("valid").removeClass("input-validation-error");
+
+            }
+        });
+        toastr.options =
+{
+    "closeButton": false,
+    "debug": false,
+    "progressBar": false,
+    "positionClass": "toast-top-center",
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+};
+    });
+</script>
+
+@if (TempData["DateError"] != null)
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.error("Start Date cannot be greater than End Date");
+        })
+    </script>
+}
+
+@if (TempData["SameNameError"] != null)
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.error("Name entered has already been used by another Form");
+        })
+    </script>
+}

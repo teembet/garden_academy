@@ -1,0 +1,172 @@
+﻿@model EduApply.Web.Models.CorrectionModel
+@{
+    ViewBag.Title = "Correction";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Correction", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.RegNum, new { @class = "control-label" })
+            @Html.EditorFor(model => model.RegNum, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RegNum)
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.AppNum, new { @class = "control-label" })
+            @Html.EditorFor(model => model.AppNum, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AppNum)
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label>&nbsp;</label>
+        <div class="form-group">
+            <input type="submit" id="searchButton" value="Search" style="vertical-align: bottom" class="btn btn-success" />
+        </div>
+    </div>
+}
+<div class="row"></div>
+<div class="col-md-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Search Result</div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Reg No</th>
+                    <th>App No</th>
+                    <th>Name</th>
+                    <th>Program Course</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Payment Date</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.SearchResults.Any())
+{
+    foreach (var item in @Model.SearchResults)
+    {
+        <tr id="@item.ApplicationId-read">
+            <td>@item.RegNum</td>
+            <td>@item.AppNum</td>
+            <td>@item.Lastname @item.Firsname @item.Middlename</td>
+            <td>@item.ProgramCourse</td>
+            <td>@item.PhoneNumber</td>
+            <td>@item.Email</td>
+            @if (item.PaymentDate != null)
+            {
+                <td>@item.PaymentDate</td>
+            }
+            else
+            {
+                <td>Not Paid</td>
+            }
+            <td><a href="#" onclick="return editApplication(@item.ApplicationId);" class="btn btn-primary btn-xs">Edit</a></td>
+            <td>@Html.ActionLink("Delete", "Delete", "Correction", new { appId = @item.ApplicationId }, new { @class = "btn btn-danger btn-xs deleteApp" })</td>
+        </tr>
+        using (Html.BeginForm("Update", "Correction"))
+        {
+                    @Html.AntiForgeryToken()
+                    <tr id="@item.ApplicationId-edit" style="display: none">
+                        <td>
+                            <input type="hidden" value="@item.ApplicationId" name="appId" />
+                            <input type="text" value="@item.RegNum" class="form-control" name="regNum" data-val="true" data-val-required="" />
+                        </td>
+                        <td><input type="text" value="@item.AppNum" class="form-control" name="appNum" data-val="true" data-val-required="" /></td>
+                        <td>@item.Lastname @item.Firsname @item.Middlename</td>
+                        <td>@item.ProgramCourse</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>@item.Email</td>
+                        @if (item.PaymentDate != null)
+                        {
+                            <td>@item.PaymentDate</td>
+                        }
+                        else
+                        {
+                            <td>Not Paid</td>
+                        }
+                        <td><input type="submit" value="update" class="btn btn-xs btn-primary" /></td>
+                        <td><a href="#" onclick="return cancelEdit(@item.ApplicationId);" class="btn btn-default btn-xs">Cancel</a></td>
+                    </tr>
+                }
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="10" style="text-align: center">No Record Available</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(function () {
+        toastr.options =
+        {
+            "closeButton": false,
+            "debug": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        $("#searchButton").click(function () {
+            var regNum = $("#RegNum").val();
+            var appNum = $("#AppNum").val();
+            if (appNum == "" && regNum == "") {
+                toastr.error("Enter A valid Reg No or App No");
+                return false;
+            }
+        });
+        $(".deleteApp").click(function () {
+            var response = confirm("Are you sure you want to delete this Application");
+            if (!response) {
+                return false;
+            }
+        });
+    });
+
+    function editApplication(id) {
+        $("#" + id + '-read').hide();
+        $("#" + id + '-edit').show();
+    }
+    function cancelEdit(id) {
+        $("#" + id + '-edit').hide();
+        $("#" + id + '-read').show();
+    }
+</script>
+
+
+@if (TempData["AppUpdated"] != null && TempData["AppUpdated"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Application Successfully Updated");
+        })
+    </script>
+}
+
+@if (TempData["AppDeleted"] != null && TempData["AppDeleted"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Application Successfully Deleted");
+        })
+    </script>
+}

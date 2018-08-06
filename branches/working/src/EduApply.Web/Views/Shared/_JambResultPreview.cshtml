@@ -1,0 +1,55 @@
+﻿@model EduApply.Web.Models.JambScoreValidationModel
+
+<div class="container">
+    <hr />
+    <h4>Jamb Result</h4>
+    <hr />
+    <div class="form-group">
+        <div class="col-xs-4">
+            <strong>Registration Number</strong>
+        </div>
+        <div class="col-xs-4">
+            @Html.DisplayFor(model => model.RegNum)
+        </div>
+        <div class="row"></div>
+    </div>
+
+    @*<div class="form-group">
+            <div class="col-xs-4"><strong>Last Name: </strong>@Model.LastName</div>
+            <div class="col-xs-4"><strong>First Name: </strong>@Model.FirstName</div>
+            <div class="col-xs-4"><strong>Middle Name: </strong>@Model.MiddleName</div>
+            <div class="row"></div>
+        </div>*@
+    <div class="form-group">
+        <div class="col-xs-4"><strong>English</strong></div>
+        <div class="col-xs-4"><strong>@Html.DisplayFor(model => model.EngScore)</strong></div>
+        <div class="row"></div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-xs-4"><strong>@Html.DisplayFor(model => model.Subject2)</strong></div>
+        <div class="col-xs-4"><strong>@Html.DisplayFor(model => model.Subject2Score)</strong></div>
+        <div class="row"></div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-4"><strong>@Html.DisplayFor(model => model.Subject3)</strong></div>
+        <div class="col-xs-4"><strong>@Html.DisplayFor(model => model.Subject3Score)</strong></div>
+        <div class="row"></div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-xs-4"><strong>@Html.DisplayFor(model => model.Subject4)</strong></div>
+        <div class="col-xs-4"><strong>@Html.DisplayFor(model => model.Subject4Score)</strong></div>
+        <div class="row"></div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-4"><strong>@Html.DisplayNameFor(model => model.TotalScore)</strong></div>
+        <div class="col-xs-4"><strong>@Html.DisplayFor(model => model.TotalScore)</strong></div>
+        <div class="row"></div>
+
+        @*<div class="col-xs-12">
+                <p style="font-size: 1.3em"><strong>@Html.DisplayNameFor(model => model.TotalScore)</strong>   @Html.DisplayFor(model => model.TotalScore)</p>
+            </div>*@
+    </div>
+
+</div>

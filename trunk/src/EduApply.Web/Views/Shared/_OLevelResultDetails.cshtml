@@ -1,0 +1,199 @@
+﻿@using System.Activities.Expressions
+@using EduApply.Data.Entities
+@using EduApply.Logic.Interfaces
+@using EduApply.Logic.Service
+@using Microsoft.Ajax.Utilities
+@model EduApply.Web.Models.OLevelResultDetails
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @{
+    List<SelectListItem> examType = new List<SelectListItem>()
+                            {
+                                new SelectListItem{Text = "WASSCE",Value = "WASSCE"},
+                                new SelectListItem{Text = "WASSCE GCE(NOV/DEC)",Value = "WASSCE GCE(NOV/DEC)"},
+                                new SelectListItem{Text = "NECO(MAY/JUNE)", Value = "NECO"},
+                                new SelectListItem{Text = "NECO GCE(NOV/DEC)", Value = "NECO GCE(NOV/DEC)"}
+                            };
+        }
+        <h4>O-Level Result Details</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger" })
+
+        @if (Model.OLevelDetails.Any())
+        {
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">O'Level Detail</div>
+                    <table class="table table-striped">
+
+                        @{
+            var i = 1;
+                        }
+                        @foreach (var result in Model.OLevelDetails)
+                        {
+                            <tr><td colspan="5">@i Sitting</td></tr>
+                            <tr>
+                                <th>Candidate Name</th>
+                                <th>School Name</th>
+                                <th>Exam Number</th>
+                                <th>Year</th>
+                                <th>Exam Type</th>
+                            </tr>
+                           
+                                <td>@result.CandidateName</td>
+                                <td>@result.SchoolName</td>
+                                <td>@result.ExamNumber</td>
+                                <td>@result.Year</td>
+                                <td>@result.ExamType</td>
+                            </tr>
+                            i++;
+                        }
+                    </table>
+                </div>
+            </div>
+            <hr />
+        }
+
+        <div class="col-md-6">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.CandidateName)
+                @Html.EditorFor(model => model.CandidateName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CandidateName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.SchoolName)
+                @Html.EditorFor(model => model.SchoolName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SchoolName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group required">
+
+            </div>*@
+        <div class="col-md-6">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.ExamNumber)
+                @Html.EditorFor(model => model.ExamNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ExamNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.Year)
+                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.ExamType)
+                @Html.DropDownListFor(model => model.ExamType, examType, "<--Select-->", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ExamType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Enter Result</div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>S/N</th>
+                        <th>Subject</th>
+                        <th>Grade</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>@Html.LabelFor(model => model.Subject1)</td>
+                        <td>@Html.DropDownListFor(model => model.Grade1, new SelectList(Model.Grades, "Id", "Name", Model.Grade1), "<--Select-->", new { @class = "form-control" })</td>
+                        @*<td>@Html.DropDownListFor(model => model.Grade1, grades, "<--Select-->", new { @class = "form-control" })</td>*@
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>@Html.LabelFor(model => model.Subject2)</td>
+                        <td>@Html.DropDownListFor(model => model.Grade2, new SelectList(Model.Grades, "Id", "Name", Model.Grade2), "<--Select-->", new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>@Html.DropDownListFor(model => model.Subject3, new SelectList(Model.Subjects, "Id", "Name", Model.Subject3), "<--Select-->", new { @class = "form-control" })</td>
+                        <td>@Html.DropDownListFor(model => model.Grade3, new SelectList(Model.Grades, "Id", "Name", Model.Grade3), "<--Select-->", new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>@Html.DropDownListFor(model => model.Subject4, new SelectList(Model.Subjects, "Id", "Name", Model.Subject4), "<--Select-->", new { @class = "form-control" })</td>
+                        <td>@Html.DropDownListFor(model => model.Grade4, new SelectList(Model.Grades, "Id", "Name", Model.Grade4), "<--Select-->", new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>@Html.DropDownListFor(model => model.Subject5, new SelectList(Model.Subjects, "Id", "Name", Model.Subject5), "<--Select-->", new { @class = "form-control" })</td>
+                        <td>@Html.DropDownListFor(model => model.Grade5, new SelectList(Model.Grades, "Id", "Name", Model.Grade5), "<--Select-->", new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>@Html.DropDownListFor(model => model.Subject6, new SelectList(Model.Subjects, "Id", "Name", Model.Subject6), "<--Select-->", new { @class = "form-control" })</td>
+                        <td>@Html.DropDownListFor(model => model.Grade6, new SelectList(Model.Grades, "Id", "Name", Model.Grade6), "<--Select-->", new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>@Html.DropDownListFor(model => model.Subject7, new SelectList(Model.Subjects, "Id", "Name", Model.Subject7), "<--Select-->", new { @class = "form-control" })</td>
+                        <td>@Html.DropDownListFor(model => model.Grade7, new SelectList(Model.Grades, "Id", "Name", Model.Grade7), "<--Select-->", new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>@Html.DropDownListFor(model => model.Subject8, new SelectList(Model.Subjects, "Id", "Name", Model.Subject8), "<--Select-->", new { @class = "form-control" })</td>
+                        <td>@Html.DropDownListFor(model => model.Grade8, new SelectList(Model.Grades, "Id", "Name", Model.Grade8), "<--Select-->", new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>@Html.DropDownListFor(model => model.Subject9, new SelectList(Model.Subjects, "Id", "Name", Model.Subject9), "<--Select-->", new { @class = "form-control" })</td>
+                        <td>@Html.DropDownListFor(model => model.Grade9, new SelectList(Model.Grades, "Id", "Name", Model.Grade9), "<--Select-->", new { @class = "form-control" })</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        @if (User.IsInRole("Student"))
+        {
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default" })
+                    <input type="submit" id="submit" value="Add" class="btn btn-primary" />
+                    @Html.ActionLink("Continue >>", "ContinuFromOLevel", "Fill", null, new { @class = "btn btn-success" })
+                    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })*@
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default", @disabled = true })
+                    <input type="submit" value="Submit" class="btn btn-success disabled" />
+                    @Html.ActionLink("Continue >>", "ContinuFromOLevel", "Fill", null, new { @class = "btn btn-success", @disabled = true })
+                </div>
+            </div>
+        }
+    </div>
+}
+<script>
+    $(function () {
+        $("#submit").click(function () {
+            var subjects = [$("#Subject3").val(), $("#Subject4").val(), $("#Subject5").val(), $("#Subject6").val(), $("#Subject7").val(), $("#Subject8").val(), $("#Subject9").val()];
+            var subjectsLength = subjects.length;
+            for (var i = 0; i < subjectsLength; i++) {
+                for (var j = i + 1; j < subjectsLength; j++) {
+                    if (subjects[i] == "" || subjects[j] == "") {
+                        continue;
+                    }
+                    if (subjects[i] === subjects[j]) {
+                        alert("You cannot pick the same subject more than once");
+                        return false;
+                    }
+                }
+            }
+        });
+    })
+</script>

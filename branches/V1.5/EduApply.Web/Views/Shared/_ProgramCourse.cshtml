@@ -1,0 +1,129 @@
+﻿@using EduApply.Logic.Interfaces
+@using EduApply.Logic.Service
+@model EduApply.Web.Models.ApplicantsProgramCourseModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Program/Course</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.ApplicationId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ApplicationId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ApplicationId, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group required">
+            @Html.LabelFor(model => model.ProgramId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.ProgramId, new SelectList(Model.Programs, "Id", "Code", Model.ProgramId), "<--Select-->", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProgramId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group required">
+            @Html.LabelFor(model => model.CourseId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.CourseId, new SelectList(Model.Courses, "Id", "Name", Model.CourseId), "<--Select-->", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        @if (User.IsInRole("Student"))
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-6">
+                    @{
+                        var applicationFormId = Convert.ToInt32(Session["AppFormId"]);
+                        var appFormservice = EngineContext.Resolve<IApplicationFormRepository>();
+                        var applicationFormWorkFlow = appFormservice.GetFirstApplicationFormWorkFlow(applicationFormId);
+                        var workFlow = appFormservice.GetWorkFlowItem(applicationFormWorkFlow.WorkFlowId);
+                        var templatesForAppForm = appFormservice.GetFirstTemplatesInApp(applicationFormId);
+                        var formTemplate = appFormservice.GetFormTemplate(templatesForAppForm.FormTemplateId);
+                    }
+                    @if (!(workFlow.Name.Equals("Fill") && formTemplate.Code.Equals("PC")))
+                    {
+                        @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default" })
+                    }
+                    <input type="submit" value="Save and Continue" class="btn btn-success" />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default", @disabled = true })
+                    <input type="submit" value="Save and Continue" class="btn btn-success disabled" />
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+}
+<script type="text/javascript">
+    $(function () {
+        //var progamId = $("#ProgramId").val();
+        //fetchCourses(progamId);
+
+        $("#ProgramId").change(function () {
+            var selectedItem = $(this).val();
+            var ddlCourses = $("#CourseId");
+            // var statesProgress = $("#states-loading-progress");
+            //statesProgress.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.RouteUrl("GetCoursesByProgramId"))",
+                data: { "programId": selectedItem },
+                success: function (data) {
+                    ddlCourses.html('');
+                    // ddlStates.append('<option></option>');
+                    ddlCourses.append($('<option></option>').val(null).html("----"));
+                    $.each(data, function (id, option) {
+                        ddlCourses.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                    // statesProgress.hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to retrieve courses.');
+                    //   statesProgress.hide();
+                }
+            });
+        });
+    });
+
+    function fetchCourses(programId) {
+        var ddlCourses = $("#CourseId");
+        // var statesProgress = $("#states-loading-progress");
+        //statesProgress.show();
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: "@(Url.RouteUrl("GetCoursesByProgramId"))",
+            data: { "programId": programId },
+            success: function (data) {
+                ddlCourses.html('');
+                // ddlStates.append('<option></option>');
+                ddlCourses.append($('<option></option>').val(null).html("----"));
+                $.each(data, function (id, option) {
+                    ddlCourses.append($('<option></option>').val(option.id).html(option.name));
+                });
+                // statesProgress.hide();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Failed to retrieve courses.');
+                //   statesProgress.hide();
+            }
+        });
+    }
+</script>
