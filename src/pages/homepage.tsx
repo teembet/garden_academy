@@ -100,7 +100,7 @@ const HomePage: React.SFC<HomePageProps> = () => {
 
                         <div className="col-sm-6 col-lg-4 px-2 px-lg-3" data-aos="fade-up" data-aos-delay="200">
                             {/* <!-- Card --> */}
-                            <a className="js-go-to card bg-warning text-left h-100 transition-3d-hover" href="javascript:;"
+                            <a className="js-go-to card bg-warning text-left h-100 transition-3d-hover" href="#"
                                 data-hs-go-to-options='{
               "targetSelector": "#demoExamplesSection",
               "offsetTop": 0,
@@ -274,55 +274,55 @@ const HomePage: React.SFC<HomePageProps> = () => {
                  }'>
                                     <div id="filterControls" className="nav nav-sm nav-x-0 flex-lg-column">
                                         <div className="cbp-filter-scrollbar">
-                                            <a className="cbp-filter-item cbp-filter d-flex justify-content-between align-items-center-item-active nav-link mx-2 mx-lg-0" href="javascript:;" data-filter=".landings">
+                                            <a className="cbp-filter-item cbp-filter d-flex justify-content-between align-items-center-item-active nav-link mx-2 mx-lg-0" href="#" data-filter=".landings">
                                                 Landings
                     <span className="badge border badge-pill ml-2">14</span>
                                             </a>
-                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="javascript:;" data-filter=".onepages">
+                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="#" data-filter=".onepages">
                                                 Landing Onepages
                     <span className="badge border badge-pill ml-2">2</span>
                                             </a>
-                                            <a className="cbp-filter-item nav-link d-flex align-items-center mx-2 mx-lg-0" href="javascript:;" data-filter=".account">
+                                            <a className="cbp-filter-item nav-link d-flex align-items-center mx-2 mx-lg-0" href="#" data-filter=".account">
                                                 Account pages <span className="badge badge-success ml-2">New</span>
                                                 <span className="badge border badge-pill ml-auto">9</span>
                                             </a>
-                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="javascript:;" data-filter=".portfolio">
+                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="#" data-filter=".portfolio">
                                                 Portfolio
                     <span className="badge border badge-pill ml-2">8</span>
                                             </a>
-                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="javascript:;" data-filter=".blogs">
+                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="#" data-filter=".blogs">
                                                 Blogs
                     <span className="badge border badge-pill ml-2">5</span>
                                             </a>
-                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="javascript:;" data-filter=".pages">
+                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="#" data-filter=".pages">
                                                 Supporting Pages
                     <span className="badge border badge-pill ml-2">19</span>
                                             </a>
-                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="javascript:;" data-filter=".authentication">
+                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="#" data-filter=".authentication">
                                                 Account Authentications
                     <span className="badge border badge-pill ml-2">6</span>
                                             </a>
-                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="javascript:;" data-filter=".shop">
+                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="#" data-filter=".shop">
                                                 Shop
                     <span className="badge border badge-pill ml-2">10</span>
                                             </a>
-                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="javascript:;" data-filter=".course">
+                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="#" data-filter=".course">
                                                 Course
                     <span className="badge border badge-pill ml-2">4</span>
                                             </a>
-                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="javascript:;" data-filter=".app-marketplace">
+                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="#" data-filter=".app-marketplace">
                                                 App Marketplace
                     <span className="badge border badge-pill ml-2">4</span>
                                             </a>
-                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="javascript:;" data-filter=".help-desk">
+                                            <a className="cbp-filter-item nav-link d-flex justify-content-between align-items-center mx-2 mx-lg-0" href="#" data-filter=".help-desk">
                                                 Help Desk
                     <span className="badge border badge-pill ml-2">3</span>
                                             </a>
-                                            <a className="cbp-filter-item nav-link d-flex align-items-center mx-2 mx-lg-0" href="javascript:;" data-filter=".real-estate">
+                                            <a className="cbp-filter-item nav-link d-flex align-items-center mx-2 mx-lg-0" href="#" data-filter=".real-estate">
                                                 Real Estate <span className="badge badge-success ml-2">New</span>
                                                 <span className="badge border badge-pill ml-auto">5</span>
                                             </a>
-                                            <a className="cbp-filter-item nav-link d-flex align-items-center mx-2 mx-lg-0" href="javascript:;" data-filter=".jobs">
+                                            <a className="cbp-filter-item nav-link d-flex align-items-center mx-2 mx-lg-0" href="#" data-filter=".jobs">
                                                 Jobs <span className="badge badge-success ml-2">New</span>
                                                 <span className="badge border badge-pill ml-auto">9</span>
                                             </a>

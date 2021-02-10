@@ -8,24 +8,21 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
     return (
         <React.Fragment>
 
-            {/* < !-- ========== FOOTER ========== --> */}
             < footer className="bg-dark" >
                 <div className="container">
                     <div className="space-top-2 space-bottom-1 space-bottom-lg-2">
                         <div className="row justify-content-lg-between">
-                            <div className="col-lg-3 ml-lg-auto mb-5 mb-lg-0">
-                                {/* <!-- Logo --> */}
+                            <div className="col-sm-3">
+
                                 <div className="mb-4">
                                     <a href="https://htmlstream.com/front/index.html" aria-label="Front">
-                                        <img className="brand" src="front/assets/svg/logos/logo-white.svg" alt="Logo" />
+                                        <img className="brand" src="https://htmlstream.com/front/assets/svg/logos/logo.svg" alt="Logo" />
                                     </a>
                                 </div>
-                                {/* <!-- End Logo -->
 
-            <!-- Nav Link --> */}
                                 <ul className="nav nav-sm nav-x-0 nav-white flex-column">
                                     <li className="nav-item">
-                                        <a className="nav-link media" href="javascript:;">
+                                        <a className="nav-link media" href="#">
                                             <span className="media">
                                                 <span className="fas fa-location-arrow mt-1 mr-2"></span>
                                                 <span className="media-body">
@@ -48,7 +45,7 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                                 {/* <!-- End Nav Link --> */}
                             </div >
 
-                            <div className="col-6 col-md-3 col-lg mb-5 mb-lg-0">
+                            <div className="col-sm-3">
                                 <h5 className="text-white">Company</h5>
 
                                 {/* <!-- Nav Link --> */}
@@ -62,7 +59,7 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                                 {/* <!-- End Nav Link --> */}
                             </div>
 
-                            <div className="col-6 col-md-3 col-lg mb-5 mb-lg-0">
+                            <div className="col-sm-3">
                                 <h5 className="text-white">Features</h5>
 
                                 {/* <!-- Nav Link --> */}
@@ -75,7 +72,7 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                                 {/* <!-- End Nav Link --> */}
                             </div>
 
-                            <div className="col-6 col-md-3 col-lg">
+                            <div className="col-sm-3">
                                 <h5 className="text-white">Documentation</h5>
 
                                 {/* <!-- Nav Link --> */}
@@ -89,30 +86,6 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                                 {/* <!-- End Nav Link --> */}
                             </div>
 
-                            <div className="col-6 col-md-3 col-lg">
-                                <h5 className="text-white">Resources</h5>
-
-                                {/* <!-- Nav Link --> */}
-                                <ul className="nav nav-sm nav-x-0 nav-white flex-column">
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="front.html#">
-                                            <span className="media align-items-center">
-                                                <i className="fa fa-info-circle mr-2"></i>
-                                                <span className="media-body">Help</span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="front.html#">
-                                            <span className="media align-items-center">
-                                                <i className="fa fa-user-circle mr-2"></i>
-                                                <span className="media-body">Your Account</span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                {/* <!-- End Nav Link --> */}
-                            </div>
                         </div >
                     </div >
 
@@ -166,7 +139,7 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
               <!-- Language --> */}
                                     <li className="list-inline-item">
                                         <div className="hs-unfold">
-                                            <a className="js-hs-unfold-invoker dropdown-toggle btn btn-xs btn-soft-light" href="javascript:;"
+                                            <a className="js-hs-unfold-invoker dropdown-toggle btn btn-xs btn-soft-light" href="#"
                                                 data-hs-unfold-options='{
                         "target": "#footerLanguage",
                         "type": "css-animation",
