@@ -16,7 +16,7 @@ import homecard6 from "../assets/img/homecard6.svg";
 import pd1 from "../assets/img/pd1.svg"
 import pd2 from "../assets/img/pd2.svg"
 import pd3 from "../assets/img/pd3.svg"
-import facilitator from "../assets/img/facilitator.svg"
+// import facilitator from "../assets/img/facilitator.svg"
 // import { HiOutlineLightBulb } from "react-icons/hi";
 
 import { FaRegStar } from "react-icons/fa";
