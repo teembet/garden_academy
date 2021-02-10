@@ -1,0 +1,28 @@
+.d-lg-flex {
+  background-color: #f5e6d5;
+}
+.card-icon {
+  padding: 20px 20px 20px 20px;
+  display: flex;
+}
+.card-headers {
+  padding: 20px 0px 0px 20px;
+  text-align: left;
+}
+.card {
+  border-width: 2px;
+  box-shadow: 0 12px 15px rgb(140 152 164 / 10%);
+  border-color: #bac2c9;
+  padding: 22px;
+}
+
+.card-body {
+  text-align: left;
+}
+.session-three {
+  background-color: #041237;
+  color: #fff;
+  margin-top: 150px;
+}
+
+/* dfvdf*/
