@@ -35,6 +35,7 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                                             </span>
                                         </a>
                                     </li>
+                                    <br />
                                     <li className="nav-item">
                                         <a className="nav-link media" href="tel:1-062-109-9222">
                                             <span className="media">
@@ -156,7 +157,7 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
 
                     <hr className="opacity-xs my-0" />
                     <div>
-                        <p style={{ padding: "2rem 0" }}>
+                        <p style={{ padding: "2rem 0", color: "#051A52" }}>
                             © 2021 Garden Academy - All Rights Reserved.
                         </p>
                     </div>
