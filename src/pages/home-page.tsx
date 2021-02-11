@@ -1,8 +1,5 @@
 
 import * as React from 'react';
-import AppHeader from '../components/header'
-import AppFooter from '../components/footer'
-
 import '../assets/css/homepage.css'
 import rectangle from "../assets/img/rectangle.svg";
 import homehero from "../assets/img/home-hero.svg";
@@ -14,26 +11,14 @@ import homecard4 from "../assets/img/homecard4.svg";
 import homecard5 from "../assets/img/homecard5.svg";
 import homecard6 from "../assets/img/homecard6.svg";
 import womanPic from '../assets/img/woman.svg';
-import pd1 from "../assets/img/pd1.svg"
-import pd2 from "../assets/img/pd2.svg"
-import pd3 from "../assets/img/pd3.svg"
-// import facilitator from "../assets/img/facilitator.svg"
-// import { HiOutlineLightBulb } from "react-icons/hi";
-
-import { FaRegStar } from "react-icons/fa";
-import { FaStarHalfAlt } from "react-icons/fa"
-
-export interface HomePageProps {
+export interface AppHomePageProps {
 
 }
 
-const HomePage: React.SFC<HomePageProps> = () => {
+const AppHomePage: React.SFC<AppHomePageProps> = () => {
     return (
         <React.Fragment>
 
-            <AppHeader></AppHeader>
-
-            {/* <!-- ========== MAIN CONTENT ========== --> */}
             <main id="content" role="main">
                 {/* <!-- Hero Section --> */}
                 <div className="d-lg-flex position-relative hero" style={{ paddingBottom: "5%" }}>
@@ -248,10 +233,8 @@ const HomePage: React.SFC<HomePageProps> = () => {
 
             </main >
 
-            <AppFooter></AppFooter>
-
         </React.Fragment >
     );
 }
 
-export default HomePage;
+export default AppHomePage;

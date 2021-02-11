@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+
 import '../assets/css/header.css';
 import gardenlogo from "../assets/img/garden-logo.svg"
 
@@ -19,9 +21,9 @@ const AppHeader: React.SFC<AppHeaderProps> = () => {
                         {/* <!-- Nav --> */}
                         <nav className="js-mega-menu navbar navbar-expand-lg">
                             {/* <!-- Logo --> */}
-                            <a className="navbar-brand" href="." aria-label="Front">
+                            <Link className="navbar-brand" to="/" aria-label="Front">
                                 <img src={gardenlogo} alt="Logo" />
-                            </a>
+                            </Link>
                             {/* <!-- End Logo -->
 
           <!-- Responsive Toggle Button --> */}
@@ -50,11 +52,11 @@ const AppHeader: React.SFC<AppHeaderProps> = () => {
                                     <ul className="navbar-nav">
 
                                         <li className="hs-has-mega-menu navbar-nav-item">
-                                            <a id="homeMegaMenu" className="hs-mega-menu-invoker nav-link" href="#">About Us</a>
+                                            <Link id="homeMegaMenu" className="hs-mega-menu-invoker nav-link" to="/about">About Us</Link>
 
                                         </li>
                                         <li className="hs-has-mega-menu navbar-nav-item">
-                                            <a id="homeMegaMenu" className="hs-mega-menu-invoker nav-link" href="#">Programs</a>
+                                            <Link id="homeMegaMenu" className="hs-mega-menu-invoker nav-link" to="/programs">Programs</Link>
 
                                         </li>
 
@@ -69,7 +71,7 @@ const AppHeader: React.SFC<AppHeaderProps> = () => {
                                         </li>
 
                                         <li className="hs-has-mega-menu navbar-nav-item">
-                                            <a id="homeMegaMenu" className="hs-mega-menu-invoker nav-link" href="#">Contact Us</a>
+                                            <Link id="homeMegaMenu" className="hs-mega-menu-invoker nav-link" to="/contact">Contact Us</Link>
                                         </li>
                                     </ul>
                                 </div>
