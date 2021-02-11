@@ -8,8 +8,11 @@
 
 .nav-link {
   color: #000 !important;
-  padding: 20px !important;
+  /* padding: 10px 20px !important; */
   margin-right: 10px;
+  font-size: .8em;
+  /* background: #051A52; */
+
 }
 
 .active {
@@ -18,4 +21,23 @@
 
 .navbar-toggler {
   background-color: #f5e6d5
+}
+
+.media {
+  font-size: 1em;
+}
+
+.btn-icon {
+  font-size: 1.5em !important;
+  margin: 5px;
+  color: #051A52;
+}
+
+.nav-footer,
+.media {
+  color: #051A52 !important
+}
+
+hr {
+  border-top: .0625rem solid #000;
 }
