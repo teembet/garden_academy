@@ -8,14 +8,14 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
     return (
         <main id="content" role="main">
 
-            <div className="d-lg-flex position-relative hero">
-
+            <div className="hero-page">
+                <h1>Contact Us</h1>
             </div>
-            <div className="container space-top-4 space-top-lg-4 space-bottom-2">
-                <div className="card" style={{ height: "inherit", padding: "0 5%" }}>
+            <br />
+            <div className="container space-top-5 space-top-lg-4 space-bottom-2">
+                <div className="card" style={{ height: "inherit", padding: "0 10%" }}>
                     <div className="row ">
-
-                        <div className="space-right-3 offset-md-1 space-top-3 space-bottom-2 col-md-5">
+                        <div className="space-right-3 space-top-3 space-bottom-2 col-md-6">
 
                             <div className="mb-4">
                                 <h3 className="text-primary">You can reach us via any of these mediums.</h3>
@@ -120,7 +120,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                             </ul>
                         </div >
 
-                        <div className="space-top-2 space-bottom-2 col-md-5">
+                        <div className="space-top-2 space-bottom-2 col-md-6">
 
 
                             <form className="js-validate card shadow-lg mb-4" style={{ height: "inherit" }}>

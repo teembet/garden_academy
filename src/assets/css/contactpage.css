@@ -1,3 +1,15 @@
 .header-color {
     background-color: #E8EFFD !important;
 }
+
+.hero-page {
+    height: 40vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background: #E8EFFD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
