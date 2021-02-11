@@ -1,0 +1,140 @@
+.hero {
+  background-color: #f5e6d5;
+}
+.card-icon {
+  padding: 20px 20px 20px 20px;
+  display: flex;
+}
+.card-headers {
+  padding: 20px 0px 0px 20px;
+  text-align: left;
+}
+.card {
+  border-width: 2px;
+  box-shadow: 0 12px 15px rgb(140 152 164 / 10%);
+  border-color: #bac2c9;
+  padding: 22px;
+}
+
+.card-body {
+  text-align: left;
+}
+.session-three {
+  background-color: #041237;
+  color: #fff;
+  margin-top: 150px;
+}
+
+/* dfvdf*/
+.img2-container {
+  display: flex;
+  justify-content: center;
+}
+
+.img2-style {
+  width: 100%;
+  height: auto;
+  margin-top: -120px;
+  border-radius: 5px;
+}
+
+.white-text {
+  color: #fff;
+}
+
+.s3-para {
+  font-size: 16px;
+  color: #e9e3e3;
+  opacity: 50%;
+}
+.get-started-btn {
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 10px 25px;
+  font-size: 18px;
+}
+.get-started {
+  margin-top: 20px;
+  text-align: center;
+  padding: 50px;
+}
+.svg {
+  height: 100px;
+}
+
+.product-title {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.products {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.stars {
+  margin-bottom: 4px;
+  color: #805e00;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.star {
+  color: #ffc31a;
+  margin: 0px 4px 4px 4px;
+}
+
+.amount {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+.pd {
+  justify-content: space-evenly;
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+.programs-btn {
+  color: #0f42a4;
+  border: 2px solid #0f42a4;
+  padding: 10px 25px;
+  font-size: 18px;
+  margin-top: 20px;
+}
+.session-five {
+  background-color: #e8effd;
+  padding: 20px 100px;
+  height: 570px;
+}
+
+.facillator-p {
+  color: #0b2253;
+  font-size: 18px;
+}
+
+.facillator-btn {
+  background-color: #0f42a4;
+  color: #fff;
+  padding: 10px 25px;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.session-six {
+  margin: 100px 100px 200px;
+}
+
+.testimonials-heading {
+  color: #0f42a4;
+  font-size: 52px;
+}
+
+.testimonials-card {
+  display: flex;
+}
+
+.avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}

@@ -176,10 +176,10 @@ const HomePage: React.SFC<HomePageProps> = () => {
 
 
 
-                    </div>
-                </div>
+                    </div >
+                </div >
                 {/* <!-- End Articles Section --> */}
-                <div className=" d-lg-flex position-relative session-three">
+                < div className=" d-lg-flex position-relative session-three" >
                     <div className=" container d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100" >
                         {/* <!-- Card --> */}
                         <section className=" ">
@@ -227,7 +227,7 @@ const HomePage: React.SFC<HomePageProps> = () => {
                         </section>
                         {/* <!-- End Card --> */}
                     </div>
-                </div>
+                </div >
 
                 <div className="session-four mt-3">
                     <div className="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
@@ -250,7 +250,7 @@ const HomePage: React.SFC<HomePageProps> = () => {
 
             <AppFooter></AppFooter>
 
-        </React.Fragment>
+        </React.Fragment >
     );
 }
 
