@@ -1,0 +1,21 @@
+.header-color {
+  background-color: #f5e6d5;
+}
+
+.navbar-brand {
+  padding: 10px;
+}
+
+.nav-link {
+  color: #000 !important;
+  padding: 20px !important;
+  margin-right: 10px;
+}
+
+.active {
+  color: darkblue !important;
+}
+
+.navbar-toggler {
+  background-color: #f5e6d5
+}
