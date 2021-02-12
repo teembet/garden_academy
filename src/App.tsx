@@ -8,7 +8,7 @@ import AppHeader from './components/header'
 import AppAboutUsPage from './pages/about-us-page'
 import AppContactUsPage from './pages/contact-us-page'
 import AppProgramsPage from './pages/programs-page'
-import AppCourseDetails from './pages/course-details'
+import AppCourseDetails from './pages/course-details-page'
 
 
 export interface AppProps {
