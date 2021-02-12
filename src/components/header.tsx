@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 import '../assets/css/header.css';
@@ -9,10 +10,15 @@ export interface AppHeaderProps {
 }
 
 const AppHeader: React.SFC<AppHeaderProps> = () => {
+
+    const location = useLocation()
+
+    let background = (location.pathname == "/") ? "#FDF2E7" : (location.pathname == "/employee") ? "#EAFBF1" : "#E8EFFD"
+
     return (
         <React.Fragment>
 
-            <header id="header" className="header header-color header-box-shadow-on-scroll header-abs-top header-bg-transparent header-show-hide">
+            <header id="header" className="header header-color header-box-shadow-on-scroll header-abs-top header-bg-transparent header-show-hide" style={{ background }}>
 
                 <div className="header-section header-color">
 
@@ -27,7 +33,7 @@ const AppHeader: React.SFC<AppHeaderProps> = () => {
                             {/* <!-- End Logo -->
 
           <!-- Responsive Toggle Button --> */}
-                            <button type="button" className="navbar-toggler btn btn-icon btn-sm rounded-circle"
+                            <button type="button" style={{ background }} className="navbar-toggler btn btn-icon btn-sm rounded-circle"
                                 aria-label="Toggle navigation"
                                 aria-expanded="false"
                                 aria-controls="navBar"

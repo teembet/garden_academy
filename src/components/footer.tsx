@@ -112,12 +112,13 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                                     </li>
 
                                 </ul>
+                                <br /><br />
                             </div >
 
                             <div className="col-md-3">
                                 <h6 >Programs</h6>
 
-                                {/* <!-- Nav Link --> */}
+
                                 <ul className="nav nav-sm nav-x-0 nav-white flex-column">
                                     <li className="nav-item"><a className="nav-link nav-footer" href="front.html#">Data Analyst</a></li>
                                     <li className="nav-item"><a className="nav-link nav-footer" href="front.html#">Business Analyst</a></li>
@@ -128,7 +129,9 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                                     <li className="nav-item"><a className="nav-link nav-footer" href="front.html#">Legal for Tech</a></li>
                                     <li className="nav-item"><a className="nav-link nav-footer" href="front.html#">Engineering Leadership</a></li>
                                 </ul>
-                                {/* <!-- End Nav Link --> */}
+
+
+                                <br /><br />
                             </div>
 
                             <div className="col-md-3 ">
@@ -136,11 +139,11 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
 
 
                                 <ul className="nav nav-sm nav-x-0 nav-white flex-column">
-                                    <li className="nav-item"><a className="nav-link nav-footer" href="front.html#">About us</a></li>
-                                    <li className="nav-item"><a className="nav-link nav-footer" href="front.html#">FAQs</a></li>
-                                    <li className="nav-item"><a className="nav-link nav-footer" href="front.html#">Payment Plans</a></li>
+                                    <li className="nav-item"><Link className="nav-link nav-footer" to="/about">About us</Link></li>
+                                    <li className="nav-item"><Link className="nav-link nav-footer" to="/faq">FAQs</Link></li>
+                                    <li className="nav-item"><Link className="nav-link nav-footer" to="/payment">Payment Plans</Link></li>
                                 </ul>
-
+                                <br /><br />
                             </div>
 
                             <div className="col-md-3 ">
@@ -152,6 +155,7 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                                     <li className="nav-item"><a className="nav-link nav-footer" href="front.html#">Cookie Policy</a></li>
                                     <li className="nav-item"><a className="nav-link nav-footer" href="front.html#">Payment Terms</a></li>
                                 </ul>
+                                <br /><br />
                             </div>
 
                         </div >
@@ -159,8 +163,13 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
 
                     <hr className="opacity-xs my-0" />
                     <div>
-                        <p style={{ padding: "2rem 0", color: "#051A52" }}>
+                        <p className="d-none d-lg-block" style={{ padding: "2rem 0", color: "#051A52" }}>
                             © 2021 Garden Academy - All Rights Reserved.
+                        </p>
+
+                        <p className="d-lg-none" style={{ padding: "2rem 0", color: "#051A52" }}>
+                            © 2021 Garden Academy - <br />
+                            All Rights Reserved.
                         </p>
                     </div>
 

@@ -1,5 +1,5 @@
 .hero {
-  background-color: #f5e6d5;
+  background-color: #FDF2E7;
 }
 
 .card-icon {
@@ -148,4 +148,8 @@
   height: 50px;
   width: 50px;
   border-radius: 50%;
+}
+
+.s3-para {
+  font-size: 18px;
 }

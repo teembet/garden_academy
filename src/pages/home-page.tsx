@@ -11,6 +11,7 @@ import homecard4 from "../assets/img/homecard4.svg";
 import homecard5 from "../assets/img/homecard5.svg";
 import homecard6 from "../assets/img/homecard6.svg";
 import womanPic from '../assets/img/woman.svg';
+import study from '../assets/img/study.svg';
 export interface AppHomePageProps {
 
 }
@@ -91,7 +92,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                                 <div className="card-icon">
                                     <span className="span-icon"> <img src={homecard1} alt="" /> </span>
                                 </div>
-                                <h4 className="card-headers">Top Industry Facilitators</h4>
+                                <h3 className="card-headers">Top Industry Facilitators</h3>
                                 <div className="card-body">Learn from Subject matter experts from different areas of the tech industry and gain the knowledge you need to rise to the top of your field. </div>
                             </div>
 
@@ -103,7 +104,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                                 <div className="card-icon">
                                     <span className="span-icon"> <img src={homecard2} alt="" /> </span>
                                 </div>
-                                <h4 className="card-headers">Resume & Interview Prep</h4>
+                                <h3 className="card-headers">Resume & Interview Prep</h3>
                                 <div className="card-body">Gain valuable tips and hacks you need to create an appealing resume and navigate interview scenarios. </div>
                             </div>
 
@@ -116,7 +117,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                                 <div className="card-icon">
                                     <span className="span-icon"> <img src={homecard3} alt="" /> </span>
                                 </div>
-                                <h4 className="card-headers">Flexible Learning</h4>
+                                <h3 className="card-headers">Flexible Learning</h3>
                                 <div className="card-body">Learn wherever, whenever with quality content delivered to your device on demand. Powered by VigiLearnLMS™.</div>
                             </div>
 
@@ -128,7 +129,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                                 <div className="card-icon">
                                     <span className="span-icon"> <img src={homecard4} alt="" /> </span>
                                 </div>
-                                <h4 className="card-headers">Flexible Payment Options</h4>
+                                <h3 className="card-headers">Flexible Payment Options</h3>
                                 <div className="card-body">Take advantage of any of our available fee payment options and enjoy unrivalled ease of access. </div>
                             </div>
 
@@ -140,7 +141,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                                 <div className="card-icon">
                                     <span className="span-icon"> <img src={homecard5} alt="" /> </span>
                                 </div>
-                                <h4 className="card-headers">Globally Recognized <br />  Certificate</h4>
+                                <h3 className="card-headers">Globally Recognized <br />  Certificate</h3>
                                 <div className="card-body">Receive a certificate of international repute upon completion of your chosen learning path.</div>
                             </div>
 
@@ -152,7 +153,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                                 <div className="card-icon">
                                     <span className="span-icon"> <img src={homecard6} alt="" /> </span>
                                 </div>
-                                <h4 className="card-headers">Internship & Full-time <br />    opportunities</h4>
+                                <h3 className="card-headers">Internship & Full-time <br />    opportunities</h3>
                                 <div className="card-body">Put your newly acquired skills to use with access to work opportunities across the global tech industry.</div>
                             </div>
 
@@ -171,9 +172,9 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                             <div className="img2-container mb-4">
                                 <img className="img-fluid img2-style" src={homehero2} alt="" />
                             </div>
-                            <div>
-                                <h1 className="font-weight-bold white-text">Looking To Hire Tech Talent Or Upskill Existing Employees For Your Organisation</h1>
-                                <p style={{ marginTop: "20px", textAlign: "left" }}>Our custom agile process puts you in control; reduces risk, increases transparency between our team and yours, and allows you to hit even aggressive timelines.</p>
+                            <div className="container">
+                                <h1 className="font-weight-bold white-text">Looking To Improve Your Workforce?</h1>
+                                <p style={{ marginTop: "20px", textAlign: "left", fontSize: "18px" }}>The terrain of the global tech industry is rapidly evolving, and it is imperative that your workforce stays empowered and relevant in today’s world. By exposing your personnel to quality learning opportunities on Garden Academy, their horizons are broadened, and they become empowered to compete on the global playing field while contributing their newly acquired skills to the growth of your organization.</p>
 
                                 <div className="row" style={{ marginTop: "70px" }}>
                                     <div className="col-md-4 mb-3" style={{ padding: "0px" }}>
@@ -182,25 +183,25 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                                                 <img src={rectangle} alt="" />
                                             </span>
                                         </div>
-                                        <h4 className="card-headers white-text">Hire Talent</h4>
+                                        <h3 className="card-headers white-text">Hire Talent</h3>
                                         <div className="card-body s3-para">
-                                            Lorem ipsum dolor sit amet, bretsas consectetur adipiscing elit. Eget tortor, pellentesque donec ut Ornare accumsan nibh turpis eu volutpat. Ornare vel massa facilisis Ornare pellentesque donecrec bear rebto pellentesque amet.                    </div>
+                                            Garden Academy harnesses the knowledge & experience of global industry experts and channels it into truly expansive courses that create the best talent who are primed and ready to take your organization to the next level.                  </div>
                                     </div>
                                     <div className="col-md-4 mb-3">
                                         <div className="card-icon">
                                             <span><img src={rectangle} alt="" /> </span>
                                         </div>
-                                        <h4 className="card-headers white-text">Upskill Existing Staff</h4>
+                                        <h3 className="card-headers white-text">Upskill Existing Staff</h3>
                                         <div className="card-body s3-para">
-                                            Lorem ipsum dolor sit amet, bretsas consectetur adipiscing elit. Eget tortor, pellentesque donec ut Ornare accumsan nibh turpis eu volutpat. Ornare vel massa facilisis Ornare pellentesque donecrec bear rebto pellentesque amet.                    </div>
+                                            With the best facilitators delivering quality content, Garden Academy vastly improves the skill level of staff groups. Your staff will gain the skills needed to improve business outcomes and contribute directly to your organization’s bottom line                    </div>
                                     </div>
                                     <div className="col-md-4 mb-3">
                                         <div className="card-icon">
                                             <span><img src={rectangle} alt="" /> </span>
                                         </div>
-                                        <h4 className="card-headers white-text">Staff Onboarding</h4>
+                                        <h3 className="card-headers white-text">Staff Onboarding</h3>
                                         <div className="card-body s3-para">
-                                            Lorem ipsum dolor sit amet, bretsas consectetur adipiscing elit. Eget tortor, pellentesque donec ut Ornare accumsan nibh turpis eu volutpat. Ornare vel massa facilisis Ornare pellentesque donecrec bear rebto pellentesque amet.                    </div>
+                                            With the best facilitators delivering quality content, Garden Academy vastly improves the skill level of staff groups. Your staff will gain the skills needed to improve business outcomes and contribute directly to your organization’s bottom line                    </div>
                                     </div>
                                 </div>
 
