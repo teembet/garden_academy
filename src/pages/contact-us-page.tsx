@@ -10,6 +10,10 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
 
             <div className="hero-page">
                 <h1>Contact Us</h1>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+
             </div>
             <br />
             <div className="container space-top-6 space-top-lg-4 space-bottom-2">

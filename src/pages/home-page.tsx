@@ -233,7 +233,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                         <div className="row mx-n2 mx-lg-n3">
                             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
                                 <div className="card" style={{
-                                    padding: "0", borderRadius: "", border: "1px solid #D7DCE0", boxSizing: "border-box"
+                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
                                 }}>
                                     <img className="img-fluid card-img-top" src={pd1} alt="product design" style={{ width: "100%" }} />
                                     <div className="card-body">
@@ -247,7 +247,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
 
                             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
                                 <div className="card" style={{
-                                    padding: "0", borderRadius: "", border: "1px solid #D7DCE0", boxSizing: "border-box"
+                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
                                 }}>
                                     <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd2} alt="product design" />
                                     <div className="card-body">
@@ -261,7 +261,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
 
                             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
                                 <div className="card" style={{
-                                    padding: "0", borderRadius: "", border: "1px solid #D7DCE0", boxSizing: "border-box"
+                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
                                 }}>
                                     <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd3} alt="product design" />
                                     <div className="card-body">
