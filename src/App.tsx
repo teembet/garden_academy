@@ -8,6 +8,7 @@ import AppHeader from './components/header'
 import AppAboutUsPage from './pages/about-us-page'
 import AppContactUsPage from './pages/contact-us-page'
 import AppProgramsPage from './pages/programs-page'
+import AppCourseDetails from './pages/course-details'
 
 
 export interface AppProps {
@@ -24,6 +25,7 @@ const App: React.SFC<AppProps> = () => {
         <Route path="/about" component={AppAboutUsPage}></Route>
         <Route path="/contact" component={AppContactUsPage}></Route>
         <Route path="/programs" component={AppProgramsPage}></Route>
+        <Route path="/details" component={AppCourseDetails}></Route>
         <AppFooter></AppFooter>
       </div >
     </Router>
