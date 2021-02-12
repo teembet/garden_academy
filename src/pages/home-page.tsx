@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+import { Link } from 'react-router-dom'
 import '../assets/css/homepage.css'
 import rectangle from "../assets/img/rectangle.svg";
 import facilitator from "../assets/img/facilitator.svg"
@@ -224,126 +225,138 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                 </div >
 
                 <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
-                    <div className="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+                    <div className="w-md-80 text-center mx-md-auto mb-5 mb-md-9">
                         <h2>Available Programs</h2>
                         <p>Select any program from our library of carefully crafted programs guaranted to take you </p>
                     </div>
-<section>
-<div className="row mx-n2 mx-lg-n3">
-                    <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                        <div className="card">
-                            <img className="card-img-top svg" src={pd1} alt="product design" />
-                            <div className="card-body">
-                                <p className="product-title"><b>Product Design</b></p>
-                                <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                <p className="amount">NGN250,000</p>
+                    <section>
+                        <div className="row mx-n2 mx-lg-n3">
+                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                                <div className="card" style={{
+                                    padding: "0", borderRadius: "", border: "1px solid #D7DCE0", boxSizing: "border-box"
+                                }}>
+                                    <img className="img-fluid card-img-top" src={pd1} alt="product design" style={{ width: "100%" }} />
+                                    <div className="card-body">
+                                        <p className="product-title"><b>Product Design</b></p>
+                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
+                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
+                                        <p className="amount">NGN250,000</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                        <div className="card">
-                            <img className="card-img-top svg" src={pd2} alt="product design" />
-                            <div className="card-body">
-                                <p className="product-title"><b>Product Design</b></p>
-                                <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                <p className="amount">NGN250,000</p>
+                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                                <div className="card" style={{
+                                    padding: "0", borderRadius: "", border: "1px solid #D7DCE0", boxSizing: "border-box"
+                                }}>
+                                    <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd2} alt="product design" />
+                                    <div className="card-body">
+                                        <p className="product-title"><b>Product Design</b></p>
+                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
+                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
+                                        <p className="amount">NGN250,000</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                        <div className="card">
-                            <img className="card-img-top svg" src={pd3} alt="product design" />
-                            <div className="card-body">
-                                <p className="product-title"><b>Product Design</b></p>
-                                <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                <p className="amount">NGN250,000</p>
+                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                                <div className="card" style={{
+                                    padding: "0", borderRadius: "", border: "1px solid #D7DCE0", boxSizing: "border-box"
+                                }}>
+                                    <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd3} alt="product design" />
+                                    <div className="card-body">
+                                        <p className="product-title"><b>Product Design</b></p>
+                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
+                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
+                                        <p className="amount">NGN250,000</p>
+                                    </div>
+                                </div>
                             </div>
+
+
                         </div>
-                    </div>
-
-
-                </div>
-</section>
+                    </section>
 
                     <div className="get-started">
-                        <button className="btn programs-btn"><b>View All Programs</b></button>
+                        <Link to="/programs" className="btn programs-btn"><b>View All Programs</b></Link>
                     </div>
 
                 </div>
 
-                <div className="session-five container-fluid d-lg-flex  align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
-                <div className="row">
-                    <div className="col-lg-6 mt-5">
-                        <hr className="mt-5" style={{ width: "10%", border: "2px solid #0B2253", opacity: "0.5", margin: "0px" }} />
-                        <h3 className="mt-3" style={{ fontSize: "36px", color: "#041644" }}>Become a Facilator</h3>
-                        <p className="mt-3 facillator-p">Lorem ipsum dolor sit amet, consectetur vred adipiscing tortor, pellentesque donec deaut accumsan nibh turpis eu massa consectetur adipiscing tortor benelit.
-                       </p>
-                        <p className="facillator-p">
-                            Lorem ipsum dolor sit amet, consectetur vred adipiscing adipiscing tortor, pellentesque donec deaut accumsan nibh turpis pellentesque donec deaut consectetur.
+                <div className="session-five d-lg-flex p-10  align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
+                    <div className="row" style={{ margin: "1% 5%" }}>
+                        <div className="col-lg-5 mt-5">
+                            <hr className="mt-5" style={{ width: "10%", border: "2px solid #0B2253", opacity: "0.5", margin: "0px" }} />
+                            <h3 className="mt-3" style={{ fontSize: "36px", color: "#041644" }}>Become a Facilator</h3>
+                            <p className="mt-3 facillator-p">Lorem ipsum dolor sit amet, consectetur vred adipiscing tortor, pellentesque donec deaut accumsan nibh turpis eu massa consectetur adipiscing tortor benelit.
+                            </p>
+                            <br />
+                            <p className="facillator-p">
+                                Lorem ipsum dolor sit amet, consectetur vred adipiscing adipiscing tortor, pellentesque donec deaut accumsan nibh turpis pellentesque donec deaut consectetur.
                    </p>
+                            <br />
+                            <br />
+                            <button className="btn btn-lg  btn-primary">Become a Facillator</button>
 
-                        <button className="btn facillator-btn">Become a Facillator</button>
 
+                        </div>
 
-                    </div>
-
-                    <div className="col-lg-6 col-xs-12 mt-5">
-                        <img className="img-fluid d-lg-block" src={facilitator} alt="facillator" />
+                        <div className="col-lg-7 col-xs-12 mt-5">
+                            <img className="img-fluid d-lg-block" src={facilitator} alt="facillator" />
+                        </div>
                     </div>
                 </div>
-            </div>
 
-<div className=" container-fluid d-lg-flex  align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
-                <div className="row ">
-                    <div className="col-lg-4 mt-5">
-                        <h3 className="mt-3 testimonials-heading" style={{textAlign:'center'  }}>Testimonials</h3>
-                        <p className="mt-3" style={{ fontSize: "35px", textAlign:'center'  }}>Read what our users have to say...</p>
+                <div className=" container-fluid d-lg-flex  align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
+                    <div className="row " style={{ margin: "1% 5%" }}>
+                        <div className="col-lg-4 mt-5">
+                            <h4 className="mt-3 testimonials-heading" >Testimonials</h4>
+                            <p className="mt-3" style={{ fontSize: "35px" }}>Read what our users have to say...</p>
+                        </div>
 
-                    </div>
+                        <div className="col-lg-8 mt-5">
+                            <div className="row ">
+                                <div className=" col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                                    <div className="card  shadow pt-3 pb-5 px-2" style={{ height: "auto" }}>
+                                        <div className="row card-icon" style={{ marginBottom: "0 !important" }}>
+                                            <div className="col-3"><img className="avatar img-fluid" src={person1} alt="avatar" /></div>
+                                            <div className="col-9">
+                                                <p style={{ fontSize: "24px", margin: "0px" }}>Patience Toyosi</p>
+                                                <p style={{ fontSize: "18px", color: "#81909D" }}>Facebook</p>
+                                            </div>
+                                        </div>
 
-                    <div className="col-lg-8 mt-5">
-                        <div className="row ">
-                        <div className=" col-md-5 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                        <div className="card  shadow pt-3 pb-5 px-2">
-                            <div className="row card-icon">
-                                <div className="col-3"><img className="avatar" src={person1} alt="avatar" /></div>
-                                <div className="col-9">
-                                    <p style={{ fontSize: "24px", margin: "0px"}}>Patience Toyosi</p>
-                                    <p style={{ fontSize: "18px", color: "#81909D" }}>Facebook</p>
+                                        <div className="card-body" style={{ color: "#3A434B" }}>
+                                            <hr />
+                                            <br />
+                                            <p>
+                                                “Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                                    <div className="card  shadow pt-3 pb-5 px-2" style={{ height: "auto" }}>
+                                        <div className="row card-icon">
+                                            <div className="col-3"><img className="avatar" src={person2} alt="avatar" /></div>
+                                            <div className="col-9">
+                                                <p style={{ fontSize: "24px", margin: "0px" }}>Patience Toyosi</p>
+                                                <p style={{ fontSize: "18px", color: "#81909D" }}>Facebook</p>
+                                            </div>
+
+                                        </div>
+
+                                        <div className="card-body" style={{ color: "#3A434B" }}>
+                                            <hr />
+                                            <br />
+                                            <p>
+                                                “Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <hr />
-                            <div className="card-body" style={{  color: "#3A434B" }}>
-                                <p>
-                                “Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”</p>
-                       </div>
                         </div>
-                        </div>
-                        <div className="col-md-5 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                        <div className="card  shadow pt-3 pb-5 px-2">
-                            <div className="row card-icon">
-                                <div className="col-3"><img className="avatar" src={person2} alt="avatar" /></div>
-                                <div className="col-9">
-                                    <p style={{ fontSize: "24px", margin: "0px"}}>Patience Toyosi</p>
-                                    <p style={{ fontSize: "18px", color: "#81909D" }}>Facebook</p>
-                                </div>
-                            </div>
-                            <hr />
-                            <div className="card-body" style={{ color: "#3A434B" }}>
-                                <p>
-                                “Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”</p>
-                       </div>
-                        </div>
-                        </div>
-                    </div>
                     </div>
                 </div>
-            </div>
 
             </main >
 

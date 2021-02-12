@@ -116,11 +116,13 @@
   background-color: #e8effd;
   padding: 20px 100px;
 }
+
 @media screen and (max-width: 768px) {
   .session-five {
     padding: 0;
   }
 }
+
 .facillator-p {
   color: #0b2253;
   font-size: 18px;

@@ -25,13 +25,12 @@ const AppHeader: React.SFC<AppHeaderProps> = () => {
 
                     <div id="logoAndNav" className="container" >
                         {/* <!-- Nav --> */}
-                        <nav className="js-mega-menu navbar navbar-expand-lg header-color">
+                        <nav className="js-mega-menu navbar navbar-expand-lg">
                             {/* <!-- Logo --> */}
                             <Link className="navbar-brand" to="/" aria-label="Front">
                                 <img src={gardenlogo} alt="Logo" />
                             </Link>
                             {/* <!-- End Logo -->
-
           <!-- Responsive Toggle Button --> */}
                             <button type="button" style={{ background }} className="navbar-toggler btn btn-icon btn-sm rounded-circle"
                                 aria-label="Toggle navigation"
@@ -91,6 +90,7 @@ const AppHeader: React.SFC<AppHeaderProps> = () => {
             {/* <!-- ========== END HEADER ========== --> */}
 
         </React.Fragment>
+
     );
 }
 
