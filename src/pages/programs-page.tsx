@@ -5,6 +5,7 @@ import { FaStarHalfAlt } from "react-icons/fa"
 import pd1 from "../assets/img/pd1.svg";
 import pd2 from "../assets/img/pd2.svg";
 import pd3 from "../assets/img/pd3.svg";
+import { Link } from 'react-router-dom';
 export interface AppProgramsPageProps {
 
 }
@@ -51,7 +52,9 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = () => {
 <section>
 <div className="row mx-n2 mx-lg-n3">
                     <div className="col-sm-6 col-lg-3 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                        <div className="card">
+                       
+                        <div className="card" >
+                             <Link  to="/details">
                             <img className="card-img-top svg" src={pd1} alt="product design" />
                             <div className="card-body">
                                 <p className="product-title"><b>Product Design</b></p>
@@ -59,6 +62,7 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = () => {
                                 <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
                                 <p className="amount">NGN250,000</p>
                             </div>
+                            </Link>
                         </div>
                     </div>
 
