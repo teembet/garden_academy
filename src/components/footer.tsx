@@ -11,7 +11,7 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
         <React.Fragment>
 
             {/* < !-- ========== FOOTER ========== --> */}
-            < footer className="bg-dark" >
+            < footer className="bg-dark" style={{ backgroundColor: "F0F0F0"}}   >
                 <div className="container">
                     <div className="space-top-2 space-bottom-1 space-bottom-lg-2">
                         <div className="row justify-content-lg-between">

@@ -2,6 +2,7 @@
 import * as React from 'react';
 import '../assets/css/homepage.css'
 import rectangle from "../assets/img/rectangle.svg";
+import facilitator from "../assets/img/facilitator.svg"
 import homehero from "../assets/img/home-hero.svg";
 import homehero2 from "../assets/img/home-hero2.svg";
 import homecard1 from "../assets/img/homecard1.svg";
@@ -11,6 +12,13 @@ import homecard4 from "../assets/img/homecard4.svg";
 import homecard5 from "../assets/img/homecard5.svg";
 import homecard6 from "../assets/img/homecard6.svg";
 import womanPic from '../assets/img/woman.svg';
+import person1 from "../assets/img/person1.svg";
+import person2 from "../assets/img/person2.svg";
+import { FaStar } from "react-icons/fa";
+import { FaStarHalfAlt } from "react-icons/fa"
+import pd1 from "../assets/img/pd1.svg";
+import pd2 from "../assets/img/pd2.svg";
+import pd3 from "../assets/img/pd3.svg";
 export interface AppHomePageProps {
 
 }
@@ -164,7 +172,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                     </div >
                 </div >
                 {/* <!-- End Articles Section --> */}
-                < div className=" d-lg-flex position-relative session-three" >
+                <div className=" d-lg-flex position-relative session-three" >
                     <div className=" container d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100" >
                         {/* <!-- Card --> */}
                         <section className=" ">
@@ -184,7 +192,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                                         </div>
                                         <h4 className="card-headers white-text">Hire Talent</h4>
                                         <div className="card-body s3-para">
-                                            Lorem ipsum dolor sit amet, bretsas consectetur adipiscing elit. Eget tortor, pellentesque donec ut Ornare accumsan nibh turpis eu volutpat. Ornare vel massa facilisis Ornare pellentesque donecrec bear rebto pellentesque amet.                    </div>
+                                            Lorem ipsum dolor sit amet, bretsas consectetur adipiscing elit. Eget tortor, pellentesque donec ut Ornare accumsan nibh turpis eu volutpat. Ornare vel massa facilisis Ornare pellentesque donecrec bear rebto pellentesque amet.</div>
                                     </div>
                                     <div className="col-md-4 mb-3">
                                         <div className="card-icon">
@@ -192,7 +200,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                                         </div>
                                         <h4 className="card-headers white-text">Upskill Existing Staff</h4>
                                         <div className="card-body s3-para">
-                                            Lorem ipsum dolor sit amet, bretsas consectetur adipiscing elit. Eget tortor, pellentesque donec ut Ornare accumsan nibh turpis eu volutpat. Ornare vel massa facilisis Ornare pellentesque donecrec bear rebto pellentesque amet.                    </div>
+                                            Lorem ipsum dolor sit amet, bretsas consectetur adipiscing elit. Eget tortor, pellentesque donec ut Ornare accumsan nibh turpis eu volutpat. Ornare vel massa facilisis Ornare pellentesque donecrec bear rebto pellentesque amet.</div>
                                     </div>
                                     <div className="col-md-4 mb-3">
                                         <div className="card-icon">
@@ -200,7 +208,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                                         </div>
                                         <h4 className="card-headers white-text">Staff Onboarding</h4>
                                         <div className="card-body s3-para">
-                                            Lorem ipsum dolor sit amet, bretsas consectetur adipiscing elit. Eget tortor, pellentesque donec ut Ornare accumsan nibh turpis eu volutpat. Ornare vel massa facilisis Ornare pellentesque donecrec bear rebto pellentesque amet.                    </div>
+                                            Lorem ipsum dolor sit amet, bretsas consectetur adipiscing elit. Eget tortor, pellentesque donec ut Ornare accumsan nibh turpis eu volutpat. Ornare vel massa facilisis Ornare pellentesque donecrec bear rebto pellentesque amet.</div>
                                     </div>
                                 </div>
 
@@ -214,14 +222,52 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                     </div>
                 </div >
 
-                <div className="session-four mt-3">
+                <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
                     <div className="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
                         <h2>Available Programs</h2>
                         <p>Select any program from our library of carefully crafted programs guaranted to take you </p>
                     </div>
+<section>
+<div className="row mx-n2 mx-lg-n3">
+                    <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                        <div className="card">
+                            <img className="card-img-top svg" src={pd1} alt="product design" />
+                            <div className="card-body">
+                                <p className="product-title"><b>Product Design</b></p>
+                                <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
+                                <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
+                                <p className="amount">NGN250,000</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                        <div className="card">
+                            <img className="card-img-top svg" src={pd2} alt="product design" />
+                            <div className="card-body">
+                                <p className="product-title"><b>Product Design</b></p>
+                                <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
+                                <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
+                                <p className="amount">NGN250,000</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                        <div className="card">
+                            <img className="card-img-top svg" src={pd3} alt="product design" />
+                            <div className="card-body">
+                                <p className="product-title"><b>Product Design</b></p>
+                                <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
+                                <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
+                                <p className="amount">NGN250,000</p>
+                            </div>
+                        </div>
+                    </div>
 
 
-
+                </div>
+</section>
 
                     <div className="get-started">
                         <button className="btn programs-btn"><b>View All Programs</b></button>
@@ -229,7 +275,74 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
 
                 </div>
 
+                <div className="session-five container-fluid d-lg-flex  align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
+                <div className="row">
+                    <div className="col-lg-6 mt-5">
+                        <hr className="mt-5" style={{ width: "10%", border: "2px solid #0B2253", opacity: "0.5", margin: "0px" }} />
+                        <h3 className="mt-3" style={{ fontSize: "36px", color: "#041644" }}>Become a Facilator</h3>
+                        <p className="mt-3 facillator-p">Lorem ipsum dolor sit amet, consectetur vred adipiscing tortor, pellentesque donec deaut accumsan nibh turpis eu massa consectetur adipiscing tortor benelit.
+                       </p>
+                        <p className="facillator-p">
+                            Lorem ipsum dolor sit amet, consectetur vred adipiscing adipiscing tortor, pellentesque donec deaut accumsan nibh turpis pellentesque donec deaut consectetur.
+                   </p>
 
+                        <button className="btn facillator-btn">Become a Facillator</button>
+
+
+                    </div>
+
+                    <div className="col-lg-6 col-xs-12 mt-5">
+                        <img className="img-fluid d-lg-block" src={facilitator} alt="facillator" />
+                    </div>
+                </div>
+            </div>
+
+<div className=" container-fluid d-lg-flex  align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
+                <div className="row ">
+                    <div className="col-lg-4 mt-5">
+                        <h3 className="mt-3 testimonials-heading" style={{textAlign:'center'  }}>Testimonials</h3>
+                        <p className="mt-3" style={{ fontSize: "35px", textAlign:'center'  }}>Read what our users have to say...</p>
+
+                    </div>
+
+                    <div className="col-lg-8 mt-5">
+                        <div className="row ">
+                        <div className=" col-md-5 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                        <div className="card  shadow pt-3 pb-5 px-2">
+                            <div className="row card-icon">
+                                <div className="col-3"><img className="avatar" src={person1} alt="avatar" /></div>
+                                <div className="col-9">
+                                    <p style={{ fontSize: "24px", margin: "0px"}}>Patience Toyosi</p>
+                                    <p style={{ fontSize: "18px", color: "#81909D" }}>Facebook</p>
+                                </div>
+                            </div>
+                            <hr />
+                            <div className="card-body" style={{  color: "#3A434B" }}>
+                                <p>
+                                “Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”</p>
+                       </div>
+                        </div>
+                        </div>
+                        <div className="col-md-5 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                        <div className="card  shadow pt-3 pb-5 px-2">
+                            <div className="row card-icon">
+                                <div className="col-3"><img className="avatar" src={person2} alt="avatar" /></div>
+                                <div className="col-9">
+                                    <p style={{ fontSize: "24px", margin: "0px"}}>Patience Toyosi</p>
+                                    <p style={{ fontSize: "18px", color: "#81909D" }}>Facebook</p>
+                                </div>
+                            </div>
+                            <hr />
+                            <div className="card-body" style={{ color: "#3A434B" }}>
+                                <p>
+                                “Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”</p>
+                       </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
 
             </main >
 

@@ -19,7 +19,7 @@ const AppHeader: React.SFC<AppHeaderProps> = () => {
 
                     <div id="logoAndNav" className="container" >
                         {/* <!-- Nav --> */}
-                        <nav className="js-mega-menu navbar navbar-expand-lg">
+                        <nav className="js-mega-menu navbar navbar-expand-lg header-color">
                             {/* <!-- Logo --> */}
                             <Link className="navbar-brand" to="/" aria-label="Front">
                                 <img src={gardenlogo} alt="Logo" />

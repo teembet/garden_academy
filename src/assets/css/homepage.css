@@ -15,7 +15,7 @@
 .card {
   padding: 20px 0;
   height: 23rem;
-  border: 1px solid #BAC2C9;
+  border: 1px solid #bac2c9;
   box-sizing: border-box;
   border-radius: 8px;
 }
@@ -63,7 +63,7 @@
 .get-started {
   margin-top: 20px;
   text-align: center;
-  padding: 50px;
+  padding: 40px;
 }
 
 .svg {
@@ -89,7 +89,7 @@
 
 .star {
   color: #ffc31a;
-  margin: 0px 4px 4px 4px;
+  margin: 0px 0px -1px 8px;
 }
 
 .amount {
@@ -115,9 +115,12 @@
 .session-five {
   background-color: #e8effd;
   padding: 20px 100px;
-  height: 570px;
 }
-
+@media screen and (max-width: 768px) {
+  .session-five {
+    padding: 0;
+  }
+}
 .facillator-p {
   color: #0b2253;
   font-size: 18px;
