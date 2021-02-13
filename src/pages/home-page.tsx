@@ -1,6 +1,9 @@
 
 import * as React from 'react';
 import { Link } from 'react-router-dom'
+import { Modal, Button } from 'react-bootstrap';
+import { useState } from 'react';
+
 import '../assets/css/homepage.css'
 import rectangle from "../assets/img/rectangle.svg";
 import facilitator from "../assets/img/facilitator.svg"
@@ -13,21 +16,32 @@ import homecard4 from "../assets/img/homecard4.svg";
 import homecard5 from "../assets/img/homecard5.svg";
 import homecard6 from "../assets/img/homecard6.svg";
 import womanPic from '../assets/img/woman.svg';
-import person1 from "../assets/img/person1.svg";
-import person2 from "../assets/img/person2.svg";
-import { FaStar } from "react-icons/fa";
-import { FaStarHalfAlt } from "react-icons/fa"
+import person2 from '../assets/img/person2.svg';
+import person1 from '../assets/img/person1.svg';
 import pd1 from "../assets/img/pd1.svg";
 import pd2 from "../assets/img/pd2.svg";
 import pd3 from "../assets/img/pd3.svg";
-import study from '../assets/img/study.svg';
+import CourseCard from '../components/course-card'
+import Search from '../components/search'
+
 export interface AppHomePageProps {
 
 }
 
 const AppHomePage: React.SFC<AppHomePageProps> = () => {
+
+    const searchCourse = () => {
+        console.log("wind")
+    }
+
+    const [showModal, setShowModal] = useState(false);
+
+    const handleClose = () => setShowModal(false);
+    const handleShow = () => setShowModal(true);
+    const handleSubmit = () => alert("Success")
+
     return (
-        <React.Fragment>
+        <>
 
             <main id="content" role="main">
                 {/* <!-- Hero Section --> */}
@@ -57,12 +71,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                         their workforce with the right talent</p>
                                     </div>
 
-                                    <form className="input-group">
-                                        <input type="search" className="form-control" placeholder="&#128269;  What do you want to learn" aria-label="Search Front" />
-                                        <div className="input-group-append">
-                                            <button style={{ width: "125px" }} type="button" className="btn btn-primary">Search</button>
-                                        </div>
-                                    </form>
+                                    <Search search={"What do you want to learn"} button_text={"Search"} onSearchSubmit={searchCourse} ></Search>
                                     <br /><br />
                                 </div>
 
@@ -230,54 +239,15 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                         <p>Select any program from our library of carefully crafted programs guaranted to take you </p>
                     </div>
                     <section>
-                        <Link to="details">
-                            <div className="row mx-n2 mx-lg-n3">
-                                <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                    <div className="card" style={{
-                                        padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                    }}>
-                                        <img className="img-fluid card-img-top" src={pd1} alt="product design" style={{ width: "100%" }} />
-                                        <div className="card-body">
-                                            <p className="product-title"><b>Product Design</b></p>
-                                            <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                            <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                            <p className="amount">NGN250,000</p>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                    <div className="card" style={{
-                                        padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                    }}>
-                                        <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd2} alt="product design" />
-                                        <div className="card-body">
-                                            <p className="product-title"><b>Product Design</b></p>
-                                            <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                            <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                            <p className="amount">NGN250,000</p>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div className="row mx-n2 mx-lg-n3">
+                            <CourseCard images={pd1} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                                <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                    <div className="card" style={{
-                                        padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                    }}>
-                                        <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd3} alt="product design" />
-                                        <div className="card-body">
-                                            <p className="product-title"><b>Product Design</b></p>
-                                            <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                            <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                            <p className="amount">NGN250,000</p>
-                                        </div>
-                                    </div>
-                                </div>
+                            <CourseCard images={pd2} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
+                            <CourseCard images={pd3} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
+                        </div>
 
-                            </div>
-
-                        </Link>
                     </section>
 
                     <div className="get-started">
@@ -286,8 +256,8 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
 
                 </div>
 
-                <div className="session-five d-lg-flex p-10  align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
-                    <div className="row" style={{ margin: "1% 5%" }}>
+                <div className="session-five d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
+                    <div className="row space-bottom-2" style={{ margin: "1% 5%" }}>
                         <div className="col-lg-5 mt-5">
                             <hr className="mt-5" style={{ width: "10%", border: "2px solid #0B2253", opacity: "0.5", margin: "0px" }} />
                             <h3 className="mt-3" style={{ fontSize: "36px", color: "#041644" }}>Become a Facilator</h3>
@@ -299,7 +269,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                    </p>
                             <br />
                             <br />
-                            <button className="btn btn-lg  btn-primary">Become a Facillator</button>
+                            <button onClick={handleShow} className="btn btn-lg  btn-primary">Become a Facillator</button>
 
 
                         </div>
@@ -315,6 +285,15 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                         <div className="col-lg-4 mt-5">
                             <h4 className="mt-3 testimonials-heading" >Testimonials</h4>
                             <p className="mt-3" style={{ fontSize: "35px" }}>Read what our users have to say...</p>
+                            <br /><br /><br /><br />
+                            <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
+                                <span className="fa fa-arrow-left slick-arrow slick-arrow-primary-white slick-arrow-left shadow-soft rounded-circle ml-sm-n2"></span>
+                                <h4>1 / 4</h4>
+                                <span className="fa fa-arrow-right slick-arrow slick-arrow-primary-white slick-arrow-right shadow-soft rounded-circle mr-sm-2 mr-xl-4"></span>
+                            </div>
+
+
+
                         </div>
 
                         <div className="col-lg-8 mt-5">
@@ -363,7 +342,77 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
 
             </main >
 
-        </React.Fragment >
+            <Modal
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered show={showModal} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">Reserve a spot</Modal.Title>
+                </Modal.Header >
+                <Modal.Body>
+                    <form>
+                        <div className="row">
+                            <div className="col-sm-6">
+
+                                <div className="js-form-message form-group">
+                                    <label htmlFor={"firstName"} className="input-label">First name</label>
+                                    <input type="text" className="form-control" name="firstName" id="firstName" placeholder="eg. Nataly" aria-label="Nataly" required data-msg="Please enter first your name" />
+                                </div>
+
+                            </div>
+
+                            <div className="col-sm-6">
+
+                                <div className="js-form-message form-group">
+                                    <label htmlFor={"lastName"} className="input-label">Last name</label>
+                                    <input type="text" className="form-control" name="lastName" id="lastName" placeholder="eg. Gaga" aria-label="Gaga" required data-msg="Please enter last your name" />
+                                </div>
+
+                            </div>
+
+                            <div className="col-sm-6">
+
+                                <div className="js-form-message form-group">
+                                    <label htmlFor={"firstName"} className="input-label">Phone Number</label>
+                                    <input type="tel" className="form-control" name="firstName" id="firstName" placeholder="08045275625" aria-label="Nataly" required data-msg="Please enter first your name" />
+                                </div>
+
+                            </div>
+
+                            <div className="col-sm-6">
+
+                                <div className="js-form-message form-group">
+                                    <label htmlFor={"lastName"} className="input-label">Email Address</label>
+                                    <input type="email" className="form-control" name="lastName" id="lastName" placeholder="admin@gmail.com" aria-label="Gaga" required data-msg="Please enter last your name" />
+                                </div>
+
+                            </div>
+
+                            <div className="col-sm-12">
+
+                                <div className="js-form-message form-group">
+                                    <label htmlFor={"lastName"} className="input-label">Portfolio Link</label>
+                                    <input type="text" className="form-control" name="lastName" id="lastName" placeholder="https://drive.google.com/wind/bcdubcdhjcedcdc" aria-label="Gaga" required data-msg="Please enter last your name" />
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+          </Button>
+                    <Button variant="primary" onClick={handleSubmit}>
+                        Next
+          </Button>
+                </Modal.Footer>
+            </Modal>
+
+
+        </ >
     );
 }
 

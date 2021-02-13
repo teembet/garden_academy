@@ -7,11 +7,17 @@ import pd1 from "../assets/img/pd1.svg";
 import pd2 from "../assets/img/pd2.svg";
 import pd3 from "../assets/img/pd3.svg";
 import PaymentOptions from '../components/payment-options'
+import CourseCard from '../components/course-card'
+import Search from '../components/search'
 export interface AppProgramsPageProps {
 
 }
 
 const AppProgramsPage: React.SFC<AppProgramsPageProps> = () => {
+    const searchCourse = () => {
+        console.log("wind")
+    }
+
     return (
         <main id="content" role="main">
             <div>
@@ -24,13 +30,7 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = () => {
 
                     <div className="row" style={{ width: "40%" }}>
                         <div className="col-md-12 ">
-                            <form className="input-group">
-                                <input type="search" className="form-control" placeholder="&#128269;  What do you want to learn" aria-label="Search Front" />
-                                <div className="input-group-append">
-                                    <button style={{ width: "125px" }} type="button" className="btn btn-primary">Search</button>
-                                </div>
-                            </form>
-
+                            <Search search={"What do you want to learn"} button_text={"Search"} onSearchSubmit={searchCourse} ></Search>
                         </div>
                     </div>
 
@@ -39,227 +39,48 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = () => {
 
                 <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
 
-                    <section>   <Link to="/details">
+                    <section>
                         <div className="row mx-n2 mx-lg-n3">
 
+                            <CourseCard images={pd1} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
+                            <CourseCard images={pd2} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3" >
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img className="img-fluid card-img-top" src={pd1} alt="product design" style={{ width: "100%" }} />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd3} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd2} alt="product design" />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd1} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd3} alt="product design" />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd2} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img className="img-fluid card-img-top" src={pd1} alt="product design" style={{ width: "100%" }} />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd3} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd2} alt="product design" />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd1} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd3} alt="product design" />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd2} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img className="img-fluid card-img-top" src={pd1} alt="product design" style={{ width: "100%" }} />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd3} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd2} alt="product design" />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd1} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd3} alt="product design" />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd2} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img className="img-fluid card-img-top" src={pd1} alt="product design" style={{ width: "100%" }} />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd3} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd2} alt="product design" />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd1} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd3} alt="product design" />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd2} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img className="img-fluid card-img-top" src={pd1} alt="product design" style={{ width: "100%" }} />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd3} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd2} alt="product design" />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd1} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
-                            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                                <div className="card" style={{
-                                    padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
-                                }}>
-                                    <img style={{ width: "100%" }} className="img-fluid card-img-top" src={pd3} alt="product design" />
-                                    <div className="card-body">
-                                        <p className="product-title"><b>Product Design</b></p>
-                                        <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                                        <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                                        <p className="amount">NGN250,000</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <CourseCard images={pd2} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
+
+                            <CourseCard images={pd3} title={"Product Design"} text={"Learn how to design products that users will love. Product Design ble..... "} rating={"4.5"} price={"NGN250,000"} ></CourseCard>
 
                         </div>
-                    </Link>
+
                     </section>
-
-
-
                 </div>
             </div>
             <PaymentOptions>

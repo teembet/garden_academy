@@ -6,27 +6,33 @@ import pd1 from "../assets/img/pd1.svg";
 
 
 export interface CourseCardProps {
-
+    images: string,
+    title: string,
+    text: string,
+    rating: string,
+    price: string,
 }
 
-const CourseCard: React.SFC<CourseCardProps> = () => {
+const CourseCard: React.SFC<CourseCardProps> = ({ images, title, text, rating, price }) => {
     return (
         <>
-            <Link to="/details">
-                <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3" >
+
+            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3" >
+                <Link to="/details">
                     <div className="card" style={{
                         padding: "0", borderRadius: "4%", border: "1px solid #D7DCE0", boxSizing: "border-box"
                     }}>
-                        <img className="img-fluid card-img-top" src={pd1} alt="product design" style={{ width: "100%" }} />
+                        <img className="img-fluid card-img-top" src={images} alt="product design" style={{ width: "100%" }} />
                         <div className="card-body">
-                            <p className="product-title"><b>Product Design</b></p>
-                            <p className="products">Learn how to design products that users will love. Product Design ble..... </p>
-                            <p className="stars">4.5 <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
-                            <p className="amount">NGN250,000</p>
+                            <p className="product-title"><b>{title}</b></p>
+                            <p className="products">{text}</p>
+                            <p className="stars">{rating} <FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStar className="star" /><FaStarHalfAlt className="star" /></p>
+                            <p className="amount">{price}</p>
                         </div>
                     </div>
-                </div>
-            </Link>
+                </Link>
+            </div>
+
         </>
     );
 }

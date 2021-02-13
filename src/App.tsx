@@ -10,6 +10,8 @@ import AppContactUsPage from './pages/contact-us-page'
 import AppProgramsPage from './pages/programs-page'
 import AppCourseDetails from './pages/course-details-page'
 
+import ScrollToTop from "./helpers/scrollToTheTop";
+
 
 export interface AppProps {
 
@@ -18,6 +20,7 @@ export interface AppProps {
 const App: React.SFC<AppProps> = () => {
   return (
     <Router>
+      <ScrollToTop />
       <div className="App">
         <AppHeader></AppHeader>
 
