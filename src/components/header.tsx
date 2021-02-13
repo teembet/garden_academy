@@ -1,31 +1,46 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
+import '../assets/css/header.css';
+import gardenlogo from "../assets/img/garden-logo.svg"
+
 export interface AppHeaderProps {
 
 }
 
 const AppHeader: React.SFC<AppHeaderProps> = () => {
+
+    const location = useLocation()
+
+    let background = (location.pathname == "/") ? "#FDF2E7" : (location.pathname == "/employee") ? "#EAFBF1" : "#E8EFFD"
+
     return (
         <React.Fragment>
 
-            <header id="header" className="header header-box-shadow-on-scroll header-abs-top header-bg-transparent header-show-hide">
+            <header id="header" className="header header-color header-box-shadow-on-scroll header-abs-top header-bg-transparent header-show-hide" style={{ background }}>
 
-                <div className="header-section">
+                <div className="header-section header-color">
 
-                    <div id="logoAndNav" className="container">
+
+                    <div id="logoAndNav" className="container" >
+                        {/* <!-- Nav --> */}
                         <nav className="js-mega-menu navbar navbar-expand-lg">
-                            <a className="navbar-brand" href="https://htmlstream.com/front/index.html" aria-label="Front">
-                                <img src="https://htmlstream.com/front/assets/svg/logos/logo.svg" alt="Logo" />
-                            </a>
-
-                            <button type="button" className="navbar-toggler btn btn-icon btn-sm rounded-circle"
+                            {/* <!-- Logo --> */}
+                            <Link className="navbar-brand" to="/" aria-label="Front">
+                                <img src={gardenlogo} alt="Logo" />
+                            </Link>
+                            {/* <!-- End Logo -->
+          <!-- Responsive Toggle Button --> */}
+                            <button type="button" style={{ background }} className="navbar-toggler btn btn-icon btn-sm rounded-circle"
                                 aria-label="Toggle navigation"
                                 aria-expanded="false"
                                 aria-controls="navBar"
                                 data-toggle="collapse"
                                 data-target="#navBar">
                                 <span className="navbar-toggler-default">
-                                    <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill="currentColor" d="M17.4,6.2H0.6C0.3,6.2,0,5.9,0,5.5V4.1c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,5.9,17.7,6.2,17.4,6.2z M17.4,14.1H0.6c-0.3,0-0.6-0.3-0.6-0.7V12c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,13.7,17.7,14.1,17.4,14.1z" />
+                                    <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0 0H18V2H0V0ZM0 7H18V9H0V7ZM0 14H18V16H0V14Z" fill="#041644" />
                                     </svg>
                                 </span>
                                 <span className="navbar-toggler-toggled">
@@ -34,17 +49,19 @@ const AppHeader: React.SFC<AppHeaderProps> = () => {
                                     </svg>
                                 </span>
                             </button>
+                            {/* <!-- End Responsive Toggle Button --> */}
 
+                            {/* <!-- Navigation --> */}
                             <div id="navBar" className="collapse navbar-collapse">
                                 <div className="navbar-body header-abs-top-inner">
                                     <ul className="navbar-nav">
 
                                         <li className="hs-has-mega-menu navbar-nav-item">
-                                            <a id="homeMegaMenu" className="hs-mega-menu-invoker nav-link" href="#">About Us</a>
+                                            <Link id="homeMegaMenu" className="hs-mega-menu-invoker nav-link" to="/about">About Us</Link>
 
                                         </li>
                                         <li className="hs-has-mega-menu navbar-nav-item">
-                                            <a id="homeMegaMenu" className="hs-mega-menu-invoker nav-link" href="#">Programs</a>
+                                            <Link id="homeMegaMenu" className="hs-mega-menu-invoker nav-link" to="/programs">Programs</Link>
 
                                         </li>
 
@@ -59,19 +76,21 @@ const AppHeader: React.SFC<AppHeaderProps> = () => {
                                         </li>
 
                                         <li className="hs-has-mega-menu navbar-nav-item">
-                                            <a id="homeMegaMenu" className="hs-mega-menu-invoker nav-link" href="#">Contact Us</a>
+                                            <Link id="homeMegaMenu" className="hs-mega-menu-invoker nav-link" to="/contact">Contact Us</Link>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-
+                            {/* <!-- End Navigation --> */}
                         </nav>
-
+                        {/* <!-- End Nav --> */}
                     </div>
                 </div>
             </header>
+            {/* <!-- ========== END HEADER ========== --> */}
 
         </React.Fragment>
+
     );
 }
 

@@ -1,7 +1,16 @@
 import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './assets/css/vendor.min.css'
 import './assets/css/theme.min.css'
-import HomePage from './pages/homepage'
+import AppHomePage from './pages/home-page'
+import AppFooter from './components/footer'
+import AppHeader from './components/header'
+import AppAboutUsPage from './pages/about-us-page'
+import AppContactUsPage from './pages/contact-us-page'
+import AppProgramsPage from './pages/programs-page'
+import AppCourseDetails from './pages/course-details-page'
+
+import ScrollToTop from "./helpers/scrollToTheTop";
 
 
 export interface AppProps {
@@ -10,11 +19,20 @@ export interface AppProps {
 
 const App: React.SFC<AppProps> = () => {
   return (
-    <div className="App">
+    <Router>
+      <ScrollToTop />
+      <div className="App">
+        <AppHeader></AppHeader>
 
-      <HomePage></HomePage>
+        <Route path="/" exact component={AppHomePage}></Route>
+        <Route path="/about" component={AppAboutUsPage}></Route>
+        <Route path="/contact" component={AppContactUsPage}></Route>
+        <Route path="/programs" component={AppProgramsPage}></Route>
+        <Route path="/details" component={AppCourseDetails}></Route>
+        <AppFooter></AppFooter>
+      </div >
+    </Router>
 
-    </div >
   );
 }
 

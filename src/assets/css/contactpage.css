@@ -1,0 +1,24 @@
+/* .header-color {
+    background-color: #E8EFFD !important;
+}
+
+.navbar-toggler {
+    background-color: #E8EFFD;
+} */
+
+.hero-page {
+    height: 50vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #E8EFFD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.media-bodys {
+    font-size: 1.2em;
+}
