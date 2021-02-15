@@ -1,7 +1,5 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import './assets/css/vendor.min.css'
-import './assets/css/theme.min.css'
 import AppHomePage from './pages/home-page'
 import AppFooter from './components/footer'
 import AppHeader from './components/header'
