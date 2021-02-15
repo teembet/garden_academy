@@ -11,7 +11,7 @@ const Search: React.SFC<SearchProps> = ({ search, button_text, onSearchSubmit })
     return (
         <>
             <form className="input-group">
-                <input type="search" className="search-placeholder form-control" placeholder={"🔍   " + search} aria-label="Search Front" />
+                <input type="search" className="search-placeholder form-control" placeholder={" 🔍   " + search} aria-label="Search Front" />
 
                 <div className="input-group-append">
                     <button style={{ width: "125px" }} type="button" onClick={onSearchSubmit} className="btn btn-primary">{button_text}</button>
