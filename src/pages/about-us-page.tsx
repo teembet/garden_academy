@@ -42,7 +42,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
 
                         <br />
 
-                        <div className="row">
+                        <div className="row" style={{ margin: "0 5px" }}>
 
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit nam aliquid tenetur possimus dolorem hic mollitia saepe, itaque dolores vero dignissimos culpa facere id, corrupti fuga sapiente. Ea, maiores totam?</p>
 

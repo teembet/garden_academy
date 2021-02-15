@@ -28,8 +28,8 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = () => {
                     <p>Choose from any of our wide range of courses tailored to suit your needs.
                         <br /> From software engineering to product management and more, We have got you covered</p>
 
-                    <div className="row" style={{ width: "40%" }}>
-                        <div className="col-md-12 ">
+                    <div className="row" style={{ width: "100%" }}>
+                        <div className="col-md-6 offset-md-3 ">
                             <Search search={"What do you want to learn"} button_text={"Search"} onSearchSubmit={searchCourse} ></Search>
                         </div>
                     </div>
