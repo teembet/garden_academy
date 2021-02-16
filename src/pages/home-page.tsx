@@ -30,6 +30,46 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
     console.log("wind");
   };
 
+  const [firstName, setFirstName] = useState("");
+  const [firstNameValid, setFirstNameValid] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [lastNameValid, setLastNameValid] = useState("");
+  const [phone, setPhone] = useState("");
+  const [phoneValid, setPhoneValid] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailValid, setEmailValid] = useState("");
+  const [url, setUrl] = useState("");
+  const [urlValid, setUrlValid] = useState("");
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
+  const handleSubmit = () => {
+    if (firstNameValidation(firstName) !== true) {
+      return firstNameValidation(firstName);
+    }
+
+    if (lastNameValidation(lastName) !== true) {
+      return lastNameValidation(lastName);
+    }
+
+    if (emailValidation(email) !== true) {
+      return emailValidation(email);
+    }
+
+    if (phoneValidation(phone) !== true) {
+      return phoneValidation(phone);
+    }
+
+    if (urlValidation(url) !== true) {
+      return urlValidation(url);
+    }
+
+    handleClose();
+    alert("Success");
+  };
+
   useEffect(() => {
     const fetchPrograms = async () => {
       const response = await fetch("https://demo.vigilearnlms.com/api/login", {
@@ -56,11 +96,91 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
     fetchPrograms();
   }, []);
 
-  const [showModal, setShowModal] = useState(false);
+  const firstNameValidation = (fieldValue: string): boolean => {
+    if (fieldValue.trim() === "") {
+      setFirstNameValid(`First name is required`);
+      return false;
+    }
 
-  const handleClose = () => setShowModal(false);
-  const handleShow = () => setShowModal(true);
-  const handleSubmit = () => alert("Success");
+    if (/[^a-zA-Z -]/.test(fieldValue)) {
+      setFirstNameValid("Invalid characters");
+      return false;
+    }
+
+    if (fieldValue.trim().length < 3) {
+      setFirstNameValid(`First name needs to be at least three characters`);
+      return false;
+    }
+    setFirstNameValid("");
+    return true;
+  };
+
+  const lastNameValidation = (fieldValue: string): boolean => {
+    if (fieldValue.trim() === "") {
+      setLastNameValid(`Last name is required`);
+      return false;
+    }
+
+    if (/[^a-zA-Z -]/.test(fieldValue)) {
+      setLastNameValid("Invalid characters");
+      return false;
+    }
+
+    if (fieldValue.trim().length < 3) {
+      setLastNameValid(`Last name needs to be at least three characters`);
+      return false;
+    }
+
+    setLastNameValid("");
+    return true;
+  };
+
+  const emailValidation = (email: string): boolean => {
+    if (
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        email
+      )
+    ) {
+      setEmailValid("");
+      return true;
+    }
+    if (email.trim() === "") {
+      setEmailValid("Email is required");
+      return false;
+    }
+    setEmailValid("Please enter a valid email");
+    return false;
+  };
+
+  const phoneValidation = (phone: string): boolean => {
+    if (/^[0]\d{10}$/.test(phone)) {
+      setPhoneValid("");
+      return true;
+    }
+    if (phone.trim() === "") {
+      setPhoneValid("Phone is required");
+      return false;
+    }
+    setPhoneValid("Please enter a valid phone");
+    return false;
+  };
+
+  const urlValidation = (url: string): boolean => {
+    if (
+      /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(:[0-9]+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/.test(
+        url
+      )
+    ) {
+      setUrlValid("");
+      return true;
+    }
+    if (url.trim() === "") {
+      setUrlValid("Portfolio URL is required");
+      return false;
+    }
+    setUrlValid("Please enter a valid URL");
+    return false;
+  };
 
   return (
     <>
@@ -569,7 +689,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
             <div className="row">
               <div className="col-sm-6">
                 <div className="js-form-message form-group">
-                  <label htmlFor={"firstName"} className="input-label">
+                  <label htmlFor="firstName" className="input-label">
                     First name
                   </label>
                   <input
@@ -578,10 +698,12 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                     name="firstName"
                     id="firstName"
                     placeholder="eg. Nataly"
-                    aria-label="Nataly"
                     required
-                    data-msg="Please enter first your name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    onBlur={(e) => firstNameValidation(e.target.value)}
                   />
+                  <p className="text-danger">{firstNameValid}</p>
                 </div>
               </div>
 
@@ -596,10 +718,12 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                     name="lastName"
                     id="lastName"
                     placeholder="eg. Gaga"
-                    aria-label="Gaga"
                     required
-                    data-msg="Please enter last your name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    onBlur={(e) => lastNameValidation(e.target.value)}
                   />
+                  <p className="text-danger">{lastNameValid}</p>
                 </div>
               </div>
 
@@ -614,10 +738,12 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                     name="firstName"
                     id="firstName"
                     placeholder="08045275625"
-                    aria-label="Nataly"
                     required
-                    data-msg="Please enter first your name"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    onBlur={(e) => phoneValidation(e.target.value)}
                   />
+                  <p className="text-danger">{phoneValid}</p>
                 </div>
               </div>
 
@@ -629,13 +755,15 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                   <input
                     type="email"
                     className="form-control"
-                    name="lastName"
-                    id="lastName"
+                    name="email"
+                    id="email"
                     placeholder="admin@gmail.com"
-                    aria-label="Gaga"
                     required
-                    data-msg="Please enter last your name"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onBlur={(e) => emailValidation(e.target.value)}
                   />
+                  <p className="text-danger">{emailValid}</p>
                 </div>
               </div>
 
@@ -645,15 +773,17 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                     Portfolio Link
                   </label>
                   <input
-                    type="text"
+                    type="url"
                     className="form-control"
-                    name="lastName"
-                    id="lastName"
-                    placeholder="https://drive.google.com/wind/bcdubcdhjcedcdc"
-                    aria-label="Gaga"
+                    name="url"
+                    id="url"
+                    placeholder="https://drive.google.com/jfjfjfjfjjffff"
                     required
-                    data-msg="Please enter last your name"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                    onBlur={(e) => urlValidation(e.target.value)}
                   />
+                  <p className="text-danger">{urlValid}</p>
                 </div>
               </div>
             </div>
