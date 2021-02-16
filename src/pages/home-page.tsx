@@ -20,10 +20,12 @@ import person1 from "../assets/img/person1.svg";
 import pd1 from "../assets/img/pd1.svg";
 import pd2 from "../assets/img/pd2.svg";
 import pd3 from "../assets/img/pd3.svg";
-import CourseCard from "../components/course-card";
+import CourseCardGridView from "../components/course-card-grid-view";
 import Search from "../components/search";
 
-export interface AppHomePageProps {}
+export interface AppHomePageProps {
+  images: any;
+}
 
 const AppHomePage: React.SFC<AppHomePageProps> = () => {
   const searchCourse = () => {
@@ -42,6 +44,87 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
   const [urlValid, setUrlValid] = useState("");
 
   const [showModal, setShowModal] = useState(false);
+  const [programs, setPrograms] = useState([
+    {
+      image: pd1,
+      title: "Product Design",
+      text:
+        "Learn how to design products that users will love. Product Design ble..... ",
+      rating: 4,
+      price: "NGN250,000",
+    },
+    {
+      image: pd2,
+      title: "Product Design",
+      text:
+        "Learn how to design products that users will love. Product Design ble..... ",
+      rating: 4,
+      price: "NGN250,000",
+    },
+    {
+      image: pd3,
+      title: "Product Design",
+      text:
+        "Learn how to design products that users will love. Product Design ble..... ",
+      rating: 4,
+      price: "NGN250,000",
+    },
+  ]);
+
+  const [images, setImages] = useState([
+    {
+      image: person1,
+      title: "Patience Toyosi",
+      social: "Facebook",
+      content:
+        "“Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”",
+    },
+    {
+      image: person2,
+      title: "Patience Toyosi",
+      social: "Facebook",
+      content:
+        "“Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”",
+    },
+
+    {
+      image: person1,
+      title: "Patience Toyosi",
+      social: "google",
+      content:
+        "“Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”",
+    },
+    {
+      image: person2,
+      title: "Patience Toyosi",
+      social: "google",
+      content:
+        "“Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”",
+    },
+  ]);
+
+  // takes in images as props
+  const [index, setIndex] = useState(0); // create state to keep track of images index, set the default index to 0
+
+  const slideRight = () => {
+    const nextIndex = index + 1;
+    if (nextIndex > images.length - 1) {
+      //setIndex(images.length - 1); // returns last index of images array if index is less than 0
+      return;
+    } else {
+      setIndex(nextIndex);
+    }
+  };
+
+  const slideLeft = () => {
+    const nextIndex = index - 1;
+    if (nextIndex < 0) {
+      //setIndex(images.length - 1); // returns last index of images array if index is less than 0
+      return;
+    } else {
+      setIndex(nextIndex);
+    }
+  };
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
@@ -185,13 +268,11 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
   return (
     <>
       <main id="content" role="main">
-        {/* <!-- Hero Section --> */}
         <div
           className="d-lg-flex position-relative hero"
           style={{ paddingBottom: "5%" }}
         >
           <div className="container d-lg-flex  align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
-            {/* <!-- Content --> */}
             <div className="w-md-100">
               <div className="row">
                 <div className="col-lg-6">
@@ -245,22 +326,13 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                     className="img-fluid d-lg-none"
                     style={{ width: "100%" }}
                   />
-                  {/* <br className="d-lg-none d-md-none" />
-                                    <br className="d-lg-none d-md-none" /> */}
                 </div>
               </div>
             </div>
-            {/* <!-- End Content -->
-
-       
-          {/* <!-- End SVG Shape --> */}
           </div>
         </div>
-        {/* <!-- End Hero Section -->
 
-      <!-- Articles Section --> */}
         <div className="container space-2 space-top-xl-3 space-bottom-lg-3">
-          {/* <!-- Title --> */}
           <div className="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
             <h2>Why Garden Academy</h2>
             <p>
@@ -268,11 +340,9 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
               pellentesque amet.
             </p>
           </div>
-          {/* <!-- End Title --> */}
 
           <div className="row mx-n2 mx-lg-n3">
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              {/* <!-- Card --> */}
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
@@ -287,11 +357,8 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                   top of your field.{" "}
                 </div>
               </div>
-
-              {/* <!-- End Card --> */}
             </div>
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              {/* <!-- Card --> */}
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
@@ -305,12 +372,9 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                   resume and navigate interview scenarios.{" "}
                 </div>
               </div>
-
-              {/* <!-- End Card --> */}
             </div>
 
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              {/* <!-- Card --> */}
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
@@ -324,11 +388,8 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                   your device on demand. Powered by VigiLearnLMS™.
                 </div>
               </div>
-
-              {/* <!-- End Card --> */}
             </div>
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              {/* <!-- Card --> */}
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
@@ -342,11 +403,8 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                   enjoy unrivalled ease of access.{" "}
                 </div>
               </div>
-
-              {/* <!-- End Card --> */}
             </div>
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              {/* <!-- Card --> */}
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
@@ -387,10 +445,9 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
             </div>
           </div>
         </div>
-        {/* <!-- End Articles Section --> */}
+
         <div className=" d-lg-flex position-relative session-three">
           <div className=" container d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
-            {/* <!-- Card --> */}
             <section className=" ">
               <div className="img2-container mb-4">
                 <img className="img-fluid img2-style" src={homehero2} alt="" />
@@ -472,58 +529,33 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                 </div>
               </div>
             </section>
-            {/* <!-- End Card --> */}
           </div>
         </div>
 
-        <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
-          <div className="w-md-80 text-center mx-md-auto mb-5 mb-md-9">
-            <h2>Available Programs</h2>
-            <p>
-              Select any program from our library of carefully crafted programs
-              guaranted to take you{" "}
-            </p>
-          </div>
-          <section>
-            <div className="row mx-n2 mx-lg-n3">
-              <CourseCard
-                images={pd1}
-                title={"Product Design"}
-                text={
-                  "Learn how to design products that users will love. Product Design ble..... "
-                }
-                rating={"4.5"}
-                price={"NGN250,000"}
-              ></CourseCard>
-
-              <CourseCard
-                images={pd2}
-                title={"Product Design"}
-                text={
-                  "Learn how to design products that users will love. Product Design ble..... "
-                }
-                rating={"4.5"}
-                price={"NGN250,000"}
-              ></CourseCard>
-
-              <CourseCard
-                images={pd3}
-                title={"Product Design"}
-                text={
-                  "Learn how to design products that users will love. Product Design ble..... "
-                }
-                rating={"4.5"}
-                price={"NGN250,000"}
-              ></CourseCard>
+        {programs.length > 0 && (
+          <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
+            <div className="w-md-80 text-center mx-md-auto mb-5 mb-md-9">
+              <h2>Available Programs</h2>
+              <p>
+                Select any program from our library of carefully crafted
+                programs guaranted to take you{" "}
+              </p>
             </div>
-          </section>
+            <section>
+              <div className="row mx-n2 mx-lg-n3">
+                <CourseCardGridView
+                  programs={programs.slice(0, 3)}
+                ></CourseCardGridView>
+              </div>
+            </section>
 
-          <div className="get-started">
-            <Link to="/programs" className="btn programs-btn">
-              <b>View All Programs</b>
-            </Link>
+            <div className="get-started">
+              <Link to="/programs" className="btn programs-btn">
+                <b>View All Programs</b>
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="session-five d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
           <div className="row space-bottom-2" style={{ margin: "1% 5%" }}>
@@ -571,105 +603,130 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
           </div>
         </div>
 
-        <div className=" container-fluid d-lg-flex  align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
-          <div className="row " style={{ margin: "1% 5%" }}>
-            <div className="col-lg-4 mt-5">
-              <h4 className="mt-3 testimonials-heading">Testimonials</h4>
-              <p className="mt-3" style={{ fontSize: "35px" }}>
-                Read what our users have to say...
-              </p>
-              <br />
-              <br />
-              <br />
-              <br />
+        {images.length > 0 && (
+          <div className=" container d-lg-flex  align-items-lg-center space-top-2 space-lg-3 space-lg-0 min-vh-lg-100">
+            <div className="row">
               <div
+                className="col-lg-4 mt-5"
                 style={{
                   display: "flex",
-                  justifyContent: "space-around",
+                  justifyContent: "space-between",
                   alignItems: "center",
+                  flexDirection: "column",
                 }}
               >
-                <span className="fa fa-arrow-left slick-arrow slick-arrow-primary-white slick-arrow-left shadow-soft rounded-circle ml-sm-n2"></span>
-                <h4>1 / 4</h4>
-                <span className="fa fa-arrow-right slick-arrow slick-arrow-primary-white slick-arrow-right shadow-soft rounded-circle mr-sm-2 mr-xl-4"></span>
-              </div>
-            </div>
-
-            <div className="col-lg-8 mt-5">
-              <div className="row ">
-                <div className=" col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                  <div
-                    className="card  shadow pt-3 pb-5 px-2"
-                    style={{ height: "auto" }}
-                  >
-                    <div
-                      className="row card-icon"
-                      style={{ marginBottom: "0 !important" }}
-                    >
-                      <div className="col-3">
-                        <img
-                          className="avatar img-fluid"
-                          src={person1}
-                          alt="avatar"
-                        />
-                      </div>
-                      <div className="col-9">
-                        <p style={{ fontSize: "24px", margin: "0px" }}>
-                          Patience Toyosi
-                        </p>
-                        <p style={{ fontSize: "18px", color: "#81909D" }}>
-                          Facebook
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="card-body" style={{ color: "#3A434B" }}>
-                      <hr />
-                      <br />
-                      <p>
-                        “Completely beautiful website and amazing support! This
-                        is my second website from this author and I love both of
-                        the sites so much and she has helped me so well when I
-                        needed it!”
-                      </p>
-                    </div>
-                  </div>
+                <div>
+                  <h4 className="mt-3 testimonials-heading">Testimonials</h4>
+                  <p className="mt-3" style={{ fontSize: "35px" }}>
+                    Read what our users have to say...
+                  </p>
                 </div>
-                <div className="col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                  <div
-                    className="card  shadow pt-3 pb-5 px-2"
-                    style={{ height: "auto" }}
-                  >
-                    <div className="row card-icon">
-                      <div className="col-3">
-                        <img className="avatar" src={person2} alt="avatar" />
-                      </div>
-                      <div className="col-9">
-                        <p style={{ fontSize: "24px", margin: "0px" }}>
-                          Patience Toyosi
-                        </p>
-                        <p style={{ fontSize: "18px", color: "#81909D" }}>
-                          Facebook
-                        </p>
-                      </div>
-                    </div>
 
-                    <div className="card-body" style={{ color: "#3A434B" }}>
-                      <hr />
-                      <br />
-                      <p>
-                        “Completely beautiful website and amazing support! This
-                        is my second website from this author and I love both of
-                        the sites so much and she has helped me so well when I
-                        needed it!”
-                      </p>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    width: "100%",
+                  }}
+                >
+                  <span
+                    className="fa fa-arrow-left slick-arrow slick-arrow-primary-white slick-arrow-left shadow-soft rounded-circle ml-sm-n2"
+                    onClick={slideLeft}
+                    style={{
+                      background: index === 0 ? "#1354D3" : "",
+                      color: index === 0 ? "#fff" : "",
+                    }}
+                  ></span>
+                  <h4>
+                    {index + 1} / {images.length}
+                  </h4>
+                  <span
+                    className="fa fa-arrow-right slick-arrow slick-arrow-primary-white slick-arrow-right shadow-soft rounded-circle mr-sm-2 mr-xl-4"
+                    onClick={slideRight}
+                    style={{
+                      background: index === images.length - 1 ? "#1354D3" : "",
+                      color: index === images.length - 1 ? "#fff" : "",
+                    }}
+                  ></span>
+                </div>
+              </div>
+
+              <div className="col-lg-8 mt-5">
+                <div className="row">
+                  <div className="col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                    <div
+                      className="card  shadow pt-3 pb-5 px-2"
+                      style={{ height: "auto" }}
+                    >
+                      <div
+                        className="row card-icon"
+                        style={{ marginBottom: "0 !important" }}
+                      >
+                        <div className="col-3">
+                          <img
+                            className="avatar img-fluid"
+                            src={images[index].image}
+                            alt="avatar"
+                          />
+                        </div>
+                        <div className="col-9">
+                          <p style={{ fontSize: "24px", margin: "0px" }}>
+                            {images[index].title}
+                          </p>
+                          <p style={{ fontSize: "18px", color: "#81909D" }}>
+                            {images[index].social}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="card-body" style={{ color: "#3A434B" }}>
+                        <hr />
+                        <br />
+                        <p>{images[index].content}</p>
+                      </div>
                     </div>
                   </div>
+                  {images.length - 1 >= index + 1 && (
+                    <div className="d-lg-block d-none col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                      <div
+                        className="card  shadow pt-3 pb-5 px-2"
+                        style={{ height: "auto" }}
+                      >
+                        <div
+                          className="row card-icon"
+                          style={{ marginBottom: "0 !important" }}
+                        >
+                          <div className="col-3">
+                            <img
+                              className="avatar img-fluid"
+                              src={images[index + 1].image}
+                              alt="avatar"
+                            />
+                          </div>
+                          <div className="col-9">
+                            <p style={{ fontSize: "24px", margin: "0px" }}>
+                              {images[index + 1].title}
+                            </p>
+                            <p style={{ fontSize: "18px", color: "#81909D" }}>
+                              {images[index + 1].social}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="card-body" style={{ color: "#3A434B" }}>
+                          <hr />
+                          <br />
+                          <p>{images[index + 1].content}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </main>
 
       <Modal
