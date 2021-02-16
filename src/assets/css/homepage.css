@@ -1,0 +1,180 @@
+.hero {
+  background-color: #fdf2e7;
+}
+
+.card-icon {
+  padding: 20px 20px 20px 20px;
+  display: flex;
+}
+
+.card-headers {
+  padding: 20px 0px 0px 20px;
+  text-align: left;
+}
+
+.card {
+  padding: 20px 0;
+  height: 25rem;
+  border: 1px solid #bac2c9;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.card-body {
+  text-align: left;
+}
+
+.session-three {
+  background-color: #041237;
+  color: #fff;
+  margin-top: 150px;
+}
+
+/* dfvdf*/
+.img2-container {
+  display: flex;
+  justify-content: center;
+}
+
+.img2-style {
+  width: 100%;
+  height: auto;
+  margin-top: -120px;
+  border-radius: 5px;
+}
+
+.white-text {
+  color: #fff;
+}
+
+.s3-para {
+  font-size: 16px;
+  color: #e9e3e3;
+  opacity: 0.7;
+}
+
+.get-started-btn {
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 10px 25px;
+  font-size: 18px;
+}
+
+.get-started {
+  margin-top: 20px;
+  text-align: center;
+  padding: 40px;
+}
+
+.svg {
+  height: 100px;
+}
+
+.product-title {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.products {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.stars {
+  margin-bottom: 4px;
+  color: #805e00;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.star {
+  color: #ffc31a;
+  margin: 0px 0px -1px 8px;
+}
+
+.amount {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+
+.pd {
+  justify-content: space-evenly;
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+
+.programs-btn {
+  color: #0f42a4;
+  border: 2px solid #0f42a4;
+  padding: 10px 25px;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.session-five {
+  background-color: #e8effd;
+  padding: 20px 100px;
+}
+
+@media screen and (max-width: 768px) {
+  .session-five {
+    padding: 0;
+  }
+}
+
+.facillator-p {
+  color: #0b2253;
+  font-size: 18px;
+}
+
+.facillator-btn {
+  background-color: #0f42a4;
+  color: #fff;
+  padding: 10px 25px;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.session-six {
+  margin: 100px 100px 200px;
+}
+
+.testimonials-heading {
+  color: #0f42a4;
+  font-size: 52px;
+}
+
+.testimonials-card {
+  display: flex;
+}
+
+.avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.s3-para {
+  font-size: 18px;
+}
+
+search-placeholder::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1;
+  /* Firefox */
+}
+
+search-placeholder:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: red;
+}
+
+search-placeholder::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: red;
+}
+.text-primary {
+  color: #0e347e !important;
+}
