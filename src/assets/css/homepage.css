@@ -14,7 +14,7 @@
 
 .card {
   padding: 20px 0;
-  height: 23rem;
+  height: 25rem;
   border: 1px solid #bac2c9;
   box-sizing: border-box;
   border-radius: 8px;
@@ -50,7 +50,7 @@
 .s3-para {
   font-size: 16px;
   color: #e9e3e3;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .get-started-btn {
@@ -174,4 +174,7 @@ search-placeholder:-ms-input-placeholder {
 search-placeholder::-ms-input-placeholder {
   /* Microsoft Edge */
   color: red;
+}
+.text-primary {
+  color: #0e347e !important;
 }
