@@ -3,9 +3,13 @@ import { Modal, Button } from "react-bootstrap";
 import { PaystackButton } from "react-paystack";
 
 import "../assets/css/course-detailspage.css";
-import { FaStar } from "react-icons/fa";
 import bitmap from "../assets/img/bitmap.png";
 import PaymentOptions from "../components/payment-options";
+import Rating from "../components/rating";
+import CourseCardGridView from "../components/course-card-grid-view";
+import pd1 from "../assets/img/pd1.svg";
+import pd2 from "../assets/img/pd2.svg";
+import pd3 from "../assets/img/pd3.svg";
 
 export interface AppCourseDetailsProps {
   config: {};
@@ -31,6 +35,73 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = () => {
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState("");
   const [paymentPlan, setPaymentPlan] = useState("one_off");
+
+  const [programs, setPrograms] = useState([
+    {
+      image: pd1,
+      title: "Product Design",
+      text:
+        "Learn how to design products that users will love. Product Design ble..... ",
+      rating: 4,
+      price: "NGN250,000",
+    },
+    {
+      image: pd2,
+      title: "Product Design",
+      text:
+        "Learn how to design products that users will love. Product Design ble..... ",
+      rating: 4,
+      price: "NGN250,000",
+    },
+    {
+      image: pd3,
+      title: "Product Design",
+      text:
+        "Learn how to design products that users will love. Product Design ble..... ",
+      rating: 4,
+      price: "NGN250,000",
+    },
+    {
+      image: pd1,
+      title: "Product Design",
+      text:
+        "Learn how to design products that users will love. Product Design ble..... ",
+      rating: 4,
+      price: "NGN250,000",
+    },
+    {
+      image: pd2,
+      title: "Product Design",
+      text:
+        "Learn how to design products that users will love. Product Design ble..... ",
+      rating: 4,
+      price: "NGN250,000",
+    },
+    {
+      image: pd3,
+      title: "Product Design",
+      text:
+        "Learn how to design products that users will love. Product Design ble..... ",
+      rating: 4,
+      price: "NGN250,000",
+    },
+    {
+      image: pd2,
+      title: "Product Design",
+      text:
+        "Learn how to design products that users will love. Product Design ble..... ",
+      rating: 4,
+      price: "NGN250,000",
+    },
+    {
+      image: pd3,
+      title: "Product Design",
+      text:
+        "Learn how to design products that users will love. Product Design ble..... ",
+      rating: 4,
+      price: "NGN250,000",
+    },
+  ]);
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
@@ -175,8 +246,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = () => {
             </p>
 
             <p className="stars">
-              4.5 <FaStar className="star" />
-              <FaStar className="star" />
+              {3} <Rating rating={Math.round(parseInt("3.4"))}></Rating>
             </p>
 
             <span>302,000 students</span>
@@ -320,6 +390,26 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = () => {
         </div>
 
         <PaymentOptions></PaymentOptions>
+
+        <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
+          <div className="w-md-80 text-center mx-md-auto mb-5 mb-md-9">
+            <h2>Recommended Courses</h2>
+            <p>
+              Choose from any of our wide range of courses specifically tailored
+              to suit your needs.
+              <br />
+              We have got you covered
+            </p>
+          </div>
+          <section>
+            <div className="row mx-n2 mx-lg-n3">
+              <CourseCardGridView
+                grid={3}
+                programs={programs.slice(0, 8)}
+              ></CourseCardGridView>
+            </div>
+          </section>
+        </div>
       </main>
 
       <Modal

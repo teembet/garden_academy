@@ -544,6 +544,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
             <section>
               <div className="row mx-n2 mx-lg-n3">
                 <CourseCardGridView
+                  grid={4}
                   programs={programs.slice(0, 3)}
                 ></CourseCardGridView>
               </div>

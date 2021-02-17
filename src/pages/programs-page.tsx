@@ -205,30 +205,6 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = () => {
       rating: 4,
       price: "NGN250,000",
     },
-    {
-      image: pd1,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
-    {
-      image: pd2,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
-    {
-      image: pd3,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
   ]);
 
   const searchCourse = () => {
@@ -263,7 +239,10 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = () => {
         <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
           <section>
             <div className="row mx-n2 mx-lg-n3">
-              <CourseCardGridView programs={programs}></CourseCardGridView>
+              <CourseCardGridView
+                grid={3}
+                programs={programs}
+              ></CourseCardGridView>
             </div>
           </section>
         </div>
