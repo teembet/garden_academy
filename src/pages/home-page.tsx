@@ -103,13 +103,11 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
     },
   ]);
 
-  // takes in images as props
-  const [index, setIndex] = useState(0); // create state to keep track of images index, set the default index to 0
+  const [index, setIndex] = useState(0);
 
   const slideRight = () => {
     const nextIndex = index + 1;
     if (nextIndex > images.length - 1) {
-      //setIndex(images.length - 1); // returns last index of images array if index is less than 0
       return;
     } else {
       setIndex(nextIndex);
@@ -119,7 +117,6 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
   const slideLeft = () => {
     const nextIndex = index - 1;
     if (nextIndex < 0) {
-      //setIndex(images.length - 1); // returns last index of images array if index is less than 0
       return;
     } else {
       setIndex(nextIndex);
@@ -137,12 +134,12 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
       return lastNameValidation(lastName);
     }
 
-    if (emailValidation(email) !== true) {
-      return emailValidation(email);
-    }
-
     if (phoneValidation(phone) !== true) {
       return phoneValidation(phone);
+    }
+
+    if (emailValidation(email) !== true) {
+      return emailValidation(email);
     }
 
     if (urlValidation(url) !== true) {
