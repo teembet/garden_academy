@@ -7,7 +7,7 @@ import AppAboutUsPage from "./pages/about-us-page";
 import AppContactUsPage from "./pages/contact-us-page";
 import AppProgramsPage from "./pages/programs-page";
 import AppCourseDetails from "./pages/course-details-page";
-import NotFoundPage from "./pages/404-page";
+import NotFoundPage from "./pages/not-found-page";
 import AppBlog from "./pages/blog";
 import AppForEmployers from "./pages/for-employers";
 import AppFAQ from "./pages/faq";

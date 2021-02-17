@@ -437,8 +437,6 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                   opportunities across the global tech industry.
                 </div>
               </div>
-
-              {/* <!-- End Card --> */}
             </div>
           </div>
         </div>
@@ -686,7 +684,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                     </div>
                   </div>
                   {images.length - 1 >= index + 1 && (
-                    <div className="d-lg-block d-none col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                    <div className="d-lg-block d-md-block d-none col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
                       <div
                         className="card  shadow pt-3 pb-5 px-2"
                         style={{ height: "auto" }}
