@@ -75,7 +75,7 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
         <br />
 
         {programs?.length > 0 ? (
-          <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
+          <div className="session-four container space-2 space-top-xl-2 space-bottom-lg-2">
             <section>
               <div className="row mx-n2 mx-lg-n3">
                 <CourseCardGridView
@@ -87,13 +87,22 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
           </div>
         ) : (
           <div
-            className="session-four container space-2 space-top-xl-3 space-bottom-lg-3"
+            className="session-four container space-2 space-top-xl-2 space-bottom-lg-2"
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              flexDirection: "column",
             }}
           >
+            <div className="fa-3x">
+              <i
+                style={{ fontSize: "150px" }}
+                className="fas fa-spinner fa-spin "
+              ></i>
+            </div>
+            <br />
+            <br />
             <h1>Loading ...</h1>
           </div>
         )}
