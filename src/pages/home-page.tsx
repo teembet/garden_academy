@@ -17,9 +17,6 @@ import homecard6 from "../assets/img/homecard6.svg";
 import womanPic from "../assets/img/woman.svg";
 import person2 from "../assets/img/person2.svg";
 import person1 from "../assets/img/person1.svg";
-import pd1 from "../assets/img/pd1.svg";
-import pd2 from "../assets/img/pd2.svg";
-import pd3 from "../assets/img/pd3.svg";
 import CourseCardGridView from "../components/course-card-grid-view";
 import Search from "../components/search";
 
@@ -44,32 +41,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
   const [urlValid, setUrlValid] = useState("");
 
   const [showModal, setShowModal] = useState(false);
-  const [programs, setPrograms] = useState([
-    {
-      image: pd1,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
-    {
-      image: pd2,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
-    {
-      image: pd3,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
-  ]);
+  const [programs, setPrograms] = useState([]);
 
   const [images, setImages] = useState([
     {
@@ -152,25 +124,31 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
 
   useEffect(() => {
     const fetchPrograms = async () => {
-      const response = await fetch("https://demo.vigilearnlms.com/api/login", {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: "follow", // manual, *follow, error
-        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify({
-          username: "Tech@edutechng.com",
-          password: "Password_10",
-        }), // body data type must match "Content-Type" header
-      });
+      const response = await fetch(
+        "https://demo.vigilearnlms.com/api/all/courses",
+        {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: "same-origin", // include, *same-origin, omit
+          headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: "follow", // manual, *follow, error
+          referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: JSON.stringify({
+            username: "Tech@edutechng.com",
+            password: "Password_10",
+          }), // body data type must match "Content-Type" header
+        }
+      );
 
-      let loginData = response.json();
-      console.log(loginData);
+      let loginData = await response.json();
+      if (loginData.status) {
+        console.log(loginData.data);
+        setPrograms(loginData.data);
+      }
     };
 
     fetchPrograms();
@@ -527,7 +505,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
           </div>
         </div>
 
-        {programs.length > 0 && (
+        {programs?.length > 0 && (
           <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
             <div className="w-md-80 text-center mx-md-auto mb-5 mb-md-9">
               <h2>Available Programs</h2>
@@ -546,7 +524,15 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
             </section>
 
             <div className="get-started">
-              <Link to="/programs" className="btn programs-btn">
+              <Link
+                to={{
+                  pathname: "/programs",
+                  state: {
+                    data: programs.slice(0, 3),
+                  },
+                }}
+                className="btn programs-btn"
+              >
                 <b>View All Programs</b>
               </Link>
             </div>

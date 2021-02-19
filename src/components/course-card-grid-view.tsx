@@ -12,15 +12,7 @@ const CourseCardGridView: React.SFC<CourseCardGridViewProps> = ({
   return (
     <>
       {programs.map((course: any, index: number) => (
-        <CourseCard
-          grid={grid}
-          key={index}
-          images={course.image}
-          title={course.title}
-          text={course.text}
-          rating={course.rating}
-          price={course.price}
-        ></CourseCard>
+        <CourseCard grid={grid} key={index} course={course}></CourseCard>
       ))}
     </>
   );

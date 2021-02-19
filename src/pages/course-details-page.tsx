@@ -1,15 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { PaystackButton } from "react-paystack";
+import { Link } from "react-router-dom";
 
 import "../assets/css/course-detailspage.css";
-import bitmap from "../assets/img/bitmap.png";
 import PaymentOptions from "../components/payment-options";
 import Rating from "../components/rating";
 import CourseCardGridView from "../components/course-card-grid-view";
-import pd1 from "../assets/img/pd1.svg";
-import pd2 from "../assets/img/pd2.svg";
-import pd3 from "../assets/img/pd3.svg";
 
 export interface AppCourseDetailsProps {
   config: {};
@@ -22,10 +19,17 @@ export interface AppCourseDetailsProps {
   handleSecondClose: any;
 }
 
-const AppCourseDetails: React.SFC<AppCourseDetailsProps> = () => {
+const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
+  const course = props.location.state.data;
+  const modules = course.modules ? course.modules : [];
+  const amount = !course.price
+    ? "10000"
+    : course.price === "0.00"
+    ? "10000"
+    : course.price.replace(".", "");
+
   const [showModal, setShowModal] = useState(false);
   const [showSecondModal, setShowSecondModal] = useState(false);
-
   const [firstName, setFirstName] = useState("");
   const [firstNameValid, setFirstNameValid] = useState("");
   const [lastName, setLastName] = useState("");
@@ -35,82 +39,50 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = () => {
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState("");
   const [paymentPlan, setPaymentPlan] = useState("one_off");
-
-  const [programs, setPrograms] = useState([
-    {
-      image: pd1,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
-    {
-      image: pd2,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
-    {
-      image: pd3,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
-    {
-      image: pd1,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
-    {
-      image: pd2,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
-    {
-      image: pd3,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
-    {
-      image: pd2,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
-    {
-      image: pd3,
-      title: "Product Design",
-      text:
-        "Learn how to design products that users will love. Product Design ble..... ",
-      rating: 4,
-      price: "NGN250,000",
-    },
-  ]);
+  const [programs, setPrograms] = useState([]);
 
   const handleClose = () => setShowModal(false);
+
   const handleShow = () => setShowModal(true);
 
   const handleSecondClose = () => {
     setShowSecondModal(false);
     handleShow();
   };
+
   const handleSecondShow = () => setShowSecondModal(true);
+
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      const response = await fetch(
+        "https://demo.vigilearnlms.com/api/all/courses",
+        {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: "same-origin", // include, *same-origin, omit
+          headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: "follow", // manual, *follow, error
+          referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: JSON.stringify({
+            username: "Tech@edutechng.com",
+            password: "Password_10",
+          }), // body data type must match "Content-Type" header
+        }
+      );
+
+      let loginData = await response.json();
+      if (loginData.status) {
+        console.log(loginData.data);
+        setPrograms(loginData.data);
+      }
+    };
+
+    fetchPrograms();
+  }, []);
 
   const handleCallBothFunctions = () => {
     if (firstNameValidation(firstName) !== true) {
@@ -140,7 +112,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = () => {
   const config = {
     reference: "garden_academy" + new Date().getTime(),
     email,
-    amount: 25000000,
+    amount: parseInt(amount),
     publicKey: "pk_test_439452ab32de9472427341c35ccc7ef16d32e09c",
   };
 
@@ -233,183 +205,158 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = () => {
   return (
     <>
       <main id="content" role="main">
-        <div>
-          <div
-            className="hero-page"
-            style={{ alignItems: "baseline", padding: "0 10%" }}
-          >
-            <h1>User Experience Design Fundamentals</h1>
-            <p>
-              Design Web Sites and Mobile Apps that Your Users Love and Return
-              to Again and Again
-              <br /> with UX Expert Kingsley Omin.
-            </p>
+        {props.location.state.data ? (
+          <div>
+            <div
+              className="hero-page"
+              style={{ alignItems: "baseline", padding: "0 10%" }}
+            >
+              <div className="row" style={{ width: "100%" }}>
+                <div className="col-lg-8">
+                  <h1>{course.name}</h1>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        course.description?.length > 150
+                          ? course.description?.substring(0, 150) + "..."
+                          : course.description,
+                    }}
+                  ></p>
 
-            <p className="stars">
-              {3} <Rating rating={Math.round(parseInt("3.4"))}></Rating>
-            </p>
+                  <p className="stars">
+                    {course.star_count ? course.star_count : "1.00"}
+                    <Rating rating={course.star_count}></Rating>
+                  </p>
 
-            <span>302,000 students</span>
-          </div>
-          <br />
-          <div className="container space-top-3 space-top-lg-3 space-bottom-2">
-            <div>
-              <div className="row ">
-                <div className="space-right-3 space-top-5 space-bottom-2 col-lg-8">
-                  <div className="pad space-top-3">
-                    <div className="card details" style={{ height: "auto" }}>
-                      <div className="head col-lg-12">
-                        <h2 className="details-head">
-                          About the course you will learn
-                        </h2>
-                        <p>
-                          Students should have basic computer skills and be
-                          comfortable navigating online.
-                        </p>
-                      </div>
-                      <div className="bullet col-lg-12">
-                        <ul typeof="disc" className="list-group">
-                          <li>
-                            <h3>User experience fundamentals</h3>
-                            <p>
-                              In this course, we give you a framework to help
-                              you organize and plan your marketing approach. We
-                              also introduce you to three companies that are
-                              featured throughout the Digital Marketing
-                              Nanodegree program as examples of how to apply
-                              what you learn in both B2C and B2B contexts.
-                            </p>
-                          </li>
-                          <li>
-                            <h3>Content strategy</h3>
-                            <p>
-                              Content is at the core of all marketing activity.
-                              In this course you learn how to plan your content
-                              marketing, how to develop content that works well
-                              for your target audience, and how to measure its
-                              impact.
-                            </p>
-                          </li>
-                          <li>
-                            <h3>User experience fundamentals</h3>
-                            <p>
-                              Social media is a powerful channel for marketers.
-                              In this course, you learn more about the main
-                              social media platforms, how to manage your social
-                              media presence, and how to create effective
-                              content for each platform.
-                            </p>
-                          </li>
-                          <li>
-                            <h3>Email marketing</h3>
-                            <p>
-                              Email is an effective marketing channel,
-                              especially at the conversion and retention stage
-                              of the customer journey. In this course, you learn
-                              how to create an email marketing strategy, create
-                              and execute email campaigns, and measure the
-                              results.
-                            </p>
-                          </li>
-                          <li>
-                            <h3>User experience fundamentals</h3>
-                            <p>
-                              Social media is a powerful channel for marketers.
-                              In this course, you learn more about the main
-                              social media platforms, how to manage your social
-                              media presence, and how to create effective
-                              content for each platform.
-                            </p>
-                          </li>
-                        </ul>
+                  <span>302,000 students</span>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div className="container space-top-3 space-top-lg-3 space-bottom-2">
+              <div>
+                <div className="row ">
+                  <div className="space-right-3 space-top-4 space-bottom-2 col-lg-8">
+                    <div className="pad space-top-3">
+                      <div className="card details" style={{ height: "auto" }}>
+                        <div className="head col-lg-12">
+                          <h2 className="details-head">
+                            About the course you will learn
+                          </h2>
+                          {/* <p>
+                            Students should have basic computer skills and be
+                            comfortable navigating online.
+                          </p> */}
+                        </div>
+                        <div className="bullet col-lg-12">
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: course.description,
+                            }}
+                          ></p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className=" space-bottom-2 col-lg-4">
-                  <div
-                    className="card"
-                    style={{
-                      padding: "0",
-                      borderRadius: "4%",
-                      border: "1px solid #D7DCE0",
-                      boxSizing: "border-box",
-                      height: "inherit",
-                    }}
-                  >
-                    <img
-                      className="img-fluid card-img-top"
-                      src={bitmap}
-                      alt="product design"
-                      style={{ width: "100%" }}
-                    />
-                    <div className="card-body">
-                      <br />
-                      <h2>NGN250,000</h2>
-                      <br />
-                      <button
-                        type="submit"
+                  <div className=" space-bottom-2 col-lg-4">
+                    <div
+                      className="card"
+                      style={{
+                        padding: "0",
+                        borderRadius: "4%",
+                        border: "1px solid #D7DCE0",
+                        boxSizing: "border-box",
+                        height: "inherit",
+                      }}
+                    >
+                      <img
+                        className="img-fluid card-img-top"
+                        src={course.avatar}
+                        alt="product design"
                         style={{
-                          background: "#1E944D",
-                          border: "2px solid #1E944D",
+                          width: "100%",
+                          maxHeight: "20rem",
+                          minHeight: "20rem",
+                          objectFit: "cover",
                         }}
-                        onClick={handleShow}
-                        className="btn btn-block btn-primary transition-3d-hover"
-                        data-toggle="modal"
-                        data-target="#exampleModal"
-                      >
-                        Reserve Your Spot
-                      </button>
-                      <br />
-                      <h5>This course includes:</h5>
+                      />
+                      <div className="card-body">
+                        <br />
+                        <h2>₦ {course.price}</h2>
+                        <br />
+                        <button
+                          type="submit"
+                          style={{
+                            background: "#1E944D",
+                            border: "2px solid #1E944D",
+                          }}
+                          onClick={handleShow}
+                          className="btn btn-block btn-primary transition-3d-hover"
+                          data-toggle="modal"
+                          data-target="#exampleModal"
+                        >
+                          Reserve Your Spot
+                        </button>
+                        <br />
+                        <h5>This course includes:</h5>
 
-                      <ul>
-                        <li>
-                          <p>10 hours on-demand video</p>
-                        </li>
-                        <li>
-                          <p>Full lifetime access</p>
-                        </li>
-                        <li>
-                          <p>Access on mobile and TV</p>
-                        </li>
-                        <li>
-                          <p>34 Downloadable materials</p>
-                        </li>
-                        <li>
-                          <p>Certificate of completion</p>
-                        </li>
-                      </ul>
+                        <ul>
+                          {modules.map((data: any, index: number) => {
+                            return (
+                              <li key={index}>
+                                <h1>{data.name}</h1>
+                                <p
+                                  dangerouslySetInnerHTML={{
+                                    __html: data.description,
+                                  }}
+                                ></p>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
+        ) : (
+          <div className="d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
+            <div className="row" style={{ width: "100%" }}>
+              <div className="col-6 offset-3">
+                <h1 style={{ textAlign: "center" }}>Page Not Found</h1>
+                <Link to="/" className="btn btn-primary btn-block">
+                  Go to Home
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
         <PaymentOptions></PaymentOptions>
 
-        <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
-          <div className="w-md-80 text-center mx-md-auto mb-5 mb-md-9">
-            <h2>Recommended Courses</h2>
-            <p>
-              Choose from any of our wide range of courses specifically tailored
-              to suit your needs.
-              <br />
-              We have got you covered
-            </p>
-          </div>
-          <section>
-            <div className="row mx-n2 mx-lg-n3">
-              <CourseCardGridView
-                grid={3}
-                programs={programs.slice(0, 8)}
-              ></CourseCardGridView>
+        {programs?.length > 0 && (
+          <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
+            <div className="w-md-80 text-center mx-md-auto mb-5 mb-md-9">
+              <h2>Recommended Courses</h2>
+              <p>
+                Choose from any of our wide range of courses specifically
+                tailored to suit your needs.
+                <br />
+                We have got you covered
+              </p>
             </div>
-          </section>
-        </div>
+            <section>
+              <div className="row mx-n2 mx-lg-n3">
+                <CourseCardGridView
+                  grid={3}
+                  programs={programs.slice(0, 8)}
+                ></CourseCardGridView>
+              </div>
+            </section>
+          </div>
+        )}
       </main>
 
       <Modal
@@ -570,7 +517,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = () => {
 
                     <div className="col-9">
                       <h5>ONE OFF PAYMENT</h5>
-                      <h2>NGN120,000</h2>
+                      <h2>₦ {course.price}</h2>
                     </div>
                   </div>
                 </div>
@@ -606,7 +553,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = () => {
 
                     <div className="col-9">
                       <h5>INSTALLMENT PAYMENT</h5>
-                      <h2>NGN120,000</h2>
+                      <h2>Not Available</h2>
                     </div>
                   </div>
                 </div>
@@ -642,7 +589,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = () => {
 
                     <div className="col-9">
                       <h5>LOAN OFFER</h5>
-                      <h2>NGN120,000</h2>
+                      <h2>₦ {course.price}</h2>
                     </div>
                   </div>
                 </div>
@@ -678,7 +625,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = () => {
 
                     <div className="col-9">
                       <h5>DEFERRED INCOME SHARE</h5>
-                      <h2>NGN120,000</h2>
+                      <h2>₦ {course.price}</h2>
                     </div>
                   </div>
                 </div>
@@ -690,8 +637,10 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = () => {
           <Button variant="secondary" onClick={handleSecondClose}>
             Back
           </Button>
-          {paymentPlan !== "deferred" ? (
+          {paymentPlan === "one_off" ? (
             <PaystackButton className="btn btn-primary" {...componentProps} />
+          ) : paymentPlan === "instalment" ? (
+            <a className="btn btn-primary">Not Available</a>
           ) : (
             <a className="btn btn-primary" href="https://ventures_capital.com">
               Go to Site

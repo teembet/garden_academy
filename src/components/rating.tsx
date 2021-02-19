@@ -1,20 +1,13 @@
-import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 
 export interface RatingProps {
-  rating: number;
+  rating: string;
 }
 
-const Rating: React.SFC<RatingProps> = ({ rating = 1 }) => {
-  const [ratingArray, setRatingAray] = useState([0]);
-
-  useEffect(() => {
-    let array = [];
-    for (let i = 0; i < rating; i++) {
-      array.push(i);
-    }
-    setRatingAray(array);
-  }, []);
+const Rating: React.SFC<RatingProps> = ({ rating = "1.00" }) => {
+  const ratingArray = Array.from(
+    Array(Math.round(parseInt(rating ? rating : "1.00"))).keys()
+  );
 
   return (
     <>
