@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-export interface NotFoundPageProps {}
+export interface AppNotFoundPageProps {}
 
-const NotFoundPage: React.SFC<NotFoundPageProps> = () => {
+const AppNotFoundPage: React.SFC<AppNotFoundPageProps> = () => {
   return (
     <>
       <div className="d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
@@ -19,4 +19,4 @@ const NotFoundPage: React.SFC<NotFoundPageProps> = () => {
   );
 };
 
-export default NotFoundPage;
+export default AppNotFoundPage;

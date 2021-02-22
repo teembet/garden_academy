@@ -40,13 +40,13 @@ const CourseCard: React.SFC<CourseCardProps> = ({ course, grid }) => {
               alt="product design"
               style={{
                 width: "100%",
-                maxHeight: "15rem",
-                minHeight: "15rem",
+                maxHeight: "10rem",
+                minHeight: "10rem",
                 objectFit: "cover",
               }}
             />
             <div className="card-body">
-              <p className="product-title" style={{ minHeight: "5rem" }}>
+              <p className="product-title" style={{ minHeight: "4.5rem" }}>
                 {<b>{course.name}</b>}
               </p>
               <p
@@ -57,14 +57,22 @@ const CourseCard: React.SFC<CourseCardProps> = ({ course, grid }) => {
                       ? course.description?.substring(0, 45) + "..."
                       : course.description,
                 }}
-                style={{ minHeight: "4rem" }}
+                style={{ minHeight: "3rem" }}
               ></p>
-              <p className="stars">
-                {course.star_count ? course.star_count : "1.00"}
+              {/*   <p className="stars">
+                {course.star_count
+                  ? Math.round(parseInt(course.star_count))
+                  : "1"} </p> */}
+              <Rating rating={course.star_count}></Rating>
 
-                <Rating rating={course.star_count}></Rating>
+              <p className="amount">
+                ₦ {Math.round(parseInt(course.price))}{" "}
+                <span
+                  style={{ float: "right", color: "#000", fontSize: ".8em" }}
+                >
+                  <i className="far fa-clock"></i>&nbsp;{course.duration}
+                </span>
               </p>
-              <p className="amount">₦ {course.price}</p>
             </div>
           </div>
         </Link>

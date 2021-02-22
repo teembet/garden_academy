@@ -71,12 +71,12 @@
 }
 
 .product-title {
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 2px;
 }
 
 .products {
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 10px;
 }
 
@@ -89,11 +89,11 @@
 
 .star {
   color: #ffc31a;
-  margin: 0px 0px -1px 8px;
+  margin: 0px 0px 0px 0px;
 }
 
 .amount {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   margin-bottom: 0px;
 }
@@ -177,4 +177,31 @@ search-placeholder::-ms-input-placeholder {
 }
 .text-primary {
   color: #0e347e !important;
+}
+
+/* p.tip {
+  border-bottom: 1px dashed;
+  text-decoration: none;
+} */
+p.tip:hover {
+  cursor: help;
+  position: relative;
+}
+p.tip span {
+  display: none;
+}
+p.tip:hover span {
+  border: #c0c0c0 1px dotted;
+  padding: 20px 20px 20px 20px;
+  display: block;
+  z-index: 100;
+  color: #fff;
+  background: #0f42a4;
+  left: 0px;
+  margin: 10px;
+  width: 250px;
+  position: absolute;
+  top: 10px;
+  text-decoration: none;
+  border-radius: 10%;
 }

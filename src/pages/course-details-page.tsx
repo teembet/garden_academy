@@ -20,9 +20,9 @@ export interface AppCourseDetailsProps {
 }
 
 const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
-  const course = props.location.state.data;
-  const modules = course.modules ? course.modules : [];
-  const amount = !course.price
+  const course = props.location?.state?.data;
+  const modules = course?.modules ? course?.modules : [];
+  const amount = !course?.price
     ? "10000"
     : course.price === "0.00"
     ? "10000"
@@ -205,7 +205,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
   return (
     <>
       <main id="content" role="main">
-        {props.location.state.data ? (
+        {course ? (
           <div>
             <div
               className="hero-page"
@@ -213,22 +213,19 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
             >
               <div className="row" style={{ width: "100%" }}>
                 <div className="col-lg-8">
-                  <h1>{course.name}</h1>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html:
-                        course.description?.length > 150
-                          ? course.description?.substring(0, 150) + "..."
-                          : course.description,
-                    }}
-                  ></p>
+                  <h1 className="d-none d-sm-block">{course.name}</h1>
+
+                  <h4 className="d-block d-sm-none">{course.name}</h4>
 
                   <p className="stars">
-                    {course.star_count ? course.star_count : "1.00"}
+                    {/* {course.star_count ? course.star_count : "1.00"} */}
                     <Rating rating={course.star_count}></Rating>
                   </p>
-
-                  <span>302,000 students</span>
+                  <p>
+                    <i className="far fa-clock"></i>&nbsp;{course.duration}
+                    &nbsp;&nbsp;&nbsp; &nbsp;
+                    <span>{course.members_count} Students</span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -305,12 +302,8 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
                           {modules.map((data: any, index: number) => {
                             return (
                               <li key={index}>
-                                <h1>{data.name}</h1>
-                                <p
-                                  dangerouslySetInnerHTML={{
-                                    __html: data.description,
-                                  }}
-                                ></p>
+                                <h5>{data.name}</h5>
+                                <p>{data.description}</p>
                               </li>
                             );
                           })}
@@ -359,295 +352,305 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
         )}
       </main>
 
-      <Modal
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        show={showModal}
-        onHide={handleClose}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Reserve a spot
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form>
-            <div className="row">
-              <div className="col-sm-6">
-                <div className="js-form-message form-group">
-                  <label htmlFor="firstName" className="input-label">
-                    First name
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="firstName"
-                    id="firstName"
-                    placeholder="eg. Nataly"
-                    required
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    onBlur={(e) => firstNameValidation(e.target.value)}
-                  />
-                  <p className="text-danger">{firstNameValid}</p>
-                </div>
-              </div>
-
-              <div className="col-sm-6">
-                <div className="js-form-message form-group">
-                  <label htmlFor={"lastName"} className="input-label">
-                    Last name
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="lastName"
-                    id="lastName"
-                    placeholder="eg. Gaga"
-                    required
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    onBlur={(e) => lastNameValidation(e.target.value)}
-                  />
-                  <p className="text-danger">{lastNameValid}</p>
-                </div>
-              </div>
-
-              <div className="col-sm-6">
-                <div className="js-form-message form-group">
-                  <label htmlFor={"firstName"} className="input-label">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    className="form-control"
-                    name="firstName"
-                    id="firstName"
-                    placeholder="08045275625"
-                    required
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    onBlur={(e) => phoneValidation(e.target.value)}
-                  />
-                  <p className="text-danger">{phoneValid}</p>
-                </div>
-              </div>
-
-              <div className="col-sm-6">
-                <div className="js-form-message form-group">
-                  <label htmlFor={"lastName"} className="input-label">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    name="email"
-                    id="email"
-                    placeholder="admin@gmail.com"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    onBlur={(e) => emailValidation(e.target.value)}
-                  />
-                  <p className="text-danger">{emailValid}</p>
-                </div>
-              </div>
-            </div>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleCallBothFunctions}>
-            Next
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      <Modal
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        show={showSecondModal}
-        onHide={handleSecondClose}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Reserve a spot</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form>
-            <div className="container">
-              <div
-                className="row"
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-                onChange={(e) => setMoney(e)}
-              >
-                <div
-                  className="col-sm-5 card"
-                  style={{
-                    height: "inherit",
-                    margin: "20px",
-                    background: paymentPlan === "one_off" ? "#E8EFFD" : "",
-                  }}
-                  onClick={() => setPaymentPlan("one_off")}
-                >
-                  <div className="row ">
-                    <div
-                      className="col-3"
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
+      {course && (
+        <>
+          <Modal
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            show={showModal}
+            onHide={handleClose}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Reserve a spot
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form>
+                <div className="row">
+                  <div className="col-sm-6">
+                    <div className="js-form-message form-group">
+                      <label htmlFor="firstName" className="input-label">
+                        First name
+                      </label>
                       <input
-                        type="radio"
-                        style={{ width: "30px", height: "30px" }}
-                        id="payment"
-                        name="payment"
-                        value="one_off"
-                        onChange={() => {}}
-                        checked={paymentPlan === "one_off"}
-                      ></input>
+                        type="text"
+                        className="form-control"
+                        name="firstName"
+                        id="firstName"
+                        placeholder="eg. Nataly"
+                        required
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        onBlur={(e) => firstNameValidation(e.target.value)}
+                      />
+                      <p className="text-danger">{firstNameValid}</p>
                     </div>
+                  </div>
 
-                    <div className="col-9">
-                      <h5>ONE OFF PAYMENT</h5>
-                      <h2>₦ {course.price}</h2>
+                  <div className="col-sm-6">
+                    <div className="js-form-message form-group">
+                      <label htmlFor={"lastName"} className="input-label">
+                        Last name
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="lastName"
+                        id="lastName"
+                        placeholder="eg. Gaga"
+                        required
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        onBlur={(e) => lastNameValidation(e.target.value)}
+                      />
+                      <p className="text-danger">{lastNameValid}</p>
+                    </div>
+                  </div>
+
+                  <div className="col-sm-6">
+                    <div className="js-form-message form-group">
+                      <label htmlFor={"firstName"} className="input-label">
+                        Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        className="form-control"
+                        name="firstName"
+                        id="firstName"
+                        placeholder="08045275625"
+                        required
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        onBlur={(e) => phoneValidation(e.target.value)}
+                      />
+                      <p className="text-danger">{phoneValid}</p>
+                    </div>
+                  </div>
+
+                  <div className="col-sm-6">
+                    <div className="js-form-message form-group">
+                      <label htmlFor={"lastName"} className="input-label">
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        name="email"
+                        id="email"
+                        placeholder="admin@gmail.com"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        onBlur={(e) => emailValidation(e.target.value)}
+                      />
+                      <p className="text-danger">{emailValid}</p>
                     </div>
                   </div>
                 </div>
-
-                <div
-                  className="col-sm-5 card"
-                  style={{
-                    height: "inherit",
-                    margin: "20px",
-                    background: paymentPlan === "instalment" ? "#E8EFFD" : "",
-                  }}
-                  onClick={() => setPaymentPlan("instalment")}
-                >
-                  <div className="row ">
+              </form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={handleCallBothFunctions}>
+                Next
+              </Button>
+            </Modal.Footer>
+          </Modal>
+          <Modal
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            show={showSecondModal}
+            onHide={handleSecondClose}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Reserve a spot</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form>
+                <div className="container">
+                  <div
+                    className="row"
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                    onChange={(e) => setMoney(e)}
+                  >
                     <div
-                      className="col-3"
+                      className="col-sm-5 card"
                       style={{
-                        display: "flex",
-                        justifyContent: "center",
+                        height: "inherit",
+                        margin: "20px",
+                        background: paymentPlan === "one_off" ? "#E8EFFD" : "",
                       }}
+                      onClick={() => setPaymentPlan("one_off")}
                     >
-                      <input
-                        type="radio"
-                        style={{ width: "30px", height: "30px" }}
-                        aria-label="Radio button for following text input"
-                        id="payment"
-                        name="payment"
-                        value="instalment"
-                        onChange={() => {}}
-                        checked={paymentPlan === "instalment"}
-                      ></input>
+                      <div className="row ">
+                        <div
+                          className="col-3"
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            style={{ width: "30px", height: "30px" }}
+                            id="payment"
+                            name="payment"
+                            value="one_off"
+                            onChange={() => {}}
+                            checked={paymentPlan === "one_off"}
+                          ></input>
+                        </div>
+
+                        <div className="col-9">
+                          <h5>ONE OFF PAYMENT</h5>
+                          <h2>₦ {course.price}</h2>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="col-9">
-                      <h5>INSTALLMENT PAYMENT</h5>
-                      <h2>Not Available</h2>
+                    <div
+                      className="col-sm-5 card"
+                      style={{
+                        height: "inherit",
+                        margin: "20px",
+                        background:
+                          paymentPlan === "instalment" ? "#E8EFFD" : "",
+                      }}
+                      onClick={() => setPaymentPlan("instalment")}
+                    >
+                      <div className="row ">
+                        <div
+                          className="col-3"
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            style={{ width: "30px", height: "30px" }}
+                            aria-label="Radio button for following text input"
+                            id="payment"
+                            name="payment"
+                            value="instalment"
+                            onChange={() => {}}
+                            checked={paymentPlan === "instalment"}
+                          ></input>
+                        </div>
+
+                        <div className="col-9">
+                          <h5>INSTALLMENT PAYMENT</h5>
+                          <h2>Not Available</h2>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      className="col-sm-5 card"
+                      style={{
+                        height: "inherit",
+                        margin: "20px",
+                        background: paymentPlan === "loan" ? "#E8EFFD" : "",
+                      }}
+                      onClick={() => setPaymentPlan("loan")}
+                    >
+                      <div className="row ">
+                        <div
+                          className="col-3"
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            style={{ width: "30px", height: "30px" }}
+                            aria-label="Radio button for following text input"
+                            id="payment"
+                            name="payment"
+                            value="loan"
+                            onChange={() => {}}
+                            checked={paymentPlan === "loan"}
+                          ></input>
+                        </div>
+
+                        <div className="col-9">
+                          <h5>LOAN OFFER</h5>
+                          <h2>₦ {course.price}</h2>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      className="col-sm-5 card"
+                      style={{
+                        height: "inherit",
+                        margin: "20px",
+                        background: paymentPlan === "deferred" ? "#E8EFFD" : "",
+                      }}
+                      onClick={() => setPaymentPlan("deferred")}
+                    >
+                      <div className="row ">
+                        <div
+                          className="col-3"
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            style={{ width: "30px", height: "30px" }}
+                            aria-label="Radio button for following text input"
+                            id="payment"
+                            name="payment"
+                            value="deferred"
+                            onChange={() => {}}
+                            checked={paymentPlan === "deferred"}
+                          ></input>
+                        </div>
+
+                        <div className="col-9">
+                          <h5>DEFERRED INCOME SHARE</h5>
+                          <h2>₦ {course.price}</h2>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                <div
-                  className="col-sm-5 card"
-                  style={{
-                    height: "inherit",
-                    margin: "20px",
-                    background: paymentPlan === "loan" ? "#E8EFFD" : "",
-                  }}
-                  onClick={() => setPaymentPlan("loan")}
+              </form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleSecondClose}>
+                Back
+              </Button>
+              {paymentPlan === "one_off" ? (
+                <PaystackButton
+                  className="btn btn-primary"
+                  {...componentProps}
+                />
+              ) : paymentPlan === "instalment" ? (
+                <a className="btn btn-primary">Not Available</a>
+              ) : (
+                <a
+                  className="btn btn-primary"
+                  href="https://ventures_capital.com"
                 >
-                  <div className="row ">
-                    <div
-                      className="col-3"
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <input
-                        type="radio"
-                        style={{ width: "30px", height: "30px" }}
-                        aria-label="Radio button for following text input"
-                        id="payment"
-                        name="payment"
-                        value="loan"
-                        onChange={() => {}}
-                        checked={paymentPlan === "loan"}
-                      ></input>
-                    </div>
-
-                    <div className="col-9">
-                      <h5>LOAN OFFER</h5>
-                      <h2>₦ {course.price}</h2>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="col-sm-5 card"
-                  style={{
-                    height: "inherit",
-                    margin: "20px",
-                    background: paymentPlan === "deferred" ? "#E8EFFD" : "",
-                  }}
-                  onClick={() => setPaymentPlan("deferred")}
-                >
-                  <div className="row ">
-                    <div
-                      className="col-3"
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <input
-                        type="radio"
-                        style={{ width: "30px", height: "30px" }}
-                        aria-label="Radio button for following text input"
-                        id="payment"
-                        name="payment"
-                        value="deferred"
-                        onChange={() => {}}
-                        checked={paymentPlan === "deferred"}
-                      ></input>
-                    </div>
-
-                    <div className="col-9">
-                      <h5>DEFERRED INCOME SHARE</h5>
-                      <h2>₦ {course.price}</h2>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleSecondClose}>
-            Back
-          </Button>
-          {paymentPlan === "one_off" ? (
-            <PaystackButton className="btn btn-primary" {...componentProps} />
-          ) : paymentPlan === "instalment" ? (
-            <a className="btn btn-primary">Not Available</a>
-          ) : (
-            <a className="btn btn-primary" href="https://ventures_capital.com">
-              Go to Site
-            </a>
-          )}
-        </Modal.Footer>
-      </Modal>
+                  Go to Site
+                </a>
+              )}
+            </Modal.Footer>
+          </Modal>
+        </>
+      )}
     </>
   );
 };

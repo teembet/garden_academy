@@ -53,12 +53,22 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
     <main id="content" role="main">
       <div>
         <div className="hero-page-about">
-          <h1>Featured Courses</h1>
+          <h1 className="d-none d-sm-block">Featured Courses</h1>
 
-          <p>
+          <p className="d-none d-sm-block">
             Choose from any of our wide range of courses tailored to suit your
             needs.
             <br /> From software engineering to product management and more, We
+            have got you covered
+          </p>
+
+          <br />
+
+          <h4 className="d-block d-sm-none">Featured Courses</h4>
+
+          <p style={{ fontSize: ".9em" }} className="d-block d-sm-none">
+            Choose from any of our wide range of courses tailored to suit your
+            needs. From software engineering to product management and more, We
             have got you covered
           </p>
 

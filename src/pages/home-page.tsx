@@ -46,32 +46,74 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
   const [images, setImages] = useState([
     {
       image: person1,
-      title: "Patience Toyosi",
-      social: "Facebook",
+      title: "Dimeji Adeojo",
+      social: "Product Designer",
       content:
-        "“Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”",
+        "With Garden Academy, I have been able to upscale my skills as a Product Designer. I got introduced to new ways and techniques to designing products that is customer centric and focused on giving the customer a good experience as they move further down the product funnel",
     },
     {
       image: person2,
-      title: "Patience Toyosi",
-      social: "Facebook",
+      title: "Chibuzor Okoro",
+      social: "FrontEnd Intern",
       content:
-        "“Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”",
+        "As a graduate of Economics, I have always been interested in the world of tech, which lead my passion to learning how to code as a frontend developer. Getting into Garden Academy, I was introduced to the programming languages (HTML, CSS, JavaScript). With the few months spent in my learning, I was ble to secure an internship as a Front-end developer in a fintech",
     },
 
     {
       image: person1,
-      title: "Patience Toyosi",
-      social: "google",
+      title: "Silva Folabi",
+      social: "Freelance Developer",
       content:
-        "“Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”",
+        "After 4 years in the banking industry, I realized that my passion wasn’t in banking but in tech, because all through my University days I was a tech enthusiast. But I couldn’t move into the world of tech with a Bachelor’s degree in Business Admin. I needed the skills to function. Then I got to know about Garden Academy, and with the few months learning to be a backend developer, I have been able to code my own website, and also doing some freelance projects",
     },
     {
       image: person2,
-      title: "Patience Toyosi",
-      social: "google",
+      title: "Tolu Odewole",
+      social: "HR Manager",
       content:
-        "“Completely beautiful website and amazing support! This is my second website from this author and I love both of the sites so much and she has helped me so well when I needed it!”",
+        "Garden Academy is the best platform to learn and upgrade your skills in tech. As a HR professional, I can say that Garden Academy has impacted me so much that I can go back to my workplace and function better",
+    },
+    {
+      image: person2,
+      title: "Gerard Obi",
+      social: "Business Analyst",
+      content:
+        "I have been on the look-out for courses to take to improve myself as a Business Analyst, and getting to know about Garden Academy was the breakthrough I needed. The tutors are well experienced with lots of accolades on their belts, and we got to breakdown real-life business issues, and working to find solutions to them.",
+    },
+    {
+      image: person2,
+      title: "Aliyu, Bamako",
+      social: "Project Manager",
+      content:
+        "Garden Academy is a top class platform for me. As a student of the academy, I enrolled for its project management course, and I didn’t regret my decision, because I got to understand what it is expected of me as a project manager. Also, the support service was excellent",
+    },
+    {
+      image: person2,
+      title: "Jeremiah Sunday",
+      social: "Lawyer",
+      content:
+        "Being a law graduate and fresh out of Law School, I needed to do something while waiting to be posted for NYSC, then I got to know about Garden Academy through a friend. I took up their law course and after finishing the course, I got an offer to work as a Junior Associate in for Tech start-up",
+    },
+    {
+      image: person2,
+      title: "Tobe Anwuli",
+      social: "Frontend Developer",
+      content:
+        "With over 3 years of experience as a Frontend developer, I needed an advance course to push me to the next stage of my career. I saw the ad about Garden Academy on social media and decided to opt-in for a course in Frontend development. It was indeed what I was looking for, and the tutors were very experienced and understanding. And with a certification from Garden Academy, I secured a promotion at my workplace.",
+    },
+    {
+      image: person2,
+      title: "Nonso Okpala",
+      social: "Business Manager",
+      content:
+        "One thing I am proud of as a graduate of Garden Academy is that I have been able to showcase my leadership skills much better at a management level. With its leadership course, I have been able to work on myself as a leader.",
+    },
+    {
+      image: person2,
+      title: "Bunmi Ogunye",
+      social: "Data Analyst",
+      content:
+        "Despite graduating as a Pharmacist, I needed the skill to analyze data and also to secure a job as a Data Analyst, because I wanted to focus more on the research aspect of Pharmacy. Garden Academy provided for me the necessary skills I needed, and after completion, I secured an employment as a Data Analyst for a Pharmaceutical company.",
     },
   ]);
 
@@ -665,7 +707,12 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                       <div className="card-body" style={{ color: "#3A434B" }}>
                         <hr />
                         <br />
-                        <p>{images[index].content}</p>
+                        <p className="tip">
+                          <span>{images[index].content}</span>
+                          {images[index].content.length > 200
+                            ? images[index].content.substring(0, 200) + "..."
+                            : images[index].content}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -699,7 +746,13 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                         <div className="card-body" style={{ color: "#3A434B" }}>
                           <hr />
                           <br />
-                          <p>{images[index + 1].content}</p>
+                          <p className="tip">
+                            <span>{images[index + 1].content}</span>
+                            {images[index + 1].content.length > 200
+                              ? images[index + 1].content.substring(0, 200) +
+                                "..."
+                              : images[index + 1].content}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -720,7 +773,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Reserve a spot
+            Become a facilitator
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
