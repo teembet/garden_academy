@@ -762,7 +762,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
             </div>
           </div>
         )}
-      </main>
+       </main>
 
       <Modal
         size="lg"

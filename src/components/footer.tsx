@@ -7,13 +7,36 @@ export interface AppFooterProps {}
 const AppFooter: React.SFC<AppFooterProps> = () => {
   return (
     <React.Fragment>
-      {/* < !-- ========== FOOTER ========== --> */}
       <footer className="bg-dark" style={{ backgroundColor: "F0F0F0" }}>
+        <div
+          className=" d-lg-flex position-relative session-three"
+          style={{ marginTop: "0" }}
+        >
+          <div className="container space-2">
+            <div className="row">
+              <div className="col-sm-9">
+                <h2 className="font-weight-bold white-text text-center">
+                  We have courses for you, Sign up for Free now.
+                </h2>
+                <br />
+              </div>
+              <div className="col-sm-3">
+                <a
+                  href="https://forms.gle/veSsg5gphcXwptQz8"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-block get-started-btn"
+                >
+                  Sign Up
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="container">
           <div className="space-top-2 space-bottom-1 space-bottom-lg-2">
             <div className="row justify-content-lg-between">
               <div className="col-md-3">
-                {/* <!-- Logo --> */}
                 <div className="mb-4">
                   <h2 className="text-primary">
                     Garden <br />
@@ -25,7 +48,7 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
             <!-- Nav Link --> */}
                 <ul className="nav nav-sm nav-x-0 nav-white flex-column">
                   <li className="nav-item">
-                    <a className="nav-link media" href="#">
+                    <a className="nav-link media">
                       <span className="media">
                         <span className="fas fa-location-arrow mt-1 mr-2"></span>
                         <span className="media-body">
