@@ -12,7 +12,6 @@
   margin-right: 10px;
   /* font-size: .8em; */
   /* background: #051A52; */
-
 }
 
 .active {
@@ -20,7 +19,7 @@
 }
 
 .navbar-toggler {
-  background-color: #f5e6d5
+  background-color: #f5e6d5;
 }
 
 .media {
@@ -30,14 +29,24 @@
 .btn-icon {
   font-size: 1.5em !important;
   margin: 5px;
-  color: #051A52;
+  color: #051a52;
 }
 
 .nav-footer,
 .media {
-  color: #051A52 !important
+  color: #051a52 !important;
 }
 
 hr {
-  border-top: .0625rem solid #000;
+  border-top: 0.0625rem solid #000;
+}
+
+.blink_me {
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }

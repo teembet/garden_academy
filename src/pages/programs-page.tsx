@@ -9,14 +9,31 @@ export interface AppProgramsPageProps {}
 
 const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
   const course = props?.location?.state?.data ? props.location.state.data : [];
-  const [programs, setPrograms] = useState([]);
+  let searchData = props.location?.state?.searchInput;
 
-  const searchCourse = () => {
-    console.log("wind");
+  const [programs, setPrograms] = useState([]);
+  const [programs_store, setPrograms_store] = useState([]);
+  const [pageStatus, setPageStatus] = useState("loading");
+  console.log(pageStatus);
+
+  const searchCourse = (searchInput: string) => {
+    if (searchInput.trim() === "") return setPrograms(programs_store);
+    console.log(pageStatus);
+
+    let courses = programs_store.filter((course: any) => {
+      return course.name.toUpperCase().includes(searchInput.toUpperCase());
+    });
+
+    setPageStatus("No data");
+
+    console.log(pageStatus);
+
+    setPrograms(courses);
   };
 
   useEffect(() => {
     setPrograms(course);
+    setPrograms_store(course);
 
     const fetchPrograms = async () => {
       const response = await fetch(
@@ -41,8 +58,13 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
 
       let loginData = await response.json();
       if (loginData.status) {
-        console.log(loginData.data);
         setPrograms(loginData.data);
+        setPrograms_store(loginData.data);
+        setPageStatus("data");
+        console.log(pageStatus);
+      }
+      if (searchData) {
+        searchCourse(searchData);
       }
     };
 
@@ -78,6 +100,7 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
                 search={"What do you want to learn"}
                 button_text={"Search"}
                 onSearchSubmit={searchCourse}
+                searchData={searchData}
               ></Search>
             </div>
           </div>
@@ -85,16 +108,18 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
         <br />
 
         {programs?.length > 0 ? (
-          <div className="session-four container space-2 space-top-xl-2 space-bottom-lg-2">
-            <section>
-              <div className="row mx-n2 mx-lg-n3">
-                <CourseCardGridView
-                  grid={3}
-                  programs={programs}
-                ></CourseCardGridView>
-              </div>
-            </section>
-          </div>
+          <>
+            <div className="session-four container space-2 space-top-xl-2 space-bottom-lg-2">
+              <section>
+                <div className="row mx-n2 mx-lg-n3">
+                  <CourseCardGridView
+                    grid={3}
+                    programs={programs}
+                  ></CourseCardGridView>
+                </div>
+              </section>
+            </div>
+          </>
         ) : (
           <div
             className="session-four container space-2 space-top-xl-2 space-bottom-lg-2"
@@ -106,14 +131,29 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
             }}
           >
             <div className="fa-3x">
-              <i
-                style={{ fontSize: "150px" }}
-                className="fas fa-spinner fa-spin "
-              ></i>
+              {pageStatus == "loading" ? (
+                <>
+                  <i
+                    style={{ fontSize: "150px" }}
+                    className="fas fa-spinner fa-spin "
+                  ></i>
+                </>
+              ) : (
+                <>
+                  <i
+                    style={{ fontSize: "150px" }}
+                    className="fas fa-sad-cry"
+                  ></i>
+                </>
+              )}
             </div>
             <br />
             <br />
-            <h1>Loading ...</h1>
+            {pageStatus == "loading" ? (
+              <h1>Loading ...</h1>
+            ) : (
+              <h1>No Course Match the search</h1>
+            )}
           </div>
         )}
       </div>

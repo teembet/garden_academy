@@ -205,7 +205,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                     <div className="col-sm-6">
                       <div className="js-form-message form-group">
                         <label htmlFor="firstName" className="input-label">
-                          First name
+                          First name <span className="text-danger">*</span>
                         </label>
                         <input
                           type="text"
@@ -225,7 +225,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                     <div className="col-sm-6">
                       <div className="js-form-message form-group">
                         <label htmlFor={"lastName"} className="input-label">
-                          Last name
+                          Last name <span className="text-danger">*</span>
                         </label>
                         <input
                           type="text"
@@ -245,7 +245,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                     <div className="col-sm-12">
                       <div className="js-form-message form-group">
                         <label htmlFor={"emailAddress"} className="input-label">
-                          Email address
+                          Email address <span className="text-danger">*</span>
                         </label>
                         <input
                           type="email"
@@ -265,7 +265,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                     <div className="col-sm-12">
                       <div className="js-form-message form-group">
                         <label htmlFor={"emailAddress"} className="input-label">
-                          Subject
+                          Subject <span className="text-danger">*</span>
                         </label>
                         <input
                           type="text"
@@ -286,6 +286,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                       <div className="js-form-message form-group">
                         <label htmlFor={"message"} className="input-label">
                           How can we help you
+                          <span className="text-danger">*</span>
                         </label>
                         <div className="input-group">
                           <textarea

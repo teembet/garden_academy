@@ -18,6 +18,7 @@ const AppFAQ: React.SFC<AppFAQProps> = () => {
                 search={"What do you want to learn"}
                 button_text={"Search"}
                 onSearchSubmit
+                searchData=""
               ></Search>
             </div>
           </div>

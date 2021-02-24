@@ -22,11 +22,18 @@ import Search from "../components/search";
 
 export interface AppHomePageProps {
   images: any;
+  history: any;
 }
 
-const AppHomePage: React.SFC<AppHomePageProps> = () => {
-  const searchCourse = () => {
-    console.log("wind");
+const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
+  const searchCourse = (searchInput: string) => {
+    if (searchInput.trim() === "") return;
+    history.push({
+      pathname: "/programs",
+      state: {
+        searchInput,
+      },
+    });
   };
 
   const [firstName, setFirstName] = useState("");
@@ -311,7 +318,6 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                       </span>
                     </h1>
                     <p className="lead">
-                      {" "}
                       We are committed to training the next generation of tech
                       superstars and help organisations upscale their workforce
                       with the right talent
@@ -322,6 +328,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                     search={"What do you want to learn"}
                     button_text={"Search"}
                     onSearchSubmit={searchCourse}
+                    searchData=""
                   ></Search>
                   <br />
                   <br />
@@ -363,15 +370,14 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
-                    {" "}
-                    <img src={homecard1} alt="" />{" "}
+                    <img src={homecard1} alt="" />
                   </span>
                 </div>
                 <h3 className="card-headers">Top Industry Facilitators</h3>
                 <div className="card-body">
                   Learn from Subject matter experts from different areas of the
                   tech industry and gain the knowledge you need to rise to the
-                  top of your field.{" "}
+                  top of your field.
                 </div>
               </div>
             </div>
@@ -379,14 +385,13 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
-                    {" "}
-                    <img src={homecard2} alt="" />{" "}
+                    <img src={homecard2} alt="" />
                   </span>
                 </div>
                 <h3 className="card-headers">Resume & Interview Prep</h3>
                 <div className="card-body">
                   Gain valuable tips and hacks you need to create an appealing
-                  resume and navigate interview scenarios.{" "}
+                  resume and navigate interview scenarios.
                 </div>
               </div>
             </div>
@@ -395,8 +400,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
-                    {" "}
-                    <img src={homecard3} alt="" />{" "}
+                    <img src={homecard3} alt="" />
                   </span>
                 </div>
                 <h3 className="card-headers">Flexible Learning</h3>
@@ -410,14 +414,13 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
-                    {" "}
-                    <img src={homecard4} alt="" />{" "}
+                    <img src={homecard4} alt="" />
                   </span>
                 </div>
                 <h3 className="card-headers">Flexible Payment Options</h3>
                 <div className="card-body">
                   Take advantage of any of our available fee payment options and
-                  enjoy unrivalled ease of access.{" "}
+                  enjoy unrivalled ease of access.
                 </div>
               </div>
             </div>
@@ -425,8 +428,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
-                    {" "}
-                    <img src={homecard5} alt="" />{" "}
+                    <img src={homecard5} alt="" />
                   </span>
                 </div>
                 <h3 className="card-headers">
@@ -445,8 +447,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
-                    {" "}
-                    <img src={homecard6} alt="" />{" "}
+                    <img src={homecard6} alt="" />
                   </span>
                 </div>
                 <h3 className="card-headers">
@@ -500,13 +501,13 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                       global industry experts and channels it into truly
                       expansive courses that create the best talent who are
                       primed and ready to take your organization to the next
-                      level.{" "}
+                      level.
                     </div>
                   </div>
                   <div className="col-md-4 mb-3">
                     <div className="card-icon">
                       <span>
-                        <img src={rectangle} alt="" />{" "}
+                        <img src={rectangle} alt="" />
                       </span>
                     </div>
                     <h3 className="card-headers white-text">
@@ -517,13 +518,13 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                       Garden Academy vastly improves the skill level of staff
                       groups. Your staff will gain the skills needed to improve
                       business outcomes and contribute directly to your
-                      organization’s bottom line{" "}
+                      organization’s bottom line
                     </div>
                   </div>
                   <div className="col-md-4 mb-3">
                     <div className="card-icon">
                       <span>
-                        <img src={rectangle} alt="" />{" "}
+                        <img src={rectangle} alt="" />
                       </span>
                     </div>
                     <h3 className="card-headers white-text">
@@ -534,7 +535,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
                       Garden Academy vastly improves the skill level of staff
                       groups. Your staff will gain the skills needed to improve
                       business outcomes and contribute directly to your
-                      organization’s bottom line{" "}
+                      organization’s bottom line
                     </div>
                   </div>
                 </div>
@@ -553,7 +554,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
               <h2>Available Programs</h2>
               <p>
                 Select any program from our library of carefully crafted
-                programs guaranted to take you{" "}
+                programs guaranted to take you
               </p>
             </div>
             <section>
@@ -762,7 +763,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = () => {
             </div>
           </div>
         )}
-       </main>
+      </main>
 
       <Modal
         size="lg"

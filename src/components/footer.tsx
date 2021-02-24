@@ -15,8 +15,8 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
           <div className="container space-2">
             <div className="row">
               <div className="col-sm-9">
-                <h2 className="font-weight-bold white-text text-center">
-                  We have courses for you, Sign up for Free now.
+                <h2 className="font-weight-bold white-text text-center blink_me">
+                  Book your seat at the next free Masterclass.
                 </h2>
                 <br />
               </div>
@@ -27,7 +27,7 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                   rel="noreferrer"
                   className="btn btn-block get-started-btn"
                 >
-                  Sign Up
+                  Book Now
                 </a>
               </div>
             </div>

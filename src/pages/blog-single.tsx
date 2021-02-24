@@ -930,7 +930,7 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                         daily logs, change orders, job costing and punch lists.
                         Integrates with MS Project and and Sage Timberline
                         Office.
-                      </p>{" "}
+                      </p>
                       <br />
                       <br />
                       <h3
@@ -2301,7 +2301,7 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                         as well as rallying around the ‘losses’ with a positive
                         focus – and figuring out how to fix them together,”
                         Ferro says.
-                      </p>{" "}
+                      </p>
                       <br />
                       <br />
                       <h3
@@ -2327,7 +2327,7 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                         transformation in stages to meet current requirements.
                         “They then need to constantly assess the requirements
                         and make adjustments,” Edwards says.
-                      </p>{" "}
+                      </p>
                       <br />
                       <br />
                       <h3
@@ -2398,7 +2398,7 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                         business and those with business roles must become more
                         versed in the capabilities technology brings,” Edwards
                         says.
-                      </p>{" "}
+                      </p>
                       <br />
                       <br />
                       <h3

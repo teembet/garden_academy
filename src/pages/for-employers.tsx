@@ -167,13 +167,11 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                       </span>
                     </h1>
                     <p className="lead">
-                      {" "}
                       With the best minds being developed by our team of
                       industry experts, Garden Academy connects employers to a
                       pool of top talent across multiple fields.
                     </p>
                     <p className="lead">
-                      {" "}
                       Are you ready to take your organization to the next level?
                     </p>
                     <div className="mt-3">
@@ -231,8 +229,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
-                    {" "}
-                    <img src={homecard1} alt="" />{" "}
+                    <img src={homecard1} alt="" />
                   </span>
                 </div>
                 <h3 className="card-headers">Hire Talent</h3>
@@ -240,7 +237,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                   Garden Academy harnesses the knowledge & experience of global
                   industry experts and channels it into truly expansive courses
                   that create the best talent who are primed and ready to take
-                  your organization to the next level.{" "}
+                  your organization to the next level.
                 </div>
               </div>
 
@@ -251,8 +248,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
-                    {" "}
-                    <img src={homecard2} alt="" />{" "}
+                    <img src={homecard2} alt="" />
                   </span>
                 </div>
                 <h3 className="card-headers">Upskill existing Staff</h3>
@@ -260,7 +256,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                   With the best facilitators delivering quality content, Garden
                   Academy vastly improves the skill level of staff groups. Your
                   staff will gain the skills needed to improve business outcomes
-                  and contribute directly to your organization’s bottom line.{" "}
+                  and contribute directly to your organization’s bottom line.
                 </div>
               </div>
 
@@ -272,8 +268,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
               <div className="card">
                 <div className="card-icon">
                   <span className="span-icon">
-                    {" "}
-                    <img src={homecard3} alt="" />{" "}
+                    <img src={homecard3} alt="" />
                   </span>
                 </div>
                 <h3 className="card-headers">Staff Onboarding</h3>
@@ -283,7 +278,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                   activities from orientation to training and staff assessment.
                   With our help, your new staff can be seamlessly integrated
                   into your organization and be positioned to deliver the best
-                  results.{" "}
+                  results.
                 </div>
               </div>
 
