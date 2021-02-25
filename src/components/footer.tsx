@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Socials from "./socials";
+import alert from "../assets/img/alert.png";
 
 export interface AppFooterProps {}
 
@@ -13,14 +14,45 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
           style={{ marginTop: "0" }}
         >
           <div className="container space-2">
-            <div className="row">
-              <div className="col-sm-9">
-                <h2 className="font-weight-bold white-text text-center blink_me">
+            <div
+              className="row"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div
+                className="col-sm-2"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <img src={alert} alt="" className="blink_me img-fluid" />
+              </div>
+              <div
+                className="col-sm-8"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <h2 className="font-weight-bold white-text text-center">
                   Book your seat at the next free Masterclass.
                 </h2>
                 <br />
               </div>
-              <div className="col-sm-3">
+              <div
+                className="col-sm-2"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
                 <a
                   href="https://forms.gle/veSsg5gphcXwptQz8"
                   target="_blank"

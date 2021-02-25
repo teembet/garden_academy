@@ -141,9 +141,20 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
       <br className="d-block d-lg-none" />
       <br className="d-block d-lg-none" />
       <br className="d-block d-lg-none" />
+      <br className="d-block d-lg-none" />
 
       <div className="container space-top-6 space-top-lg-4 space-bottom-2">
-        <div className="card" style={{ height: "inherit", padding: "0 5%" }}>
+        <div
+          className="card"
+          style={{
+            height: "inherit",
+            padding: "0 5%",
+            boxShadow: "0px 4px 10px rgba(143, 148, 155, 0.25)",
+            borderRadius: "16px",
+            background: "#fff",
+            border: "none",
+          }}
+        >
           <div className="row ">
             <div className="space-right-3 space-top-3 space-bottom-2 col-md-6">
               <div className="mb-4">
@@ -199,8 +210,8 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
             </div>
 
             <div className="space-top-2 space-bottom-2 col-md-6">
-              <form className="js-validate shadow-lg mb-4">
-                <div className="card-body p-4 p-md-6">
+              <form className="js-validate">
+                <div className=" p-4 p-md-6">
                   <div className="row">
                     <div className="col-sm-6">
                       <div className="js-form-message form-group">
@@ -301,6 +312,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                             onBlur={(e) => messageValidation(e.target.value)}
                           ></textarea>
                         </div>
+                        <p>This field is limited to 300 characters</p>
                         <p className="text-danger">{messageValid}</p>
                       </div>
                     </div>
@@ -308,6 +320,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
 
                   <button
                     type="button"
+                    style={{ background: "#0F42A4", borderRadius: "2px" }}
                     className="btn btn-block btn-primary transition-3d-hover"
                     onClick={handleSubmit}
                   >

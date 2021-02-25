@@ -13,8 +13,8 @@
 }
 
 .card {
-  padding: 20px 0;
-  height: 25rem;
+  /* padding: 20px 0; */
+  height: 20rem;
   border: 1px solid #bac2c9;
   box-sizing: border-box;
   border-radius: 8px;
@@ -27,7 +27,6 @@
 .session-three {
   background-color: #041237;
   color: #fff;
-  margin-top: 150px;
 }
 
 /* dfvdf*/

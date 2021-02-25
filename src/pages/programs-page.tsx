@@ -78,10 +78,8 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
           <h1 className="d-none d-sm-block">Featured Courses</h1>
 
           <p className="d-none d-sm-block">
-            Choose from any of our wide range of courses tailored to suit your
-            needs.
-            <br /> From software engineering to product management and more, We
-            have got you covered
+            With a wide range of courses to choose from, you are guaranteed to
+            be learning from the <br /> best, regardless of your chosen field.
           </p>
 
           <br />
@@ -89,9 +87,8 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
           <h4 className="d-block d-sm-none">Featured Courses</h4>
 
           <p style={{ fontSize: ".9em" }} className="d-block d-sm-none">
-            Choose from any of our wide range of courses tailored to suit your
-            needs. From software engineering to product management and more, We
-            have got you covered
+            With a wide range of courses to choose from, you are guaranteed to
+            be learning from the best, regardless of your chosen field.
           </p>
 
           <div className="row" style={{ width: "100%" }}>

@@ -357,11 +357,11 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
         </div>
 
         <div className="container space-2 space-top-xl-3 space-bottom-lg-3">
-          <div className="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+          <div className="w-md-80 w-lg-60 text-center mx-md-auto mb-5 mb-md-9">
             <h2>Why Garden Academy</h2>
             <p>
-              Pellentesque donec ut accumsan nibh turpis massa facilisis
-              pellentesque amet.
+              By becoming a Garden Academy alumnus, you gain immediate access to
+              a variety of benefits.
             </p>
           </div>
 
@@ -462,168 +462,187 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
           </div>
         </div>
 
-        <div className=" d-lg-flex position-relative session-three">
-          <div className=" container d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
-            <section className=" ">
-              <div className="img2-container mb-4">
-                <img className="img-fluid img2-style" src={homehero2} alt="" />
-              </div>
-              <div className="container">
-                <h1 className="font-weight-bold white-text">
-                  Looking To Improve Your Workforce?
-                </h1>
-                <p
-                  style={{
-                    marginTop: "20px",
-                    textAlign: "left",
-                    fontSize: "18px",
-                  }}
-                >
-                  The terrain of the global tech industry is rapidly evolving,
-                  and it is imperative that your workforce stays empowered and
-                  relevant in today’s world. By exposing your personnel to
-                  quality learning opportunities on Garden Academy, their
-                  horizons are broadened, and they become empowered to compete
-                  on the global playing field while contributing their newly
-                  acquired skills to the growth of your organization.
-                </p>
-
-                <div className="row" style={{ marginTop: "70px" }}>
-                  <div className="col-md-4 mb-3" style={{ padding: "0px" }}>
-                    <div className="card-icon">
-                      <span>
-                        <img src={rectangle} alt="" />
-                      </span>
-                    </div>
-                    <h3 className="card-headers white-text">Hire Talent</h3>
-                    <div className="card-body s3-para">
-                      Garden Academy harnesses the knowledge & experience of
-                      global industry experts and channels it into truly
-                      expansive courses that create the best talent who are
-                      primed and ready to take your organization to the next
-                      level.
-                    </div>
-                  </div>
-                  <div className="col-md-4 mb-3">
-                    <div className="card-icon">
-                      <span>
-                        <img src={rectangle} alt="" />
-                      </span>
-                    </div>
-                    <h3 className="card-headers white-text">
-                      Upskill Existing Staff
-                    </h3>
-                    <div className="card-body s3-para">
-                      With the best facilitators delivering quality content,
-                      Garden Academy vastly improves the skill level of staff
-                      groups. Your staff will gain the skills needed to improve
-                      business outcomes and contribute directly to your
-                      organization’s bottom line
-                    </div>
-                  </div>
-                  <div className="col-md-4 mb-3">
-                    <div className="card-icon">
-                      <span>
-                        <img src={rectangle} alt="" />
-                      </span>
-                    </div>
-                    <h3 className="card-headers white-text">
-                      Staff Onboarding
-                    </h3>
-                    <div className="card-body s3-para">
-                      With the best facilitators delivering quality content,
-                      Garden Academy vastly improves the skill level of staff
-                      groups. Your staff will gain the skills needed to improve
-                      business outcomes and contribute directly to your
-                      organization’s bottom line
-                    </div>
-                  </div>
-                </div>
-
-                <div className="get-started">
-                  <button className="btn get-started-btn">Get Started</button>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-
         {programs?.length > 0 && (
-          <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
-            <div className="w-md-80 text-center mx-md-auto mb-5 mb-md-9">
-              <h2>Available Programs</h2>
-              <p>
-                Select any program from our library of carefully crafted
-                programs guaranted to take you
-              </p>
-            </div>
-            <section>
-              <div className="row mx-n2 mx-lg-n3">
-                <CourseCardGridView
-                  grid={4}
-                  programs={programs.slice(0, 3)}
-                ></CourseCardGridView>
+          <div style={{ background: "#E8EFFD", width: "100%" }}>
+            <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
+              <div className="w-md-80 text-center mx-md-auto mb-5 mb-md-9">
+                <h2>Available Programs</h2>
+                <p>
+                  Select any program from our library of carefully crafted
+                  programs guaranted to take you
+                </p>
               </div>
-            </section>
+              <section>
+                <div className="row mx-n2 mx-lg-n3">
+                  <CourseCardGridView
+                    grid={4}
+                    programs={programs.slice(0, 3)}
+                  ></CourseCardGridView>
+                </div>
+              </section>
 
-            <div className="get-started">
-              <Link
-                to={{
-                  pathname: "/programs",
-                  state: {
-                    data: programs.slice(0, 3),
-                  },
-                }}
-                className="btn programs-btn"
-              >
-                <b>View All Programs</b>
-              </Link>
+              <div className="get-started">
+                <Link
+                  to={{
+                    pathname: "/programs",
+                    state: {
+                      data: programs.slice(0, 3),
+                    },
+                  }}
+                  className="btn programs-btn"
+                >
+                  <b>View All Programs</b>
+                </Link>
+              </div>
             </div>
           </div>
         )}
+        <div style={{ background: "#E8EFFD", width: "100%" }}>
+          <div className=" d-lg-flex position-relative session-three">
+            <div className=" container d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
+              <section className=" ">
+                <div className="img2-container mb-4">
+                  <img
+                    className="img-fluid img2-style"
+                    src={homehero2}
+                    alt=""
+                  />
+                </div>
+                <div className="container">
+                  <h1 className="font-weight-bold white-text">
+                    Looking To Improve Your Workforce?
+                  </h1>
+                  <p
+                    style={{
+                      marginTop: "20px",
+                      textAlign: "left",
+                      fontSize: "18px",
+                    }}
+                  >
+                    The terrain of the global tech industry is rapidly evolving,
+                    and it is imperative that your workforce stays empowered and
+                    relevant in today’s world. By exposing your personnel to
+                    quality learning opportunities on Garden Academy, their
+                    horizons are broadened, and they become empowered to compete
+                    on the global playing field while contributing their newly
+                    acquired skills to the growth of your organization.
+                  </p>
+
+                  <div className="row" style={{ marginTop: "70px" }}>
+                    <div className="col-md-4 mb-3" style={{ padding: "0px" }}>
+                      <div className="card-icon">
+                        <span>
+                          <img src={rectangle} alt="" />
+                        </span>
+                      </div>
+                      <h3 className="card-headers white-text">Hire Talent</h3>
+                      <div className="card-body s3-para">
+                        Garden Academy harnesses the knowledge & experience of
+                        global industry experts and channels it into truly
+                        expansive courses that create the best talent who are
+                        primed and ready to take your organization to the next
+                        level.
+                      </div>
+                    </div>
+                    <div className="col-md-4 mb-3">
+                      <div className="card-icon">
+                        <span>
+                          <img src={rectangle} alt="" />
+                        </span>
+                      </div>
+                      <h3 className="card-headers white-text">
+                        Upskill Existing Staff
+                      </h3>
+                      <div className="card-body s3-para">
+                        With the best facilitators delivering quality content,
+                        Garden Academy vastly improves the skill level of staff
+                        groups. Your staff will gain the skills needed to
+                        improve business outcomes and contribute directly to
+                        your organization’s bottom line
+                      </div>
+                    </div>
+                    <div className="col-md-4 mb-3">
+                      <div className="card-icon">
+                        <span>
+                          <img src={rectangle} alt="" />
+                        </span>
+                      </div>
+                      <h3 className="card-headers white-text">
+                        Staff Onboarding
+                      </h3>
+                      <div className="card-body s3-para">
+                        With the best facilitators delivering quality content,
+                        Garden Academy vastly improves the skill level of staff
+                        groups. Your staff will gain the skills needed to
+                        improve business outcomes and contribute directly to
+                        your organization’s bottom line
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="get-started">
+                    <button className="btn get-started-btn">Get Started</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
 
         <div className="session-five d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
-          <div className="row space-bottom-2" style={{ margin: "1% 5%" }}>
-            <div className="col-lg-5 mt-5">
-              <hr
-                className="mt-5"
-                style={{
-                  width: "10%",
-                  border: "2px solid #0B2253",
-                  opacity: "0.5",
-                  margin: "0px",
-                }}
-              />
-              <h3
-                className="mt-3"
-                style={{ fontSize: "36px", color: "#041644" }}
-              >
-                Become a Facilator
-              </h3>
-              <p className="mt-3 facillator-p">
-                Lorem ipsum dolor sit amet, consectetur vred adipiscing tortor,
-                pellentesque donec deaut accumsan nibh turpis eu massa
-                consectetur adipiscing tortor benelit.
-              </p>
-              <br />
-              <p className="facillator-p">
-                Lorem ipsum dolor sit amet, consectetur vred adipiscing
-                adipiscing tortor, pellentesque donec deaut accumsan nibh turpis
-                pellentesque donec deaut consectetur.
-              </p>
-              <br />
-              <br />
-              <button onClick={handleShow} className="btn btn-lg  btn-primary">
-                Become a Facillator
-              </button>
-            </div>
+          <div className="container">
+            <div className="row space-bottom-2">
+              <div className="col-lg-5 mt-5">
+                <hr
+                  className="mt-5"
+                  style={{
+                    width: "10%",
+                    border: "2px solid #0B2253",
+                    opacity: "0.5",
+                    margin: "0px",
+                  }}
+                />
+                <h3
+                  className="mt-3"
+                  style={{ fontSize: "36px", color: "#041644" }}
+                >
+                  Become a Facilitator
+                </h3>
+                <p className="mt-3 facillator-p">
+                  At any learning establishment, top-notch faculty are crucial
+                  to the success of that operation. At Garden Academy, the door
+                  is always open for facilitators who are experts in their
+                  chosen fields, and use engaging and interactive
+                  learner-focused approaches to teach and transfer practical
+                  skills
+                </p>
+                <br />
+                <p className="facillator-p">
+                  Do you have what it takes to train the next crop of tech
+                  superstars? Get in touch with us.
+                </p>
+                <br />
+                <br />
+                <button
+                  onClick={handleShow}
+                  className="btn btn-lg  btn-primary"
+                  style={{
+                    padding: "16px 32px",
+                    borderRadius: "4px",
+                    background: "#0F42A4",
+                  }}
+                >
+                  Become a Facillator
+                </button>
+              </div>
 
-            <div className="col-lg-7 col-xs-12 mt-5">
-              <img
-                className="img-fluid d-lg-block"
-                src={facilitator}
-                alt="facillator"
-              />
+              <div className="col-lg-7 col-xs-12 mt-5">
+                <img
+                  className="img-fluid d-lg-block"
+                  src={facilitator}
+                  alt="facillator"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -682,7 +701,12 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                   <div className="col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
                     <div
                       className="card  shadow pt-3 pb-5 px-2"
-                      style={{ height: "auto" }}
+                      style={{
+                        boxShadow:
+                          "0px 4px 4px rgb(135 146 161 / 16%), 0px 6px 41px rgb(135 146 161 / 11%) !important",
+                        height: "auto",
+                        border: "none",
+                      }}
                     >
                       <div
                         className="row card-icon"
@@ -696,10 +720,10 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                           />
                         </div>
                         <div className="col-9">
-                          <p style={{ fontSize: "24px", margin: "0px" }}>
+                          <h4 style={{ margin: "0px" }}>
                             {images[index].title}
-                          </p>
-                          <p style={{ fontSize: "18px", color: "#81909D" }}>
+                          </h4>
+                          <p style={{ color: "#81909D" }}>
                             {images[index].social}
                           </p>
                         </div>
@@ -721,7 +745,12 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                     <div className="d-lg-block d-md-block d-none col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
                       <div
                         className="card  shadow pt-3 pb-5 px-2"
-                        style={{ height: "auto" }}
+                        style={{
+                          boxShadow:
+                            "0px 4px 4px rgb(135 146 161 / 16%), 0px 6px 41px rgb(135 146 161 / 11%) !important",
+                          height: "auto",
+                          border: "none",
+                        }}
                       >
                         <div
                           className="row card-icon"
@@ -735,11 +764,11 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                             />
                           </div>
                           <div className="col-9">
-                            <p style={{ fontSize: "24px", margin: "0px" }}>
-                              {images[index + 1].title}
-                            </p>
-                            <p style={{ fontSize: "18px", color: "#81909D" }}>
-                              {images[index + 1].social}
+                            <h4 style={{ margin: "0px" }}>
+                              {images[index].title}
+                            </h4>
+                            <p style={{ color: "#81909D" }}>
+                              {images[index].social}
                             </p>
                           </div>
                         </div>

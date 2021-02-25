@@ -1,10 +1,21 @@
 import Search from "../components/search";
 import { Card, Accordion } from "react-bootstrap";
 import { FaChevronDown } from "react-icons/fa";
+import { FaChevronUp } from "react-icons/fa";
 import { useState } from "react";
 export interface AppFAQProps {}
 
 const AppFAQ: React.SFC<AppFAQProps> = () => {
+  const [activeId, setActiveId] = useState("0");
+
+  function toggleActive(id: string) {
+    if (activeId === id) {
+      setActiveId("");
+    } else {
+      setActiveId(id);
+    }
+  }
+
   const [faq, setFaq] = useState([
     { title: "What is Gaden academy?", tag: "1" },
     { title: "Why Gaden academy?", tag: "2" },
@@ -65,18 +76,23 @@ const AppFAQ: React.SFC<AppFAQProps> = () => {
         </div>
         <div className="offset-lg-2 col-lg-8 space-2">
           {faq?.length > 0 ? (
-            <Accordion defaultActiveKey="0">
+            <Accordion defaultActiveKey={activeId}>
               {faq.map((data, index) => {
                 return (
                   <Card key={index} style={{ border: "none", height: "auto" }}>
                     <Card.Header>
                       <h3 className="text-primary">{data.title}</h3>
                       <Accordion.Toggle
+                        onClick={() => toggleActive(index.toString())}
                         as={Card.Header}
                         variant="link"
                         eventKey={index.toString()}
                       >
-                        <FaChevronDown />
+                        {activeId !== index.toString() ? (
+                          <FaChevronDown style={{ float: "right" }} />
+                        ) : (
+                          <FaChevronUp style={{ float: "right" }} />
+                        )}
                       </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey={index.toString()}>

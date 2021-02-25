@@ -181,30 +181,22 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
 
               <div className="row" style={{ margin: "0 5px" }}>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Fugit nam aliquid tenetur possimus dolorem hic mollitia saepe,
-                  itaque dolores vero dignissimos culpa facere id, corrupti fuga
-                  sapiente. Ea, maiores totam?
+                  Garden Academy is a subsidiary of EduTech, a player in the
+                  global edtech industry which has sought to break down barriers
+                  to education across all levels worldwide, with a special focus
+                  on the African continent.
                 </p>
 
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Eaque, quia voluptate. Assumenda facere labore atque molestiae
-                  minus repellat? Repudiandae totam fugiat obcaecati dolore.
-                  Distinctio, quibusdam aliquam! Voluptate ipsa error natus?
+                  Garden Academy was borne of the desire of progressive
+                  individuals to get more Africans into tech in different
+                  functions to get these professionals on a level playing field
+                  with their global counterparts.
                 </p>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Fugit nam aliquid tenetur possimus dolorem hic mollitia saepe,
-                  itaque dolores vero dignissimos culpa facere id, corrupti fuga
-                  sapiente. Ea, maiores totam?
-                </p>
-
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Eaque, quia voluptate. Assumenda facere labore atque molestiae
-                  minus repellat? Repudiandae totam fugiat obcaecati dolore.
-                  Distinctio, quibusdam aliquam! Voluptate ipsa error natus?
+                  We are passionate about grooming the next crop of tech
+                  superstars who can further drive development across all
+                  sectors by leveraging technology.
                 </p>
               </div>
             </div>
@@ -347,12 +339,12 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
             </div>
           </div>
 
-          <div className="action-box">
-            <h2 className="text-primary" style={{ textAlign: "center" }}>
-              Do you have what it takes to train the <br /> next set of tech
-              superstars?
+          <div className="action-box space-3">
+            <h2 style={{ textAlign: "center" }}>
+              Do you have what it takes to train the <br />
+              next set of tech superstars?
             </h2>
-
+            <br />
             <button
               type="submit"
               className="btn btn-primary transition-3d-hover"

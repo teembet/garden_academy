@@ -6,21 +6,20 @@ const PaymentOptions: React.SFC<PaymentOptionsProps> = () => {
     <>
       <div
         className="d-lg-flex position-relative pay"
-        style={{ padding: "0 3%", margin: "0 5%" }}
+        style={{ padding: "0 3%", margin: "40px 5%" }}
       >
         <div className="  d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
           {/* <!-- Card --> */}
           <section className=" ">
             <div style={{ marginTop: "40px" }}>
               <h1 className="font-weight-bold ">Payment Options</h1>
-              <p style={{ marginTop: "20px", textAlign: "left" }}>
+              <p style={{ marginTop: "10px", textAlign: "left" }}>
                 We offer payment options to accomodate our users needs
-              </p>
-              <p style={{ marginTop: "20px", textAlign: "left" }}>
+                <br />
                 Because we realise some of you no get money like that
               </p>
 
-              <div className="row" style={{ marginTop: "70px" }}>
+              <div className="row">
                 <div className="col-md-3 mb-3" style={{ padding: "0px" }}>
                   <div className="card-icon">
                     <span>
