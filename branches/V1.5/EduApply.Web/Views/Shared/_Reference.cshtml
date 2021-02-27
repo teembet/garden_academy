@@ -1,0 +1,173 @@
+﻿@using EduApply.Logic.Interfaces
+@using EduApply.Logic.Service
+@model IEnumerable<EduApply.Data.Entities.Reference>
+@{
+    var maxEntry = Convert.ToInt32(ViewBag.maxEntry);
+}
+
+@*@Html.AntiForgeryToken()*@
+
+
+<h4>Referees</h4>
+<hr />
+@Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger" })
+
+
+<div class="panel panel-primary">
+    <div class=" panel-heading">Referee</div>
+    <table class="table">
+        @if (Model.Any())
+        {
+            <thead>
+                <tr><th>Name</th><th>Occupation</th><th>Address</th><th>Phone</th><th>Email</th><th></th><th></th></tr>
+            </thead>
+            <tbody>
+                @foreach (var referee in Model)
+                {
+
+                    <tr id="@referee.Id-read">
+                        <td>@referee.Name</td>
+                        <td>@referee.Occupation</td>
+                        <td>@referee.Address</td>
+                        <td>@referee.PhoneNumber</td>
+                        <td>@referee.Email</td>
+                        <td><a href="#" onclick="return editReference(@referee.Id);" class="btn btn-primary btn-xs">Edit</a></td>
+                        <td>@Html.ActionLink("Delete", "Delete", "Reference", new { id = @referee.Id }, new { @class = "btn btn-xs btn-danger Delete" })</td>
+                    </tr>
+                    using (Html.BeginForm("Update", "Reference", FormMethod.Post))
+                    {
+                        <tr id="@referee.Id-edit" style="display: none">
+                            <td>
+                                <input type="hidden" value="@referee.Id" name="id" />
+                                <input type="text" value="@referee.Name" class="form-control" name="editRefName" data-val="true" data-val-required="" />
+                            </td>
+                            <td><input type="text" value="@referee.Occupation" class="form-control" name="editRefOccupation" data-val="true" data-val-required="Enter a name" /></td>
+                            <td><input type="text" value="@referee.Address" class="form-control" name="editRefAddress" data-val="true" data-val-required="" /></td>
+                            <td> <input type="text" value="@referee.PhoneNumber" class="form-control" name="editRefPhone" data-val="true" data-val-required="" /> </td>
+                            <td> <input type="text" value="@referee.Email" class="form-control" name="editRefEmail" data-val="true" data-val-required="" /> </td>
+                            <td><input type="submit" value="update" class="btn btn-xs btn-primary" /></td>
+                            <td><a href="#" onclick="return cancelEdit(@referee.Id);" class="btn btn-default btn-xs">Cancel</a></td>
+                        </tr>
+                    }
+
+                }
+            </tbody>
+
+
+        }
+        else
+        {
+            <tr>
+                <td>No Reference has been added yet</td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<hr />
+@using (Html.BeginForm("AddReference", "Reference", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+
+        <div class="form-group required">
+            <label class=" control-label col-md-2">Name:</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="refName" data-val="true" data-val-required="The Name field is required." />
+                @Html.ValidationMessage("refName", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group required">
+            <label class=" control-label col-md-2">Occupation:</label>
+            <div class="col-md-6">
+                <input type="text" name="refOccupation" class="form-control" data-val="true" data-val-required="The Occupation field is required." />
+                @Html.ValidationMessage("refOccupation", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group required">
+            <label class=" control-label col-md-2">Address:</label>
+            <div class="col-md-6">
+                <input type="text" name="refAddress" class="form-control" data-val="true" data-val-required="The Address field is required." />
+                @Html.ValidationMessage("refAddress", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group required">
+            <label class=" control-label col-md-2">Phone Number:</label>
+            <div class="col-md-6">
+                <input type="text" name="refPhone" class="form-control" data-val="true" data-val-required="The Phone field is required." />
+                @Html.ValidationMessage("refPhone", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class=" control-label col-md-2">Email:</label>
+            <div class="col-md-6">
+                <input name="refEmail" class="form-control" id="Email" type="email" />
+                @Html.ValidationMessage("refEmail", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        @if (User.IsInRole("Student"))
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-6">
+                    @{
+                        var applicationFormId = Convert.ToInt32(Session["AppFormId"]);
+                        var appFormservice = EngineContext.Resolve<IApplicationFormRepository>();
+                        var applicationFormWorkFlow = appFormservice.GetFirstApplicationFormWorkFlow(applicationFormId);
+                        var workFlow = appFormservice.GetWorkFlowItem(applicationFormWorkFlow.WorkFlowId);
+                        var templatesForAppForm = appFormservice.GetFirstTemplatesInApp(applicationFormId);
+                        var formTemplate = appFormservice.GetFormTemplate(templatesForAppForm.FormTemplateId);
+                    }
+                    @if (!(workFlow.Name.Equals("Fill") && formTemplate.Code.Equals("REF")))
+                    {
+                        @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default" })
+                    }
+                    @if (@Model.Count() < maxEntry)
+                    {
+                        <input type="submit" value="Add" class="btn btn-primary" />
+                    }
+                    else
+                    {
+                        <input type="submit" value="Add" class="btn btn-primary" disabled="" />
+                    }
+                    @Html.ActionLink("Continue >>", "ContinueFromReference", "Reference", null, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-6">
+                    @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default", @disabled = true })
+                    <input type="submit" value="Add" class="btn btn-success disabled" />
+                    @Html.ActionLink("Continue", "ContinueFromReference", "Reference", null, new { @class = "btn btn-success", @disabled = true })
+                </div>
+            </div>
+        }
+
+    </div>
+
+}
+<script>
+    $(function () {
+        $(".Delete").click(function () {
+            return confirm("Are you sure you want to delete this reference");
+        });
+    });
+
+    function editReference(id) {
+        $("#" + id + '-read').hide();
+        $("#" + id + '-edit').show();
+    }
+    function cancelEdit(id) {
+        $("#" + id + '-edit').hide();
+        $("#" + id + '-read').show();
+    }
+</script>

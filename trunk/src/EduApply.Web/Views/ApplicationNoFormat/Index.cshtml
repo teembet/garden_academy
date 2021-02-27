@@ -1,0 +1,112 @@
+﻿@model IEnumerable<EduApply.Data.Entities.ApplicationNoFormat>
+
+@{
+    ViewBag.Title = "Application No Format Configuration";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    int counter = 1;
+}
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li>@Html.ActionLink("Session", "Index", "Session")</li>
+            <li>@Html.ActionLink("Program", "Index", "Program")</li>
+            <li>@Html.ActionLink("Faculty", "Index", "Faculty")</li>
+            <li>@Html.ActionLink("Department", "Index", "Department")</li>
+            <li>@Html.ActionLink("Course of Study", "Index", "Course")</li>
+            <li>@Html.ActionLink("Exam Venue", "Index", "Venue")</li>
+            <li>@Html.ActionLink("Venue Date", "Index", "ExamVenue")</li>
+            <li>@Html.ActionLink("Venue Mapping", "Mapper", "VenueMapping")</li>
+            <li>@Html.ActionLink("Split", "Index", "SplitConfiguration")</li>
+            <li class="active">@Html.ActionLink("ApplicationNo Format", "Index", "ApplicationNoFormat")</li>
+        </ul>
+
+    </div>
+    <div class="col-md-12 margin-top">
+        <div class="form-group">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+        </div>
+        <hr />
+        <div class="panel panel-primary">
+            <div class="panel-heading">Application Number Formats</div>
+            <table class="table table-striped" id="appNoFormats">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Application Form</th>
+                        <th>Prefix</th>
+                        <th>Suffix</th>
+                        <th>Start Number</th>
+                        <th>Range</th>
+                        <th>Last Number Allocated</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        foreach (var numberFormat in Model)
+                        {
+
+                            <tr>
+                                <td>@counter</td>
+                                <td>@numberFormat.ApplicationForm.Name</td>
+                                <td>@numberFormat.Prefix</td>
+                                <td>@numberFormat.Suffix</td>
+                                <td>@numberFormat.StartNumber</td>
+                                <td>@numberFormat.Range</td>
+                                <td>@numberFormat.LastNumberAllocated</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { formatId = numberFormat.Id }, new { @class = "btn btn-success btn-xs" })
+                                </td>
+                            </tr>
+                            counter++;
+                        }
+                    }
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#appNoFormats").DataTable();
+        toastr.options =
+        {
+            "closeButton": false,
+            "debug": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+    })
+</script>
+
+@if (TempData["FormatSaved"] != null && TempData["FormatSaved"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Application Number Format Successfully Created");
+        })
+    </script>
+}
+
+@if (TempData["FormatEdited"] != null && TempData["FormatEdited"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Application Number Format Successfully modified");
+        })
+    </script>
+}

@@ -1,0 +1,312 @@
+﻿@model EduApply.Web.Models.VenueMappingsModel
+
+@{
+    ViewBag.Title = "Venue Mapping Configuration";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@*<h2>Venue Mapping Configuration</h2>*@
+<hr />
+
+@using (Html.BeginForm("Mapper", "VenueMapping", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+
+        <aside class="col-md-12">
+            <ul class="nav nav-tabs">
+
+                <li>@Html.ActionLink("Session", "Index", "Session")</li>
+                <li>@Html.ActionLink("Program", "Index", "Program")</li>
+                <li>@Html.ActionLink("Faculty", "Index", "Faculty")</li>
+                <li>@Html.ActionLink("Department", "Index", "Department")</li>
+                <li>@Html.ActionLink("Course of Study", "Index", "Course")</li>
+                <li>@Html.ActionLink("Exam Venue", "Index", "Venue")</li>
+                <li>@Html.ActionLink("Venue Date", "Index", "ExamVenue")</li>
+                <li class="active">@Html.ActionLink("Venue Mapping", "Mapper", "VenueMapping")</li>
+                <li>@Html.ActionLink("Split", "Index", "SplitConfiguration")</li>
+                <li>@Html.ActionLink("ApplicationNo Format", "Index", "ApplicationNoFormat")</li>
+            </ul>
+        </aside>
+
+        <article class="col-md-12 margin-top">
+            <h4>Venue Mappings</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FormId, new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.FormId, new SelectList(Model.ApplicationForms, "Id", "Name", Model.FormId), "<--Select-->", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FormId)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FacultyId, new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.FacultyId, new SelectList(Model.Faculties, "Id", "Name", Model.FacultyId), "<--Select", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FacultyId)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DepartmentId, new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.DepartmentId, new SelectList(Model.Departments, "Id", "Name", Model.DepartmentId), "<--Select", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DepartmentId)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CourseOfStudyId, new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.CourseOfStudyId, new SelectList(Model.Courses, "Id", "Name", Model.CourseOfStudyId), "<--Select", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CourseOfStudyId)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProgramId, new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.ProgramId, new SelectList(Model.Programs, "Id", "Code", Model.ProgramId), "<--Select", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProgramId)
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.IsActive, new { @class = "control-label" })
+                <div class="form-group">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(model => model.IsActive)
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="col-md-12">
+                <div class="form-group">
+                    <a id="loadVenues" class="btn btn-success">Load Venues</a>
+                    <input type="submit" value="Save" class="btn btn-primary" id="saveVenueMapping" />
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Exam Venues</div>
+                        <table class="table table-striped" id="venueMappingTable">
+                            <thead>
+                                <tr><th>S/N</th><th>Name</th><th>Exam Date</th><th>Select Exam Venue</th></tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.ExamVenues.Any())
+                                {
+                                    var counter = 1;
+                                    foreach (var examVenue in Model.ExamVenues)
+                                    {
+                                        <tr>
+                                            <td>@counter</td>
+                                            <td>@examVenue.Venue.Name</td>
+                                            <td>@examVenue.ExamDate.ToString("dd-MMM-yyyy h:mm tt")</td>
+                                            <td>
+                                                @if (Model.ExamVenueIdz != null && Model.ExamVenueIdz.Contains(examVenue.Id))
+                                                {
+                                                    <input type="checkbox" name="MappedExamVenue" value="@examVenue.Id" checked="" />
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox" name="MappedExamVenue" value="@examVenue.Id" />
+                                                }
+                                            </td>
+                                        </tr>
+                                                counter++;
+                                    }
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+}
+
+<script>
+    $(function () {
+        toastr.options =
+       {
+           "closeButton": false,
+           "debug": false,
+           "progressBar": false,
+           "positionClass": "toast-top-center",
+           "onclick": null,
+           "showDuration": "300",
+           "hideDuration": "1000",
+           "timeOut": "5000",
+           "extendedTimeOut": "1000",
+           "showEasing": "swing",
+           "hideEasing": "linear",
+           "showMethod": "fadeIn",
+           "hideMethod": "fadeOut"
+       };
+
+        //$("#saveVenueMapping").addClass("disabled");
+
+       // $("#venueMappingTable").DataTable();
+
+        $("#saveVenueMapping").click(function () {
+            var formId = $("#FormId").val();
+            var programId = $("#ProgramId").val();
+            var courseId = $("#CourseOfStudyId").val();
+            var facultyId = $("#FacultyId").val();
+            var departmentId = $("#DepartmentId").val();
+            var selectedDate = $('#ExamDate').val();
+
+            if (formId != "" && programId != "" && courseId != "" && facultyId != "" && departmentId != "") {
+                if (selectedDate == "") {
+                    $('#ExamDate').addClass("input-validation-error").removeClass("valid");
+                    return false;
+                }
+
+                var checkedAtLeastOne = false;
+                $('#venueMappingTable input[type="checkbox"]').each(function () {
+                    if ($(this).is(":checked")) {
+                        checkedAtLeastOne = true;
+                    }
+                });
+                if (!checkedAtLeastOne) {
+                    alert("You have not selected any venue");
+                    return false;
+                }
+            }
+
+            var dateValue = $('#ExamDate').val();
+            if (dateValue == "") {
+                $('#ExamDate').addClass("input-validation-error").removeClass("valid");
+            } else {
+                $('#ExamDate').addClass("valid").removeClass("input-validation-error");
+            }
+        });
+        $('#ExamDate').change(function () {
+            var dateValue = $('#ExamDate').val();
+            if (dateValue != "") {
+                $('#ExamDate').addClass("valid").removeClass("input-validation-error");
+            }
+        });
+
+        //Faculty drop down change event handler
+        $("#FacultyId").change(function () {
+            $("#saveVenueMapping").addClass("disabled");
+            var selectedItem = $(this).val();
+            var ddlDepartments = $("#DepartmentId");
+            // var statesProgress = $("#states-loading-progress");
+            //statesProgress.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+              //  url: "/EduApply/VenueMapping/GetDepartmentsByFacultyId",
+                url: "/VenueMapping/GetDepartmentsByFacultyId",
+                data: { "facultyId": selectedItem },
+                success: function (data) {
+                    ddlDepartments.html('');
+                    ddlDepartments.append($('<option></option>').val(null).html("----"));
+                    $.each(data, function (id, option) {
+                        ddlDepartments.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                    // statesProgress.hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to retrieve departments.');
+                    //   statesProgress.hide();
+                }
+            });
+        });
+
+        $("#loadVenues").click(function () {
+            var formId = $("#FormId").val();
+            var programId = $("#ProgramId").val();
+            var courseId = $("#CourseOfStudyId").val();
+            var facultyId = $("#FacultyId").val();
+            var departmentId = $("#DepartmentId").val();
+
+
+            if (formId != "" && programId != "" && courseId != "") {
+                $("#saveVenueMapping").removeClass("disabled");
+              //  window.location = '/EduApply/VenueMapping/LoadVenues?formId=' + formId + '&programId=' + programId + '&courseId=' + courseId + '&facultyId=' + facultyId + '&departmentId=' + departmentId;
+                window.location = '/VenueMapping/LoadVenues?formId=' + formId + '&programId=' + programId + '&courseId=' + courseId + '&facultyId=' + facultyId + '&departmentId=' + departmentId;
+            }
+
+        });
+
+        //Department drop down change event handler
+        $("#DepartmentId").change(function () {
+            $("#saveVenueMapping").addClass("disabled");
+            var selectedItem = $(this).val();
+            var ddlCourses = $("#CourseOfStudyId");
+            // var statesProgress = $("#states-loading-progress");
+            //statesProgress.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+              //  url: "/EduApply/VenueMapping/GetCoursesByDepartmentId",
+                url: "/VenueMapping/GetCoursesByDepartmentId",
+                data: { "departmentId": selectedItem },
+                success: function (data) {
+                    ddlCourses.html('');
+                    ddlCourses.append($('<option></option>').val(null).html("----"));
+                    $.each(data, function (id, option) {
+                        ddlCourses.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                    // statesProgress.hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to retrieve courses.');
+                    //   statesProgress.hide();
+                }
+            });
+        });
+
+        //Courses drop down change event handler
+        $("#CourseOfStudyId").change(function () {
+            $("#saveVenueMapping").addClass("disabled");
+            var selectedItem = $(this).val();
+            var ddlPrograms = $("#ProgramId");
+            // var statesProgress = $("#states-loading-progress");
+            //statesProgress.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                // url: "/EduApply/VenueMapping/GetProgramsByCourseId",
+                url: "/VenueMapping/GetProgramsByCourseId",
+                data: { "courseId": selectedItem },
+                success: function (data) {
+                    ddlPrograms.html('');
+                    ddlPrograms.append($('<option></option>').val(null).html("----"));
+                    $.each(data, function (id, option) {
+                        ddlPrograms.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                    // statesProgress.hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to retrieve programs.');
+                    //   statesProgress.hide();
+                }
+            });
+        });
+        $("#ProgramId").change(function () {
+            $("#saveVenueMapping").addClass("disabled");
+        });
+        $("#FormId").change(function () {
+            $("#saveVenueMapping").addClass("disabled");
+        });
+    })
+</script>
+@if (TempData["Created"] != null && TempData["Created"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Exam Venue successfully mapped");
+        })
+    </script>
+}

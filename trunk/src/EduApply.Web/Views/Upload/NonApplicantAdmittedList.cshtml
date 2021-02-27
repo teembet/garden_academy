@@ -1,0 +1,337 @@
+﻿@using System.Web.UI.WebControls
+@model EduApply.Web.Models.NonApplicantAdmittedListModel
+
+@{
+    ViewBag.Title = "Non-Applicant Admission List";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+
+    int successfulUploads = TempData["successfulUploads"] == null ? 0 : Convert.ToInt32(TempData["successfulUploads"]);
+    int updatedUploads = TempData["updatedUploads"] == null ? 0 : Convert.ToInt32(TempData["updatedUploads"]);
+    int failedUploads = TempData["failedUploads"] == null ? 0 : Convert.ToInt32(TempData["failedUploads"]);
+}
+
+@*<h2>Non-Applicant Admission List</h2>*@
+
+@using (Html.BeginForm("NonApplicantAdmittedList", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h4 style="color: red">Note: Only csv files are accepted for upload, click @Html.ActionLink("here", "DownloadPreFormatedDoc", "Upload", new { fileName = "NonApplicantAdmittedList.csv" }, null) to get a preformatted document</h4>
+    <hr />
+    <div class="col-md-4">
+        <div class="form-group required">
+            @Html.LabelFor(model => model.SessionId)
+            @Html.DropDownListFor(model => model.SessionId, new SelectList(Model.Sessions, "Id", "Name", Model.SessionId), "<--Select-->", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SessionId)
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group required">
+            @Html.LabelFor(model => model.ProgramId)
+            @Html.DropDownListFor(model => model.ProgramId, new SelectList(Model.Programs, "Id", "Code", Model.ProgramId), "<--Select-->", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProgramId)
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group required">
+            @Html.LabelFor(model => model.CourseOfStudyId)
+            @Html.DropDownListFor(model => model.CourseOfStudyId, new SelectList(Model.Courses, "Id", "Name", Model.CourseOfStudyId), "<--Select-->", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CourseOfStudyId)
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.ApplicationFormId)
+            @Html.DropDownListFor(model => model.ApplicationFormId, new SelectList(Model.AppForms, "Id", "Name", Model.ApplicationFormId), "<--Select-->", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ApplicationFormId)
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group required">
+            <label>Select File</label>
+            <input type="file" id="admittedList" name="admittedList" value="" class="form-control" data-val="true" data-val-required="Select File" />
+            @Html.ValidationMessage("admittedList", new { @class = "text-danger" })
+        </div>
+    </div>
+    @*<div class="col-md-4">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.NameOfFile)
+                @Html.EditorFor(model => model.NameOfFile, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NameOfFile)
+            </div>
+        </div>*@
+    <div class="col-md-12">
+        <div class="form-group">
+            <input type="submit" id="UploadList" value="Upload CSV" class="btn btn-primary" />
+            <a href="#" id="downloadButton" class="btn btn-success">Download</a>
+        </div>
+    </div>
+
+
+
+    if (successfulUploads > 0 && failedUploads == 0 && updatedUploads == 0)
+    {
+
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>All records in file successfully uploaded</p>
+            </div>
+        </div>
+
+
+    }
+    else if (updatedUploads > 0 && successfulUploads == 0 && failedUploads == 0)
+    {
+        <div class="col-md-12">
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>@updatedUploads records succesfully updated</p>
+            </div>
+        </div>
+
+    }
+    else if (failedUploads > 0 && successfulUploads == 0 && updatedUploads == 0)
+    {
+
+        <div class="col-md-12">
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>No record uploaded</p>
+            </div>
+        </div>
+
+
+
+    }
+    else if (failedUploads != 0 || successfulUploads != 0 || updatedUploads != 0)
+    {
+
+        <div class="col-md-12">
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>New records added: @successfulUploads, Updated Records:@updatedUploads, Failed : @failedUploads</p>
+            </div>
+        </div>
+
+
+    }
+    <div class="col-md-12">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger alert-dismissible" })
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Admission List</div>
+                <div id="nonApplicantAdmList"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <hr />
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+
+        toastr.options =
+      {
+          "closeButton": false,
+          "debug": false,
+          "progressBar": false,
+          "positionClass": "toast-top-center",
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+      };
+
+
+        var sessionId = $("#SessionId").val();
+        var programId = $("#ProgramId").val();
+        var courseId = $("#CourseOfStudyId").val();
+        var appFormId = $("#ApplicationFormId").val();
+        getAdmittedList(sessionId, programId, courseId, appFormId);
+
+        $("#SessionId").change(function () {
+            sessionId = $("#SessionId").val();
+            programId = $("#ProgramId").val();
+            courseId = $("#CourseOfStudyId").val();
+            appFormId = $("#ApplicationFormId").val();
+            getAdmittedList(sessionId, programId, courseId, appFormId);
+        });
+
+        $("#CourseOfStudyId").change(function () {
+            sessionId = $("#SessionId").val();
+            programId = $("#ProgramId").val();
+            courseId = $("#CourseOfStudyId").val();
+            appFormId = $("#ApplicationFormId").val();
+            getAdmittedList(sessionId, programId, courseId, appFormId);
+        });
+
+        $("#ApplicationFormId").change(function () {
+            sessionId = $("#SessionId").val();
+            programId = $("#ProgramId").val();
+            courseId = $("#CourseOfStudyId").val();
+            appFormId = $("#ApplicationFormId").val();
+            getAdmittedList(sessionId, programId, courseId, appFormId);
+        });
+
+        $("#ProgramId").change(function () {
+            var selectedItem = $(this).val();
+            var ddlCourses = $("#CourseOfStudyId");
+            // var statesProgress = $("#states-loading-progress");
+            //statesProgress.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.RouteUrl("GetCoursesByProgramId"))",
+                data: { "programId": selectedItem },
+                success: function (data) {
+                    ddlCourses.html('');
+                    ddlCourses.append($('<option></option>').val(null).html('---'));
+                    $.each(data, function (id, option) {
+                        ddlCourses.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                    // statesProgress.hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to retrieve courses.');
+                    //   statesProgress.hide();
+                }
+            });
+            sessionId = $("#SessionId").val();
+            programId = $("#ProgramId").val();
+            courseId = $("#CourseOfStudyId").val();
+            appFormId = $("#ApplicationFormId").val();
+            getAdmittedList(sessionId, programId, courseId, appFormId);
+        });
+
+
+        //$("#UploadList").click(function () {
+        //    var response;
+        //    var nameOfFile = $("#NameOfFile").val();
+        //    checkIfNameExist();
+        //    if (response) {
+        //        toastr.error("Name entered for uploaded file already exist, Please enter another name");
+        //        return false;
+        //    }
+
+        //    function checkIfNameExist() {
+        //        $.ajax({
+        //            cache: false,
+        //            type: "GET",
+        //            async: false,
+        //           url: "/EduApply/Upload/CheckForDuplicateName",
+        //            //url: "/Upload/CheckForDuplicateName",
+        //            data: { "nameOfFile": nameOfFile },
+        //            success: function (data) {
+        //                response = data;
+        //            },
+        //            error: function (xhr, ajaxOptions, thrownError) {
+        //                alert('Error occured');
+        //                return false;
+        //            }
+        //        });
+        //    }
+        //});
+
+        $("#downloadButton").click(function () {
+            var regNums = [];
+            $("#AdmissionListTable tr:gt(0)").each(function () {
+                var row = $(this);
+                var registrationNumber = $.trim(row.find('td:eq(1)').html());
+                if (registrationNumber != "") {
+                    regNums.push(registrationNumber);
+                }
+
+            });
+            if (regNums.length == 0) {
+                toastr.info("No record to download");
+                return false;
+            }
+            downloadAdmittedList(regNums);
+        });
+    });
+
+
+    function getAdmittedList(sessionId, programId, courseId, appFormId) {
+
+        var admissionListTable = $("#AdmissionListTable");
+        $.ajax({
+            cache: false,
+            type: "GET",
+          //  url: "/EduApply/Upload/GetNonApplicantAdmittedList",
+            url: "/Upload/GetNonApplicantAdmittedList",
+            data: { "sessionId": sessionId, "programId": programId, "courseId": courseId, "applicationFormId": appFormId },
+            success: function (data) {
+                $("#nonApplicantAdmList").html('<table class="table table-striped" id="AdmissionListTable"><thead><tr><th>S/N</th><th>RegNum</th><th>LastName</th><th>FirstName</th><th>MiddleName</th><th>Program</th><th>Course</th><th>PhoneNumber</th></tr></thead><tbody id="admittedListTableBody"></tbody></table>');
+                var admittedListTableBody = $("#admittedListTableBody");
+                var counter = 0;
+                if (data.length > 0) {
+                    admittedListTableBody.html('');
+                    $.each(data, function (id, option) {
+                        counter++;
+                        admittedListTableBody.append($('<tr></tr>').html(
+                            '<td>' + counter + '</td>' +
+                            '<td>' + option.regNum + '</td>' +
+                            '<td>' + option.lastName + '</td>' +
+                            '<td>' + option.firstName + '</td>' +
+                            '<td>' + option.middleName + '</td>' +
+                            '<td>' + option.program + '</td>' +
+                            '<td>' + option.course + '</td>' +
+                            '<td>' + option.phoneNumber + '</td>'
+                        ));
+                    });
+
+                    if ($.fn.dataTable.isDataTable('#AdmissionListTable')) {
+                        $('#AdmissionListTable').DataTable({
+                            destroy: true
+                        });
+                    }
+                    else {
+                        $('#AdmissionListTable').DataTable();
+                    }
+                }
+                else {
+                    admittedListTableBody.html('<tr><td colspan="9" style="text-align: center">No records found</td></tr>');
+                }
+                // statesProgress.hide();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Failed to retrieve Admission List.');
+                //   statesProgress.hide();
+            }
+        });
+    }
+    function downloadAdmittedList(regNums) {
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            //before passing an array to a controller from ajax traditional must be set to true or else controller wont recieve the array
+            traditional: true,
+           // url: "/EduApply/Download/CreateExcelForNonAdmissionList",
+            url: "/Download/CreateExcelForNonAdmissionList",
+            data: { "regNums": regNums },
+            success: function (filename) {
+                // window.location = '/EduApply/Download/DownloadExcel?file=' + filename;
+                window.location = '/Download/DownloadExcel?file=' + filename;
+                //  toastr.success("Download Complete");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Error occured');
+                return false;
+            }
+        });
+    }
+
+
+</script>

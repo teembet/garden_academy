@@ -1,0 +1,375 @@
+﻿@using EduApply.Logic.Interfaces
+@using EduApply.Logic.Service
+@model EduApply.Web.Models.PersonalInformationModel
+@{
+    List<SelectListItem> maritalStatus = new List<SelectListItem>()
+                            {
+                                new SelectListItem {Text = "Single", Value = "Single"},
+                                new SelectListItem {Text = "Married", Value = "Married"},
+                                new SelectListItem {Text = "Divorced", Value = "Divorced"},
+                                new SelectListItem {Text = "Separated", Value = "Separated"},
+                                new SelectListItem{Text = "Widowed", Value = "Widowed"}
+                            };
+
+    List<SelectListItem> gender = new List<SelectListItem>()
+                            {
+                                new SelectListItem{Text = "Male",Value = "Male"},
+                                new SelectListItem{Text = "Female", Value = "Female"}
+                            };
+
+
+}
+<h4 style="color: #428bca">BIODATA</h4>
+<hr />
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@using (Html.BeginForm("SaveBiodata", "Fill", FormMethod.Post))
+{
+    @*@Html.AntiForgeryToken()*@
+
+    <div class="row">
+        @if (Convert.ToBoolean(TempData["JambResultPresent"]))
+        {
+            <div class=" col-lg-4">
+                <div class="form-group required">
+                    @Html.LabelFor(model => model.LastName)
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class=" col-lg-4">
+                <div class="form-group required">
+                    @Html.LabelFor(model => model.FirstName)
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MiddleName)
+                    @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control", @ReadOnly = true } })
+                    @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class=" col-lg-4">
+                <div class="form-group required">
+                    @Html.LabelFor(model => model.LastName)
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class=" col-lg-4">
+                <div class="form-group required">
+                    @Html.LabelFor(model => model.FirstName)
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MiddleName)
+                    @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.DateOfBirth)
+                <input type="text" value="@Convert.ToDateTime(Model.DateOfBirth).ToString("dd-MMM-yyyy")" class="form-control" id="fakeDateOfBirth" name="DateOfBirth" style="display: none" />
+                @Html.TextBoxFor(model => model.DateOfBirth, Convert.ToDateTime(Model.DateOfBirth).ToString("dd-MMM-yyyy"), new { @class = "form-control custom-disable-textbox size92 ", @disabled = true })
+                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.Gender)
+                @Html.DropDownListFor(model => model.Gender, gender, "<--Select-->", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaritalStatus)
+                @Html.DropDownListFor(model => model.MaritalStatus, maritalStatus, "<--Select-->", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaritalStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.HomeAddress)
+                @Html.EditorFor(model => model.HomeAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HomeAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.StateOfResidence)
+                @Html.DropDownListFor(model => model.StateOfResidence, new SelectList(Model.ResidentStates, "Name", "Name", Model.StateOfResidence), "<--Select-->", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StateOfResidence, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="form-group">
+                @Html.LabelFor(model => model.PostalAddress)
+                @Html.EditorFor(model => model.PostalAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PostalAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.Email)
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.PhoneNumber)
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.Religion)
+                @Html.EditorFor(model => model.Religion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Religion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+    <div class="row" style="margin-bottom: 20px">
+        <div class="col-lg-4">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.Nationality)
+                @Html.DropDownListFor(model => model.Nationality, new SelectList(Model.Countries, "Id", "Name", Model.Nationality), "<--Select-->", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Nationality, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.StateOfOrigin)
+                @Html.DropDownListFor(model => model.StateOfOrigin, new SelectList(Model.States, "Id", "Name", Model.StateOfOrigin), "<--Select-->", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StateOfOrigin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.LocalGovernment)
+                @Html.DropDownListFor(model => model.LocalGovernment, new SelectList(Model.Lgaz, "Id", "Name", Model.LocalGovernment), "<--Select-->", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LocalGovernment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <h4 style="border-bottom: 1px solid #eee"><strong>Next of Kin</strong></h4>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.NameOfNextOfkin)
+                @Html.EditorFor(model => model.NameOfNextOfkin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NameOfNextOfkin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.NextOfKinRelationship)
+                @Html.EditorFor(model => model.NextOfKinRelationship, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NextOfKinRelationship, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.AddressOfNextOfkin)
+                @Html.EditorFor(model => model.AddressOfNextOfkin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AddressOfNextOfkin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmailOfNextOfKin)
+                @Html.EditorFor(model => model.EmailOfNextOfKin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailOfNextOfKin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group required">
+                @Html.LabelFor(model => model.PhoneOfNextOfkin)
+                @Html.EditorFor(model => model.PhoneOfNextOfkin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneOfNextOfkin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    if (User.IsInRole("Student"))
+    {
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-10">
+                    @{
+        var applicationFormId = Convert.ToInt32(Session["AppFormId"]);
+        var appFormservice = EngineContext.Resolve<IApplicationFormRepository>();
+        var applicationFormWorkFlow = appFormservice.GetFirstApplicationFormWorkFlow(applicationFormId);
+        var workFlow = appFormservice.GetWorkFlowItem(applicationFormWorkFlow.WorkFlowId);
+        var templatesForAppForm = appFormservice.GetFirstTemplatesInApp(applicationFormId);
+        var formTemplate = appFormservice.GetFormTemplate(templatesForAppForm.FormTemplateId);
+                    }
+                    @if (!(workFlow.Name.Equals("Fill") && formTemplate.Code.Equals("BD")))
+                    {
+                        @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default" })
+                    }
+                    <input type="submit" value="Save and Continue" class="btn btn-success" id="saveBiodataButton" />
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-10">
+
+                    @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default", @disabled = true })
+                    <input type="submit" value="Save and Continue" class="btn btn-success disabled" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="custom-hide">
+        @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="custom-hide">
+        @Html.EditorFor(model => model.ApplicationId, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+}
+
+<script>
+    $(function () {
+        $("#DateOfBirth").datepicker({
+
+            showOn: "button",
+            buttonImage: "/images/calendar.gif",
+            // buttonImage: "/EduApply/images/calendar.gif",
+            buttonImageOnly: true,
+            buttonText: "Select date",
+            defaultDate: 'Date.today()',
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1960:2015'
+
+
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#saveBiodataButton').click(function () {
+            var dateValue = $('#DateOfBirth').val();
+            if (dateValue == "") {
+                $('#DateOfBirth').addClass("input-validation-error").removeClass("valid");
+                return false;
+            } else {
+                $('#DateOfBirth').addClass("valid").removeClass("input-validation-error");
+            }
+
+        });
+        $('#DateOfBirth').change(function () {
+            var dateValue = $('#DateOfBirth').val();
+            if (dateValue != "") {
+                $('#DateOfBirth').addClass("valid").removeClass("input-validation-error");
+                document.getElementById("fakeDateOfBirth").value = dateValue;
+            }
+        });
+
+        $("#Nationality").change(function () {
+            var selectedItem = $(this).val();
+            var ddlStates = $("#StateOfOrigin");
+            // var statesProgress = $("#states-loading-progress");
+            //statesProgress.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.RouteUrl("GetStateByCountryId"))",
+                data: { "countryId": selectedItem },
+                success: function (data) {
+                    ddlStates.html('');
+                    if (data.length > 0) {
+                        ddlStates.append($('<option></option>').val(null).html("----"));
+                        $.each(data, function (id, option) {
+                            ddlStates.append($('<option></option>').val(option.id).html(option.name));
+                        });
+                    } else {
+                        ddlStates.append($('<option></option>').val('-1').html("N/A"));
+                        var ddlLgas = $("#LocalGovernment");
+                        ddlLgas.html('');
+                        ddlLgas.append($('<option></option>').val('-1').html("N/A"));
+                    }
+                   
+                    // statesProgress.hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to retrieve states.');
+                    //   statesProgress.hide();
+                }
+            });
+        });
+
+        $("#StateOfOrigin").change(function () {
+            var selectedItem = $(this).val();
+            var ddlLgas = $("#LocalGovernment");
+            // var statesProgress = $("#states-loading-progress");
+            //statesProgress.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.RouteUrl("GetLgaByStateId"))",
+                data: { "stateId": selectedItem },
+                success: function (data) {
+                    ddlLgas.html('');
+                    if (data.length > 0) {
+                        ddlLgas.append($('<option></option>').val(null).html("----"));
+                        $.each(data, function (id, option) {
+                            ddlLgas.append($('<option></option>').val(option.id).html(option.name));
+                        });
+                    } else {
+                        ddlLgas.append($('<option></option>').val('-1').html("N/A"));
+                    }
+
+                    // statesProgress.hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to retrieve Local Governments.');
+                    //   statesProgress.hide();
+                }
+            });
+        });
+    });
+
+
+</script>

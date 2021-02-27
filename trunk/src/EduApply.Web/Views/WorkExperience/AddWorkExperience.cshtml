@@ -1,0 +1,8 @@
+﻿@model IEnumerable<EduApply.Data.Entities.WorkExperience>
+@{
+    ViewBag.Title = "Add Work Experience";
+    Layout = "~/Views/Shared/ApplicationLayout.cshtml";
+}
+<div class="container">
+    @Html.Partial("_WorkExperience", Model)
+</div>

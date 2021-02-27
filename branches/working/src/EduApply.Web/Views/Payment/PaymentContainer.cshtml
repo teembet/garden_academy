@@ -1,0 +1,19 @@
+﻿@using EduApply.Logic.Service
+@using EduApply.Logic.Utility
+@model EduApply.Data.Entities.AttemptedPayment
+@{
+    ViewBag.Title = "PaymentContainer";
+    Layout = "~/Views/Shared/ApplicationLayout.cshtml";
+    var gatewayCode = EngineContext.Resolve<Tenancy>().Code;
+          var url = "http://payments.silveredgeprojects.com/instantiate/gateways?transactionReference="+Model.TransactionReference+"&agencycode="+gatewayCode+"&gatewayagencycode=";
+        // var url = "http://payments.silveredgeprojects.com/instantiate/gateways";
+
+}
+<div class="form-boundary">
+    <h2>Payment Process</h2>
+    <hr/>
+    <div></div>
+    <iframe src=@url width="900" height="500"></iframe>
+</div>
+
+

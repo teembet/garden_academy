@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D3524C53-BA6B-4370-A7A4-A50D271CE627}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EduApply.Data</RootNamespace>
+    <AssemblyName>EduApply.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\AdminBiodata.cs" />
+    <Compile Include="Entities\AdmissionList.cs" />
+    <Compile Include="Entities\ApiLog.cs" />
+    <Compile Include="Entities\AppFormProgramCourse.cs" />
+    <Compile Include="Entities\ApplicantsProgramCourse.cs" />
+    <Compile Include="Entities\Application.cs" />
+    <Compile Include="Entities\ApplicationForm.cs" />
+    <Compile Include="Entities\ApplicationFormWorkFlow.cs" />
+    <Compile Include="Entities\AttemptedPayment.cs" />
+    <Compile Include="Entities\AuditAction.cs" />
+    <Compile Include="Entities\AuditSection.cs" />
+    <Compile Include="Entities\AuditTrail.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Certificate.cs" />
+    <Compile Include="Entities\CertificateType.cs" />
+    <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Course.cs" />
+    <Compile Include="Entities\ClassOfDegree.cs" />
+    <Compile Include="Entities\Department.cs" />
+    <Compile Include="Entities\EducationalDetails.cs" />
+    <Compile Include="Entities\EncryptionKeys.cs" />
+    <Compile Include="Entities\EventLog.cs" />
+    <Compile Include="Entities\ExamType.cs" />
+    <Compile Include="Entities\ExamVenue.cs" />
+    <Compile Include="Entities\Faculty.cs" />
+    <Compile Include="Entities\FormCategory.cs" />
+    <Compile Include="Entities\FormResult.cs" />
+    <Compile Include="Entities\FormTemplate.cs" />
+    <Compile Include="Entities\FormTemplateSettings.cs" />
+    <Compile Include="Entities\JambBreakDown.cs" />
+    <Compile Include="Entities\LocalGovernmentArea.cs" />
+    <Compile Include="Entities\ManualJambBreakDown.cs" />
+    <Compile Include="Entities\MappedForm.cs" />
+    <Compile Include="Entities\NonApplicantAdmittedList.cs" />
+    <Compile Include="Entities\OLevelDetail.cs" />
+    <Compile Include="Entities\OLevelGrade.cs" />
+    <Compile Include="Entities\OLevelResult.cs" />
+    <Compile Include="Entities\OLevelSubject.cs" />
+    <Compile Include="Entities\Payment.cs" />
+    <Compile Include="Entities\PersonalInformation.cs" />
+    <Compile Include="Entities\Picture.cs" />
+    <Compile Include="Entities\Program.cs" />
+    <Compile Include="Entities\ProgramCourse.cs" />
+    <Compile Include="Entities\Reference.cs" />
+    <Compile Include="Entities\RegNumValidation.cs" />
+    <Compile Include="Entities\SearchResult.cs" />
+    <Compile Include="Entities\SearchResultQuery.cs" />
+    <Compile Include="Entities\Session.cs" />
+    <Compile Include="Entities\SessionResult.cs" />
+    <Compile Include="Entities\State.cs" />
+    <Compile Include="Entities\TemplatesInAppForms.cs" />
+    <Compile Include="Entities\Venues.cs" />
+    <Compile Include="Entities\VenueMappings.cs" />
+    <Compile Include="Entities\WorkExperience.cs" />
+    <Compile Include="Entities\WorkFlow.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

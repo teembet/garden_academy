@@ -1,0 +1,186 @@
+﻿@using EduApply.Logic.Interfaces
+@using EduApply.Logic.Service
+@model EduApply.Web.Models.ManualJambBreakDownModel
+
+@using (Html.BeginForm("AddJambScore", "Fill", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h4>Jamb Result Details</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger" })
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.RegNum)
+                @Html.EditorFor(model => model.RegNum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RegNum)
+            </div>
+        </div>
+
+
+
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.CourseOfStudy, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CourseOfStudy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CourseOfStudy)
+                </div>
+            </div>*@
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.EngScore)
+                @Html.EditorFor(model => model.EngScore, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EngScore)
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Subject2)
+                @Html.DropDownListFor(model => model.Subject2, new SelectList(Model.Subjects, "Name", "Name", Model.Subject2), "<--Select-->", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Subject2)
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Subject2Score)
+                @Html.EditorFor(model => model.Subject2Score, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Subject2Score)
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Subject3)
+                @Html.DropDownListFor(model => model.Subject3, new SelectList(Model.Subjects, "Name", "Name", Model.Subject3), "<--Select-->", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Subject3)
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Subject3Score)
+                @Html.EditorFor(model => model.Subject3Score, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Subject3Score)
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Subject4)
+                @Html.DropDownListFor(model => model.Subject4, new SelectList(Model.Subjects, "Name", "Name", Model.Subject2), "<--Select-->", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Subject4)
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Subject4Score)
+                @Html.EditorFor(model => model.Subject4Score, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Subject4Score)
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TotalScore)
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.EditorFor(model => model.TotalScore, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                @Html.ValidationMessageFor(model => model.TotalScore)
+            </div>
+        </div>
+
+        <p>.</p>
+        <hr />
+
+        @if (User.IsInRole("Student"))
+        {
+            <div class="form-group">
+
+                <div class="col-md-12">
+                    @{
+            var applicationFormId = Convert.ToInt32(Session["AppFormId"]);
+            var appFormservice = EngineContext.Resolve<IApplicationFormRepository>();
+            var applicationFormWorkFlow = appFormservice.GetFirstApplicationFormWorkFlow(applicationFormId);
+            var workFlow = appFormservice.GetWorkFlowItem(applicationFormWorkFlow.WorkFlowId);
+            var templatesForAppForm = appFormservice.GetFirstTemplatesInApp(applicationFormId);
+            var formTemplate = appFormservice.GetFormTemplate(templatesForAppForm.FormTemplateId);
+                    }
+                    @if (!(workFlow.Name.Equals("Fill") && formTemplate.Code.Equals("JR")))
+                    {
+                        @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default" })
+                    }
+                    <input type="submit" value="Save" class="btn btn-primary" id="SubmitJambBtn" />
+                    @Html.ActionLink("Continue >>", "ContinueFromManualJambEntry", "Fill", null, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default", @disabled = true })
+                    <input type="submit" value="Save" class="btn btn-primary" disabled="" />
+                    @Html.ActionLink("Continue >>", "ContinueFromManualJambEntry", "Fill", null, new { @class = "btn btn-success", @disabled = true })
+                </div>
+            </div>
+        }
+    </div>
+}
+<script>
+    $(function () {
+        $("#SubmitJambBtn").click(function () {
+            var subjects = [$("#Subject2").val(), $("#Subject3").val(),  $("#Subject4").val()];
+            for (var i = 0; i < subjects.length; i++) {
+                for (var j = i + 1; j < subjects.length; j++) {
+                    if (subjects[i] == "" || subjects[j] == "") {
+                        continue;
+                    }
+                    if (subjects[i] === subjects[j]) {
+                        alert("You cannot pick the same subject more than once");
+                        return false;
+                    }
+                }
+
+            }
+        });
+        var lastValue = '';
+        $('#EngScore,#Subject2Score,#Subject3Score,#Subject4Score').on('change keyup paste mouseup', function () {
+            if ($(this).val() != lastValue) {
+                lastValue = $(this).val();
+                var engScore = $("#EngScore").val();
+                if (isNaN(engScore)) {
+                    engScore = 0;
+                } else {
+                    engScore = Number($("#EngScore").val());
+                }
+                var subject2Score = $("#Subject2Score").val();
+                if (isNaN(subject2Score)) {
+                    subject2Score = 0;
+                } else {
+                    subject2Score = Number($("#Subject2Score").val());
+                }
+                var subject3Score = $("#Subject3Score").val();
+                if (isNaN(subject3Score)) {
+                    subject3Score = 0;
+                }
+                var subject4Score = $("#Subject4Score").val();
+                if (isNaN(subject4Score)) {
+                    subject4Score = 0;
+                }
+                document.getElementById("TotalScore").value = Number(engScore) + Number(subject2Score) + Number(subject3Score) + Number(subject4Score);
+            }
+
+        });
+    });
+</script>
+

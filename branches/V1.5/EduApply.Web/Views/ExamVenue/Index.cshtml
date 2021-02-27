@@ -1,0 +1,147 @@
+﻿@model IEnumerable<EduApply.Data.Entities.ExamVenue>
+@{
+    ViewBag.Title = "Exam Venue Configuration";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+
+}
+
+@*<h2>Venue Configuration</h2>*@
+<hr />
+<div class="row">
+
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li>@Html.ActionLink("Session", "Index", "Session")</li>
+            <li>@Html.ActionLink("Program", "Index", "Program")</li>
+            <li>@Html.ActionLink("Faculty", "Index", "Faculty")</li>
+            <li>@Html.ActionLink("Department", "Index", "Department")</li>
+            <li>@Html.ActionLink("Course of Study", "Index", "Course")</li>
+            <li>@Html.ActionLink("Venue", "Index", "Venue")</li>
+            <li class="active">@Html.ActionLink("Exam Venue", "Index", "ExamVenue")</li>
+            <li>@Html.ActionLink("Venue Mapping", "Mapper", "VenueMapping")</li>
+        </ul>
+    </div>
+
+    <div class="col-md-12 margin-top">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger alert-dismissible" })
+
+        <div class="form-group">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Exam Venues</div>
+            <table class="table-striped table-responsive" id="ExamVenueTable">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Venue</th>
+                        <th>Capacity</th>
+                        <th>Allocated Seats</th>
+                        <th>Exam Date</th>
+                        <th>Is Active</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        var counter = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@counter</td>
+                                <td>
+                                    @item.Venue.Name
+                                </td>
+                                <td>
+                                    @item.Venue.Capacity
+                                </td>
+                                <td>
+                                    @item.NoOfAllocatedSeats
+                                </td>
+                                <td>
+                                    @item.ExamDate.ToString("dd-MMM-yy h:mm tt")
+                                </td>
+                                <td>
+                                    @item.IsActive
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { examVenueId = item.Id }, new { @class = "btn btn-success btn-xs" }) |
+                                    @if (item.IsActive)
+                                    {
+                                        @Html.ActionLink("Deactivate", "Deactivate", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Activate", "Activate", new { id = item.Id }, new { @class = "btn btn-primary btn-xs" })
+                                    }
+
+                                </td>
+                            </tr>
+                                    counter++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#ExamVenueTable").DataTable();
+        toastr.options =
+        {
+            "closeButton": false,
+            "debug": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+    })
+</script>
+
+@if (TempData["Created"] != null && TempData["Created"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Exam Venue Successfully Created");
+        })
+    </script>
+}
+@if (TempData["Edited"] != null && TempData["Edited"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Details of Exam Venue Successfully Changed");
+        })
+    </script>
+}
+@if (TempData["Deactivate"] != null && TempData["Deactivate"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Exam Venue Deactivated");
+        })
+    </script>
+}
+@if (TempData["Activate"] != null && TempData["Activate"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Exam Venue Activated");
+        })
+    </script>
+}

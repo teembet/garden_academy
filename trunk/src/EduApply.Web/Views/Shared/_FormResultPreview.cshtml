@@ -1,0 +1,82 @@
+﻿@model EduApply.Web.Models.FormResultModel
+
+<div class="container">
+    <hr />
+    <h4>Form Result</h4>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @if (Model.TotalScore > 0)
+            {
+                <div class="container">
+
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <strong>Application Number</strong>
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.AppNum)
+                        </div>
+                        <div class="row"></div>
+                    </div>
+                    @if (Model.EngScore > 0)
+                    {
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <strong>English</strong>
+                            </div>
+                            <div class="col-md-4">
+                                <strong>@Html.DisplayFor(model => model.EngScore)</strong>
+                            </div>
+                            <div class="row"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-4"><strong>@Html.DisplayFor(model => model.Subject2)</strong></div>
+                            <div class="col-md-4"><strong>@Html.DisplayFor(model => model.Subject2Score)</strong></div>
+                            <div class="row"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4"><strong>@Html.DisplayFor(model => model.Subject3)</strong></div>
+                            <div class="col-md-4"><strong>@Html.DisplayFor(model => model.Subject3Score)</strong></div>
+                            <div class="row"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-4"><strong>@Html.DisplayFor(model => model.Subject4)</strong></div>
+                            <div class="col-md-4"><strong>@Html.DisplayFor(model => model.Subject4Score)</strong></div>
+                            <div class="row"></div>
+                        </div>
+
+                        if (Model.Subject5Score > 0)
+                        {
+                            <div class="form-group">
+                                <div class="col-md-4"><strong>@Html.DisplayFor(model => model.Subject5)</strong></div>
+                                <div class="col-md-4"><strong>@Html.DisplayFor(model => model.Subject5Score)</strong></div>
+                                <div class="row"></div>
+                            </div>
+                        }
+                    }
+
+                    <div class="form-group">
+                        <div class="col-md-4"><strong>Total Score</strong></div>
+                        <div class="col-md-4"><strong>@Html.DisplayFor(model => model.TotalScore)</strong></div>
+                        <div class="row"></div>
+                    </div>
+                    @*<div class="form-group">
+                            <div class="col-md-12">
+                                <p style="font-size: 1.3em"><strong>@Html.DisplayNameFor(model => model.TotalScore)</strong>   </p>
+                            </div>
+                        </div>*@
+                </div>
+            }
+        </div>
+    }
+
+
+
+</div>

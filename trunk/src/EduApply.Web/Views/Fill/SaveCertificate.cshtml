@@ -1,0 +1,8 @@
+﻿@model IEnumerable<EduApply.Data.Entities.Certificate>
+@{
+    ViewBag.Title = "Upload Certificate";
+    Layout = "~/Views/Shared/ApplicationLayout.cshtml";
+}
+<div class="container">
+    @Html.Partial("_UploadCertificate", Model)
+</div>

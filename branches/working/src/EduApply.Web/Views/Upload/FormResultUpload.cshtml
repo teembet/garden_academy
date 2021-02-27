@@ -1,0 +1,282 @@
+﻿@model EduApply.Web.Models.FormResultModel
+
+@{
+    ViewBag.Title = "Application Form Result Upload";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    int successfulUploads = TempData["successfulUploads"] == null ? 0 : Convert.ToInt32(TempData["successfulUploads"]);
+    int updatedUploads = TempData["updatedUploads"] == null ? 0 : Convert.ToInt32(TempData["updatedUploads"]);
+    int failedUploads = TempData["failedUploads"] == null ? 0 : Convert.ToInt32(TempData["failedUploads"]);
+    var uploadFormats = new List<SelectListItem>()
+                            {
+                                new SelectListItem{Text = "<--Select Format-->",Value = null},
+                                new SelectListItem{Text = "Format1",Value = "1"},
+                                new SelectListItem{Text = "Format2", Value = "2"}
+                            };
+}
+
+@*<h2>Application Form Result Upload</h2>*@
+
+@using (Html.BeginForm("FormResultUpload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <h4 style="color: red">Note: Only csv files are accepted for upload, click @Html.ActionLink("Format1", "DownloadPreFormatedDoc", "Upload", new { fileName = "FormResultFormat.csv" }, null) or @Html.ActionLink("Format2", "DownloadPreFormatedDoc", "Upload", new { fileName = "FormResultFormat2.csv" }, null) to get a preformatted document</h4>
+    <hr />
+
+    <div class="col-md-4">
+        <div class="form-group required">
+            @Html.LabelFor(model => model.ApplicationFormId)
+            @Html.DropDownListFor(model => model.ApplicationFormId, new SelectList(Model.ApplicationForms, "Id", "Name", Model.ApplicationFormId), "<--Select-->", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ApplicationFormId)
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group required">
+            <label class="control-label">Select File</label>
+
+            <input type="file" id="formResultUpload" name="formResultUpload" value="" class="form-control" data-val="true" data-val-required="No file selected" />
+            @Html.ValidationMessage("formResultUpload", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group required">
+            <label class="control-label">Upload Format</label>
+            @Html.DropDownList("uploadFormat", uploadFormats, new { @class = "form-control", @data_val = "true", @data_val_number = "Select File Format", @data_val_required = "Enter a name for the file you are uploading" })
+            @Html.ValidationMessage("uploadFormat", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.NameOfFile, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NameOfFile, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NameOfFile)
+            </div>
+        </div>*@
+
+    <div class="col-md-12">
+        <div class="form-group">
+            <input type="submit" id="UploadList" value="Upload CSV" class="btn btn-primary" />
+            @*@Html.ActionLink("Download", "Download", "Upload", new { id = "downloadButton" }, new { @class = "btn btn-success" })*@
+            @*<button id="downloadButton" class="btn btn-success">Download</button>*@
+            <a href="#" id="downloadButton" class="btn btn-success">Download</a>
+            @*@Html.ActionLink("Download", "#", null, new {@id = "downloadButton", @class = "btn btn-success" })*@
+        </div>
+    </div>
+
+    if (successfulUploads > 0 && failedUploads == 0 && updatedUploads == 0)
+    {
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>All records in file successfully uploaded</p>
+            </div>
+        </div>
+
+    }
+    else if (updatedUploads > 0 && successfulUploads == 0 && failedUploads == 0)
+    {
+        <div class="col-md-12">
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>@updatedUploads records succesfully updated</p>
+            </div>
+        </div>
+
+    }
+    else if (failedUploads > 0 && successfulUploads == 0 && updatedUploads == 0)
+    {
+        <div class="col-md-12">
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>No record uploaded</p>
+            </div>
+        </div>
+
+
+    }
+    else if (failedUploads != 0 || successfulUploads != 0 || updatedUploads != 0)
+    {
+        <div class="col-md-12">
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <p>New records added: @successfulUploads, Updated Records:@updatedUploads, Failed : @failedUploads</p>
+            </div>
+        </div>
+
+    }
+    <div class="col-md-12">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger alert-dismissible" })
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Uploaded Result List</div>
+                <table id="formResultTable" class="table table-striped">
+                    <thead><tr><th>RegNum</th><th>AppNum</th><th>Eng Score</th><th>Subject2</th><th>Subject2 Score</th><th>Subject3</th><th>Subject3 Score</th><th>Subject4</th><th>Subject4 Score</th><th>Subject5</th><th>Subject5 Score</th><th>Total Score</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $(function () {
+        //  $("#formResultTable").dataTable();
+        toastr.options =
+        {
+            "closeButton": false,
+            "debug": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        var appFormId = $("#ApplicationFormId").val();
+        // getFormResult(appFormId);
+
+        $("#ApplicationFormId").change(function () {
+            appFormId = $("#ApplicationFormId").val();
+            getFormResult(appFormId);
+        });
+
+        $("#downloadButton").click(function () {
+            var appNums = [];
+            $("#formResultTable tr:gt(0)").each(function () {
+                var row = $(this);
+                var applicationNumber = $.trim(row.find('td:eq(2)').html());
+                if (applicationNumber != "") {
+                    appNums.push(applicationNumber);
+                }
+
+            });
+            if (appNums.length == 0) {
+                toastr.info("No record to download");
+                return false;
+            }
+            downloadResult(appNums);
+        });
+        $("#UploadList").click(function () {
+            var response;
+            var nameOfFile = $("#NameOfFile").val();
+            //  checkIfNameExist();
+            if (response) {
+                toastr.error("Name entered for uploaded file already exist, Please enter another name");
+                return false;
+            }
+
+            function checkIfNameExist() {
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    async: false,
+                    //url: "/Upload/CheckForDuplicateName",
+                    url: "/EduApply/Upload/CheckForDuplicateName",
+                    data: { "nameOfFile": nameOfFile },
+                    success: function (data) {
+                        response = data;
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert('Error occured');
+                        return false;
+                    }
+                });
+            }
+        });
+        $(".Delete").click(function () {
+            return confirm("Are you sure you want to Activate this User?");
+        });
+    });
+
+    function getFormResult() {
+
+        $(document).ready(function () {
+            $('#formResultTable').dataTable({
+                destroy: true,
+                "bSort": false,
+                "bServerSide": true,
+                "sAjaxSource": "/Upload/GetResultForForm?applicationFormId=" + $("#ApplicationFormId").val(),
+                "bProcessing": true,
+                "aoColumns": [
+                        //{ "sName": "Id" },
+                        { "sName": "RegNum" },
+                        { "sName": "AppNum" },
+                        { "sName": "Eng Score" },
+                        { "sName": "Subject 2" },
+                        { "sName": "Score" },
+                        { "sName": "Subject 3" },
+                        { "sName": "Score" },
+                        { "sName": "Subject 4" },
+                        { "sName": "Score" },
+                         { "sName": "Subject 5" },
+                        { "sName": "Score" },
+                        { "sName": "Total Score" }
+                ]
+            });
+        });
+    }
+
+    function editFormResult(id) {
+        window.location = '/Upload/EditFormResult?id=' + id;
+        // window.location = '/EduApply/Upload/EditFormResult?id=' + id;
+    }
+
+    function deleteFormResult(id) {
+        var res = confirm("Are you sure you want to delete this Result?");
+        if (res) {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "/Upload/DeleteFormResult",
+                //  url: "/EduApply/Upload/DeleteFormResult",
+                data: { "id": id },
+                success: function () {
+                    var appFormId = $("#ApplicationFormId").val();
+                    getFormResult(appFormId);
+                }
+            });
+        }
+
+    }
+
+    function downloadResult(appNums) {
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            //before passing an array to a controller from ajax traditional must be set to true or else controller wont recieve the array
+            traditional: true,
+            url: "/Download/CreateExcel",
+            //   url: "/EduApply/Download/CreateExcel",
+            data: { "appNums": appNums },
+            success: function (filename) {
+                //  window.location = '/EduApply/Download/DownloadExcel?file=' + filename;
+                window.location = '/Download/DownloadExcel?file=' + filename;
+                //  toastr.success("Download Complete");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Error occured');
+                return false;
+            }
+        });
+    }
+</script>
+@if (TempData["Edited"] != null && Convert.ToBoolean(TempData["Edited"]))
+{
+    <script>
+        $(function () {
+            toastr.success("Form Result Updated");
+        });
+
+    </script>
+}

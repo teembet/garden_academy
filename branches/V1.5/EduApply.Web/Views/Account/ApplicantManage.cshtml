@@ -1,0 +1,28 @@
+﻿@using EduApply.Web.Models;
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Change Password";
+    Layout = "~/Views/Shared/_PlainLayout.cshtml";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+    <div class="boundary">
+            @if (ViewBag.HasLocalPassword)
+            {
+                @Html.Partial("_ChangePasswordPartial")
+            }
+            else
+            {
+                @Html.Partial("_SetPasswordPartial")
+            }
+
+            @*<section id="externalLogins">
+                @Html.Action("RemoveAccountList")
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { Action = "LinkLogin", ReturnUrl = ViewBag.ReturnUrl })
+            </section>*@
+    </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
