@@ -174,6 +174,8 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                     <p className="lead">
                       Are you ready to take your organization to the next level?
                     </p>
+                    <br />
+                    <br />
                     <div className="mt-3">
                       <button className="btn btn-md  btn-primary">
                         Get Started
@@ -226,7 +228,12 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
           <div className="row mx-n2 mx-lg-n3">
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
               {/* <!-- Card --> */}
-              <div className="card">
+              <div
+                className="card"
+                style={{
+                  height: "27rem",
+                }}
+              >
                 <div className="card-icon">
                   <span className="span-icon">
                     <img src={homecard1} alt="" />
@@ -245,7 +252,12 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
             </div>
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
               {/* <!-- Card --> */}
-              <div className="card">
+              <div
+                className="card"
+                style={{
+                  height: "27rem",
+                }}
+              >
                 <div className="card-icon">
                   <span className="span-icon">
                     <img src={homecard2} alt="" />
@@ -265,7 +277,12 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
 
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
               {/* <!-- Card --> */}
-              <div className="card">
+              <div
+                className="card"
+                style={{
+                  height: "27rem",
+                }}
+              >
                 <div className="card-icon">
                   <span className="span-icon">
                     <img src={homecard3} alt="" />

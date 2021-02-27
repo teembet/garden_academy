@@ -486,6 +486,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
                       style={{
                         height: "inherit",
                         margin: "20px",
+                        padding: "20px 0",
                         background: paymentPlan === "one_off" ? "#E8EFFD" : "",
                       }}
                       onClick={() => setPaymentPlan("one_off")}
@@ -521,6 +522,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
                       style={{
                         height: "inherit",
                         margin: "20px",
+                        padding: "20px 0",
                         background:
                           paymentPlan === "instalment" ? "#E8EFFD" : "",
                       }}
@@ -558,6 +560,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
                       style={{
                         height: "inherit",
                         margin: "20px",
+                        padding: "20px 0",
                         background: paymentPlan === "loan" ? "#E8EFFD" : "",
                       }}
                       onClick={() => setPaymentPlan("loan")}
@@ -594,6 +597,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
                       style={{
                         height: "inherit",
                         margin: "20px",
+                        padding: "20px 0",
                         background: paymentPlan === "deferred" ? "#E8EFFD" : "",
                       }}
                       onClick={() => setPaymentPlan("deferred")}
