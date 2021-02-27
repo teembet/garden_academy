@@ -2,6 +2,9 @@
   "name": "edutech",
   "version": "0.1.0",
   "private": true,
+  "author": "Ogugua Tochukwu (Satoseries)",
+  "email": "evensatowind@gmail.com",
+  "phone": "08038385263",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
