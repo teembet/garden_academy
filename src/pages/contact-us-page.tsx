@@ -332,6 +332,13 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
           </div>
         </div>
       </div>
+        <div style={{ display: "none" }}>
+        * Edutech Project <br />
+        * Done By Satowind (Ogugua Tochukwu) <br />
+        * 08038385263, Evensatowind@gmail.com <br />
+        *Satoseries (Web app and mobile App engineering) <br />* For Ventures
+        Garden Group
+      </div>
     </main>
   );
 };
