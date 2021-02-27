@@ -1,0 +1,468 @@
+﻿@using EduApply.Logic.Interfaces
+@using EduApply.Logic.Service
+@model EduApply.Web.Models.OLevelResultDetailsViewModel
+@{
+    var examType = new List<SelectListItem>()
+                            {
+                                new SelectListItem{Text = "WASSCE",Value = "WASSCE"},
+                                new SelectListItem{Text = "WASSCE GCE(NOV/DEC)",Value = "WASSCE GCE(NOV/DEC)"},
+                                new SelectListItem{Text = "NECO(MAY/JUNE)", Value = "NECO"},
+                                new SelectListItem{Text = "NECO GCE(NOV/DEC)", Value = "NECO GCE(NOV/DEC)"}
+                            };
+
+    //var currentYear = DateTime.Today.Year;
+    //for (int i = 1960; i <= currentYear; i++)
+    //{
+    //    var listItem = new SelectListItem { Text = i.ToString(), Value = i.ToString() };
+    //    year.Add(listItem);
+    //}
+}
+<h4>O-Level Result Details</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger" })
+        @if (Model.ResultDetails.Count > 1)
+        {
+            for (int i = 0; i < Model.ResultDetails.Count; i++)
+            {
+                var sittinNumber = i + 1;
+                <div class="col-md-12">
+                    @if (sittinNumber == 1)
+                    {
+                        <h4>First Sitting</h4>
+                    }
+                    else
+                    {
+                        if (sittinNumber == 2)
+                        {
+                            <h4>Second Sitting</h4>
+                        }
+                        else
+                        {
+                            if (sittinNumber == 3)
+                            {
+                                <h4>Third Sitting</h4>
+                            }
+                            else
+                            {
+                                <h4>Sitting @sittinNumber</h4>
+                            }
+                        }
+                    }
+
+
+
+                    <hr />
+                </div>
+                    var counter = i;
+                    using (Html.BeginForm("SaveOLevelResult", "Fill", FormMethod.Post))
+                    {    <div class="col-md-6">
+                        <div class="form-group required">
+                            @Html.LabelFor(model => model.ResultDetails[counter].CandidateName)
+                            @Html.EditorFor(model => model.ResultDetails[counter].CandidateName, null, "CandidateName", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessage("CandidateName", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @*<div class="col-md-6">
+                            <div class="form-group required">
+                                @Html.LabelFor(model => model.ResultDetails[counter].SchoolName)
+                                @Html.EditorFor(model => model.ResultDetails[counter].SchoolName, null, "SchoolName", new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessage("SchoolName", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            @Html.LabelFor(model => model.ResultDetails[counter].ExamNumber)
+                            @Html.EditorFor(model => model.ResultDetails[counter].ExamNumber, null, "ExamNumber", new { htmlAttributes = new { @id = "ExamNum" + @sittinNumber, @class = "form-control" } })
+                            @Html.ValidationMessage("ExamNumber", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            @Html.LabelFor(model => model.ResultDetails[counter].Year)
+                            @Html.DropDownListFor(model => model.ResultDetails[counter].Year, new SelectList(Model.ResultDetails[counter].Years, "Year", "Year", Model.ResultDetails[counter].Year), "<--Select-->", new { @class = "form-control", Name = "Year" })
+                            @*@Html.DropDownListFor(model => model.ResultDetails[counter].Year, new SelectList(Model.ResultDetails[counter].Years, Model.ResultDetails[counter].ExamType), "<--Select-->", new { @class = "form-control", Name = "ExamType" })*@
+                            @Html.ValidationMessage("Year", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            @Html.LabelFor(model => model.ResultDetails[counter].ExamType)
+                            @Html.DropDownListFor(model => model.ResultDetails[counter].ExamType, new SelectList(Model.ResultDetails[counter].ExamTypes, "Name", "Name", Model.ResultDetails[counter].ExamType), "<--Select-->", new { @class = "form-control", Name = "ExamType" })
+                            @Html.ValidationMessage("ExamType", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.HiddenFor(model => model.ResultDetails[counter].DetailId, new { @class = "form-control", Name = "DetailId" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Enter Result</div>
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Subject</th>
+                                    <th>Grade</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    @*<td>@Html.LabelFor(model => model.ResultDetails[counter].Subject1)</td>*@
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Subject1, new SelectList(Model.ResultDetails[counter].Subjects, "Id", "Name", Model.ResultDetails[counter].Subject1), "<--Select-->", new { @id = "Subject1Sitting" + @sittinNumber, @class = "form-control", Name = "Subject1" })</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Grade1, new SelectList(Model.ResultDetails[counter].Grades, "Id", "Name", Model.ResultDetails[counter].Grade1), "<--Select-->", new { @id = "Grade1Sitting" + @sittinNumber, @class = "form-control", Name = "Grade1" })</td>
+                                    @*<td>@Html.DropDownListFor(model => model.Grade1, grades, "<--Select-->", new { @class = "form-control" })</td>*@
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    @*<td>@Html.LabelFor(model => model.ResultDetails[counter].Subject2)</td>*@
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Subject2, new SelectList(Model.ResultDetails[counter].Subjects, "Id", "Name", Model.ResultDetails[counter].Subject2), "<--Select-->", new { @id = "Subject2Sitting" + @sittinNumber, @class = "form-control", Name = "Subject2" })</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Grade2, new SelectList(Model.ResultDetails[counter].Grades, "Id", "Name", Model.ResultDetails[counter].Grade2), "<--Select-->", new { @id = "Grade2Sitting" + @sittinNumber, @class = "form-control", Name = "Grade2" })</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Subject3, new SelectList(Model.ResultDetails[counter].Subjects, "Id", "Name", Model.ResultDetails[counter].Subject3), "<--Select-->", new { @id = "Subject3Sitting" + @sittinNumber, @class = "form-control", Name = "Subject3" })</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Grade3, new SelectList(Model.ResultDetails[counter].Grades, "Id", "Name", Model.ResultDetails[counter].Grade3), "<--Select-->", new { @id = "Grade3Sitting" + @sittinNumber, @class = "form-control", Name = "Grade3" })</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Subject4, new SelectList(Model.ResultDetails[counter].Subjects, "Id", "Name", Model.ResultDetails[counter].Subject4), "<--Select-->", new { @id = "Subject4Sitting" + @sittinNumber, @class = "form-control", Name = "Subject4" })</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Grade4, new SelectList(Model.ResultDetails[counter].Grades, "Id", "Name", Model.ResultDetails[counter].Grade4), "<--Select-->", new { @id = "Grade4Sitting" + @sittinNumber, @class = "form-control", Name = "Grade4" })</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Subject5, new SelectList(Model.ResultDetails[counter].Subjects, "Id", "Name", Model.ResultDetails[counter].Subject5), "<--Select-->", new { @id = "Subject5Sitting" + @sittinNumber, @class = "form-control", Name = "Subject5" })</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Grade5, new SelectList(Model.ResultDetails[counter].Grades, "Id", "Name", Model.ResultDetails[counter].Grade5), "<--Select-->", new { @id = "Grade5Sitting" + @sittinNumber, @class = "form-control", Name = "Grade5" })</td>
+
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Subject6, new SelectList(Model.ResultDetails[counter].Subjects, "Id", "Name", Model.ResultDetails[counter].Subject6), "<--Select-->", new { @id = "Subject6Sitting" + @sittinNumber, @class = "form-control", Name = "Subject6" })</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Grade6, new SelectList(Model.ResultDetails[counter].Grades, "Id", "Name", Model.ResultDetails[counter].Grade6), "<--Select-->", new { @id = "Grade6Sitting" + @sittinNumber, @class = "form-control", Name = "Grade6" })</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Subject7, new SelectList(Model.ResultDetails[counter].Subjects, "Id", "Name", Model.ResultDetails[counter].Subject7), "<--Select-->", new { @id = "Subject7Sitting" + @sittinNumber, @class = "form-control", Name = "Subject7" })</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Grade7, new SelectList(Model.ResultDetails[counter].Grades, "Id", "Name", Model.ResultDetails[counter].Grade7), "<--Select-->", new { @id = "Grade7Sitting" + @sittinNumber, @class = "form-control", Name = "Grade7" })</td>
+
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Subject8, new SelectList(Model.ResultDetails[counter].Subjects, "Id", "Name", Model.ResultDetails[counter].Subject8), "<--Select-->", new { @id = "Subject8Sitting" + @sittinNumber, @class = "form-control", Name = "Subject8" })</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Grade8, new SelectList(Model.ResultDetails[counter].Grades, "Id", "Name", Model.ResultDetails[counter].Grade8), "<--Select-->", new { @id = "Grade8Sitting" + @sittinNumber, @class = "form-control", Name = "Grade8" })</td>
+
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Subject9, new SelectList(Model.ResultDetails[counter].Subjects, "Id", "Name", Model.ResultDetails[counter].Subject9), "<--Select-->", new { @id = "Subject9Sitting" + @sittinNumber, @class = "form-control", Name = "Subject9" })</td>
+                                    <td>@Html.DropDownListFor(model => model.ResultDetails[counter].Grade9, new SelectList(Model.ResultDetails[counter].Grades, "Id", "Name", Model.ResultDetails[counter].Grade9), "<--Select-->", new { @id = "Grade9Sitting" + @sittinNumber, @class = "form-control", Name = "Grade9" })</td>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="submit" id="submit-@sittinNumber" value="Save Result" class="btn btn-primary" />
+                    </div>
+                    <div class="col-md-6">
+                        @if (Model.ResultDetails.Count < Model.MaxEntry && counter == Model.ResultDetails.Count - 1)
+                        {
+                            @Html.ActionLink("Add another result", "AddMoreOLevel", "Fill", null, new { @class = "btn btn-primary" })
+                        }
+                    </div>
+                    <div class="col-md-12">
+                        <hr />
+                    </div>
+
+                    }
+
+
+            }
+
+        }
+        else
+        {
+            using (Html.BeginForm("SaveOLevelResult", "Fill", FormMethod.Post))
+            {    <div class="col-md-6">
+                <div class="form-group required">
+                    @Html.LabelFor(model => model.ResultDetails.First().CandidateName)
+                    @Html.EditorFor(model => model.ResultDetails.First().CandidateName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ResultDetails.First().CandidateName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @*<div class="col-md-6">
+                    <div class="form-group required">
+                        @Html.LabelFor(model => model.ResultDetails.First().SchoolName)
+                        @Html.EditorFor(model => model.ResultDetails.First().SchoolName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ResultDetails.First().SchoolName, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+            @*<div class="form-group required">
+
+                </div>*@
+            <div class="col-md-6">
+                <div class="form-group required">
+                    @Html.LabelFor(model => model.ResultDetails.First().ExamNumber)
+                    @Html.EditorFor(model => model.ResultDetails.First().ExamNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ResultDetails.First().ExamNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group required">
+                    @Html.LabelFor(model => model.ResultDetails.First().Year)
+                    @*@Html.EditorFor(model => model.ResultDetails.First().Year, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.DropDownListFor(model => model.ResultDetails.First().Year, new SelectList(Model.ResultDetails.First().Years, "Year", "Year", Model.ResultDetails.First().Year), "<--Select-->", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ResultDetails.First().Year, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group required">
+                    @Html.LabelFor(model => model.ResultDetails.First().ExamType)
+                    @Html.DropDownListFor(model => model.ResultDetails.First().ExamType, new SelectList(Model.ResultDetails.First().ExamTypes, "Name", "Name", Model.ResultDetails.First().ExamType), "<--Select-->", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ResultDetails.First().ExamType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group required">
+                @Html.HiddenFor(model => model.ResultDetails.First().DetailId, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Enter Result</div>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>S/N</th>
+                            <th>Subject</th>
+                            <th>Grade</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            @*<td>@Html.LabelFor(model => model.ResultDetails.First().Subject1)</td>*@
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Subject1, new SelectList(Model.ResultDetails.First().Subjects, "Id", "Name", Model.ResultDetails.First().Subject1), "<--Select-->", new { @class = "form-control" })</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Grade1, new SelectList(Model.ResultDetails.First().Grades, "Id", "Name", Model.ResultDetails.First().Grade1), "<--Select-->", new { @class = "form-control" })</td>
+                            @*<td>@Html.DropDownListFor(model => model.Grade1, grades, "<--Select-->", new { @class = "form-control" })</td>*@
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Subject2, new SelectList(Model.ResultDetails.First().Subjects, "Id", "Name", Model.ResultDetails.First().Subject2), "<--Select-->", new { @class = "form-control" })</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Grade2, new SelectList(Model.ResultDetails.First().Grades, "Id", "Name", Model.ResultDetails.First().Grade2), "<--Select-->", new { @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Subject3, new SelectList(Model.ResultDetails.First().Subjects, "Id", "Name", Model.ResultDetails.First().Subject3), "<--Select-->", new { @class = "form-control" })</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Grade3, new SelectList(Model.ResultDetails.First().Grades, "Id", "Name", Model.ResultDetails.First().Grade3), "<--Select-->", new { @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Subject4, new SelectList(Model.ResultDetails.First().Subjects, "Id", "Name", Model.ResultDetails.First().Subject4), "<--Select-->", new { @class = "form-control" })</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Grade4, new SelectList(Model.ResultDetails.First().Grades, "Id", "Name", Model.ResultDetails.First().Grade4), "<--Select-->", new { @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Subject5, new SelectList(Model.ResultDetails.First().Subjects, "Id", "Name", Model.ResultDetails.First().Subject5), "<--Select-->", new { @class = "form-control" })</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Grade5, new SelectList(Model.ResultDetails.First().Grades, "Id", "Name", Model.ResultDetails.First().Grade5), "<--Select-->", new { @class = "form-control" })</td>
+
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Subject6, new SelectList(Model.ResultDetails.First().Subjects, "Id", "Name", Model.ResultDetails.First().Subject6), "<--Select-->", new { @class = "form-control" })</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Grade6, new SelectList(Model.ResultDetails.First().Grades, "Id", "Name", Model.ResultDetails.First().Grade6), "<--Select-->", new { @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Subject7, new SelectList(Model.ResultDetails.First().Subjects, "Id", "Name", Model.ResultDetails.First().Subject7), "<--Select-->", new { @class = "form-control" })</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Grade7, new SelectList(Model.ResultDetails.First().Grades, "Id", "Name", Model.ResultDetails.First().Grade7), "<--Select-->", new { @class = "form-control" })</td>
+
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Subject8, new SelectList(Model.ResultDetails.First().Subjects, "Id", "Name", Model.ResultDetails.First().Subject8), "<--Select-->", new { @class = "form-control" })</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Grade8, new SelectList(Model.ResultDetails.First().Grades, "Id", "Name", Model.ResultDetails.First().Grade8), "<--Select-->", new { @class = "form-control" })</td>
+
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Subject9, new SelectList(Model.ResultDetails.First().Subjects, "Id", "Name", Model.ResultDetails.First().Subject9), "<--Select-->", new { @class = "form-control" })</td>
+                            <td>@Html.DropDownListFor(model => model.ResultDetails.First().Grade9, new SelectList(Model.ResultDetails.First().Grades, "Id", "Name", Model.ResultDetails.First().Grade9), "<--Select-->", new { @class = "form-control" })</td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                if (User.IsInRole("Student"))
+                {
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <input type="submit" id="submit" value="Save Result" class="btn btn-primary" />
+
+                        </div>
+                        <div class="col-md-6">
+                            @if (Model.MaxEntry > 1 && Model.ResultDetails.First().DetailId > 0)
+                            {
+                                @Html.ActionLink("Add another result", "AddMoreOLevel", null, new { @class = "btn btn-primary" })
+                            }
+
+                        </div>
+                        <div class="col-md-12">
+                            <hr />
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Save Result" class="btn btn-primary disabled" />
+                            <hr />
+                        </div>
+                    </div>
+                }
+            }
+
+        }
+
+
+        @if (User.IsInRole("Student"))
+        {
+            <div class="form-group">
+                <div class="col-md-12">
+                    @{
+                        var applicationFormId = Convert.ToInt32(Session["AppFormId"]);
+                        var appFormservice = EngineContext.Resolve<IApplicationFormRepository>();
+                        var applicationFormWorkFlow = appFormservice.GetFirstApplicationFormWorkFlow(applicationFormId);
+                        var workFlow = appFormservice.GetWorkFlowItem(applicationFormWorkFlow.WorkFlowId);
+                        var templatesForAppForm = appFormservice.GetFirstTemplatesInApp(applicationFormId);
+                        var formTemplate = appFormservice.GetFormTemplate(templatesForAppForm.FormTemplateId);
+                    }
+                    @if (!(workFlow.Name.Equals("Fill") && formTemplate.Code.Equals("OLR")))
+                    {
+                        @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default" })
+                    }
+                    @Html.ActionLink("Continue >>", "ContinuFromOLevel", "Fill", null, new { @class = "btn btn-success" })
+                    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })*@
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default", @disabled = true })
+                    @Html.ActionLink("Continue >>", "ContinuFromOLevel", "Fill", null, new { @class = "btn btn-success", @disabled = true })
+                </div>
+            </div>
+        }
+
+        @if (Model.ResultDetails.Count > 1)
+        {
+            <script>
+                $(function () {
+                    $("#submit-1").click(function () {
+                        var subjectsEntered = [];
+                        var grades = [$("#Grade1Sitting1").val(), $("#Grade2Sitting1").val(), $("#Grade3Sitting1").val(), $("#Grade4Sitting1").val(), $("#Grade5Sitting1").val(), $("#Grade6Sitting1").val(), $("#Grade7Sitting1").val(), $("#Grade8Sitting1").val(), $("#Grade9Sitting1").val()];
+                        var subjects = [$("#Subject1Sitting1").val(), $("#Subject2Sitting1").val(), $("#Subject3Sitting1").val(), $("#Subject4Sitting1").val(), $("#Subject5Sitting1").val(), $("#Subject6Sitting1").val(), $("#Subject7Sitting1").val(), $("#Subject8Sitting1").val(), $("#Subject9Sitting1").val()];
+                        var subjectsLength = subjects.length;
+                        for (var i = 0; i < subjectsLength; i++) {
+                            if (subjects[i] != "") {
+                                if (grades[i] == "") {
+                                    $("#Grade" + Number(i + 1) + "Sitting1").addClass("input-validation-error").removeClass("valid");
+                                    return false;
+                                }
+                                subjectsEntered.push(subjects[i]);
+                            }
+                            for (var j = i + 1; j < subjectsLength; j++) {
+                                if (subjects[i] == "" || subjects[j] == "") {
+                                    continue;
+                                }
+                                if (subjects[i] === subjects[j]) {
+                                    alert("You cannot pick the same subject more than once");
+                                    return false;
+                                }
+                            }
+
+                        }
+                        //if (subjectsEntered.length < 7) {
+                        //    alert("You have to enter at least 7 subjects");
+                        //    return false;
+                        //}
+                        if ($("#ExamNum1").val() === $("#ExamNum2").val()) {
+                            alert("You cannot have the same exam number for both sittings");
+                            return false;
+                        }
+                    });
+
+
+                    $("#submit-2").click(function () {
+                        var subjectsEntered = [];
+                        var grades = [$("#Grade1Sitting2").val(), $("#Grade2Sitting2").val(), $("#Grade3Sitting2").val(), $("#Grade4Sitting2").val(), $("#Grade5Sitting2").val(), $("#Grade6Sitting2").val(), $("#Grade7Sitting2").val(), $("#Grade8Sitting2").val(), $("#Grade9Sitting2").val()];
+                        var subjects = [$("#Subject1Sitting2").val(), $("#Subject2Sitting2").val(), $("#Subject3Sitting2").val(), $("#Subject4Sitting2").val(), $("#Subject5Sitting2").val(), $("#Subject6Sitting2").val(), $("#Subject7Sitting2").val(), $("#Subject8Sitting2").val(), $("#Subject9Sitting2").val()];
+                        var subjectsLength = subjects.length;
+                        for (var i = 0; i < subjectsLength; i++) {
+                            if (subjects[i] != "") {
+                                if (grades[i] == "") {
+                                    $("#Grade" + Number(i + 1) + "Sitting2").addClass("input-validation-error").removeClass("valid");
+                                    return false;
+                                }
+                                subjectsEntered.push(subjects[i]);
+                            }
+                            for (var j = i + 1; j < subjectsLength; j++) {
+                                if (subjects[i] == "" || subjects[j] == "") {
+                                    continue;
+                                }
+                                if (subjects[i] === subjects[j]) {
+                                    alert("You cannot pick the same subject more than once");
+                                    return false;
+                                }
+                            }
+
+                        }
+                        //if (subjectsEntered.length < 7) {
+                        //    alert("You have to enter at least 7 subjects");
+                        //    return false;
+                        //}
+                        if ($("#ExamNum1").val() === $("#ExamNum2").val()) {
+                            alert("You cannot have the same exam number for both sittings");
+                            return false;
+                        }
+                    });
+                })
+            </script>
+        }
+
+        <script>
+            $(function () {
+                $("#submit").click(function () {
+                    var subjectsEntered = [];
+                    var grades = [$("#Grade1").val(),$("#Grade2").val(),$("#Grade3").val(), $("#Grade4").val(), $("#Grade5").val(), $("#Grade6").val(), $("#Grade7").val(), $("#Grade8").val(), $("#Grade9").val()];
+                    var subjects = [$("#Subject1").val(), $("#Subject2").val(), $("#Subject3").val(), $("#Subject4").val(), $("#Subject5").val(), $("#Subject6").val(), $("#Subject7").val(), $("#Subject8").val(), $("#Subject9").val()];
+                    var subjectsLength = subjects.length;
+                    for (var i = 0; i < subjectsLength; i++) {
+                        if (subjects[i] != "") {
+                            if (grades[i] == "") {
+                                $("#Grade" + Number(i + 1)).addClass("input-validation-error").removeClass("valid");
+                                return false;
+                            }
+                            subjectsEntered.push(subjects[i]);
+                        }
+                        for (var j = i + 1; j < subjectsLength; j++) {
+                            if (subjects[i] == "" || subjects[j] == "") {
+                                continue;
+                            }
+                            if (subjects[i] === subjects[j]) {
+                                alert("You cannot pick the same subject more than once");
+                                return false;
+                            }
+                        }
+
+                    }
+                    //if (subjectsEntered.length < 7) {
+                    //    alert("You have to enter at least 7 subjects");
+                    //    return false;
+                    //}
+                });
+            })
+        </script>
+    </div>
+</div>

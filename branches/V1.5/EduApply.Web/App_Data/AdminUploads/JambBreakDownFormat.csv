@@ -1,0 +1,5 @@
+RegNum,LastName,FirstName,MiddleName,Faculty,CourseOfStudy,CourseCode,Gender,StateOfOrigin,LGA,EngScore,Subject2,Subject2Score,Subject3,Subject3Score,Subject4,Subject4Score
+12345678AB,Adeyemi,Ebunoluwa,Folarin,,Computer Science,CSC,M,Ondo,Akoko,99,Physics,99,Chemistry,99,Maths,99
+98765432CD,Gbotoso,Titilola,Morenike,,Pharmacy,TUE,F,Ondo,Akoko,90,Physics,89,Chemistry,65,Maths,78
+12345678YU,Botu,Abimbola,Olayemi,,Statistics,STA,F,Ondo,Akoko,90,Physics,99,Chemistry,80,Maths,99
+12345678YU,Botu,Abimbola,Olayemi,,Statistics,STA,F,Ondo,Akoko,90,Physics,99,Chemistry,80,Maths,99

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<EduApply.Data.Entities.Reference>
+<div class="container">
+    <hr/>
+    <h4>Reference</h4>
+    <hr />
+
+    @foreach (var re in Model)
+    {
+        <div class="form-group">
+            <div class="col-sm-4"><p><strong>Name: </strong>@re.Name</p></div>
+            <div class="col-sm-8"><p><strong>Address: </strong>@re.Address</p></div>
+
+            <div class="col-sm-4"><p><strong>Occupation: </strong>@re.Occupation</p></div>
+            <div class="col-sm-4"><p><strong>Phone Number: </strong>@re.PhoneNumber</p></div>
+            <div class="col-md-4"><p><strong>Email: </strong>@re.Email</p></div>
+        </div>
+
+    }
+</div>

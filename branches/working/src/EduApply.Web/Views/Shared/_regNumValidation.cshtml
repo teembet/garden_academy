@@ -1,0 +1,52 @@
+﻿@using EduApply.Data.Entities
+@using EduApply.Logic.Interfaces
+@using EduApply.Logic.Service
+@model EduApply.Web.Models.RegNumValidationModel
+@{
+    // var application = Session["Application"] as Application;
+}
+@using (Html.BeginForm("SaveRegNum", "Fill", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Enter registration number below</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger" })
+
+        <div class="form-group required">
+            @Html.LabelFor(model => model.RegNum, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.RegNum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RegNum, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                @if (User.IsInRole("Student"))
+                {
+                    var applicationFormId = Convert.ToInt32(Session["AppFormId"]);
+                    var appFormservice = EngineContext.Resolve<IApplicationFormRepository>();
+                    var applicationFormWorkFlow = appFormservice.GetFirstApplicationFormWorkFlow(applicationFormId);
+                    var workFlow = appFormservice.GetWorkFlowItem(applicationFormWorkFlow.WorkFlowId);
+                    var templatesForAppForm = appFormservice.GetFirstTemplatesInApp(applicationFormId);
+                    var formTemplate = appFormservice.GetFormTemplate(templatesForAppForm.FormTemplateId);
+                    if (!(workFlow.Name.Equals("Fill") && formTemplate.Code.Equals("REG")))
+                    {
+                        @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default" })
+                    }
+
+                    <input type="submit" value="Submit" class="btn btn-success" />
+                }
+                else
+                {
+                    @Html.ActionLink("<< Back", "BackApplication", "Fill", null, new { @class = "btn btn-default", @disabled = true })
+                    <input type="submit" value="Submit" class="btn btn-success" disabled />
+                }
+
+            </div>
+        </div>
+    </div>
+}

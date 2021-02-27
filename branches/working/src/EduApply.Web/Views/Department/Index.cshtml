@@ -1,0 +1,116 @@
+﻿@model IEnumerable<EduApply.Web.Models.DepartmentModel>
+@{
+    ViewBag.Title = "Department Configuration";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@*<h2>Department Configuration</h2>*@
+<hr />
+<div class="row">
+
+
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li>@Html.ActionLink("Session", "Index", "Session")</li>
+            <li>@Html.ActionLink("Program", "Index", "Program")</li>
+            <li>@Html.ActionLink("Faculty", "Index", "Faculty")</li>
+            <li class="active">@Html.ActionLink("Department", "Index", "Department")</li>
+            <li>@Html.ActionLink("Course of Study", "Index", "Course")</li>
+            <li>@Html.ActionLink("Exam Venue", "Index", "Venue")</li>
+            <li>@Html.ActionLink("Venue Date", "Index", "ExamVenue")</li>
+            <li>@Html.ActionLink("Venue Mapping", "Mapper", "VenueMapping")</li>
+            <li>@Html.ActionLink("Split", "Index", "SplitConfiguration")</li>
+            <li>@Html.ActionLink("ApplicationNo Format", "Index", "ApplicationNoFormat")</li>
+        </ul>
+    </div>
+
+    <div class="col-md-12  margin-top">
+        <div class="form-group">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Department</div>
+            <table id="DepartmentTable" class="table-striped">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Faculty</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+
+                        var i = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@i</td>
+                                <td>
+                                    @item.Name
+                                </td>
+                                <td>
+                                    @item.Code
+                                </td>
+                                <td>
+                                    @item.Faculty.Name
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { departmentId = item.Id }, new { @class = "btn btn-success btn-xs" })
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    }
+
+                </tbody>
+
+
+
+            </table>
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#DepartmentTable").DataTable();
+        toastr.options =
+        {
+            "closeButton": false,
+            "debug": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+    })
+</script>
+
+@if (TempData["Created"] != null && TempData["Created"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Department Successfully Created");
+        })
+    </script>
+}
+@if (TempData["Edited"] != null && TempData["Edited"].ToString() == "Success")
+{
+    <script type="text/javascript">
+        $(function () {
+            toastr.success("Details of Department Successfully Changed");
+        })
+    </script>
+}

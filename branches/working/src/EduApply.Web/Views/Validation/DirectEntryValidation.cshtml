@@ -1,0 +1,68 @@
+﻿@using EduApply.Logic.Interfaces
+@using EduApply.Logic.Service
+@model EduApply.Web.Models.RegNumValidationModel
+@{
+    ViewBag.Title = "DirectEntryValidation";
+    Layout = "~/Views/Shared/ApplicationLayout.cshtml";
+    bool isEligible = false;
+    var appFormservice = EngineContext.Resolve<IApplicationFormRepository>();
+    var applicationFormWorkFlow = appFormservice.GetFirstApplicationFormWorkFlow(Convert.ToInt32(Session["AppFormId"]));
+    var workFlow = appFormservice.GetWorkFlowItem(applicationFormWorkFlow.WorkFlowId);
+}
+
+
+
+<h2>Validate Eligibility</h2>
+<hr />
+<div class="container">
+    @using (Html.BeginForm())
+    {
+
+
+        <div class="form-horizontal">
+            <h4>Enter registration number below</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger" })
+
+
+            @if (ViewData["IsDEDetailPreset"] != null)
+            {
+                isEligible = Convert.ToBoolean(ViewData["IsDEDetailPreset"]);
+                if (isEligible)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <p>
+                            Congratulations, You are Eligible to apply to this form
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <p>We are sorry, you are not eligible to apply to this form</p>
+                    </div>
+                }
+            }
+
+            <div class="form-group required">
+                @Html.LabelFor(model => model.RegNum, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.RegNum, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RegNum, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                    @if (!workFlow.Name.Equals("Validate Direct Entry"))
+                    {
+                        @Html.ActionLink("<< Back", "BackApplication", "Application", null, new { @class = "btn btn-default" })
+                    }
+                    <input type="submit" value="Submit" class="btn btn-primary" id="eligibilityChecker" />
+                    @Html.ActionLink("Continue", "ContinueFromValidateDe", new { isEligible = isEligible }, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

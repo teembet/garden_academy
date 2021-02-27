@@ -1,0 +1,35 @@
+﻿@model EduApply.Web.Models.FormTemplateModel
+           
+<tr>
+    <td>@Model.Name</td>
+    <td>
+        <input type="checkbox" checked="" name="IdsToAdd" value="@Model.Id">
+    </td>
+    @if (Model.Name == "Bio-Data" || Model.Name == "Passport_Upload")
+    {
+        <td>
+            <input type="text" value="@Model.MinEntry" class="form-control" name="MinEntry" disabled="" />
+            @*@Html.EditorFor(form => frm.MinEntry, new { htmlAttributes = new { @class = "form-control disabled" } })*@
+        </td>
+        <td>
+            <input type="text" value="@Model.MaxEntry" class="form-control" name="MaxEntry" disabled="" />
+            @*@Html.EditorFor(form => frm.MaxEntry, new { htmlAttributes = new { @class = "form-control disabled" } })*@
+        </td>
+    }
+    else
+    {
+        <td>
+            @Html.TextBoxFor(model=>model.MinEntry, new { Name = "MinEntry", @class = "form-control " })
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.MaxEntry, new { Name = "MaxEntry", @class = "form-control" })
+        </td>
+    }
+
+    <td>
+        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#@Model.Name">
+            Preview
+        </button>
+    </td>
+</tr>
+

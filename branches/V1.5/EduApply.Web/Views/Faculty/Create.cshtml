@@ -1,0 +1,53 @@
+﻿@model EduApply.Web.Models.FacultyModel
+
+@{
+    ViewBag.Title = "Faculty Configuration";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@*<h2>Faculty Configuration</h2>*@
+
+@using (Html.BeginForm("Create", "Faculty", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+
+        <div class="col-md-12 ">
+            <ul class="nav nav-tabs">
+                <li>@Html.ActionLink("Session", "Index", "Session")</li>
+                <li>@Html.ActionLink("Program", "Index", "Program")</li>
+                <li class="active">@Html.ActionLink("Faculty", "Index", "Faculty")</li>
+                <li>@Html.ActionLink("Department", "Index", "Department")</li>
+                <li>@Html.ActionLink("Course of Study", "Index", "Course")</li>
+                <li>@Html.ActionLink("Venue", "Index", "Venue")</li>
+                <li>@Html.ActionLink("Exam Venue", "Index", "ExamVenue")</li>
+                <li>@Html.ActionLink("Venue Mapping", "Mapper", "VenueMapping")</li>
+            </ul>
+        </div>
+
+
+        <div class="col-md-12 margin-top">
+            <div class="form-horizontal">
+                <h4>New Faculty</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}

@@ -1,0 +1,193 @@
+﻿@using EduApply.Logic.Interfaces
+@using EduApply.Logic.Service
+@model EduApply.Data.Entities.EventLog
+@{
+    ViewBag.Title = "Event Log";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var configurationService = EngineContext.Resolve<IConfigurationService>();
+    var localTime = configurationService.GetCurrentWestAfricanDateTime();
+}
+
+@*<h2>Event Log</h2>*@
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Application Form</label>
+            @Html.DropDownListFor(model => model.ApplicationFormId, new SelectList(Model.AppForms, "Id", "Name", Model.ApplicationFormId), "<--Select-->", new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Work Flow</label>
+            @Html.DropDownListFor(model => model.WorkFlowId, new SelectList(Model.WorkFlows, "Id", "Name", Model.WorkFlowId), "<--Select-->", new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Keyword</label>
+            <input type="text" id="EventKeyWord" class="form-control" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label style="display: block">Start Date</label>
+            <input type="text" class="form-control" id="StartDate" value="@localTime.AddMinutes(-30).ToString(" dd-MMM-yyyy h:mm tt")" name="startDate" readonly="" style="width: 95%; background: white; display: inline" />
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label style="display: block">End Date</label>
+            <input type="text" class="form-control" id="EndDate" value="@localTime.ToString(" dd-MMM-yyyy h:mm tt")" name="EndDate" readonly="" style="width: 95%; background: white; display: inline" />
+        </div>
+    </div>
+    <div class="row"></div>
+    <hr />
+
+    <div class="col-md-12">
+        <div class="panel panel-success">
+            <div class="panel-heading"></div>
+            <div id="eventLogContainer"></div>
+
+        </div>
+    </div>
+}
+
+<script>
+    $(function () {
+        var defaultAppformId = $("#ApplicationFormId").val();
+        var defaultWorkFlowId = $("#WorkFlowId").val();
+        var defaultStartDate = $("#StartDate").val();
+        var defaultEndDate = $("#EndDate").val();
+        var defaultkeyword = $("#EventKeyWord").val();
+        getEventList(defaultAppformId, defaultWorkFlowId, defaultStartDate, defaultEndDate, defaultkeyword);
+
+
+        $('#EndDate,#StartDate').datetimepicker({
+            showOn: "button",
+            //buttonImage: "/EduApply/images/calendar.gif",
+            buttonImage: "/images/calendar.gif",
+            buttonImageOnly: true,
+            buttonText: "Select date",
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '1960:2060',
+            defaultDate: 'Date.today()'
+        });
+        var lastValue = '';
+        $("#EventKeyWord").on('change keyup paste mouseup', function () {
+            if ($(this).val() != lastValue) {
+                lastValue = $(this).val();
+                var appFormId = $("#ApplicationFormId").val();
+                var workFlowId = $("#WorkFlowId").val();
+                var startDate = $("#StartDate").val();
+                var endDate = $("#EndDate").val();
+                var keyword = $("#EventKeyWord").val();
+                getEventList(appFormId, workFlowId, startDate, endDate, keyword);
+            }
+        });
+
+        $("#ApplicationFormId").change(function () {
+            var appFormId = $("#ApplicationFormId").val();
+            var workFlowId = $("#WorkFlowId").val();
+            var startDate = $("#StartDate").val();
+            var endDate = $("#EndDate").val();
+            var keyword = $("#EventKeyWord").val();
+            getEventList(appFormId, workFlowId, startDate, endDate, keyword);
+        });
+
+        $("#WorkFlowId").change(function () {
+            var appFormId = $("#ApplicationFormId").val();
+            var workFlowId = $("#WorkFlowId").val();
+            var startDate = $("#StartDate").val();
+            var endDate = $("#EndDate").val();
+            var keyword = $("#EventKeyWord").val();
+            getEventList(appFormId, workFlowId, startDate, endDate, keyword);
+        });
+
+        $("#StartDate").change(function () {
+            var appFormId = $("#ApplicationFormId").val();
+            var workFlowId = $("#WorkFlowId").val();
+            var startDate = $("#StartDate").val();
+            var endDate = $("#EndDate").val();
+            var keyword = $("#EventKeyWord").val();
+            if (startDate == null && endDate == null) {
+                return false;
+            }
+            if ((endDate != null && startDate != null) && Date(endDate) < Date(startDate)) {
+                toastr.error("End Date cannot be Less than Start Date");
+                return false;
+            }
+            getEventList(appFormId, workFlowId, startDate, endDate, keyword);
+        });
+
+        $("#EndDate").change(function () {
+            var appFormId = $("#ApplicationFormId").val();
+            var workFlowId = $("#WorkFlowId").val();
+            var startDate = $("#StartDate").val();
+            var endDate = $("#EndDate").val();
+            var keyword = $("#EventKeyWord").val();
+            if (startDate == null && endDate == null) {
+                return false;
+            }
+            if ((endDate != null && startDate != null) && Date(endDate) < Date(startDate)) {
+                toastr.error("End Date cannot be Less than Start Date");
+                return false;
+            }
+            getEventList(appFormId, workFlowId, startDate, endDate, keyword);
+        });
+    });
+
+    function getEventList(appFormId, workFlowId, startDate, endDate, keyword) {
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            // url: "/EduApply/EventLog/GetEventList",
+            url: "/EventLog/GetEventList",
+            data: { "appFormId": appFormId, "workFlowId": workFlowId, "startDate": startDate, "endDate": endDate, "keyword": keyword },
+
+            success: function (data) {
+                $("#eventLogContainer").html('<table id="eventLogTable" class="table table-striped"><thead><tr><th>Applicant</th><th>Application Form</th><th>Work Flow</th><th>Details</th><th>Timestamp</th></tr></thead><tbody id="eventLogTableBody"></tbody></table>');
+                var eventLogTableBody = $("#eventLogTableBody");
+                var counter = 0;
+                if (data.length > 0) {
+                    eventLogTableBody.html('');
+                    $.each(data, function (id, option) {
+                        eventLogTableBody.append($('<tr></tr>').html(
+                            '<td>' + option.username + '</td>' +
+                                '<td>' + option.appLicationForm + '</td>' +
+                            '<td>' + option.workFlow + '</td>' +
+                            '<td>' + option.details + '</td>' +
+                            '<td>' + option.timestamp + '</td>'
+
+                        ));
+                    });
+                    if ($.fn.dataTable.isDataTable('#eventLogTable')) {
+                        $('#eventLogTable').DataTable({
+                            destroy: true
+                        });
+                    }
+                    else {
+                        $('#eventLogTable').DataTable();
+                    }
+                }
+                else {
+                    eventLogTableBody.html('<tr><td colspan="5" style="text-align: center">No records found</td></tr>');
+                }
+
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Failed to retrieve Event Log.');
+                //   statesProgress.hide();
+            }
+        });
+    }
+</script>

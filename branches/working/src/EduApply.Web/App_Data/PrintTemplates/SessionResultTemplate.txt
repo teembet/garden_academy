@@ -1,0 +1,9 @@
+﻿RESULT
+----------------------------------------------------------------------------------
+RegNum:      #RegNum#
+Subject1:      English Language     Subject1 Score:  #EngScore#
+Subject2:      #Subject2#                        Subject2 Score:  #Subject2Score#
+Subject3:      #Subject3#                      Subject3 Score:  #Subject3Score#
+Subject4:      #Subject4#                     Subject4 Score:  #Subject4Score#
+----------------------------------------------------------------------------------
+Total Score: #TotalScore#

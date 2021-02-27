@@ -1,0 +1,26 @@
+﻿@using EduApply.Data.Entities
+@{
+    ViewBag.Title = "Success";
+   Layout = "~/Views/Shared/ApplicationLayout.cshtml";
+}
+
+<h2>Success</h2>
+<div class="alert alert-success">
+    @ViewBag.message
+</div>
+@Html.ActionLink("Ok", "Index", "Home", null, new { @class = "btn btn-default" })
+
+@if ((Session["ApplicationForm"] as ApplicationForm).AllowPhotoCardPrinting)
+{
+    <div class="pull-right">
+        <span>&nbsp;</span>
+        @Html.ActionLink("Print Photocard", "PrintPhotoCard", "Application", new { applicationId = Convert.ToInt64(Session["AppId"]) }, new { @class = "btn btn-warning" })
+    </div>
+}
+
+@if ((Session["ApplicationForm"] as ApplicationForm).AllowApplicationFormPrinting)
+{
+    <div class="pull-right">
+        @Html.ActionLink("Print Form", "PrintAppForm", "Application", new { applicationId = Convert.ToInt64(Session["AppId"]) }, new { @class = "btn btn-warning pull-right" })
+    </div>
+}

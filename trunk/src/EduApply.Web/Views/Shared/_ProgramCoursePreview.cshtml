@@ -1,0 +1,40 @@
+﻿@model IEnumerable<EduApply.Web.Models.ProgramCoursePreviewModel>
+@{ var counter = 1;}
+<div class="container">
+    <hr />
+    <h4>Program / Course of study</h4>
+    <hr />
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6">
+            @if (counter == 1)
+            {
+                <h4>First Choice</h4>
+                <hr />
+            }
+            @if (counter == 2)
+            {
+                <h4>Second Choice</h4>
+                <hr />
+            }
+            @if (counter == 3)
+            {
+                <h4>Third Choice</h4>
+                <hr />
+            }
+            @if (counter == 4)
+            {
+                <h4>Fourth Choice</h4>
+                <hr />
+            }
+
+
+            <div class="col-md-6"><p><strong>Program: </strong> @item.Program</p></div>
+            <div class="col-md-6"><p><strong>Course: </strong> @item.Course</p></div>
+        </div>
+
+
+            counter++;
+    }
+</div>
+

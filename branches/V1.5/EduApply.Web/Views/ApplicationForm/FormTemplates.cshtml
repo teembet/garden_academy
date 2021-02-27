@@ -1,0 +1,78 @@
+﻿@using System.Collections
+@using EduApply.Data.Entities
+@using EduApply.Web.Models
+
+@{
+    ViewBag.Title = "FormTemplates";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2 style="color: #428bca;">Form Templates</h2>
+<hr />
+
+<div class="row">
+    @{
+        var olevelModel = ViewData["OLevelTemplateModel"] as OLevelResultDetails;
+        var educationalDetailsModel = ViewData["EducationalDetailsModel"] as EducationalDetailsModel;
+        var biodataModel = ViewData["BiodataModel"] as PersonalInformationModel;
+        var applicantsProgramCourseModel = ViewData["AppProgramCourseModel"] as ApplicantsProgramCourseModel;
+    }
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#biodata" data-toggle="tab">Biodata</a></li>
+            <li><a href="#oLevelResultDetails" data-toggle="tab">O-Level Result</a></li>
+            <li><a href="#educationalDetails" data-toggle="tab">Educational Details</a></li>
+            <li><a href="#reference" data-toggle="tab">Referee</a></li>
+            <li><a href="#workExperience" data-toggle="tab">Work Experience</a></li>
+            <li><a href="#uploadPassport" data-toggle="tab">Passport Upload</a></li>
+            <li><a href="#uploadCertificate" data-toggle="tab">Certificate Upload</a></li>
+            <li><a href="#programCourse" data-toggle="tab">Program/Course</a></li>
+            <li><a href="#regNumValidation" data-toggle="tab">Reg No Validation</a></li>
+            <li><a href="#jambBreakDownDetails" data-toggle="tab">Jamb Break Down</a></li>
+        </ul>
+    </div>
+
+    <div class="col-md-12 margin-top">
+        <div class="tab-content">
+            <div id="biodata" class="tab-pane fade active in">
+                @Html.Partial("_Biodata", biodataModel)
+
+            </div>
+            <div id="reference" class="tab-pane fade in">
+                @Html.Partial("_Reference", new List<Reference>())
+            </div>
+            <div id="workExperience" class="tab-pane fade in">
+                @Html.Partial("_WorkExperience", new List<WorkExperience>())
+            </div>
+
+            <div id="oLevelResultDetails" class="tab-pane fade in">
+                @Html.Partial("_OLevelResultDetails2", ViewData["OLevelTemplateModel"] as OLevelResultDetailsViewModel)
+            </div>
+            <div id="educationalDetails" class="tab-pane fade in">
+                @Html.Partial("_EducationalDetails", new List<EducationalDetails>())
+            </div>
+            <div id="uploadPassport" class="tab-pane fade in">
+                @Html.Partial("_UploadPassport", new PictureModel())
+            </div>
+            <div id="uploadCertificate" class="tab-pane fade in">
+                @Html.Partial("_UploadCertificate", new List<Certificate>())
+            </div>
+            <div id="programCourse" class="tab-pane fade in">
+                @Html.Partial("_ProgramCourse", applicantsProgramCourseModel)
+            </div>
+            <div id="regNumValidation" class="tab-pane fade in">
+                @Html.Partial("_regNumValidation")
+            </div>
+            <div id="jambBreakDownDetails" class="tab-pane fade in">
+                @Html.Partial("_JambBreakDownDetails", ViewData["JambResultDetails"] as ManualJambBreakDownModel)
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script>
+    $(function () {
+        $('.nav-stacked a:first').tab('show');
+    });
+</script>

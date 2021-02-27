@@ -1,0 +1,38 @@
+﻿@*@model System.Web.Mvc.HandleErrorInfo
+
+    @{
+        ViewBag.Title = "Error";
+    }
+
+    <h1 class="text-danger">Error.</h1>
+    <h2 class="text-danger">An error occurred while processing your request.</h2>*@
+
+
+@model IEnumerable<string>
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_PlainLayout.cshtml";
+}
+<h2>Alert</h2>
+<hr/>
+<div class="alert alert-danger">
+    @switch (Model.Count())
+    {
+        case 0:
+            @: Something went wrong. Please try again
+            break;
+        case 1:
+        @Model.First();
+            break;
+        default:
+        @: The following errors were encountered:
+        <ul>
+            @foreach (string error in Model)
+            {
+                <li>@error</li>
+            }
+        </ul>
+            break;
+    }
+</div>
+@Html.ActionLink("OK", "Index","ErrorHandler", null, new { @class = "btn btn-default" })

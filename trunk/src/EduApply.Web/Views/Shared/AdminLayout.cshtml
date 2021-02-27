@@ -1,0 +1,309 @@
+﻿@using EduApply.Logic.Interfaces
+@using EduApply.Logic.Service
+@using EduApply.Logic.Utility
+@using NPOI.SS.Formula.Functions
+<!DOCTYPE html>
+<html>
+@{
+    var theme = EngineContext.Resolve<Theme>();
+    var schoolName = theme.SchoolName;
+    var http = EngineContext.Resolve<HttpContextBase>();
+    var configurationService = EngineContext.Resolve<IConfigurationService>();
+    var localTime = configurationService.GetCurrentWestAfricanDateTime();
+    //var logo = @UrlHelper.GenerateContentUrl("images/" + theme.Logo, http);
+
+    var logo = @Url.Content("/images/" + theme.Logo);
+
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Apply Portal</title>
+
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <link href="~/Content/assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+
+    @*<link href="~/Content/assets/css/main-style.css" rel="stylesheet" />*@
+    <link href="~/Content/jquery.dataTables_themeroller.css" rel="stylesheet" />
+    <link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    @*@Styles.Render("~/Content/css")*@
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/timepicker.js"></script>
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script src="~/Scripts/jquery.dataTables.rowReordering.js"></script>
+    <link href="~/Styles/Theme.css" rel="stylesheet" />
+    <script>
+        $(function () {
+            $('a').each(function () {
+                if ($(this).prop('href') == window.location.href) {
+                    $(this).addClass('current');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <noscript>This Website uses Javascript, Please enable it in your browser</noscript>
+
+    <div id="wrapper">
+        <!-- navbar top -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+            <!-- navbar-header -->
+            <div class="navbar-head">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand " href="#">
+                    <img style="height:50px" src=@logo alt="logo" />&nbsp; <b> Application Portal</b>
+                    @*@Html.ActionLink("ADMIN", "Index", "Admin", new { area = "" }, new { @class = "navbar-brand" })*@
+                </a>
+            </div>
+            <!-- end navbar-header -->
+            <!-- navbar-top-links -->
+            <ul class="navv navbar-top-links navbar-right">
+                @Html.Partial("_LoginPartial")
+                <!-- end main dropdown -->
+            </ul>
+            <!-- end navbar-top-links -->
+
+        </nav>
+        <!-- end navbar top -->
+        <!-- navbar side -->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <!-- sidebar-collapse -->
+            <div class=" sidebar-collapse">
+                <!-- side-menu -->
+
+                <ul class="navv " id="side-menu">
+
+                    <li>
+                        <!-- user image section-->
+                        <div class="user-section">
+                            <div class="user-section-inner">
+                                <img src="~/Content/assets/img/user.jpg" alt="">
+                            </div>
+                            <div class="user-info">
+                                <div>@User.Identity.Name</div>
+                                <div class="user-text-online">
+                                    <span class="user-circle-online btn btn-success btn-circle "></span>&nbsp;Online
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="">
+                            <a href="@Url.Action("Index", "Admin")">
+                                <i class="fa fa-users"></i>
+                                <span>User Management</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            @*@Html.ActionLink("Configuration", "Index", "Configuration")<span class="fa arrow"></span>*@
+
+                            <a href="@Url.Action("Index", "Configuration")">
+                                <i class="fa fa-cogs"></i>
+                                <span>Configuration</span>
+                            </a>
+                            <!--<ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="flot.html">Flot Charts</a>
+                                    </li>
+                                    <li>
+                                        <a href="morris.html">Morris Charts</a>
+                                    </li>
+                                </ul>
+                                <!-- second-level-items-->
+                        </li>
+                        <li>
+
+                            @*@Html.ActionLink("Form Templates", "FormTemplates", "ApplicationForm")*@
+
+                            <a href="@Url.Action("FormTemplates", "ApplicationForm")">
+                                <i class="fa fa-file-o"></i>
+                                <span>Form Templates</span>
+                            </a>
+
+
+
+                        </li>
+
+
+                        <li>
+
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="dropDownMenu2">
+                                <i class="fa fa-envelope"></i> Application <span class="fa arrow"></span>
+
+                            </a>
+                            <ul class="navv nav-second-level" role="menu" aria-labelledby="dropDownMenu2">
+                                <li>@Html.ActionLink("Application Forms", "Index", "ApplicationForm")</li>
+                                <li>@Html.ActionLink("Event Log", "Index", "EventLog")</li>
+                                <li>@Html.ActionLink("Search", "Index", "Search")</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#" data-toggle="dropdown"><i class="fa fa-upload"></i> Uploads<span class="fa arrow"></span></a>
+                            <ul class="navv nav-second-level" role="menu" aria-labelledby="dropDownMenu1">
+                                <li class="navv nav-second-level">
+                                    <a href="#" tabindex="-1" class="dropdown-toggle" data-toggle="dropdown">Jamb<span class="fa arrow"></span></a>
+                                    <ul class="navv nav-third-level" role="menu">
+                                        <li role="presentation">@Html.ActionLink("Jamb Result", "JambBreakDownUpload", "Upload", null, new { @role = "menuitem" })  </li>
+                                        <li role="presentation">@Html.ActionLink("Direct Entry", "JambBiodataUpload", "Upload", null, new { @role = "menuitem" })  </li>
+                                    </ul>
+                                </li>
+                                <li class="navv nav-second-level">
+                                    <a href="#" tabindex="-1" class="dropdown-toggle" data-toggle="dropdown">Result<span class="fa arrow"></span></a>
+                                    <ul class="navv nav-third-level" role="menu">
+                                        <li role="presentation">@Html.ActionLink("Application Result", "FormResultUpload", "Upload", null, new { @role = "menuitem" })</li>
+                                        <li role="presentation">@Html.ActionLink("Non-Application Result", "SessionResultUpload", "Upload", null, new { @role = "menuitem" })</li>
+                                    </ul>
+                                </li>
+                                <li class="navv nav-second-level">
+                                    <a href="#" tabindex="-1" class="dropdown-toggle" data-toggle="dropdown">Admitted List<span class="fa arrow"></span> </a>
+                                    <ul class="navv nav-third-level" role="menu">
+                                        <li role="presentation">@Html.ActionLink("Applicants", "ApplicantAdmittedList", "Upload", null, new { @role = "menuitem", @tabindex = "-1" })</li>
+                                        <li role="presentation">@Html.ActionLink("Non-Applicants", "NonApplicantAdmittedList", "Upload", null, new { @role = "menuitem", @tabindex = "-1" })</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "Correction")">
+                                <i class="fa fa-file-o"></i>
+                                <span>Correction</span>
+                            </a>
+                        </li>
+                        <li>
+                            @*@Html.ActionLink("Audit Trail", "Index", "AuditTrail")*@
+                            <a href="@Url.Action("Index", "AuditTrail")">
+                                <i class="fa fa-archive"></i>
+                                <span>Audit Trail</span>
+                            </a>
+
+                        </li>
+
+                    }
+                    @if (User.IsInRole("SchoolAdmin"))
+                    {
+                        <li>
+
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="dropDownMenu2">
+                                <i class="fa fa-envelope"></i> Application <span class="fa arrow"></span>
+
+                            </a>
+                            <ul class="navv nav-second-level" role="menu" aria-labelledby="dropDownMenu2">
+                                <li>@Html.ActionLink("Application Forms", "Index", "ApplicationForm")</li>
+                                <li>@Html.ActionLink("Event Log", "Index", "EventLog")</li>
+                                <li>@Html.ActionLink("Search", "Index", "Search")</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#" data-toggle="dropdown"><i class="fa fa-upload"></i> Uploads<span class="fa arrow"></span></a>
+                            <ul class="navv nav-second-level" role="menu" aria-labelledby="dropDownMenu1">
+                                <li role="presentation">@Html.ActionLink("Jamb Result", "JambBreakDownUpload", "Upload", null, new { @role = "menuitem" })  </li>
+                                <li class="navv nav-second-level">
+                                    <a href="#" tabindex="-1" class="dropdown-toggle" data-toggle="dropdown">Result<span class="fa arrow"></span></a>
+                                    <ul class="navv nav-third-level" role="menu">
+                                        <li role="presentation">@Html.ActionLink("Application Result", "FormResultUpload", "Upload", null, new { @role = "menuitem" })</li>
+                                        <li role="presentation">@Html.ActionLink("Non-Application Result", "SessionResultUpload", "Upload", null, new { @role = "menuitem" })</li>
+                                    </ul>
+                                </li>
+                                <li class="navv nav-second-level">
+                                    <a href="#" tabindex="-1" class="dropdown-toggle" data-toggle="dropdown">Admitted List<span class="fa arrow"></span> </a>
+                                    <ul class="navv nav-third-level" role="menu">
+                                        <li role="presentation">@Html.ActionLink("Applicants", "ApplicantAdmittedList", "Upload", null, new { @role = "menuitem", @tabindex = "-1" })</li>
+                                        <li role="presentation">@Html.ActionLink("Non-Applicants", "NonApplicantAdmittedList", "Upload", null, new { @role = "menuitem", @tabindex = "-1" })</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+
+                </ul>
+                <!-- end side-menu -->
+            </div>
+            <!-- end sidebar-collapse -->
+        </nav>
+        <!-- end navbar side -->
+        <!--  page-wrapper -->
+        <div id="page-wrapper">
+
+            <div class="row ">
+                <!-- Page Header -->
+
+                <div class="col-lg-11  col-md-12 col-sm-12 ">
+                    <div class="col-lg-12 cont">
+                        <h2 class="cont-header  "> @ViewBag.title</h2>
+                    </div>
+                    @*<div class="row margin-left">
+                            <div class="col-lg-12 cont-header"> <div class="alert alert-info"><i class="fa fa-folder-open"></i><b>&nbsp;Hello ! </b>You're logged in as<b> <strong>@User.Identity.Name</strong>.</b> </div></div>
+                        </div>*@
+
+                </div>
+
+            </div>
+            <div class="cont">
+                <hr />
+                <div class="alert alert-info"><i class="fa fa-folder-open"></i><b>&nbsp;Hello ! </b>You're logged in as<b> <strong>@User.Identity.Name</strong>.</b> </div>
+                <div id="loading">
+                    Downloading....
+                </div>
+                @RenderBody()
+                <hr />
+                <footer class="container">
+                    <p>&copy; @localTime.Year - Application Portal</p>
+                </footer>
+            </div>
+        </div>
+        <!--End Page Header -->
+    </div>
+
+
+
+
+    <!-- end page-wrapper -->
+    @* <script src="~/Content/assets/plugins/bootstrap/bootstrap.min.js"></script>*@
+    <script src="~/Content/assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/Content/assets/plugins/pace/pace.js"></script>
+    <script src="~/Content/assets/scripts/siminta.js"></script>
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @RenderSection("scripts", required: false)
+
+
+    <script>
+        $(function () {
+            checkSupportForInputTypeDate();
+
+            function checkSupportForInputTypeDate() {
+                jQuery.validator.methods.date = function (value, element) {
+                    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+                    var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+                    if (!isSafari || !isChrome) {
+                        var d = new Date();
+                        return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                    } else {
+                        return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                    }
+                };
+            }
+        });
+    </script>
+</body>
+
+</html>

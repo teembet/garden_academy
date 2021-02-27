@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Account Activated";
+    Layout = "~/Views/Shared/_PlainLayout.cshtml";
+}
+
+<h2>Success</h2>
+<div class="alert alert-success">
+    <p>
+        Congratulations, Your registration is complete and your account has been activated. Please click @Html.ActionLink(" here ", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })to log in
+    </p>
+</div>

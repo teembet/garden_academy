@@ -1,0 +1,76 @@
+<Themes>
+
+  <Theme host="localhost:8676" name="" headerImage="images.jpg" logo="logo.png">
+    <BackgroundColor>#124065</BackgroundColor>
+    <BackgroundColor2>#124065</BackgroundColor2>
+    <SidebarBackgroundColor>#d9edf7</SidebarBackgroundColor>
+    <SidebarLink> #3879A6 </SidebarLink>
+    <OuterLogo>outerlogo.png</OuterLogo>
+
+  </Theme>
+
+  <Theme host="192.168.129.15" name="Federal University of Technology, Owerri." headerImage="images.jpg" logo="logo.png" >
+    <BackgroundColor>#124065</BackgroundColor>
+    <BackgroundColor2>#124065</BackgroundColor2>
+    <SidebarBackgroundColor>#d9edf7</SidebarBackgroundColor>
+    <SidebarLink> #3879A6 </SidebarLink>
+    <OuterLogo>outerlogo.png</OuterLogo>
+
+  </Theme>
+
+  <Theme host="197.253.3.122" name="Federal University of Technology, Owerri." headerImage="images.jpg" logo="logo.png" >
+    <BackgroundColor>#124065</BackgroundColor>
+    <BackgroundColor2>#124065</BackgroundColor2>
+    <SidebarBackgroundColor>#d9edf7</SidebarBackgroundColor>
+    <SidebarLink> #3879A6 </SidebarLink>
+    <OuterLogo>outerlogo.png</OuterLogo>
+
+  </Theme>
+
+  <Theme host="localhost:867666" name="Federal ogy, Akure." headerImage="images.jpg" logo="logo.png" >
+    <BackgroundColor> #54744E</BackgroundColor>
+    <BackgroundColor2>#378327 </BackgroundColor2>
+    <SidebarBackgroundColor>#33E366 </SidebarBackgroundColor>
+    <SidebarLink> #E647373</SidebarLink>
+    <OuterLogo>outerlg</OuterLogo>
+  </Theme>
+  
+    
+    
+  <Theme host="" name="Federal University of Technology, Owerri." headerImage="images.jpg" logo="logo.png">
+    <BackgroundColor>#336000</BackgroundColor>
+    <BackgroundColor2>#5CA47A </BackgroundColor2>
+    <SidebarBackgroundColor>#ECF3E5 </SidebarBackgroundColor>
+    <SidebarLink> #9DD3AF</SidebarLink>
+    <OuterLogo>outerlogo.png</OuterLogo>
+
+  </Theme>
+  
+  <Theme host="64.91.230.133:8051" name="" headerImage="images.jpg" logo="logo.png">
+    <BackgroundColor>#124065</BackgroundColor>
+    <BackgroundColor2>#124065</BackgroundColor2>
+    <SidebarBackgroundColor>#d9edf7</SidebarBackgroundColor>
+    <SidebarLink> #3879A6 </SidebarLink>
+    <OuterLogo>outerlogo.png</OuterLogo>
+
+  </Theme>
+  
+  <Theme host="edutechapply.splasherstech.com" name="" headerImage="images.jpg" logo="logo.png">
+    <BackgroundColor>#124065</BackgroundColor>
+    <BackgroundColor2>#124065</BackgroundColor2>
+    <SidebarBackgroundColor>#d9edf7</SidebarBackgroundColor>
+    <SidebarLink> #3879A6 </SidebarLink>
+    <OuterLogo>outerlogo.png</OuterLogo>
+
+  </Theme>
+  
+  <Theme host="apply.oaucdl.edu.ng" name="" headerImage="images.jpg" logo="logo.png">
+    <BackgroundColor>#124065</BackgroundColor>
+    <BackgroundColor2>#124065</BackgroundColor2>
+    <SidebarBackgroundColor>#d9edf7</SidebarBackgroundColor>
+    <SidebarLink> #3879A6 </SidebarLink>
+    <OuterLogo>outerlogo.png</OuterLogo>
+
+  </Theme>
+
+</Themes>
