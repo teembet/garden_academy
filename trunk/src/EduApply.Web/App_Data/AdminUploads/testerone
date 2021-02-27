@@ -1,7 +1,0 @@
-RegNum,LastName,FirstName,MiddleName,Faculty,CourseOfStudy,Gender,StateOfOrigin,LGA,EngScore,Subject2,Subject2Score,Subject3,Subject3Score,Subject4,Subject4Score
-12345678AB,Adeyemi,Ebunoluwa,Folarin,,Computer Science,Male,Ondo,Akoko,99,Physics,99,Chemistry,99,Maths,99
-,Gbotoso,Titilola,Morenike,,Pharmacy,Female,Ondo,Akoko,99,Physics,99,Chemistry,99,Maths,99
-98765432CD,Gbotoso,Titilola,Morenike,,Pharmacy,Female,Ondo,Akoko,90,Physics,89,Chemistry,65,Maths,78
-12345678AB,,Ebunoluwa,Folarin,,Computer Science,Male,Ondo,Akoko,99,Physics,99,Chemistry,99,Maths,99
-12345678AB,Botu,Abimbola,Olayemi,,Statistics,Female,Ondo,Akoko,90,Physics,99,Chemistry,80,Maths,99
-12345678AB,Botu,Abimbola,Olayemi,,Statistics,Female,Ondo,Akoko,90,Physics,101,Chemistry,80,Maths,99
