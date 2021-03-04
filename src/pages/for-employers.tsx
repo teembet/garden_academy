@@ -1,4 +1,4 @@
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Alert } from "react-bootstrap";
 import { useState } from "react";
 
 import homehero from "../assets/img/home-hero.svg";
@@ -21,14 +21,23 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
   const [phoneValid, setPhoneValid] = useState("");
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState("");
-  const [url, setUrl] = useState("");
-  const [urlValid, setUrlValid] = useState("");
 
   const [showModal, setShowModal] = useState(false);
 
+  const [showAlert, setShowAlert] = useState({
+    text: "",
+    show: false,
+    color: "success",
+  });
+
+  const [buttonText, setButtonText] = useState({
+    text: "Submit",
+    disabled: false,
+  });
+
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (firstNameValidation(firstName) !== true) {
       return firstNameValidation(firstName);
     }
@@ -45,12 +54,61 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
       return emailValidation(email);
     }
 
-    if (urlValidation(url) !== true) {
-      return urlValidation(url);
-    }
+    setButtonText({
+      text: "Loading ...",
+      disabled: true,
+    });
 
-    handleClose();
-    alert("Success");
+    const response = await fetch(
+      "https://educollect-api.edutechng.com/api/Edulearn/employer",
+      {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          phoneNumber: phone,
+        }), // body data type must match "Content-Type" header
+      }
+    );
+
+    let emplyersData = await response.json();
+
+    setButtonText({
+      text: "Submit",
+      disabled: false,
+    });
+
+    if (emplyersData.requestSuccessful) {
+      setShowAlert({
+        text: "Employer request was submitted successfully",
+        show: true,
+        color: "success",
+      });
+      setTimeout(() => {
+        setShowAlert({
+          text: "",
+          show: false,
+          color: "primary",
+        });
+        handleClose();
+      }, 5000);
+    } else {
+      setShowAlert({
+        text: emplyersData.message,
+        show: true,
+        color: "danger",
+      });
+    }
   };
 
   const firstNameValidation = (fieldValue: string): boolean => {
@@ -122,23 +180,6 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
     return false;
   };
 
-  const urlValidation = (url: string): boolean => {
-    if (
-      /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(:[0-9]+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/.test(
-        url
-      )
-    ) {
-      setUrlValid("");
-      return true;
-    }
-    if (url.trim() === "") {
-      setUrlValid("Portfolio URL is required");
-      return false;
-    }
-    setUrlValid("Please enter a valid URL");
-    return false;
-  };
-
   return (
     <>
       <main id="content" role="main">
@@ -177,7 +218,10 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                     <br />
                     <br />
                     <div className="mt-3">
-                      <button className="btn btn-md  btn-primary">
+                      <button
+                        onClick={handleShow}
+                        className="btn btn-md  btn-primary"
+                      >
                         Get Started
                       </button>
                     </div>
@@ -307,7 +351,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
           className=" session-five d-lg-flex align-items-lg-center space-2 space-top-xl-3 space-bottom-lg-3 space-top-2 space-lg-0 min-vh-lg-100"
           style={{ flexDirection: "column", backgroundColor: "#E9FAFB" }}
         >
-          <div className="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+          <div className="w-md-80 w-lg-50 space-top-2 text-center mx-md-auto mb-5 mb-md-9">
             <h2 style={{ fontSize: "36px" }}>What You Will Get</h2>
             <p>
               Garden Academy exposes your organisation to a universal benefit
@@ -360,7 +404,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
 
             <div className="col-lg-7 col-xs-12 mt-5">
               <img
-                className=" d-none d-lg-block"
+                className="img-fluid d-none d-lg-block"
                 src={employer}
                 alt="facillator"
                 style={{
@@ -443,6 +487,19 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
         <Modal.Body>
           <form>
             <div className="row">
+              <div className="offset-2 col-sm-8">
+                <Alert
+                  show={showAlert.show}
+                  variant={showAlert.color}
+                  onClose={() => setShowAlert({ ...showAlert, show: false })}
+                  dismissible
+                >
+                  <Alert.Heading className="text-light">
+                    {showAlert.text}
+                  </Alert.Heading>
+                </Alert>
+              </div>
+
               <div className="col-sm-6">
                 <div className="js-form-message form-group">
                   <label htmlFor="firstName" className="input-label">
@@ -522,26 +579,6 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                   <p className="text-danger">{emailValid}</p>
                 </div>
               </div>
-
-              <div className="col-sm-12">
-                <div className="js-form-message form-group">
-                  <label htmlFor={"lastName"} className="input-label">
-                    Portfolio Link
-                  </label>
-                  <input
-                    type="url"
-                    className="form-control"
-                    name="url"
-                    id="url"
-                    placeholder="https://drive.google.com/jfjfjfjfjjffff"
-                    required
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
-                    onBlur={(e) => urlValidation(e.target.value)}
-                  />
-                  <p className="text-danger">{urlValid}</p>
-                </div>
-              </div>
             </div>
           </form>
         </Modal.Body>
@@ -549,8 +586,12 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            Next
+          <Button
+            disabled={buttonText.disabled}
+            variant="primary"
+            onClick={handleSubmit}
+          >
+            {buttonText.text}
           </Button>
         </Modal.Footer>
       </Modal>

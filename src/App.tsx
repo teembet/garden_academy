@@ -32,8 +32,8 @@ const App: React.SFC<AppProps> = () => {
           <Route path="/faq" component={AppFAQ}></Route>
           <Route path="/about" component={AppAboutUsPage}></Route>
           <Route path="/contact" component={AppContactUsPage}></Route>
-          <Route path="/programs" component={AppProgramsPage}></Route>
-          <Route path="/details" component={AppCourseDetails}></Route>
+          <Route path="/programs" component={AppProgramsPage}></Route>ß
+          <Route path="/details/:id" component={AppCourseDetails}></Route>
           <Route path="" component={AppNotFoundPage}></Route>
         </Switch>
         <AppFooter></AppFooter>

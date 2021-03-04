@@ -18,7 +18,7 @@ const CourseCard: React.SFC<CourseCardProps> = ({ course, grid }) => {
       >
         <Link
           to={{
-            pathname: "/details",
+            pathname: `/details/${course.id}`,
             state: {
               data: course,
             },

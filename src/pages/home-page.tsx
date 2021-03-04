@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Alert } from "react-bootstrap";
 import { useState, useEffect } from "react";
 
 import "../assets/css/homepage.css";
@@ -44,11 +44,22 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
   const [phoneValid, setPhoneValid] = useState("");
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState("");
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState("https://");
   const [urlValid, setUrlValid] = useState("");
 
   const [showModal, setShowModal] = useState(false);
   const [programs, setPrograms] = useState([]);
+
+  const [showAlert, setShowAlert] = useState({
+    text: "",
+    show: false,
+    color: "success",
+  });
+
+  const [buttonText, setButtonText] = useState({
+    text: "Submit",
+    disabled: false,
+  });
 
   const [images, setImages] = useState([
     {
@@ -146,7 +157,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (firstNameValidation(firstName) !== true) {
       return firstNameValidation(firstName);
     }
@@ -167,8 +178,61 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
       return urlValidation(url);
     }
 
-    handleClose();
-    alert("Success");
+    setButtonText({
+      text: "Loading ...",
+      disabled: true,
+    });
+
+    const response = await fetch(
+      "https://educollect-api.edutechng.com/api/Edulearn/facilitator",
+      {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          phoneNumber: phone,
+        }), // body data type must match "Content-Type" header
+      }
+    );
+
+    let facillatorData = await response.json();
+
+    setButtonText({
+      text: "Submit",
+      disabled: false,
+    });
+
+    if (facillatorData.requestSuccessful) {
+      setShowAlert({
+        text: "Facilitator request was submitted successfully",
+        show: true,
+        color: "success",
+      });
+      setTimeout(() => {
+        setShowAlert({
+          text: "",
+          show: false,
+          color: "primary",
+        });
+        handleClose();
+      }, 5000);
+    } else {
+      setShowAlert({
+        text: facillatorData.message,
+        show: true,
+        color: "danger",
+      });
+    }
   };
 
   useEffect(() => {
@@ -497,6 +561,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
             </div>
           </div>
         )}
+
         <div style={{ background: "#E8EFFD", width: "100%" }}>
           <div className=" d-lg-flex position-relative session-three">
             <div className=" container d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
@@ -581,7 +646,9 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                   </div>
 
                   <div className="get-started">
-                    <button className="btn get-started-btn">Get Started</button>
+                    <Link to="/employers" className="btn get-started-btn">
+                      Get Started
+                    </Link>
                   </div>
                 </div>
               </section>
@@ -765,10 +832,10 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                           </div>
                           <div className="col-9">
                             <h4 style={{ margin: "0px" }}>
-                              {images[index].title}
+                              {images[index + 1].title}
                             </h4>
                             <p style={{ color: "#81909D" }}>
-                              {images[index].social}
+                              {images[index + 1].social}
                             </p>
                           </div>
                         </div>
@@ -809,6 +876,18 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
         <Modal.Body>
           <form>
             <div className="row">
+              <div className="offset-2 col-sm-8">
+                <Alert
+                  show={showAlert.show}
+                  variant={showAlert.color}
+                  onClose={() => setShowAlert({ ...showAlert, show: false })}
+                  dismissible
+                >
+                  <Alert.Heading className="text-light">
+                    {showAlert.text}
+                  </Alert.Heading>
+                </Alert>
+              </div>
               <div className="col-sm-6">
                 <div className="js-form-message form-group">
                   <label htmlFor="firstName" className="input-label">
@@ -915,8 +994,12 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            Next
+          <Button
+            disabled={buttonText.disabled}
+            variant="primary"
+            onClick={handleSubmit}
+          >
+            {buttonText.text}
           </Button>
         </Modal.Footer>
       </Modal>

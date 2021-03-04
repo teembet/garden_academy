@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Alert } from "react-bootstrap";
 import { PaystackButton } from "react-paystack";
 import { Link } from "react-router-dom";
 
@@ -20,13 +20,17 @@ export interface AppCourseDetailsProps {
 }
 
 const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
-  const course = props.location?.state?.data;
-  const modules = course?.modules ? course?.modules : [];
-  const amount = !course?.price
-    ? "10000"
-    : course.price === "0.00"
-    ? "10000"
-    : course.price.replace(".", "");
+  const [course, setCourse] = useState(props.location?.state?.data);
+  const [modules, setModules] = useState(
+    course?.modules ? course?.modules : []
+  );
+  const [amount, setAmount] = useState(
+    !course?.price
+      ? "10000"
+      : course.price === "0.00"
+      ? "10000"
+      : course.price.replace(".", "")
+  );
 
   const [showModal, setShowModal] = useState(false);
   const [showSecondModal, setShowSecondModal] = useState(false);
@@ -41,6 +45,17 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
   const [paymentPlan, setPaymentPlan] = useState("one_off");
   const [programs, setPrograms] = useState([]);
 
+  const [showAlert, setShowAlert] = useState({
+    text: "",
+    show: false,
+    color: "success",
+  });
+
+  const [buttonText, setButtonText] = useState({
+    text: "Next",
+    disabled: false,
+  });
+
   const handleClose = () => setShowModal(false);
 
   const handleShow = () => setShowModal(true);
@@ -48,6 +63,10 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
   const handleSecondClose = () => {
     setShowSecondModal(false);
     handleShow();
+  };
+
+  const handleCloseSecondModal = () => {
+    setShowSecondModal(false);
   };
 
   const handleSecondShow = () => setShowSecondModal(true);
@@ -78,13 +97,20 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
       if (loginData.status) {
         console.log(loginData.data);
         setPrograms(loginData.data);
+        let result = loginData.data.filter((data: { id: any }) => {
+          return data.id == props.match.params.id;
+        });
+
+        setCourse(result[0]);
+        setModules(course?.modules ? course?.modules : []);
+        setAmount(course?.price);
       }
     };
 
     fetchPrograms();
   }, []);
 
-  const handleCallBothFunctions = () => {
+  const handleCallBothFunctions = async () => {
     if (firstNameValidation(firstName) !== true) {
       return firstNameValidation(firstName);
     }
@@ -101,8 +127,75 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
       return phoneValidation(phone);
     }
 
-    handleClose();
-    handleSecondShow();
+    setButtonText({
+      text: "Loading ...",
+      disabled: true,
+    });
+    try {
+      const response = await fetch(
+        "https://educollect-api.edutechng.com/api/Edulearn/student",
+        {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: "same-origin", // include, *same-origin, omit
+          headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: "follow", // manual, *follow, error
+          referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            phoneNumber: phone,
+          }), // body data type must match "Content-Type" header
+        }
+      );
+
+      let facillatorData = await response.json();
+
+      setButtonText({
+        text: "Next",
+        disabled: false,
+      });
+
+      if (facillatorData.requestSuccessful) {
+        setShowAlert({
+          text: "Data was submitted successfully",
+          show: true,
+          color: "success",
+        });
+        handleClose();
+        handleSecondShow();
+
+        setTimeout(() => {
+          setShowAlert({
+            text: "",
+            show: false,
+            color: "primary",
+          });
+          handleClose();
+        }, 5000);
+      } else {
+        setShowAlert({
+          text: facillatorData.message,
+          show: true,
+          color: "danger",
+        });
+      }
+    } catch (error) {
+      setButtonText({
+        text: "Next",
+        disabled: false,
+      });
+      setShowAlert({
+        text: "An Error has Occurred",
+        show: true,
+        color: "danger",
+      });
+    }
   };
 
   const setMoney = (event: any) => {
@@ -114,16 +207,54 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
     email,
     amount: parseInt(amount),
     publicKey: "pk_test_439452ab32de9472427341c35ccc7ef16d32e09c",
+    metadata: {
+      custom_field: [
+        {
+          firstName,
+          lastName,
+          phone,
+          email,
+        },
+      ],
+    },
   };
 
   const handlePaystackSuccessAction = (reference: any) => {
     // Implementation for whatever you want to do with reference and after success call.
     console.log(reference);
+    setShowAlert({
+      text:
+        "Payment was successful we will contact you with the details you submitted",
+      show: true,
+      color: "success",
+    });
+
+    setTimeout(() => {
+      setShowAlert({
+        text: "",
+        show: false,
+        color: "primary",
+      });
+      handleCloseSecondModal();
+    }, 10000);
   };
 
   const handlePaystackCloseAction = () => {
     // implementation for  whatever you want to do when the Paystack dialog closed.
-    console.log("closed");
+    setShowAlert({
+      text:
+        "Paystack was closed please make payment to enable us process your course",
+      show: true,
+      color: "danger",
+    });
+
+    setTimeout(() => {
+      setShowAlert({
+        text: "",
+        show: false,
+        color: "primary",
+      });
+    }, 10000);
   };
 
   const componentProps = {
@@ -316,14 +447,25 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
             </div>
           </div>
         ) : (
-          <div className="d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
-            <div className="row" style={{ width: "100%" }}>
-              <div className="col-6 offset-3">
-                <h1 style={{ textAlign: "center" }}>Page Not Found</h1>
-                <Link to="/" className="btn btn-primary btn-block">
-                  Go to Home
-                </Link>
-              </div>
+          <div
+            className="session-four container space-4 space-top-xl-2 space-bottom-lg-2"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            <div className="space-4">
+              <i
+                style={{ fontSize: "150px" }}
+                className="fas fa-spinner fa-spin "
+              ></i>
+
+              <br />
+              <br />
+
+              <h1>Loading ...</h1>
             </div>
           </div>
         )}
@@ -369,6 +511,20 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
             <Modal.Body>
               <form>
                 <div className="row">
+                  <div className="offset-2 col-sm-8">
+                    <Alert
+                      show={showAlert.show}
+                      variant={showAlert.color}
+                      onClose={() =>
+                        setShowAlert({ ...showAlert, show: false })
+                      }
+                      dismissible
+                    >
+                      <Alert.Heading className="text-light">
+                        {showAlert.text}
+                      </Alert.Heading>
+                    </Alert>
+                  </div>
                   <div className="col-sm-6">
                     <div className="js-form-message form-group">
                       <label htmlFor="firstName" className="input-label">
@@ -455,11 +611,16 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button variant="primary" onClick={handleCallBothFunctions}>
-                Next
+              <Button
+                disabled={buttonText.disabled}
+                variant="primary"
+                onClick={handleCallBothFunctions}
+              >
+                {buttonText.text}
               </Button>
             </Modal.Footer>
           </Modal>
+
           <Modal
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
@@ -481,6 +642,20 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
                     }}
                     onChange={(e) => setMoney(e)}
                   >
+                    <div className=" col-sm-12">
+                      <Alert
+                        show={showAlert.show}
+                        variant={showAlert.color}
+                        onClose={() =>
+                          setShowAlert({ ...showAlert, show: false })
+                        }
+                        dismissible
+                      >
+                        <Alert.Heading className="text-light">
+                          {showAlert.text}
+                        </Alert.Heading>
+                      </Alert>
+                    </div>
                     <div
                       className="col-sm-5 card"
                       style={{
@@ -642,7 +817,9 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
                   {...componentProps}
                 />
               ) : paymentPlan === "instalment" ? (
-                <a className="btn btn-primary">Not Available</a>
+                <button disabled className="btn btn-primary">
+                  Not Available
+                </button>
               ) : (
                 <a
                   className="btn btn-primary"
