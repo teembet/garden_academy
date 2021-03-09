@@ -67,7 +67,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: JSON.stringify({
-          recipientEmail: "support@edutechng.com",
+          recipientEmail: "info@gardenacademy.io",
           name: "Edutech Support Page",
           message: `First Name :   ${firstName}
                     <br/>
