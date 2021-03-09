@@ -348,7 +348,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
           </div>
         </div>
         <div
-          className=" session-five d-lg-flex align-items-lg-center space-2 space-top-xl-3 space-bottom-lg-3 space-top-2 space-lg-0 min-vh-lg-100"
+          className=" session-five d-lg-flex align-items-lg-center  space-top-xl-3 space-bottom-lg-3 space-top-2 min-vh-lg-100"
           style={{ flexDirection: "column", backgroundColor: "#E9FAFB" }}
         >
           <div className="w-md-80 w-lg-50 space-top-2 text-center mx-md-auto mb-5 mb-md-9">
@@ -358,16 +358,17 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
               that translates into better business outcome in the near future
             </p>
           </div>
-          <div className="row space-bottom-2" style={{ margin: "1% 5%" }}>
+          <div className="row space-bottom-1" style={{ margin: "0 5%" }}>
             <div className="col-lg-5 mt-5">
               <div>
                 <h2 className="text-primary" style={{ fontSize: "24px" }}>
                   Quality People
                 </h2>
                 <p>
-                  Few would argue that, despite the advancements of feminism
-                  over the past three decades, women still face a double
-                  standard when it comes to their behavior.
+                  By channeling the knowledge & experience of global industry
+                  experts into truly expansive courses, Garden Academy develops
+                  the best talent who are primed and ready to take your
+                  organization to the next level
                 </p>
               </div>
               <div className="mt-2">
@@ -375,9 +376,11 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                   Cost Effective Scaling
                 </h2>
                 <p>
-                  Few would argue that, despite the advancements of feminism
-                  over the past three decades, women still face a double
-                  standard when it comes to their behavior.
+                  By upskilling your workforce through Garden Academy, you can
+                  guarantee that you do not have to break the bank to scale your
+                  operations. Your workforce is developed at a fraction of the
+                  cost of hiring new, experienced talent and your organization
+                  can scale rapidly.
                 </p>
               </div>
               <div className="mt-2">
@@ -385,9 +388,9 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                   Diverse Talent Base
                 </h2>
                 <p>
-                  Few would argue that, despite the advancements of feminism
-                  over the past three decades, women still face a double
-                  standard when it comes to their behavior.
+                  Garden Academy brings together individuals with varying
+                  skillsets, from different backgrounds and nationalities
+                  thereby ensuring employers have access to a world of talent.
                 </p>
               </div>
               <div className="mt-2">
@@ -395,9 +398,10 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                   Easy Onboarding
                 </h2>
                 <p>
-                  Few would argue that, despite the advancements of feminism
-                  over the past three decades, women still face a double
-                  standard when it comes to their behavior.
+                  The Garden Academy team is on hand to facilitate the seamless
+                  integration of our alumni into your organization, primed and
+                  ready to deliver the best results to take your business to the
+                  next level.
                 </p>
               </div>
             </div>
@@ -426,7 +430,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
           className="session-five d-lg-flex align-items-lg-center space-2 space-top-xl-3 space-bottom-lg-3 space-top-2 space-lg-0 min-vh-lg-100"
           style={{ backgroundColor: "#fff" }}
         >
-          <div className="row space-bottom-2" style={{ margin: "1% 5%" }}>
+          <div className="row space-bottom-1" style={{ margin: "0% 5%" }}>
             <div className="col-lg-5 mt-5">
               <hr
                 className="mt-5"
@@ -444,15 +448,17 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                 Let’s help you with hiring
               </h3>
               <p className="mt-3 facillator-p">
-                Lorem ipsum dolor sit amet, consectetur vred adipiscing tortor,
-                pellentesque donec deaut accumsan nibh turpis eu massa
-                consectetur adipiscing tortor benelit.
+                We understand how difficult it can be to find outstanding talent
+                with the right balance of skill and character to join your
+                organization and contribute to improving your business outcomes
+                in today’s fast-paced world.
               </p>
               <br />
               <p className="facillator-p">
-                Lorem ipsum dolor sit amet, consectetur vred adipiscing
-                adipiscing tortor, pellentesque donec deaut accumsan nibh turpis
-                pellentesque donec deaut consectetur.
+                To solve this, our team of human operations experts is on hand
+                to manage your entire hiring process, from talent prospecting to
+                onboarding. You can rest assured that Garden Academy will
+                deliver the best talent to your doorstep.
               </p>
               <br />
               <br />

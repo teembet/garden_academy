@@ -30,7 +30,12 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                   alignItems: "center",
                 }}
               >
-                <img src={alert} alt="" className="blink_me img-fluid" />
+                <img
+                  src={alert}
+                  alt="blinker"
+                  style={{ height: "100px" }}
+                  className="blink_me img-fluid"
+                />
               </div>
               <div
                 className="col-sm-8"
