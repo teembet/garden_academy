@@ -21,6 +21,12 @@ const Search: React.SFC<SearchProps> = ({
     }
   }, []);
 
+  const handleKeyPress = (event: any) => {
+    if (event.key === "Enter") {
+      onSearchSubmit(searchTerm);
+    }
+  };
+
   return (
     <>
       <form className="input-group">
@@ -31,6 +37,7 @@ const Search: React.SFC<SearchProps> = ({
           aria-label="Search Front"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
 
         <input
