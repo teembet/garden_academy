@@ -1,14 +1,14 @@
 import rect from "../assets/img/rect-bg.svg";
 export interface PaymentOptionsProps {}
 
-const PaymentOptions: React.SFC<PaymentOptionsProps> = () => {
+const PaymentOptions: React.SFC<PaymentOptionsProps> = ({ children }) => {
   return (
     <>
       <div
-        className="d-lg-flex position-relative pay"
+        className="position-relative pay"
         style={{ padding: "0 3%", margin: "40px 5%" }}
       >
-        <div className="  d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
+        <div className="d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
           {/* <!-- Card --> */}
           <section className=" ">
             <div style={{ marginTop: "40px" }}>
@@ -28,8 +28,8 @@ const PaymentOptions: React.SFC<PaymentOptionsProps> = () => {
                   </div>
                   <h4 className="card-headers ">One off payment </h4>
                   <div className="card-body">
-                    Feel free to use these in any private or public space.
-                    Please do not repackage and redistribute these as your own.
+                    Get your course payments out of the way at once with our
+                    one-off option. No fuss, no hassle.
                   </div>
                 </div>
                 <div className="col-md-3 mb-3">
@@ -40,8 +40,9 @@ const PaymentOptions: React.SFC<PaymentOptionsProps> = () => {
                   </div>
                   <h4 className="card-headers ">Installmental Payment</h4>
                   <div className="card-body ">
-                    Feel free to use these in any private or public space.
-                    Please do not repackage and redistribute these as your own.
+                    If the one-off option is inconvenient, this option is
+                    available to enable you to spread your payments in specified
+                    portions over a period.
                   </div>
                 </div>
                 <div className="col-md-3 mb-3">
@@ -52,8 +53,9 @@ const PaymentOptions: React.SFC<PaymentOptionsProps> = () => {
                   </div>
                   <h4 className="card-headers">Loan Offer</h4>
                   <div className="card-body ">
-                    Feel free to use these in any private or public space.
-                    Please do not repackage and redistribute these as your own.
+                    Take advantage of the EduCollect(insert hyperlink) platform
+                    to gain access to collateral-free funding to allow you
+                    proceed with your learning.
                   </div>
                 </div>
                 <div className="col-md-3 mb-3">
@@ -64,15 +66,19 @@ const PaymentOptions: React.SFC<PaymentOptionsProps> = () => {
                   </div>
                   <h4 className="card-headers">Deffered Income Share</h4>
                   <div className="card-body ">
-                    Feel free to use these in any private or public space.
-                    Please do not repackage and redistribute these as your own.
+                    And if you are unable to make use of any of the other
+                    payment options due to financial difficulties, you can defer
+                    your course payment till you secure employment. Terms &
+                    Conditions apply
                   </div>
                 </div>
               </div>
             </div>
           </section>
-          {/* <!-- End Card --> */}
         </div>
+        <br />
+
+        {children}
       </div>
     </>
   );

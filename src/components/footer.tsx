@@ -89,7 +89,8 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                       <span className="media">
                         <span className="fas fa-location-arrow mt-1 mr-2"></span>
                         <span className="media-body">
-                          Vibranium Vally <br />
+                          Vibranium Vally
+                          <br />
                           42, Local Airport Road, Ikeja <br />
                           Lagos
                         </span>

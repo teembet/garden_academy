@@ -35,16 +35,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
       },
     });
   };
-  // const handleKeyDown = (event) => {
-  //     if (event.key === 'Enter') {
-  //        history.push({
-  //       pathname: "/programs",
-  //       state: {
-  //         event,
-  //       },
-  //     });
 
-  //     }}
   const [firstName, setFirstName] = useState("");
   const [firstNameValid, setFirstNameValid] = useState("");
   const [lastName, setLastName] = useState("");
@@ -70,7 +61,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
     disabled: false,
   });
 
-  const [images, setImages] = useState([
+  const [images] = useState([
     {
       image: person1,
       title: "Dimeji Adeojo",
@@ -274,7 +265,6 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
 
       let loginData = await response.json();
       if (loginData.status) {
-        console.log(loginData.data);
         setPrograms(loginData.data);
       }
     };
