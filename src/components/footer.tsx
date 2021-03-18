@@ -62,7 +62,7 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                   href="https://forms.gle/veSsg5gphcXwptQz8"
                   target="_blank"
                   rel="noreferrer"
-                  className="btn btn-block get-started-btn"
+                  className="btn btn-block get-started-btn btn-hover"
                 >
                   Book Now
                 </a>

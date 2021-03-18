@@ -2,7 +2,6 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { Modal, Button, Alert } from "react-bootstrap";
 import { useState, useEffect } from "react";
-
 import "../assets/css/homepage.css";
 import rectangle from "../assets/img/rectangle.svg";
 import facilitator from "../assets/img/facilitator.svg";
@@ -19,6 +18,10 @@ import person2 from "../assets/img/person2.svg";
 import person1 from "../assets/img/person1.svg";
 import CourseCardGridView from "../components/course-card-grid-view";
 import Search from "../components/search";
+// @ts-ignore
+import Fade from 'react-reveal/Fade'
+// @ts-ignore
+import Zoom from 'react-reveal/Zoom'
 
 export interface AppHomePageProps {
   images: any;
@@ -375,10 +378,10 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
               <div className="row">
                 <div className="col-lg-6">
                   <div className="mb-5 mt-11">
-                    <h1 className="display-4 mb-3">
+                    <h1 className="display-4 mb-3 animated slideInDown">
                       Learn the <span className="text-primary">skills</span> you
                       need to <span className="text-primary">succeed</span>
-                      <span className="text-primary text-highlight-warning">
+                      {/* <span className="text-primary text-highlight-warning">
                         <span
                           className="js-text-animation"
                           data-hs-typed-options='{
@@ -389,9 +392,9 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                             "backDelay": 2500
                           }'
                         ></span>
-                      </span>
+                      </span> */}
                     </h1>
-                    <p className="lead">
+                    <p className="lead  animated slideInUp">
                       We are committed to training the next generation of tech
                       superstars and help organisations upscale their workforce
                       with the right talent
@@ -409,7 +412,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                   <br />
                 </div>
 
-                <div className="col-lg-6">
+                <div className="col-lg-6 ">
                   <img
                     src={homehero}
                     alt=""
@@ -430,7 +433,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
             </div>
           </div>
         </div>
-
+<Fade left>
         <div className="container space-2 space-top-xl-3 space-bottom-lg-3">
           <div className="w-md-80 w-lg-60 text-center mx-md-auto mb-5 mb-md-9">
             <h2>Why Garden Academy</h2>
@@ -442,7 +445,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
 
           <div className="row mx-n2 mx-lg-n3">
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              <div className="card">
+              <div className="card card-hover">
                 <div className="card-icon">
                   <span className="span-icon">
                     <img src={homecard1} alt="" />
@@ -457,7 +460,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
               </div>
             </div>
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              <div className="card">
+              <div className="card card-hover">
                 <div className="card-icon">
                   <span className="span-icon">
                     <img src={homecard2} alt="" />
@@ -472,7 +475,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
             </div>
 
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              <div className="card">
+              <div className="card card-hover">
                 <div className="card-icon">
                   <span className="span-icon">
                     <img src={homecard3} alt="" />
@@ -486,7 +489,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
               </div>
             </div>
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              <div className="card">
+              <div className="card card-hover">
                 <div className="card-icon">
                   <span className="span-icon">
                     <img src={homecard4} alt="" />
@@ -500,7 +503,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
               </div>
             </div>
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              <div className="card">
+              <div className="card card-hover">
                 <div className="card-icon">
                   <span className="span-icon">
                     <img src={homecard5} alt="" />
@@ -519,7 +522,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
             </div>
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
               {/* <!-- Card --> */}
-              <div className="card">
+              <div className="card card-hover">
                 <div className="card-icon">
                   <span className="span-icon">
                     <img src={homecard6} alt="" />
@@ -536,7 +539,8 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
             </div>
           </div>
         </div>
-
+</Fade>
+<Fade right>
         {programs?.length > 0 && (
           <div style={{ background: "#E8EFFD", width: "100%" }}>
             <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
@@ -564,7 +568,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                       data: programs.slice(0, 3),
                     },
                   }}
-                  className="btn programs-btn"
+                  className="btn programs-btn btn-hover"
                 >
                   <b>View All Programs</b>
                 </Link>
@@ -572,7 +576,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
             </div>
           </div>
         )}
-
+</Fade>
         <div style={{ background: "#E8EFFD", width: "100%" }}>
           <div className=" d-lg-flex position-relative session-three">
             <div className=" container d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
@@ -657,7 +661,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                   </div>
 
                   <div className="get-started">
-                    <Link to="/employers" className="btn get-started-btn">
+                    <Link to="/employers" className="btn get-started-btn btn-hover">
                       Get Started
                     </Link>
                   </div>
@@ -666,7 +670,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
             </div>
           </div>
         </div>
-
+<Fade left>
         <div className="session-five d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
           <div className="container">
             <div className="row space-bottom-2">
@@ -703,7 +707,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                 <br />
                 <button
                   onClick={handleShow}
-                  className="btn btn-lg  btn-primary"
+                  className="btn btn-lg  btn-primary btn-hover"
                   style={{
                     padding: "16px 32px",
                     borderRadius: "4px",
@@ -724,8 +728,8 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
             </div>
           </div>
         </div>
-
-        {images.length > 0 && (
+        </Fade>
+<Zoom>        {images.length > 0 && (
           <div className=" container d-lg-flex  align-items-lg-center space-top-2 space-lg-3 space-lg-0 min-vh-lg-100">
             <div className="row">
               <div
@@ -778,7 +782,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                 <div className="row">
                   <div className="col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
                     <div
-                      className="card  shadow pt-3 pb-5 px-2"
+                      className="card card-hover  shadow pt-3 pb-5 px-2"
                       style={{
                         boxShadow:
                           "0px 4px 4px rgb(135 146 161 / 16%), 0px 6px 41px rgb(135 146 161 / 11%) !important",
@@ -822,7 +826,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                   {images.length - 1 >= index + 1 && (
                     <div className="d-lg-block d-md-block d-none col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
                       <div
-                        className="card  shadow pt-3 pb-5 px-2"
+                        className="card card-hover shadow pt-3 pb-5 px-2"
                         style={{
                           boxShadow:
                             "0px 4px 4px rgb(135 146 161 / 16%), 0px 6px 41px rgb(135 146 161 / 11%) !important",
@@ -870,6 +874,8 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
             </div>
           </div>
         )}
+        </Zoom>
+
       </main>
 
       <Modal
@@ -1002,13 +1008,14 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleClose} className="btn-hover">
             Close
           </Button>
           <Button
             disabled={buttonText.disabled}
             variant="primary"
             onClick={handleSubmit}
+            className="btn-hover"
           >
             {buttonText.text}
           </Button>

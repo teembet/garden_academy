@@ -9,7 +9,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
-
+import "animate.css/animate.min.css";
 ReactDOM.render(
   // <React.StrictMode>
   <App />,

@@ -25,7 +25,7 @@ const CourseCard: React.SFC<CourseCardProps> = ({ course, grid }) => {
           }}
         >
           <div
-            className="card"
+            className="card card-hover"
             style={{
               padding: "0",
               borderRadius: "4%",

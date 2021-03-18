@@ -14,6 +14,12 @@
   /* background: #051A52; */
 }
 
+
+.nav-link:hover{
+  color: darkblue !important;
+}
+
+
 .active {
   color: darkblue !important;
 }

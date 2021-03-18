@@ -4,7 +4,10 @@ import "../assets/css/programs.css";
 import PaymentOptions from "../components/payment-options";
 import Search from "../components/search";
 import CourseCardGridView from "../components/course-card-grid-view";
-
+// @ts-ignore
+import Fade from 'react-reveal/Fade'
+// @ts-ignore
+import Zoom from 'react-reveal/Zoom'
 export interface AppProgramsPageProps {}
 
 const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
@@ -75,23 +78,23 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
     <main id="content" role="main">
       <div>
         <div className="hero-page-about">
-          <h1 className="d-none d-sm-block">Featured Courses</h1>
+          <h1 className="d-none d-sm-block animated slideInDown">Featured Courses</h1>
 
-          <p className="d-none d-sm-block">
+          <p className="d-none d-sm-block animated slideInUp">
             With a wide range of courses to choose from, you are guaranteed to
             be learning from the <br /> best, regardless of your chosen field.
           </p>
 
           <br />
 
-          <h4 className="d-block d-sm-none">Featured Courses</h4>
+          <h4 className="d-block d-sm-none animated slideInDown">Featured Courses</h4>
 
-          <p style={{ fontSize: ".9em" }} className="d-block d-sm-none">
+          <p style={{ fontSize: ".9em" }} className="d-block d-sm-none animated slideInUp">
             With a wide range of courses to choose from, you are guaranteed to
             be learning from the best, regardless of your chosen field.
           </p>
 
-          <div className="row" style={{ width: "100%" }}>
+          <div className="row animated slideInUp" style={{ width: "100%" }}>
             <div className="col-md-6 offset-md-3 ">
               <Search
                 search={"What do you want to learn"}
@@ -103,7 +106,7 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
           </div>
         </div>
         <br />
-
+<Zoom>
         {programs?.length > 0 ? (
           <>
             <div className="session-four container space-2 space-top-xl-2 space-bottom-lg-2">
@@ -153,8 +156,10 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
             )}
           </div>
         )}
+        </Zoom>
       </div>
-      <PaymentOptions></PaymentOptions>
+      <Fade left>
+      <PaymentOptions></PaymentOptions></Fade>
     </main>
   );
 };

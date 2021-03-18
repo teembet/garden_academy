@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 
 import "../assets/css/header.css";
 import gardenlogo from "../assets/img/garden-logo.svg";
@@ -74,52 +74,54 @@ const AppHeader: React.SFC<AppHeaderProps> = () => {
                 <div className="navbar-body header-abs-top-inner">
                   <ul className="navbar-nav">
                     <li className="hs-has-mega-menu navbar-nav-item">
-                      <Link
+                      <NavLink
                         id="homeMegaMenu"
                         className="hs-mega-menu-invoker nav-link"
                         to="/about"
+                        activeClassName="active"
                       >
                         About Us
-                      </Link>
+                      </NavLink>
                     </li>
                     <li className="hs-has-mega-menu navbar-nav-item">
-                      <Link
+                      <NavLink
                         id="homeMegaMenu"
                         className="hs-mega-menu-invoker nav-link"
                         to="/programs"
                       >
                         Programs
-                      </Link>
+                      </NavLink>
                     </li>
 
                     <li className="hs-has-mega-menu navbar-nav-item">
-                      <Link
+                      <NavLink
                         id="homeMegaMenu"
                         className="hs-mega-menu-invoker nav-link"
+                      
                         to="/employers"
                       >
                         For Employers
-                      </Link>
+                      </NavLink>
                     </li>
 
                     <li className="hs-has-mega-menu navbar-nav-item">
-                      <Link
+                      <NavLink
                         id="homeMegaMenu"
                         className="hs-mega-menu-invoker nav-link"
                         to="/blog"
                       >
                         Blog
-                      </Link>
+                      </NavLink>
                     </li>
 
                     <li className="hs-has-mega-menu navbar-nav-item">
-                      <Link
+                      <NavLink
                         id="homeMegaMenu"
                         className="hs-mega-menu-invoker nav-link"
                         to="/contact"
                       >
                         Contact Us
-                      </Link>
+                      </NavLink>
                     </li>
                   </ul>
                 </div>

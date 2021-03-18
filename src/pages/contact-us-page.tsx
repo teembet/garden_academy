@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Alert } from "react-bootstrap";
 import "../assets/css/contactpage.css";
 import Socials from "../components/socials";
+// @ts-ignore
+import Zoom from 'react-reveal/Zoom'
 export interface AppContactUsPageProps {}
 
 const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
@@ -188,7 +190,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
   return (
     <main id="content" role="main">
       <div className="hero-page">
-        <h1 className="d-none d-sm-block">Contact Us</h1>
+        <h1 className="d-none d-sm-block animated slideInDown">Contact Us</h1>
         <h4 className="d-block d-sm-none">Contact Us</h4>
         <p>&nbsp;</p>
         <p>&nbsp;</p>
@@ -202,10 +204,10 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
       <br className="d-block d-lg-none" />
       <br className="d-block d-lg-none" />
       <br className="d-block d-lg-none" />
-
+<Zoom>
       <div className="container space-top-6 space-top-lg-4 space-bottom-2">
         <div
-          className="card"
+          className="card card-hover"
           style={{
             height: "inherit",
             padding: "0 5%",
@@ -407,6 +409,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
           </div>
         </div>
       </div>
+      </Zoom>
       <div style={{ display: "none" }}>
         * Edutech Project <br />
         * Done By Satowind (Ogugua Tochukwu) <br />

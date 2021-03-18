@@ -17,7 +17,8 @@ import i from "../assets/img/i.png";
 import j from "../assets/img/j.png";
 import k from "../assets/img/k.png";
 import study from "../assets/img/study.png";
-
+// @ts-ignore
+import Zoom from 'react-reveal/Zoom'
 export interface AppAboutUsPageProps {}
 
 const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
@@ -151,18 +152,18 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
     <>
       <main id="content" role="main">
         <div className="hero-page-about">
-          <h1 className="d-none d-sm-block">The Garden Academy Team</h1>
+          <h1 className="d-none d-sm-block  animated slideInDown">The Garden Academy Team</h1>
 
-          <p className="d-none d-sm-block">
+          <p className="d-none d-sm-block  animated slideInUp">
             Choose from any of our wide range of courses tailored to suit your
             needs.
             <br /> From software engineering to product management and more, We
             have got you covered
           </p>
 
-          <h4 className="d-block d-sm-none">The Garden Academy Team</h4>
+          <h4 className="d-block d-sm-none  animated slideInDown">The Garden Academy Team</h4>
 
-          <p style={{ fontSize: ".9em" }} className="d-block d-sm-none">
+          <p style={{ fontSize: ".9em" }} className="d-block d-sm-none  animated slideInUp">
             Choose from any of our wide range of courses tailored to suit your
             needs. From software engineering to product management and more, We
             have got you covered
@@ -208,7 +209,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
               <img
                 src={girl}
                 alt=""
-                className="img-fluid img-data d-none d-lg-block"
+                className="img-fluid img-data d-none d-lg-block card-hover"
               />
               <img
                 src={study}
@@ -219,7 +220,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
               <div className="box d-none d-lg-block"></div>
             </div>
           </div>
-
+<Zoom>
           <div className="container space-bottom-2">
             <div className="d-none d-lg-block d-md-block">
               <h1 style={{ textAlign: "center" }}>Meet Our Facilitators</h1>
@@ -240,7 +241,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
             <br />
             <br />
             <div className="row">
-              <div className="col-md-3">
+              <div className="col-md-3 card-hover">
                 <img src={Arlene} alt="" className="img-fluid img-data" />
                 <br />
                 <br />
@@ -248,7 +249,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                 <p>Software Engineering Facilitator</p>
                 <br />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 card-hover">
                 <img src={a} alt="" className="img-fluid img-data" />
                 <br />
                 <br />
@@ -256,7 +257,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                 <p>Software Engineering Facilitator</p>
                 <br />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 card-hover">
                 <img src={b} alt="" className="img-fluid img-data" />
                 <br />
                 <br />
@@ -264,7 +265,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                 <p>Software Engineering Facilitator</p>
                 <br />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 card-hover">
                 <img src={c} alt="" className="img-fluid img-data" />
                 <br />
                 <br />
@@ -272,7 +273,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                 <p>Software Engineering Facilitator</p>
                 <br />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 card-hover">
                 <img src={d} alt="" className="img-fluid img-data" />
                 <br />
                 <br />
@@ -280,7 +281,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                 <p>Software Engineering Facilitator</p>
                 <br />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 card-hover">
                 <img src={e} alt="" className="img-fluid img-data" />
                 <br />
                 <br />
@@ -288,7 +289,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                 <p>Software Engineering Facilitator</p>
                 <br />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 card-hover">
                 <img src={f} alt="" className="img-fluid img-data" />
                 <br />
                 <br />
@@ -296,7 +297,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                 <p>Software Engineering Facilitator</p>
                 <br />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 card-hover">
                 <img src={g} alt="" className="img-fluid img-data" />
                 <br />
                 <br />
@@ -304,7 +305,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                 <p>Software Engineering Facilitator</p>
                 <br />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 card-hover">
                 <img src={h} alt="" className="img-fluid img-data" />
                 <br />
                 <br />
@@ -312,7 +313,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                 <p>Software Engineering Facilitator</p>
                 <br />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 card-hover">
                 <img src={i} alt="" className="img-fluid img-data" />
                 <br />
                 <br />
@@ -320,7 +321,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                 <p>Software Engineering Facilitator</p>
                 <br />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 card-hover">
                 <img src={j} alt="" className="img-fluid img-data" />
                 <br />
                 <br />
@@ -328,7 +329,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                 <p>Software Engineering Facilitator</p>
                 <br />
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 card-hover">
                 <img src={k} alt="" className="img-fluid img-data" />
                 <br />
                 <br />
@@ -338,7 +339,7 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
               </div>
             </div>
           </div>
-
+</Zoom>
           <div className="action-box space-3">
             <h2 style={{ textAlign: "center" }}>
               Do you have what it takes to train the <br />

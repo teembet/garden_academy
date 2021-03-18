@@ -29,9 +29,9 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
     <>
       <main>
         <div className="hero-page-about">
-          <h1 className="d-none d-sm-block">Garden Academy Blog</h1>
+          <h1 className="d-none d-sm-block animated slideInDown">Garden Academy Blog</h1>
 
-          <p className="d-none d-sm-block">
+          <p className="d-none d-sm-block animated slideInUp">
             Check out our Blog to stay up to date with great contents
           </p>
 
@@ -47,11 +47,11 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
             <div className="row space-top-3 space-bottom-2">
               <div className=" col-lg-12">
                 <div className="mb-4">
-                  <h1 className="white-text">What's New</h1>
+                  <h1 className="white-text animated slideInDown">What's New</h1>
                 </div>
               </div>
 
-              <div className="row col-lg-12 mx-n2 mx-lg-n3">
+              <div className="row col-lg-12 mx-n2 mx-lg-n3 animated slideInUp">
                 <div
                   className="col-lg-8"
                   style={{ padding: "5% 0", position: "relative" }}
@@ -67,7 +67,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                     <img
                       src={blog1}
                       alt=""
-                      className="img-fluid img-data d-none d-lg-block"
+                      className="img-fluid img-data d-none d-lg-block card-hover"
                     />
                     <img
                       src={blog2}
@@ -91,7 +91,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                         },
                       }}
                     >
-                      <h3 style={{ color: "#677788" }}>
+                      <h3 className="text-hover">
                         User Experience Is the Most Important Metric You Aren't
                         Measuring
                       </h3>
@@ -140,7 +140,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                       <img
                         src={blog3}
                         alt=""
-                        className="img-fluid img-data d-none d-lg-block"
+                        className="img-fluid img-data d-none d-lg-block card-hover"
                       />
                       <img
                         src={blog2}
@@ -166,7 +166,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                           },
                         }}
                       >
-                        <h3 style={{ color: "#677788" }}>
+                        <h3 className="text-hover">
                           Sell More Products by Letting Your Customers Design
                           Them for You
                         </h3>
@@ -215,7 +215,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                       <img
                         src={blog4}
                         alt=""
-                        className="img-fluid img-data d-none d-lg-block"
+                        className="img-fluid img-data d-none d-lg-block card-hover"
                       />
                       <img
                         src={blog2}
@@ -241,7 +241,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                           },
                         }}
                       >
-                        <h3 style={{ color: "#677788" }}>
+                        <h3 className="text-hover">
                           Best Project Management Software & Tools in 2021
                         </h3>
                       </Link>
@@ -295,7 +295,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                       <img
                         src={blog1}
                         alt=""
-                        className="img-fluid img-data d-none d-lg-block"
+                        className="img-fluid img-data d-none d-lg-block card-hover"
                       />
                       <img
                         src={blog2}
@@ -320,7 +320,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                           },
                         }}
                       >
-                        <h3 style={{ color: "#677788" }}>
+                        <h3 className="text-hover">
                           5 Phases of Project Management (PMP)
                         </h3>
                       </Link>
@@ -367,7 +367,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                       <img
                         src={blog1}
                         alt=""
-                        className="img-fluid img-data d-none d-lg-block"
+                        className="img-fluid img-data d-none d-lg-block card-hover"
                       />
                       <img
                         src={blog2}
@@ -394,7 +394,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                           },
                         }}
                       >
-                        <h3 style={{ color: "#677788" }}>
+                        <h3 className="text-hover">
                           Measuring Engagement is Not the Same as Listening
                         </h3>
                       </Link>
@@ -441,7 +441,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                       <img
                         src={blog1}
                         alt=""
-                        className="img-fluid img-data d-none d-lg-block"
+                        className="img-fluid img-data d-none d-lg-block card-hover"
                       />
                       <img
                         src={blog2}
@@ -468,7 +468,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                           },
                         }}
                       >
-                        <h3 style={{ color: "#677788" }}>
+                        <h3 className="text-hover">
                           Emerging VR & AR in Recruitment - The Simulation
                           process
                         </h3>
@@ -516,7 +516,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                       <img
                         src={blog1}
                         alt=""
-                        className="img-fluid img-data d-none d-lg-block"
+                        className="img-fluid img-data d-none d-lg-block card-hover"
                       />
                       <img
                         src={blog2}
@@ -543,7 +543,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                           },
                         }}
                       >
-                        <h3 style={{ color: "#677788" }}>
+                        <h3 className="text-hover">
                           Top 5 Fintech Trends That Will Shape Financial Markets
                           in 2021
                         </h3>
@@ -595,7 +595,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                       <img
                         src={blog1}
                         alt=""
-                        className="img-fluid img-data d-none d-lg-block"
+                        className="img-fluid img-data d-none d-lg-block card-hover"
                       />
                       <img
                         src={blog2}
@@ -622,7 +622,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                           },
                         }}
                       >
-                        <h3 style={{ color: "#677788" }}>
+                        <h3 className="text-hover">
                           Three ways payment orchestration improves financial
                           reconciliation
                         </h3>
@@ -670,7 +670,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                       <img
                         src={blog1}
                         alt=""
-                        className="img-fluid img-data d-none d-lg-block"
+                        className="img-fluid img-data d-none d-lg-block card-hover"
                       />
                       <img
                         src={blog2}
@@ -697,7 +697,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                           },
                         }}
                       >
-                        <h3 style={{ color: "#677788" }}>
+                        <h3 className="text-hover">
                           Using Artificial Intelligence to Improve Law Firm
                           Performance
                         </h3>
@@ -746,7 +746,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                       <img
                         src={blog1}
                         alt=""
-                        className="img-fluid img-data d-none d-lg-block"
+                        className="img-fluid img-data d-none d-lg-block card-hover"
                       />
                       <img
                         src={blog2}
@@ -773,7 +773,7 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                           },
                         }}
                       >
-                        <h3 style={{ color: "#677788" }}>
+                        <h3 className="text-hover">
                           Digital transformation: 11 habits of successful teams
                         </h3>
                       </Link>

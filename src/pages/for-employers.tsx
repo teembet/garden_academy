@@ -9,7 +9,10 @@ import homecard3 from "../assets/img/homecard3.svg";
 import facilitator from "../assets/img/facilitator.svg";
 import employer from "../assets/img/employer.svg";
 import classP from "../assets/img/class.svg";
-
+// @ts-ignore
+import Fade from 'react-reveal/Fade'
+// @ts-ignore
+import Zoom from 'react-reveal/Zoom'
 export interface AppForEmployersProps {}
 
 const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
@@ -195,9 +198,9 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
               <div className="row">
                 <div className="col-lg-6">
                   <div className="mb-5 mt-11">
-                    <h1 className="display-4 mb-3 text-primary">
+                    <h1 className="display-4 mb-3 text-primary animated slideInDown">
                       Hire Top Tech Talent.Upskill Your Existing Workforce.
-                      <span className="text-primary text-highlight-warning">
+                      {/* <span className="text-primary text-highlight-warning">
                         <span
                           className="js-text-animation"
                           data-hs-typed-options='{
@@ -208,14 +211,14 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                             "backDelay": 2500
                           }'
                         ></span>
-                      </span>
+                      </span> */}
                     </h1>
-                    <p className="lead">
+                    <p className="lead animated slideInDown">
                       With the best minds being developed by our team of
                       industry experts, Garden Academy connects employers to a
                       pool of top talent across multiple fields.
                     </p>
-                    <p className="lead">
+                    <p className="lead animated slideInDown">
                       Are you ready to take your organization to the next level?
                     </p>
                     <br />
@@ -223,7 +226,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                     <div className="mt-3">
                       <button
                         onClick={handleShow}
-                        className="btn btn-md  btn-primary"
+                        className="btn btn-md  btn-primary btn-hover"
                       >
                         Get Started
                       </button>
@@ -234,11 +237,11 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                   <br />
                 </div>
 
-                <div className="col-lg-6">
+                <div className="col-lg-6 ">
                   <img
                     src={homehero}
                     alt=""
-                    className="img-fluid img-fluid d-none d-lg-block"
+                    className="img-fluid img-fluid d-none d-lg-block animated slideInUp"
                     style={{
                       position: "absolute",
                       right: 0,
@@ -261,6 +264,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
           {/* <!-- End SVG Shape --> */}
           </div>
         </div>
+        <Fade left>
         <div className="container space-2 space-top-xl-3 space-bottom-lg-3">
           {/* <!-- Title --> */}
           <div className="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
@@ -276,7 +280,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
               {/* <!-- Card --> */}
               <div
-                className="card"
+                className="card card-hover"
                 style={{
                   height: "27rem",
                 }}
@@ -300,7 +304,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
               {/* <!-- Card --> */}
               <div
-                className="card"
+                className="card card-hover"
                 style={{
                   height: "27rem",
                 }}
@@ -325,7 +329,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
             <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
               {/* <!-- Card --> */}
               <div
-                className="card"
+                className="card card-hover"
                 style={{
                   height: "27rem",
                 }}
@@ -350,6 +354,8 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
             </div>
           </div>
         </div>
+        </Fade>
+        <Zoom>
         <div
           className=" session-five d-lg-flex align-items-lg-center  space-top-xl-3 space-bottom-lg-3 space-top-2 min-vh-lg-100"
           style={{ flexDirection: "column", backgroundColor: "#E9FAFB" }}
@@ -411,7 +417,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
 
             <div className="col-lg-7 col-xs-12 mt-5">
               <img
-                className="img-fluid d-none d-lg-block"
+                className="img-fluid d-none d-lg-block animated slideInDown"
                 src={employer}
                 alt="facillator"
                 style={{
@@ -428,7 +434,9 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
             </div>
           </div>
         </div>
+</Zoom>
 
+<Fade right>
         <div
           className="session-five d-lg-flex align-items-lg-center space-2 space-top-xl-3 space-bottom-lg-3 space-top-2 space-lg-0 min-vh-lg-100"
           style={{ backgroundColor: "#fff" }}
@@ -465,7 +473,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
               </p>
               <br />
               <br />
-              <button className="btn  btn-primary" onClick={handleShow}>
+              <button className="btn  btn-primary btn-hover" onClick={handleShow}>
                 Start Hiring
               </button>
             </div>
@@ -479,6 +487,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
             </div>
           </div>
         </div>
+        </Fade>
       </main>
 
       <Modal
