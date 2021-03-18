@@ -62,7 +62,9 @@ const AppFAQ: React.SFC<AppFAQProps> = () => {
     <>
       <main>
         <div className="hero-page-about">
-          <h1 className="d-none d-sm-block animated slideInDown">Frequently Asked Questions</h1>
+          <h1 className="d-none d-sm-block animated slideInDown">
+            Frequently Asked Questions
+          </h1>
           <h4 className="d-block d-sm-none">Frequently Asked Questions</h4>
 
           <div className="row mt-3" style={{ width: "100%" }}>
@@ -77,59 +79,66 @@ const AppFAQ: React.SFC<AppFAQProps> = () => {
           </div>
         </div>
         <Zoom>
-        <div className="offset-lg-2 col-lg-8 space-2">
-          {faq?.length > 0 ? (
-            <Accordion defaultActiveKey={activeId}>
-              {faq.map((data, index) => {
-                return (
-                  <Card key={index} style={{ border: "none", height: "auto" }}>
-                    <Card.Header>
-                      <h3 className="text-primary">{data.title}</h3>
-                      <Accordion.Toggle
-                        onClick={() => toggleActive(index.toString())}
-                        as={Card.Header}
-                        variant="link"
-                        eventKey={index.toString()}
-                      >
-                        {activeId !== index.toString() ? (
-                          <FaChevronDown style={{ float: "right" }} />
-                        ) : (
-                          <FaChevronUp style={{ float: "right" }} />
-                        )}
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey={index.toString()}>
-                      <Card.Body>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Quidem, fuga rerum ea error nostrum placeat itaque
-                        mollitia numquam libero veritatis fugit excepturi esse
-                        iusto nobis sint est autem suscipit nemo?
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                );
-              })}
-            </Accordion>
-          ) : (
-            <div
-              className="session-four container space-2 space-top-xl-2 space-bottom-lg-2"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
-              <div className="fa-3x">
-                <i style={{ fontSize: "150px" }} className="fas fa-sad-cry"></i>
-              </div>
-              <br />
-              <br />
+          <div className="offset-lg-2 col-lg-8 space-2">
+            {faq?.length > 0 ? (
+              <Accordion defaultActiveKey={activeId}>
+                {faq.map((data, index) => {
+                  return (
+                    <Card
+                      key={index}
+                      style={{ border: "none", height: "auto" }}
+                    >
+                      <Card.Header>
+                        <h3 className="text-primary ">{data.title}</h3>
+                        <Accordion.Toggle
+                          onClick={() => toggleActive(index.toString())}
+                          as={Card.Header}
+                          variant="link"
+                          eventKey={index.toString()}
+                        >
+                          {activeId !== index.toString() ? (
+                            <FaChevronDown style={{ float: "right" }} />
+                          ) : (
+                            <FaChevronUp style={{ float: "right" }} />
+                          )}
+                        </Accordion.Toggle>
+                      </Card.Header>
+                      <Accordion.Collapse eventKey={index.toString()}>
+                        <Card.Body className="animated slideInDown">
+                          Lorem ipsum, dolor sit amet consectetur adipisicing
+                          elit. Quidem, fuga rerum ea error nostrum placeat
+                          itaque mollitia numquam libero veritatis fugit
+                          excepturi esse iusto nobis sint est autem suscipit
+                          nemo?
+                        </Card.Body>
+                      </Accordion.Collapse>
+                    </Card>
+                  );
+                })}
+              </Accordion>
+            ) : (
+              <div
+                className="session-four container space-2 space-top-xl-2 space-bottom-lg-2"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <div className="fa-3x">
+                  <i
+                    style={{ fontSize: "150px" }}
+                    className="fas fa-sad-cry"
+                  ></i>
+                </div>
+                <br />
+                <br />
 
-              <h1>No FAQ Match the search</h1>
-            </div>
-          )}
-        </div>
+                <h1>No FAQ Match the search</h1>
+              </div>
+            )}
+          </div>
         </Zoom>
       </main>
     </>
