@@ -256,7 +256,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                       <span className="media">
                         <span className="fas fa-phone-alt mt-1 mr-2"></span>
                         <span className="media-bodys">
-                          contactus@gardenacademy.com
+                          info@gardenacademy.io
                         </span>
                       </span>
                     </a>
@@ -268,7 +268,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                       <span className="media">
                         <span className="fas fa-location-arrow mt-1 mr-2"></span>
                         <span className="media-bodys">
-                          Vibranium Vally 42, Local Airport Road, Ikeja Lagos
+                          Vibranium Valley 42, Local Airport Road, Ikeja Lagos
                         </span>
                       </span>
                     </a>

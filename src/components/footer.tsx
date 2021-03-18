@@ -89,7 +89,7 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                       <span className="media">
                         <span className="fas fa-location-arrow mt-1 mr-2"></span>
                         <span className="media-body">
-                          Vibranium Vally
+                          Vibranium Valley
                           <br />
                           42, Local Airport Road, Ikeja <br />
                           Lagos
@@ -117,7 +117,7 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                       <span className="media">
                         <span className="fas fa-envelope-open mt-1 mr-2"></span>
                         <span className="media-body">
-                          contactus@edulearn.com
+                          info@gardenacademy.io
                         </span>
                       </span>
                     </a>
