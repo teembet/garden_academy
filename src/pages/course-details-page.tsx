@@ -7,7 +7,10 @@ import "../assets/css/course-detailspage.css";
 import PaymentOptions from "../components/payment-options";
 import Rating from "../components/rating";
 import CourseCardGridView from "../components/course-card-grid-view";
-
+// @ts-ignore
+import Zoom from "react-reveal/Zoom";
+// @ts-ignore
+import Fade from "react-reveal/Fade";
 export interface AppCourseDetailsProps {
   config: {};
   showModal: boolean;
@@ -342,23 +345,24 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
             >
               <div className="row" style={{ width: "100%" }}>
                 <div className="col-lg-8">
-                  <h1 className="d-none d-sm-block">{course.name}</h1>
+                  <h1 className="d-none d-sm-block animated slideInDown">{course.name}</h1>
 
                   <h4 className="d-block d-sm-none">{course.name}</h4>
 
-                  <p className="stars">
+                  <p className="stars animated slideInDown">
                     {/* {course.star_count ? course.star_count : "1.00"} */}
                     <Rating rating={course.star_count}></Rating>
                   </p>
-                  <p>
-                    <i className="far fa-clock"></i>&nbsp;{course.duration}
+                  <p className="animated slideInUp">
+                    <i className="far fa-clock animated slideInDown"></i>&nbsp;{course.duration}
                     &nbsp;&nbsp;&nbsp; &nbsp;
-                    <span>{course.members_count} Students</span>
+                    <span className="animated slideInUp">{course.members_count} Students</span>
                   </p>
                 </div>
               </div>
             </div>
             <br />
+            <Zoom>
             <div className="container space-top-3 space-top-lg-3 space-bottom-2">
               <div>
                 <div className="row ">
@@ -443,6 +447,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
                 </div>
               </div>
             </div>
+            </Zoom>
           </div>
         ) : (
           <div
@@ -467,6 +472,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
             </div>
           </div>
         )}
+        <Fade left>
         <PaymentOptions>
           <div
             className="space-bottom-2"
@@ -490,7 +496,7 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
               Reserve Your Spot
             </button>
           </div>
-        </PaymentOptions>
+        </PaymentOptions></Fade>
 
         {programs?.length > 0 && (
           <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">

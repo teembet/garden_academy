@@ -3,6 +3,8 @@ import { Card, Accordion } from "react-bootstrap";
 import { FaChevronDown } from "react-icons/fa";
 import { FaChevronUp } from "react-icons/fa";
 import { useState } from "react";
+// @ts-ignore
+import Zoom from "react-reveal/Zoom";
 export interface AppFAQProps {}
 
 const AppFAQ: React.SFC<AppFAQProps> = () => {
@@ -60,11 +62,11 @@ const AppFAQ: React.SFC<AppFAQProps> = () => {
     <>
       <main>
         <div className="hero-page-about">
-          <h1 className="d-none d-sm-block">Frequently Asked Questions</h1>
+          <h1 className="d-none d-sm-block animated slideInDown">Frequently Asked Questions</h1>
           <h4 className="d-block d-sm-none">Frequently Asked Questions</h4>
 
           <div className="row mt-3" style={{ width: "100%" }}>
-            <div className="col-md-6 offset-md-3 ">
+            <div className="col-md-6 offset-md-3 animated slideInUp">
               <Search
                 search={"What do you want to learn"}
                 button_text={"Search"}
@@ -74,6 +76,7 @@ const AppFAQ: React.SFC<AppFAQProps> = () => {
             </div>
           </div>
         </div>
+        <Zoom>
         <div className="offset-lg-2 col-lg-8 space-2">
           {faq?.length > 0 ? (
             <Accordion defaultActiveKey={activeId}>
@@ -127,6 +130,7 @@ const AppFAQ: React.SFC<AppFAQProps> = () => {
             </div>
           )}
         </div>
+        </Zoom>
       </main>
     </>
   );
