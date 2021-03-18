@@ -95,7 +95,6 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
 
       let loginData = await response.json();
       if (loginData.status) {
-        console.log(loginData.data);
         setPrograms(loginData.data);
         let result = loginData.data.filter((data: { id: any }) => {
           return data.id == props.match.params.id;
@@ -221,7 +220,6 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
 
   const handlePaystackSuccessAction = (reference: any) => {
     // Implementation for whatever you want to do with reference and after success call.
-    console.log(reference);
     setShowAlert({
       text:
         "Payment was successful we will contact you with the details you submitted",
@@ -469,7 +467,30 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
             </div>
           </div>
         )}
-        <PaymentOptions></PaymentOptions>
+        <PaymentOptions>
+          <div
+            className="space-bottom-2"
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <button
+              type="submit"
+              style={{
+                border: "2px solid #0F42A4",
+              }}
+              onClick={handleShow}
+              className="btn btn-outline-primary transition-3d-hover"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              Reserve Your Spot
+            </button>
+          </div>
+        </PaymentOptions>
 
         {programs?.length > 0 && (
           <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">

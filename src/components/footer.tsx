@@ -89,7 +89,8 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
                       <span className="media">
                         <span className="fas fa-location-arrow mt-1 mr-2"></span>
                         <span className="media-body">
-                          Vibranium Valley <br />
+                          Vibranium Vally
+                          <br />
                           42, Local Airport Road, Ikeja <br />
                           Lagos
                         </span>
@@ -138,47 +139,47 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
 
                 <ul className="nav nav-sm nav-x-0 nav-white flex-column">
                   <li className="nav-item">
-                    <a className="nav-link nav-footer" href="front.html#">
+                    <a className="nav-link nav-footer" href="#">
                       Data Analyst
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link nav-footer" href="front.html#">
+                    <a className="nav-link nav-footer" href="#">
                       Business Analyst
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link nav-footer" href="front.html#">
+                    <a className="nav-link nav-footer" href="#">
                       Product Design
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link nav-footer" href="front.html#">
+                    <a className="nav-link nav-footer" href="#">
                       Product Manager
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link nav-footer" href="front.html#">
+                    <a className="nav-link nav-footer" href="#">
                       Operations Manager in Tech
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link nav-footer" href="front.html#">
+                    <a className="nav-link nav-footer" href="#">
                       Financial Advisory for Tech
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link nav-footer" href="front.html#">
+                    <a className="nav-link nav-footer" href="#">
                       Digital Transformation Expert
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link nav-footer" href="front.html#">
+                    <a className="nav-link nav-footer" href="#">
                       Legal for Tech
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link nav-footer" href="front.html#">
+                    <a className="nav-link nav-footer" href="#">
                       Engineering Leadership
                     </a>
                   </li>
@@ -217,17 +218,17 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
 
                 <ul className="nav nav-sm nav-x-0 nav-white flex-column">
                   <li className="nav-item">
-                    <a className="nav-link nav-footer" href="front.html#">
+                    <a className="nav-link nav-footer" href="#">
                       Privacy Policy
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link nav-footer" href="front.html#">
+                    <a className="nav-link nav-footer" href="#">
                       Cookie Policy
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link nav-footer" href="front.html#">
+                    <a className="nav-link nav-footer" href="#">
                       Payment Terms
                     </a>
                   </li>

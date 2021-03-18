@@ -94,6 +94,11 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
       show: true,
       color: "success",
     });
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setMessage("");
+    setSubject("");
   };
 
   const firstNameValidation = (fieldValue: string): boolean => {
@@ -108,7 +113,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
     }
 
     if (fieldValue.trim().length < 3) {
-      setFirstNameValid(`First name needs to be at least three characters`);
+      setFirstNameValid(`First name needs to be at least 3 characters`);
       return false;
     }
     setFirstNameValid("");
@@ -127,7 +132,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
     }
 
     if (fieldValue.trim().length < 3) {
-      setLastNameValid(`Last name needs to be at least three characters`);
+      setLastNameValid(`Last name needs to be at least 3 characters`);
       return false;
     }
 
@@ -159,7 +164,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
     }
 
     if (fieldValue.trim().length < 10) {
-      setSubjectValid(`Subject needs to be at least ten characters`);
+      setSubjectValid(`Subject needs to be at least 10 characters`);
       return false;
     }
 
@@ -174,7 +179,7 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
     }
 
     if (fieldValue.trim().length < 50) {
-      setMessageValid(`Message needs to be at least fifty characters`);
+      setMessageValid(`Message needs to be at least 50 characters`);
       return false;
     }
 

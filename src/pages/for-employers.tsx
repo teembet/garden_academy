@@ -24,7 +24,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
   const [phoneValid, setPhoneValid] = useState("");
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState("");
-  const [message,setMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   const [showModal, setShowModal] = useState(false);
 
@@ -81,7 +81,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
           lastName,
           email,
           phoneNumber: phone,
-          message
+          message,
         }), // body data type must match "Content-Type" header
       }
     );
@@ -107,7 +107,12 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
         });
         handleClose();
       }, 5000);
-    
+
+      setEmail("");
+      setFirstName("");
+      setLastName("");
+      setPhone("");
+      setMessage("");
     } else {
       setShowAlert({
         text: emplyersData.message,
@@ -499,7 +504,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-           Hire Talent/Upskill Staff
+            Hire Talent/Upskill Staff
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -597,30 +602,32 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                   <p className="text-danger">{emailValid}</p>
                 </div>
               </div>
-               <div className="col-sm-12">
+              <div className="col-sm-12">
                 <div className="js-form-message form-group">
                   <label htmlFor={"lastName"} className="input-label">
                     Request Message
                   </label>
                   <textarea
-                    
                     className="form-control"
                     name="message"
                     id="message"
-                   
-                 
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                   
                   />
-                 
                 </div>
               </div>
             </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button style={{color:"#0F42A4",backgroundColor:"transparent",border:"none"}} onClick={handleClose}>
+          <Button
+            style={{
+              color: "#0F42A4",
+              backgroundColor: "transparent",
+              border: "none",
+            }}
+            onClick={handleClose}
+          >
             Close
           </Button>
           <Button

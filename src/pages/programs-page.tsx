@@ -17,19 +17,17 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
   const [programs, setPrograms] = useState([]);
   const [programs_store, setPrograms_store] = useState([]);
   const [pageStatus, setPageStatus] = useState("loading");
-  console.log(pageStatus);
 
   const searchCourse = (searchInput: string) => {
+    console.log(programs_store);
+    console.log(programs);
     if (searchInput.trim() === "") return setPrograms(programs_store);
-    console.log(pageStatus);
 
     let courses = programs_store.filter((course: any) => {
       return course.name.toUpperCase().includes(searchInput.toUpperCase());
     });
 
     setPageStatus("No data");
-
-    console.log(pageStatus);
 
     setPrograms(courses);
   };
@@ -64,10 +62,10 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
         setPrograms(loginData.data);
         setPrograms_store(loginData.data);
         setPageStatus("data");
-        console.log(pageStatus);
-      }
-      if (searchData) {
-        searchCourse(searchData);
+
+        if (searchData) {
+          searchCourse(searchData);
+        }
       }
     };
 

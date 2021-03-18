@@ -30,7 +30,6 @@ export interface AppHomePageProps {
 
 const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
   const searchCourse = (searchInput: string) => {
-    
     if (searchInput.trim() === "") return;
     history.push({
       pathname: "/programs",
@@ -39,16 +38,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
       },
     });
   };
-// const handleKeyDown = (event) => {
-//     if (event.key === 'Enter') {
-//        history.push({
-//       pathname: "/programs",
-//       state: {
-//         event,
-//       },
-//     });
-    
-//     }}
+
   const [firstName, setFirstName] = useState("");
   const [firstNameValid, setFirstNameValid] = useState("");
   const [lastName, setLastName] = useState("");
@@ -74,7 +64,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
     disabled: false,
   });
 
-  const [images, setImages] = useState([
+  const [images] = useState([
     {
       image: person1,
       title: "Dimeji Adeojo",
@@ -239,6 +229,12 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
         });
         handleClose();
       }, 5000);
+
+      setEmail("");
+      setFirstName("");
+      setLastName("");
+      setPhone("");
+      setUrl("https://");
     } else {
       setShowAlert({
         text: facillatorData.message,
@@ -272,7 +268,6 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
 
       let loginData = await response.json();
       if (loginData.status) {
-        console.log(loginData.data);
         setPrograms(loginData.data);
       }
     };
@@ -405,7 +400,6 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                     search={"What do you want to learn"}
                     button_text={"Search"}
                     onSearchSubmit={searchCourse}
-                  
                     searchData=""
                   ></Search>
                   <br />
