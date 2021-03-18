@@ -18,7 +18,7 @@ import j from "../assets/img/j.png";
 import k from "../assets/img/k.png";
 import study from "../assets/img/study.png";
 // @ts-ignore
-import Zoom from 'react-reveal/Zoom'
+import Zoom from "react-reveal/Zoom";
 export interface AppAboutUsPageProps {}
 
 const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
@@ -152,7 +152,9 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
     <>
       <main id="content" role="main">
         <div className="hero-page-about">
-          <h1 className="d-none d-sm-block  animated slideInDown">The Garden Academy Team</h1>
+          <h1 className="d-none d-sm-block  animated slideInDown">
+            The Garden Academy Team
+          </h1>
 
           <p className="d-none d-sm-block  animated slideInUp">
             Choose from any of our wide range of courses tailored to suit your
@@ -161,9 +163,14 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
             have got you covered
           </p>
 
-          <h4 className="d-block d-sm-none  animated slideInDown">The Garden Academy Team</h4>
+          <h4 className="d-block d-sm-none  animated slideInDown">
+            The Garden Academy Team
+          </h4>
 
-          <p style={{ fontSize: ".9em" }} className="d-block d-sm-none  animated slideInUp">
+          <p
+            style={{ fontSize: ".9em" }}
+            className="d-block d-sm-none  animated slideInUp"
+          >
             Choose from any of our wide range of courses tailored to suit your
             needs. From software engineering to product management and more, We
             have got you covered
@@ -220,126 +227,126 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
               <div className="box d-none d-lg-block"></div>
             </div>
           </div>
-<Zoom>
-          <div className="container space-bottom-2">
-            <div className="d-none d-lg-block d-md-block">
-              <h1 style={{ textAlign: "center" }}>Meet Our Facilitators</h1>
-              <p style={{ textAlign: "center" }}>
-                We have carefully chosen a team of experienced and hardworking
-                people in different fields <br />
-                to train the next set of tech professionals.
-              </p>
+          <Zoom>
+            <div className="container space-bottom-2">
+              <div className="d-none d-lg-block d-md-block">
+                <h1 style={{ textAlign: "center" }}>Meet Our Facilitators</h1>
+                <p style={{ textAlign: "center" }}>
+                  We have carefully chosen a team of experienced and hardworking
+                  people in different fields <br />
+                  to train the next set of tech professionals.
+                </p>
+              </div>
+              <div className="d-block d-lg-none d-md-none">
+                <h1>Meet Our Facilitators</h1>
+                <p>
+                  We have carefully chosen a team of experienced and hardworking
+                  people in different fields to train the next set of tech
+                  professionals.
+                </p>
+              </div>
+              <br />
+              <br />
+              <div className="row">
+                <div className="col-md-3 card-hover">
+                  <img src={Arlene} alt="" className="img-fluid img-data" />
+                  <br />
+                  <br />
+                  <h5>Arlene McCoy</h5>
+                  <p>Software Engineering Facilitator</p>
+                  <br />
+                </div>
+                <div className="col-md-3 card-hover">
+                  <img src={a} alt="" className="img-fluid img-data" />
+                  <br />
+                  <br />
+                  <h5>Arlene McCoy</h5>
+                  <p>Software Engineering Facilitator</p>
+                  <br />
+                </div>
+                <div className="col-md-3 card-hover">
+                  <img src={b} alt="" className="img-fluid img-data" />
+                  <br />
+                  <br />
+                  <h5>Arlene McCoy</h5>
+                  <p>Software Engineering Facilitator</p>
+                  <br />
+                </div>
+                <div className="col-md-3 card-hover">
+                  <img src={c} alt="" className="img-fluid img-data" />
+                  <br />
+                  <br />
+                  <h5>Arlene McCoy</h5>
+                  <p>Software Engineering Facilitator</p>
+                  <br />
+                </div>
+                <div className="col-md-3 card-hover">
+                  <img src={d} alt="" className="img-fluid img-data" />
+                  <br />
+                  <br />
+                  <h5>Arlene McCoy</h5>
+                  <p>Software Engineering Facilitator</p>
+                  <br />
+                </div>
+                <div className="col-md-3 card-hover">
+                  <img src={e} alt="" className="img-fluid img-data" />
+                  <br />
+                  <br />
+                  <h5>Arlene McCoy</h5>
+                  <p>Software Engineering Facilitator</p>
+                  <br />
+                </div>
+                <div className="col-md-3 card-hover">
+                  <img src={f} alt="" className="img-fluid img-data" />
+                  <br />
+                  <br />
+                  <h5>Arlene McCoy</h5>
+                  <p>Software Engineering Facilitator</p>
+                  <br />
+                </div>
+                <div className="col-md-3 card-hover">
+                  <img src={g} alt="" className="img-fluid img-data" />
+                  <br />
+                  <br />
+                  <h5>Arlene McCoy</h5>
+                  <p>Software Engineering Facilitator</p>
+                  <br />
+                </div>
+                <div className="col-md-3 card-hover">
+                  <img src={h} alt="" className="img-fluid img-data" />
+                  <br />
+                  <br />
+                  <h5>Arlene McCoy</h5>
+                  <p>Software Engineering Facilitator</p>
+                  <br />
+                </div>
+                <div className="col-md-3 card-hover">
+                  <img src={i} alt="" className="img-fluid img-data" />
+                  <br />
+                  <br />
+                  <h5>Arlene McCoy</h5>
+                  <p>Software Engineering Facilitator</p>
+                  <br />
+                </div>
+                <div className="col-md-3 card-hover">
+                  <img src={j} alt="" className="img-fluid img-data" />
+                  <br />
+                  <br />
+                  <h5>Arlene McCoy</h5>
+                  <p>Software Engineering Facilitator</p>
+                  <br />
+                </div>
+                <div className="col-md-3 card-hover">
+                  <img src={k} alt="" className="img-fluid img-data" />
+                  <br />
+                  <br />
+                  <h5>Arlene McCoy</h5>
+                  <p>Software Engineering Facilitator</p>
+                  <br />
+                </div>
+              </div>
             </div>
-            <div className="d-block d-lg-none d-md-none">
-              <h1>Meet Our Facilitators</h1>
-              <p>
-                We have carefully chosen a team of experienced and hardworking
-                people in different fields to train the next set of tech
-                professionals.
-              </p>
-            </div>
-            <br />
-            <br />
-            <div className="row">
-              <div className="col-md-3 card-hover">
-                <img src={Arlene} alt="" className="img-fluid img-data" />
-                <br />
-                <br />
-                <h5>Arlene McCoy</h5>
-                <p>Software Engineering Facilitator</p>
-                <br />
-              </div>
-              <div className="col-md-3 card-hover">
-                <img src={a} alt="" className="img-fluid img-data" />
-                <br />
-                <br />
-                <h5>Arlene McCoy</h5>
-                <p>Software Engineering Facilitator</p>
-                <br />
-              </div>
-              <div className="col-md-3 card-hover">
-                <img src={b} alt="" className="img-fluid img-data" />
-                <br />
-                <br />
-                <h5>Arlene McCoy</h5>
-                <p>Software Engineering Facilitator</p>
-                <br />
-              </div>
-              <div className="col-md-3 card-hover">
-                <img src={c} alt="" className="img-fluid img-data" />
-                <br />
-                <br />
-                <h5>Arlene McCoy</h5>
-                <p>Software Engineering Facilitator</p>
-                <br />
-              </div>
-              <div className="col-md-3 card-hover">
-                <img src={d} alt="" className="img-fluid img-data" />
-                <br />
-                <br />
-                <h5>Arlene McCoy</h5>
-                <p>Software Engineering Facilitator</p>
-                <br />
-              </div>
-              <div className="col-md-3 card-hover">
-                <img src={e} alt="" className="img-fluid img-data" />
-                <br />
-                <br />
-                <h5>Arlene McCoy</h5>
-                <p>Software Engineering Facilitator</p>
-                <br />
-              </div>
-              <div className="col-md-3 card-hover">
-                <img src={f} alt="" className="img-fluid img-data" />
-                <br />
-                <br />
-                <h5>Arlene McCoy</h5>
-                <p>Software Engineering Facilitator</p>
-                <br />
-              </div>
-              <div className="col-md-3 card-hover">
-                <img src={g} alt="" className="img-fluid img-data" />
-                <br />
-                <br />
-                <h5>Arlene McCoy</h5>
-                <p>Software Engineering Facilitator</p>
-                <br />
-              </div>
-              <div className="col-md-3 card-hover">
-                <img src={h} alt="" className="img-fluid img-data" />
-                <br />
-                <br />
-                <h5>Arlene McCoy</h5>
-                <p>Software Engineering Facilitator</p>
-                <br />
-              </div>
-              <div className="col-md-3 card-hover">
-                <img src={i} alt="" className="img-fluid img-data" />
-                <br />
-                <br />
-                <h5>Arlene McCoy</h5>
-                <p>Software Engineering Facilitator</p>
-                <br />
-              </div>
-              <div className="col-md-3 card-hover">
-                <img src={j} alt="" className="img-fluid img-data" />
-                <br />
-                <br />
-                <h5>Arlene McCoy</h5>
-                <p>Software Engineering Facilitator</p>
-                <br />
-              </div>
-              <div className="col-md-3 card-hover">
-                <img src={k} alt="" className="img-fluid img-data" />
-                <br />
-                <br />
-                <h5>Arlene McCoy</h5>
-                <p>Software Engineering Facilitator</p>
-                <br />
-              </div>
-            </div>
-          </div>
-</Zoom>
+          </Zoom>
           <div className="action-box space-3">
             <h2 style={{ textAlign: "center" }}>
               Do you have what it takes to train the <br />

@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Link,NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import "../assets/css/header.css";
 import gardenlogo from "../assets/img/garden-logo.svg";
@@ -97,7 +97,6 @@ const AppHeader: React.SFC<AppHeaderProps> = () => {
                       <NavLink
                         id="homeMegaMenu"
                         className="hs-mega-menu-invoker nav-link"
-                      
                         to="/employers"
                       >
                         For Employers

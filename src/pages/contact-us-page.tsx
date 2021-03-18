@@ -3,7 +3,7 @@ import { Alert } from "react-bootstrap";
 import "../assets/css/contactpage.css";
 import Socials from "../components/socials";
 // @ts-ignore
-import Zoom from 'react-reveal/Zoom'
+import Zoom from "react-reveal/Zoom";
 export interface AppContactUsPageProps {}
 
 const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
@@ -209,211 +209,219 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
       <br className="d-block d-lg-none" />
       <br className="d-block d-lg-none" />
       <br className="d-block d-lg-none" />
-<Zoom>
-      <div className="container space-top-6 space-top-lg-4 space-bottom-2">
-        <div
-          className="card card-hover"
-          style={{
-            height: "inherit",
-            padding: "0 5%",
-            boxShadow: "0px 4px 10px rgba(143, 148, 155, 0.25)",
-            borderRadius: "16px",
-            background: "#fff",
-            border: "none",
-          }}
-        >
-          <div className="row ">
-            <div className="space-right-3 space-top-3 space-bottom-2 col-md-6">
-              <div className="mb-4">
-                <h2 className="text-primary">
-                  You can reach us via any of these mediums.
-                </h2>
+      <br />
+      <br />
+      <Zoom>
+        <div className="container space-top-6 space-top-lg-4 space-bottom-2">
+          <div
+            className="card card-hover"
+            style={{
+              height: "inherit",
+              padding: "0 5%",
+              boxShadow: "0px 4px 10px rgba(143, 148, 155, 0.25)",
+              borderRadius: "16px",
+              background: "#fff",
+              border: "none",
+            }}
+          >
+            <div className="row ">
+              <div className="space-right-3 space-top-3 space-bottom-2 col-md-6">
+                <div className="mb-4">
+                  <h2 className="text-primary">
+                    You can reach us via any of these mediums.
+                  </h2>
+                </div>
+
+                <ul className="nav nav-sm nav-x-0 nav-white flex-column">
+                  <h5>Telephone</h5>
+                  <li className="nav-item">
+                    <a className="nav-link media" href="tel:+2348036670001">
+                      <span className="media">
+                        <span className="fas fa-phone-alt mt-1 mr-2"></span>
+                        <span className="media-bodys">
+                          +234 [0] 803 667 0001 &nbsp;&nbsp;
+                          <br /> +234 [0] 803 667 0001
+                        </span>
+                      </span>
+                    </a>
+                  </li>
+                  <br />
+
+                  <h5>Email Address</h5>
+                  <li className="nav-item">
+                    <a
+                      className="nav-link media"
+                      href="mailto:contactus@gardenacademy.com"
+                    >
+                      <span className="media">
+                        <span className="fas fa-phone-alt mt-1 mr-2"></span>
+                        <span className="media-bodys">
+                          contactus@gardenacademy.com
+                        </span>
+                      </span>
+                    </a>
+                  </li>
+                  <br />
+                  <h5>Office Address</h5>
+                  <li className="nav-item">
+                    <a className="nav-link media" href="/contact">
+                      <span className="media">
+                        <span className="fas fa-location-arrow mt-1 mr-2"></span>
+                        <span className="media-bodys">
+                          Vibranium Vally 42, Local Airport Road, Ikeja Lagos
+                        </span>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+                <br />
+                <Socials></Socials>
               </div>
 
-              <ul className="nav nav-sm nav-x-0 nav-white flex-column">
-                <h5>Telephone</h5>
-                <li className="nav-item">
-                  <a className="nav-link media" href="tel:+2348036670001">
-                    <span className="media">
-                      <span className="fas fa-phone-alt mt-1 mr-2"></span>
-                      <span className="media-bodys">
-                        +234 [0] 803 667 0001 &nbsp;&nbsp;
-                        <br /> +234 [0] 803 667 0001
-                      </span>
-                    </span>
-                  </a>
-                </li>
-                <br />
-
-                <h5>Email Address</h5>
-                <li className="nav-item">
-                  <a
-                    className="nav-link media"
-                    href="mailto:contactus@gardenacademy.com"
-                  >
-                    <span className="media">
-                      <span className="fas fa-phone-alt mt-1 mr-2"></span>
-                      <span className="media-bodys">
-                        contactus@gardenacademy.com
-                      </span>
-                    </span>
-                  </a>
-                </li>
-                <br />
-                <h5>Office Address</h5>
-                <li className="nav-item">
-                  <a className="nav-link media" href="/contact">
-                    <span className="media">
-                      <span className="fas fa-location-arrow mt-1 mr-2"></span>
-                      <span className="media-bodys">
-                        Vibranium Vally 42, Local Airport Road, Ikeja Lagos
-                      </span>
-                    </span>
-                  </a>
-                </li>
-              </ul>
-              <br />
-              <Socials></Socials>
-            </div>
-
-            <div className="space-top-2 space-bottom-2 col-md-6">
-              <form className="js-validate">
-                <div className=" p-4 p-md-6">
-                  <div className="row">
-                    <div className="col-sm-12">
-                      <Alert
-                        show={showAlert.show}
-                        variant={showAlert.color}
-                        onClose={() =>
-                          setShowAlert({ ...showAlert, show: false })
-                        }
-                        dismissible
-                      >
-                        <Alert.Heading className="text-light">
-                          {showAlert.text}
-                        </Alert.Heading>
-                      </Alert>
-                    </div>
-                    <div className="col-sm-6">
-                      <div className="js-form-message form-group">
-                        <label htmlFor="firstName" className="input-label">
-                          First name <span className="text-danger">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="firstName"
-                          id="firstName"
-                          placeholder="eg. Nataly"
-                          required
-                          value={firstName}
-                          onChange={(e) => setFirstName(e.target.value)}
-                          onBlur={(e) => firstNameValidation(e.target.value)}
-                        />
-                        <p className="text-danger">{firstNameValid}</p>
+              <div className="space-top-2 space-bottom-2 col-md-6">
+                <form className="js-validate">
+                  <div className=" p-4 p-md-6">
+                    <div className="row">
+                      <div className="col-sm-12">
+                        <Alert
+                          show={showAlert.show}
+                          variant={showAlert.color}
+                          onClose={() =>
+                            setShowAlert({ ...showAlert, show: false })
+                          }
+                          dismissible
+                        >
+                          <Alert.Heading className="text-light">
+                            {showAlert.text}
+                          </Alert.Heading>
+                        </Alert>
                       </div>
-                    </div>
-
-                    <div className="col-sm-6">
-                      <div className="js-form-message form-group">
-                        <label htmlFor={"lastName"} className="input-label">
-                          Last name <span className="text-danger">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="lastName"
-                          id="lastName"
-                          placeholder="eg. Gaga"
-                          required
-                          value={lastName}
-                          onChange={(e) => setLastName(e.target.value)}
-                          onBlur={(e) => lastNameValidation(e.target.value)}
-                        />
-                        <p className="text-danger">{lastNameValid}</p>
-                      </div>
-                    </div>
-
-                    <div className="col-sm-12">
-                      <div className="js-form-message form-group">
-                        <label htmlFor={"emailAddress"} className="input-label">
-                          Email address <span className="text-danger">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          className="form-control"
-                          name="emailAddress"
-                          id="emailAddress"
-                          placeholder="eg. Kingsleyomin@gmail.com"
-                          required
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          onBlur={(e) => emailValidation(e.target.value)}
-                        />
-                        <p className="text-danger">{emailValid}</p>
-                      </div>
-                    </div>
-
-                    <div className="col-sm-12">
-                      <div className="js-form-message form-group">
-                        <label htmlFor={"emailAddress"} className="input-label">
-                          Subject <span className="text-danger">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="emailAddress"
-                          id="emailAddress"
-                          placeholder="eg. Facilitator enquiry"
-                          required
-                          value={subject}
-                          onChange={(e) => setSubject(e.target.value)}
-                          onBlur={(e) => subjectValidation(e.target.value)}
-                        />
-                        <p className="text-danger">{subjectValid}</p>
-                      </div>
-                    </div>
-
-                    <div className="col-sm-12">
-                      <div className="js-form-message form-group">
-                        <label htmlFor={"message"} className="input-label">
-                          How can we help you
-                          <span className="text-danger">*</span>
-                        </label>
-                        <div className="input-group">
-                          <textarea
+                      <div className="col-sm-6">
+                        <div className="js-form-message form-group">
+                          <label htmlFor="firstName" className="input-label">
+                            First name <span className="text-danger">*</span>
+                          </label>
+                          <input
+                            type="text"
                             className="form-control"
-                            rows={4}
-                            name="message"
-                            id="message"
-                            placeholder="Enter message here"
+                            name="firstName"
+                            id="firstName"
+                            placeholder="eg. Nataly"
                             required
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
-                            onBlur={(e) => messageValidation(e.target.value)}
-                          ></textarea>
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            onBlur={(e) => firstNameValidation(e.target.value)}
+                          />
+                          <p className="text-danger">{firstNameValid}</p>
                         </div>
-                        <p>This field is limited to 300 characters</p>
-                        <p className="text-danger">{messageValid}</p>
+                      </div>
+
+                      <div className="col-sm-6">
+                        <div className="js-form-message form-group">
+                          <label htmlFor={"lastName"} className="input-label">
+                            Last name <span className="text-danger">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="lastName"
+                            id="lastName"
+                            placeholder="eg. Gaga"
+                            required
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            onBlur={(e) => lastNameValidation(e.target.value)}
+                          />
+                          <p className="text-danger">{lastNameValid}</p>
+                        </div>
+                      </div>
+
+                      <div className="col-sm-12">
+                        <div className="js-form-message form-group">
+                          <label
+                            htmlFor={"emailAddress"}
+                            className="input-label"
+                          >
+                            Email address <span className="text-danger">*</span>
+                          </label>
+                          <input
+                            type="email"
+                            className="form-control"
+                            name="emailAddress"
+                            id="emailAddress"
+                            placeholder="eg. Kingsleyomin@gmail.com"
+                            required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            onBlur={(e) => emailValidation(e.target.value)}
+                          />
+                          <p className="text-danger">{emailValid}</p>
+                        </div>
+                      </div>
+
+                      <div className="col-sm-12">
+                        <div className="js-form-message form-group">
+                          <label
+                            htmlFor={"emailAddress"}
+                            className="input-label"
+                          >
+                            Subject <span className="text-danger">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="emailAddress"
+                            id="emailAddress"
+                            placeholder="eg. Facilitator enquiry"
+                            required
+                            value={subject}
+                            onChange={(e) => setSubject(e.target.value)}
+                            onBlur={(e) => subjectValidation(e.target.value)}
+                          />
+                          <p className="text-danger">{subjectValid}</p>
+                        </div>
+                      </div>
+
+                      <div className="col-sm-12">
+                        <div className="js-form-message form-group">
+                          <label htmlFor={"message"} className="input-label">
+                            How can we help you
+                            <span className="text-danger">*</span>
+                          </label>
+                          <div className="input-group">
+                            <textarea
+                              className="form-control"
+                              rows={4}
+                              name="message"
+                              id="message"
+                              placeholder="Enter message here"
+                              required
+                              value={message}
+                              onChange={(e) => setMessage(e.target.value)}
+                              onBlur={(e) => messageValidation(e.target.value)}
+                            ></textarea>
+                          </div>
+                          <p>This field is limited to 300 characters</p>
+                          <p className="text-danger">{messageValid}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <button
-                    type="button"
-                    disabled={buttonText.disabled}
-                    style={{ background: "#0F42A4", borderRadius: "2px" }}
-                    className="btn btn-block btn-primary transition-3d-hover"
-                    onClick={handleSubmit}
-                  >
-                    {buttonText.text}
-                  </button>
-                </div>
-              </form>
+                    <button
+                      type="button"
+                      disabled={buttonText.disabled}
+                      style={{ background: "#0F42A4", borderRadius: "2px" }}
+                      className="btn btn-block btn-primary transition-3d-hover"
+                      onClick={handleSubmit}
+                    >
+                      {buttonText.text}
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </Zoom>
       <div style={{ display: "none" }}>
         * Edutech Project <br />

@@ -10,9 +10,9 @@ import facilitator from "../assets/img/facilitator.svg";
 import employer from "../assets/img/employer.svg";
 import classP from "../assets/img/class.svg";
 // @ts-ignore
-import Fade from 'react-reveal/Fade'
+import Fade from "react-reveal/Fade";
 // @ts-ignore
-import Zoom from 'react-reveal/Zoom'
+import Zoom from "react-reveal/Zoom";
 export interface AppForEmployersProps {}
 
 const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
@@ -270,228 +270,232 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
           </div>
         </div>
         <Fade left>
-        <div className="container space-2 space-top-xl-3 space-bottom-lg-3">
-          {/* <!-- Title --> */}
-          <div className="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
-            <h2>What Can We Do For You?</h2>
-            <p>
-              Garden Academy is uniquely poised to tackle your personnel-related
-              challenges
-            </p>
+          <div className="container space-2 space-top-xl-3 space-bottom-lg-3">
+            {/* <!-- Title --> */}
+            <div className="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
+              <h2>What Can We Do For You?</h2>
+              <p>
+                Garden Academy is uniquely poised to tackle your
+                personnel-related challenges
+              </p>
+            </div>
+            {/* <!-- End Title --> */}
+
+            <div className="row mx-n2 mx-lg-n3">
+              <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                {/* <!-- Card --> */}
+                <div
+                  className="card card-hover"
+                  style={{
+                    height: "27rem",
+                  }}
+                >
+                  <div className="card-icon">
+                    <span className="span-icon">
+                      <img src={homecard1} alt="" />
+                    </span>
+                  </div>
+                  <h3 className="card-headers">Hire Talent</h3>
+                  <div className="card-body">
+                    Garden Academy harnesses the knowledge & experience of
+                    global industry experts and channels it into truly expansive
+                    courses that create the best talent who are primed and ready
+                    to take your organization to the next level.
+                  </div>
+                </div>
+
+                {/* <!-- End Card --> */}
+              </div>
+              <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                {/* <!-- Card --> */}
+                <div
+                  className="card card-hover"
+                  style={{
+                    height: "27rem",
+                  }}
+                >
+                  <div className="card-icon">
+                    <span className="span-icon">
+                      <img src={homecard2} alt="" />
+                    </span>
+                  </div>
+                  <h3 className="card-headers">Upskill existing Staff</h3>
+                  <div className="card-body">
+                    With the best facilitators delivering quality content,
+                    Garden Academy vastly improves the skill level of staff
+                    groups. Your staff will gain the skills needed to improve
+                    business outcomes and contribute directly to your
+                    organization’s bottom line.
+                  </div>
+                </div>
+
+                {/* <!-- End Card --> */}
+              </div>
+
+              <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                {/* <!-- Card --> */}
+                <div
+                  className="card card-hover"
+                  style={{
+                    height: "27rem",
+                  }}
+                >
+                  <div className="card-icon">
+                    <span className="span-icon">
+                      <img src={homecard3} alt="" />
+                    </span>
+                  </div>
+                  <h3 className="card-headers">Staff Onboarding</h3>
+                  <div className="card-body">
+                    To simplify your organization’s staff onboarding process,
+                    the Garden Academy team is always available to manage all
+                    activities from orientation to training and staff
+                    assessment. With our help, your new staff can be seamlessly
+                    integrated into your organization and be positioned to
+                    deliver the best results.
+                  </div>
+                </div>
+
+                {/* <!-- End Card --> */}
+              </div>
+            </div>
           </div>
-          {/* <!-- End Title --> */}
-
-          <div className="row mx-n2 mx-lg-n3">
-            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              {/* <!-- Card --> */}
-              <div
-                className="card card-hover"
-                style={{
-                  height: "27rem",
-                }}
-              >
-                <div className="card-icon">
-                  <span className="span-icon">
-                    <img src={homecard1} alt="" />
-                  </span>
-                </div>
-                <h3 className="card-headers">Hire Talent</h3>
-                <div className="card-body">
-                  Garden Academy harnesses the knowledge & experience of global
-                  industry experts and channels it into truly expansive courses
-                  that create the best talent who are primed and ready to take
-                  your organization to the next level.
-                </div>
-              </div>
-
-              {/* <!-- End Card --> */}
-            </div>
-            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              {/* <!-- Card --> */}
-              <div
-                className="card card-hover"
-                style={{
-                  height: "27rem",
-                }}
-              >
-                <div className="card-icon">
-                  <span className="span-icon">
-                    <img src={homecard2} alt="" />
-                  </span>
-                </div>
-                <h3 className="card-headers">Upskill existing Staff</h3>
-                <div className="card-body">
-                  With the best facilitators delivering quality content, Garden
-                  Academy vastly improves the skill level of staff groups. Your
-                  staff will gain the skills needed to improve business outcomes
-                  and contribute directly to your organization’s bottom line.
-                </div>
-              </div>
-
-              {/* <!-- End Card --> */}
-            </div>
-
-            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              {/* <!-- Card --> */}
-              <div
-                className="card card-hover"
-                style={{
-                  height: "27rem",
-                }}
-              >
-                <div className="card-icon">
-                  <span className="span-icon">
-                    <img src={homecard3} alt="" />
-                  </span>
-                </div>
-                <h3 className="card-headers">Staff Onboarding</h3>
-                <div className="card-body">
-                  To simplify your organization’s staff onboarding process, the
-                  Garden Academy team is always available to manage all
-                  activities from orientation to training and staff assessment.
-                  With our help, your new staff can be seamlessly integrated
-                  into your organization and be positioned to deliver the best
-                  results.
-                </div>
-              </div>
-
-              {/* <!-- End Card --> */}
-            </div>
-          </div>
-        </div>
         </Fade>
         <Zoom>
-        <div
-          className=" session-five d-lg-flex align-items-lg-center  space-top-xl-3 space-bottom-lg-3 space-top-2 min-vh-lg-100"
-          style={{ flexDirection: "column", backgroundColor: "#E9FAFB" }}
-        >
-          <div className="w-md-80 w-lg-50 space-top-2 text-center mx-md-auto mb-5 mb-md-9">
-            <h2 style={{ fontSize: "36px" }}>What You Will Get</h2>
-            <p>
-              Garden Academy exposes your organisation to a universal benefit
-              that translates into better business outcome in the near future
-            </p>
-          </div>
-          <div className="row space-bottom-1" style={{ margin: "0 5%" }}>
-            <div className="col-lg-5 mt-5">
-              <div>
-                <h2 className="text-primary" style={{ fontSize: "24px" }}>
-                  Quality People
-                </h2>
-                <p>
-                  By channeling the knowledge & experience of global industry
-                  experts into truly expansive courses, Garden Academy develops
-                  the best talent who are primed and ready to take your
-                  organization to the next level
-                </p>
-              </div>
-              <div className="mt-2">
-                <h2 className="text-primary" style={{ fontSize: "24px" }}>
-                  Cost Effective Scaling
-                </h2>
-                <p>
-                  By upskilling your workforce through Garden Academy, you can
-                  guarantee that you do not have to break the bank to scale your
-                  operations. Your workforce is developed at a fraction of the
-                  cost of hiring new, experienced talent and your organization
-                  can scale rapidly.
-                </p>
-              </div>
-              <div className="mt-2">
-                <h2 className="text-primary" style={{ fontSize: "24px" }}>
-                  Diverse Talent Base
-                </h2>
-                <p>
-                  Garden Academy brings together individuals with varying
-                  skillsets, from different backgrounds and nationalities
-                  thereby ensuring employers have access to a world of talent.
-                </p>
-              </div>
-              <div className="mt-2">
-                <h2 className="text-primary" style={{ fontSize: "24px" }}>
-                  Easy Onboarding
-                </h2>
-                <p>
-                  The Garden Academy team is on hand to facilitate the seamless
-                  integration of our alumni into your organization, primed and
-                  ready to deliver the best results to take your business to the
-                  next level.
-                </p>
-              </div>
-            </div>
-
-            <div className="col-lg-7 col-xs-12 mt-5">
-              <img
-                className="img-fluid d-none d-lg-block animated slideInDown"
-                src={employer}
-                alt="facillator"
-                style={{
-                  position: "absolute",
-                  left: "109px",
-                }}
-              />
-              <img
-                src={classP}
-                alt=""
-                className="img-fluid d-lg-none"
-                style={{ width: "100%" }}
-              />
-            </div>
-          </div>
-        </div>
-</Zoom>
-
-<Fade right>
-        <div
-          className="session-five d-lg-flex align-items-lg-center space-2 space-top-xl-3 space-bottom-lg-3 space-top-2 space-lg-0 min-vh-lg-100"
-          style={{ backgroundColor: "#fff" }}
-        >
-          <div className="row space-bottom-1" style={{ margin: "0% 5%" }}>
-            <div className="col-lg-5 mt-5">
-              <hr
-                className="mt-5"
-                style={{
-                  width: "10%",
-                  border: "2px solid #0B2253",
-                  opacity: "0.5",
-                  margin: "0px",
-                }}
-              />
-              <h3
-                className="mt-3"
-                style={{ fontSize: "36px", color: "#041644" }}
-              >
-                Let’s help you with hiring
-              </h3>
-              <p className="mt-3 facillator-p">
-                We understand how difficult it can be to find outstanding talent
-                with the right balance of skill and character to join your
-                organization and contribute to improving your business outcomes
-                in today’s fast-paced world.
+          <div
+            className=" session-five d-lg-flex align-items-lg-center  space-top-xl-3 space-bottom-lg-3 space-top-2 min-vh-lg-100"
+            style={{ flexDirection: "column", backgroundColor: "#E9FAFB" }}
+          >
+            <div className="w-md-80 w-lg-50 space-top-2 text-center mx-md-auto mb-5 mb-md-9">
+              <h2 style={{ fontSize: "36px" }}>What You Will Get</h2>
+              <p>
+                Garden Academy exposes your organisation to a universal benefit
+                that translates into better business outcome in the near future
               </p>
-              <br />
-              <p className="facillator-p">
-                To solve this, our team of human operations experts is on hand
-                to manage your entire hiring process, from talent prospecting to
-                onboarding. You can rest assured that Garden Academy will
-                deliver the best talent to your doorstep.
-              </p>
-              <br />
-              <br />
-              <button className="btn  btn-primary btn-hover" onClick={handleShow}>
-                Start Hiring
-              </button>
             </div>
+            <div className="row space-bottom-1" style={{ margin: "0 5%" }}>
+              <div className="col-lg-5 mt-5">
+                <div>
+                  <h2 className="text-primary" style={{ fontSize: "24px" }}>
+                    Quality People
+                  </h2>
+                  <p>
+                    By channeling the knowledge & experience of global industry
+                    experts into truly expansive courses, Garden Academy
+                    develops the best talent who are primed and ready to take
+                    your organization to the next level
+                  </p>
+                </div>
+                <div className="mt-2">
+                  <h2 className="text-primary" style={{ fontSize: "24px" }}>
+                    Cost Effective Scaling
+                  </h2>
+                  <p>
+                    By upskilling your workforce through Garden Academy, you can
+                    guarantee that you do not have to break the bank to scale
+                    your operations. Your workforce is developed at a fraction
+                    of the cost of hiring new, experienced talent and your
+                    organization can scale rapidly.
+                  </p>
+                </div>
+                <div className="mt-2">
+                  <h2 className="text-primary" style={{ fontSize: "24px" }}>
+                    Diverse Talent Base
+                  </h2>
+                  <p>
+                    Garden Academy brings together individuals with varying
+                    skillsets, from different backgrounds and nationalities
+                    thereby ensuring employers have access to a world of talent.
+                  </p>
+                </div>
+                <div className="mt-2">
+                  <h2 className="text-primary" style={{ fontSize: "24px" }}>
+                    Easy Onboarding
+                  </h2>
+                  <p>
+                    The Garden Academy team is on hand to facilitate the
+                    seamless integration of our alumni into your organization,
+                    primed and ready to deliver the best results to take your
+                    business to the next level.
+                  </p>
+                </div>
+              </div>
 
-            <div className="col-lg-7 col-xs-12 mt-5">
-              <img
-                className="img-fluid d-lg-block"
-                src={facilitator}
-                alt="facillator"
-              />
+              <div className="col-lg-7 col-xs-12 mt-5">
+                <img
+                  className="img-fluid d-none d-lg-block animated slideInDown"
+                  src={employer}
+                  alt="facillator"
+                  style={{
+                    position: "absolute",
+                    left: "109px",
+                  }}
+                />
+                <img
+                  src={classP}
+                  alt=""
+                  className="img-fluid d-lg-none"
+                  style={{ width: "100%" }}
+                />
+              </div>
             </div>
           </div>
-        </div>
+        </Zoom>
+
+        <Fade right>
+          <div
+            className="session-five d-lg-flex align-items-lg-center space-2 space-top-xl-3 space-bottom-lg-3 space-top-2 space-lg-0 min-vh-lg-100"
+            style={{ backgroundColor: "#fff" }}
+          >
+            <div className="row space-bottom-1" style={{ margin: "0% 5%" }}>
+              <div className="col-lg-5 mt-5">
+                <hr
+                  className="mt-5"
+                  style={{
+                    width: "10%",
+                    border: "2px solid #0B2253",
+                    opacity: "0.5",
+                    margin: "0px",
+                  }}
+                />
+                <h3
+                  className="mt-3"
+                  style={{ fontSize: "36px", color: "#041644" }}
+                >
+                  Let’s help you with hiring
+                </h3>
+                <p className="mt-3 facillator-p">
+                  We understand how difficult it can be to find outstanding
+                  talent with the right balance of skill and character to join
+                  your organization and contribute to improving your business
+                  outcomes in today’s fast-paced world.
+                </p>
+                <br />
+                <p className="facillator-p">
+                  To solve this, our team of human operations experts is on hand
+                  to manage your entire hiring process, from talent prospecting
+                  to onboarding. You can rest assured that Garden Academy will
+                  deliver the best talent to your doorstep.
+                </p>
+                <br />
+                <br />
+                <button
+                  className="btn  btn-primary btn-hover"
+                  onClick={handleShow}
+                >
+                  Start Hiring
+                </button>
+              </div>
+
+              <div className="col-lg-7 col-xs-12 mt-5">
+                <img
+                  className="img-fluid d-lg-block"
+                  src={facilitator}
+                  alt="facillator"
+                />
+              </div>
+            </div>
+          </div>
         </Fade>
       </main>
 

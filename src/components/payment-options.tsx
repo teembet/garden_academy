@@ -35,7 +35,7 @@ const PaymentOptions: React.SFC<PaymentOptionsProps> = ({ children }) => {
                 <div className="col-md-3 mb-3">
                   <div className="card-icon">
                     <span>
-                      <img src={rect} alt="" />{" "}
+                      <img src={rect} alt="" />
                     </span>
                   </div>
                   <h4 className="card-headers ">Installmental Payment</h4>
@@ -48,7 +48,7 @@ const PaymentOptions: React.SFC<PaymentOptionsProps> = ({ children }) => {
                 <div className="col-md-3 mb-3">
                   <div className="card-icon">
                     <span>
-                      <img src={rect} alt="" />{" "}
+                      <img src={rect} alt="" />
                     </span>
                   </div>
                   <h4 className="card-headers">Loan Offer</h4>
@@ -61,7 +61,7 @@ const PaymentOptions: React.SFC<PaymentOptionsProps> = ({ children }) => {
                 <div className="col-md-3 mb-3">
                   <div className="card-icon">
                     <span>
-                      <img src={rect} alt="" />{" "}
+                      <img src={rect} alt="" />
                     </span>
                   </div>
                   <h4 className="card-headers">Deffered Income Share</h4>

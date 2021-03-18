@@ -66,7 +66,7 @@ const CourseCard: React.SFC<CourseCardProps> = ({ course, grid }) => {
               <Rating rating={course.star_count}></Rating>
 
               <p className="amount">
-                ₦ {Math.round(parseInt(course.price))}{" "}
+                ₦ {Math.round(parseInt(course.price))}
                 <span
                   style={{ float: "right", color: "#000", fontSize: ".8em" }}
                 >

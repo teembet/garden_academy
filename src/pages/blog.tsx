@@ -29,7 +29,9 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
     <>
       <main>
         <div className="hero-page-about">
-          <h1 className="d-none d-sm-block animated slideInDown">Garden Academy Blog</h1>
+          <h1 className="d-none d-sm-block animated slideInDown">
+            Garden Academy Blog
+          </h1>
 
           <p className="d-none d-sm-block animated slideInUp">
             Check out our Blog to stay up to date with great contents
@@ -47,7 +49,9 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
             <div className="row space-top-3 space-bottom-2">
               <div className=" col-lg-12">
                 <div className="mb-4">
-                  <h1 className="white-text animated slideInDown">What's New</h1>
+                  <h1 className="white-text animated slideInDown">
+                    What's New
+                  </h1>
                 </div>
               </div>
 

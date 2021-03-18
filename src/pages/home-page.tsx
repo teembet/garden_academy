@@ -19,9 +19,9 @@ import person1 from "../assets/img/person1.svg";
 import CourseCardGridView from "../components/course-card-grid-view";
 import Search from "../components/search";
 // @ts-ignore
-import Fade from 'react-reveal/Fade'
+import Fade from "react-reveal/Fade";
 // @ts-ignore
-import Zoom from 'react-reveal/Zoom'
+import Zoom from "react-reveal/Zoom";
 
 export interface AppHomePageProps {
   images: any;
@@ -35,6 +35,7 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
       pathname: "/programs",
       state: {
         searchInput,
+        data: programs,
       },
     });
   };
@@ -427,150 +428,150 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
             </div>
           </div>
         </div>
-<Fade left>
-        <div className="container space-2 space-top-xl-3 space-bottom-lg-3">
-          <div className="w-md-80 w-lg-60 text-center mx-md-auto mb-5 mb-md-9">
-            <h2>Why Garden Academy</h2>
-            <p>
-              By becoming a Garden Academy alumnus, you gain immediate access to
-              a variety of benefits.
-            </p>
-          </div>
-
-          <div className="row mx-n2 mx-lg-n3">
-            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              <div className="card card-hover">
-                <div className="card-icon">
-                  <span className="span-icon">
-                    <img src={homecard1} alt="" />
-                  </span>
-                </div>
-                <h3 className="card-headers">Top Industry Facilitators</h3>
-                <div className="card-body">
-                  Learn from Subject matter experts from different areas of the
-                  tech industry and gain the knowledge you need to rise to the
-                  top of your field.
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              <div className="card card-hover">
-                <div className="card-icon">
-                  <span className="span-icon">
-                    <img src={homecard2} alt="" />
-                  </span>
-                </div>
-                <h3 className="card-headers">Resume & Interview Prep</h3>
-                <div className="card-body">
-                  Gain valuable tips and hacks you need to create an appealing
-                  resume and navigate interview scenarios.
-                </div>
-              </div>
+        <Fade left>
+          <div className="container space-2 space-top-xl-3 space-bottom-lg-3">
+            <div className="w-md-80 w-lg-60 text-center mx-md-auto mb-5 mb-md-9">
+              <h2>Why Garden Academy</h2>
+              <p>
+                By becoming a Garden Academy alumnus, you gain immediate access
+                to a variety of benefits.
+              </p>
             </div>
 
-            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              <div className="card card-hover">
-                <div className="card-icon">
-                  <span className="span-icon">
-                    <img src={homecard3} alt="" />
-                  </span>
-                </div>
-                <h3 className="card-headers">Flexible Learning</h3>
-                <div className="card-body">
-                  Learn wherever, whenever with quality content delivered to
-                  your device on demand. Powered by VigiLearnLMS™.
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              <div className="card card-hover">
-                <div className="card-icon">
-                  <span className="span-icon">
-                    <img src={homecard4} alt="" />
-                  </span>
-                </div>
-                <h3 className="card-headers">Flexible Payment Options</h3>
-                <div className="card-body">
-                  Take advantage of any of our available fee payment options and
-                  enjoy unrivalled ease of access.
+            <div className="row mx-n2 mx-lg-n3">
+              <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                <div className="card card-hover">
+                  <div className="card-icon">
+                    <span className="span-icon">
+                      <img src={homecard1} alt="" />
+                    </span>
+                  </div>
+                  <h3 className="card-headers">Top Industry Facilitators</h3>
+                  <div className="card-body">
+                    Learn from Subject matter experts from different areas of
+                    the tech industry and gain the knowledge you need to rise to
+                    the top of your field.
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              <div className="card card-hover">
-                <div className="card-icon">
-                  <span className="span-icon">
-                    <img src={homecard5} alt="" />
-                  </span>
-                </div>
-                <h3 className="card-headers">
-                  Globally Recognized <br /> Certificate
-                </h3>
-                <div className="card-body">
-                  Receive a certificate of international repute upon completion
-                  of your chosen learning path.
+              <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                <div className="card card-hover">
+                  <div className="card-icon">
+                    <span className="span-icon">
+                      <img src={homecard2} alt="" />
+                    </span>
+                  </div>
+                  <h3 className="card-headers">Resume & Interview Prep</h3>
+                  <div className="card-body">
+                    Gain valuable tips and hacks you need to create an appealing
+                    resume and navigate interview scenarios.
+                  </div>
                 </div>
               </div>
 
-              {/* <!-- End Card --> */}
-            </div>
-            <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-              {/* <!-- Card --> */}
-              <div className="card card-hover">
-                <div className="card-icon">
-                  <span className="span-icon">
-                    <img src={homecard6} alt="" />
-                  </span>
-                </div>
-                <h3 className="card-headers">
-                  Internship & Full-time <br /> opportunities
-                </h3>
-                <div className="card-body">
-                  Put your newly acquired skills to use with access to work
-                  opportunities across the global tech industry.
+              <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                <div className="card card-hover">
+                  <div className="card-icon">
+                    <span className="span-icon">
+                      <img src={homecard3} alt="" />
+                    </span>
+                  </div>
+                  <h3 className="card-headers">Flexible Learning</h3>
+                  <div className="card-body">
+                    Learn wherever, whenever with quality content delivered to
+                    your device on demand. Powered by VigiLearnLMS™.
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-</Fade>
-<Fade right>
-        {programs?.length > 0 && (
-          <div style={{ background: "#E8EFFD", width: "100%" }}>
-            <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
-              <div className="w-md-80 text-center mx-md-auto mb-5 mb-md-9">
-                <h2>Available Programs</h2>
-                <p>
-                  Select any program from our library of carefully crafted
-                  programs guaranted to take you
-                </p>
-              </div>
-              <section>
-                <div className="row mx-n2 mx-lg-n3">
-                  <CourseCardGridView
-                    grid={4}
-                    programs={programs.slice(0, 3)}
-                  ></CourseCardGridView>
+              <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                <div className="card card-hover">
+                  <div className="card-icon">
+                    <span className="span-icon">
+                      <img src={homecard4} alt="" />
+                    </span>
+                  </div>
+                  <h3 className="card-headers">Flexible Payment Options</h3>
+                  <div className="card-body">
+                    Take advantage of any of our available fee payment options
+                    and enjoy unrivalled ease of access.
+                  </div>
                 </div>
-              </section>
+              </div>
+              <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                <div className="card card-hover">
+                  <div className="card-icon">
+                    <span className="span-icon">
+                      <img src={homecard5} alt="" />
+                    </span>
+                  </div>
+                  <h3 className="card-headers">
+                    Globally Recognized <br /> Certificate
+                  </h3>
+                  <div className="card-body">
+                    Receive a certificate of international repute upon
+                    completion of your chosen learning path.
+                  </div>
+                </div>
 
-              <div className="get-started">
-                <Link
-                  to={{
-                    pathname: "/programs",
-                    state: {
-                      data: programs.slice(0, 3),
-                    },
-                  }}
-                  className="btn programs-btn btn-hover"
-                >
-                  <b>View All Programs</b>
-                </Link>
+                {/* <!-- End Card --> */}
+              </div>
+              <div className="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                {/* <!-- Card --> */}
+                <div className="card card-hover">
+                  <div className="card-icon">
+                    <span className="span-icon">
+                      <img src={homecard6} alt="" />
+                    </span>
+                  </div>
+                  <h3 className="card-headers">
+                    Internship & Full-time <br /> opportunities
+                  </h3>
+                  <div className="card-body">
+                    Put your newly acquired skills to use with access to work
+                    opportunities across the global tech industry.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        )}
-</Fade>
+        </Fade>
+        <Fade right>
+          {programs?.length > 0 && (
+            <div style={{ background: "#E8EFFD", width: "100%" }}>
+              <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
+                <div className="w-md-80 text-center mx-md-auto mb-5 mb-md-9">
+                  <h2>Available Programs</h2>
+                  <p>
+                    Select any program from our library of carefully crafted
+                    programs guaranted to take you
+                  </p>
+                </div>
+                <section>
+                  <div className="row mx-n2 mx-lg-n3">
+                    <CourseCardGridView
+                      grid={4}
+                      programs={programs.slice(0, 3)}
+                    ></CourseCardGridView>
+                  </div>
+                </section>
+
+                <div className="get-started">
+                  <Link
+                    to={{
+                      pathname: "/programs",
+                      state: {
+                        data: programs,
+                      },
+                    }}
+                    className="btn programs-btn btn-hover"
+                  >
+                    <b>View All Programs</b>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+        </Fade>
         <div style={{ background: "#E8EFFD", width: "100%" }}>
           <div className=" d-lg-flex position-relative session-three">
             <div className=" container d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
@@ -655,7 +656,10 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                   </div>
 
                   <div className="get-started">
-                    <Link to="/employers" className="btn get-started-btn btn-hover">
+                    <Link
+                      to="/employers"
+                      className="btn get-started-btn btn-hover"
+                    >
                       Get Started
                     </Link>
                   </div>
@@ -664,163 +668,121 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
             </div>
           </div>
         </div>
-<Fade left>
-        <div className="session-five d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
-          <div className="container">
-            <div className="row space-bottom-2">
-              <div className="col-lg-5 mt-5">
-                <hr
-                  className="mt-5"
-                  style={{
-                    width: "10%",
-                    border: "2px solid #0B2253",
-                    opacity: "0.5",
-                    margin: "0px",
-                  }}
-                />
-                <h3
-                  className="mt-3"
-                  style={{ fontSize: "36px", color: "#041644" }}
-                >
-                  Become a Facilitator
-                </h3>
-                <p className="mt-3 facillator-p">
-                  At any learning establishment, top-notch faculty are crucial
-                  to the success of that operation. At Garden Academy, the door
-                  is always open for facilitators who are experts in their
-                  chosen fields, and use engaging and interactive
-                  learner-focused approaches to teach and transfer practical
-                  skills
-                </p>
-                <br />
-                <p className="facillator-p">
-                  Do you have what it takes to train the next crop of tech
-                  superstars? Get in touch with us.
-                </p>
-                <br />
-                <br />
-                <button
-                  onClick={handleShow}
-                  className="btn btn-lg  btn-primary btn-hover"
-                  style={{
-                    padding: "16px 32px",
-                    borderRadius: "4px",
-                    background: "#0F42A4",
-                  }}
-                >
-                  Become a Facillator
-                </button>
-              </div>
+        <Fade left>
+          <div className="session-five d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
+            <div className="container">
+              <div className="row space-bottom-2">
+                <div className="col-lg-5 mt-5">
+                  <hr
+                    className="mt-5"
+                    style={{
+                      width: "10%",
+                      border: "2px solid #0B2253",
+                      opacity: "0.5",
+                      margin: "0px",
+                    }}
+                  />
+                  <h3
+                    className="mt-3"
+                    style={{ fontSize: "36px", color: "#041644" }}
+                  >
+                    Become a Facilitator
+                  </h3>
+                  <p className="mt-3 facillator-p">
+                    At any learning establishment, top-notch faculty are crucial
+                    to the success of that operation. At Garden Academy, the
+                    door is always open for facilitators who are experts in
+                    their chosen fields, and use engaging and interactive
+                    learner-focused approaches to teach and transfer practical
+                    skills
+                  </p>
+                  <br />
+                  <p className="facillator-p">
+                    Do you have what it takes to train the next crop of tech
+                    superstars? Get in touch with us.
+                  </p>
+                  <br />
+                  <br />
+                  <button
+                    onClick={handleShow}
+                    className="btn btn-lg  btn-primary btn-hover"
+                    style={{
+                      padding: "16px 32px",
+                      borderRadius: "4px",
+                      background: "#0F42A4",
+                    }}
+                  >
+                    Become a Facillator
+                  </button>
+                </div>
 
-              <div className="col-lg-7 col-xs-12 mt-5">
-                <img
-                  className="img-fluid d-lg-block"
-                  src={facilitator}
-                  alt="facillator"
-                />
+                <div className="col-lg-7 col-xs-12 mt-5">
+                  <img
+                    className="img-fluid d-lg-block"
+                    src={facilitator}
+                    alt="facillator"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </Fade>
-<Zoom>        {images.length > 0 && (
-          <div className=" container d-lg-flex  align-items-lg-center space-top-2 space-lg-3 space-lg-0 min-vh-lg-100">
-            <div className="row">
-              <div
-                className="col-lg-4 mt-5"
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <div>
-                  <h4 className="mt-3 testimonials-heading">Testimonials</h4>
-                  <p className="mt-3" style={{ fontSize: "35px" }}>
-                    Read what our users have to say...
-                  </p>
-                </div>
-
+        <Zoom>
+          {images.length > 0 && (
+            <div className=" container d-lg-flex  align-items-lg-center space-top-2 space-lg-3 space-lg-0 min-vh-lg-100">
+              <div className="row">
                 <div
+                  className="col-lg-4 mt-5"
                   style={{
                     display: "flex",
-                    justifyContent: "space-around",
+                    justifyContent: "space-between",
                     alignItems: "center",
-                    width: "100%",
+                    flexDirection: "column",
                   }}
                 >
-                  <span
-                    className="fa fa-arrow-left slick-arrow slick-arrow-primary-white slick-arrow-left shadow-soft rounded-circle ml-sm-n2"
-                    onClick={slideLeft}
-                    style={{
-                      background: index === 0 ? "#1354D3" : "",
-                      color: index === 0 ? "#fff" : "",
-                    }}
-                  ></span>
-                  <h4>
-                    {index + 1} / {images.length}
-                  </h4>
-                  <span
-                    className="fa fa-arrow-right slick-arrow slick-arrow-primary-white slick-arrow-right shadow-soft rounded-circle mr-sm-2 mr-xl-4"
-                    onClick={slideRight}
-                    style={{
-                      background: index === images.length - 1 ? "#1354D3" : "",
-                      color: index === images.length - 1 ? "#fff" : "",
-                    }}
-                  ></span>
-                </div>
-              </div>
-
-              <div className="col-lg-8 mt-5">
-                <div className="row">
-                  <div className="col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
-                    <div
-                      className="card card-hover  shadow pt-3 pb-5 px-2"
-                      style={{
-                        boxShadow:
-                          "0px 4px 4px rgb(135 146 161 / 16%), 0px 6px 41px rgb(135 146 161 / 11%) !important",
-                        height: "auto",
-                        border: "none",
-                      }}
-                    >
-                      <div
-                        className="row card-icon"
-                        style={{ marginBottom: "0 !important" }}
-                      >
-                        <div className="col-3">
-                          <img
-                            className="avatar img-fluid"
-                            src={images[index].image}
-                            alt="avatar"
-                          />
-                        </div>
-                        <div className="col-9">
-                          <h4 style={{ margin: "0px" }}>
-                            {images[index].title}
-                          </h4>
-                          <p style={{ color: "#81909D" }}>
-                            {images[index].social}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="card-body" style={{ color: "#3A434B" }}>
-                        <hr />
-                        <br />
-                        <p className="tip">
-                          <span>{images[index].content}</span>
-                          {images[index].content.length > 200
-                            ? images[index].content.substring(0, 200) + "..."
-                            : images[index].content}
-                        </p>
-                      </div>
-                    </div>
+                  <div>
+                    <h4 className="mt-3 testimonials-heading">Testimonials</h4>
+                    <p className="mt-3" style={{ fontSize: "35px" }}>
+                      Read what our users have to say...
+                    </p>
                   </div>
-                  {images.length - 1 >= index + 1 && (
-                    <div className="d-lg-block d-md-block d-none col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                      width: "100%",
+                    }}
+                  >
+                    <span
+                      className="fa fa-arrow-left slick-arrow slick-arrow-primary-white slick-arrow-left shadow-soft rounded-circle ml-sm-n2"
+                      onClick={slideLeft}
+                      style={{
+                        background: index === 0 ? "#1354D3" : "",
+                        color: index === 0 ? "#fff" : "",
+                      }}
+                    ></span>
+                    <h4>
+                      {index + 1} / {images.length}
+                    </h4>
+                    <span
+                      className="fa fa-arrow-right slick-arrow slick-arrow-primary-white slick-arrow-right shadow-soft rounded-circle mr-sm-2 mr-xl-4"
+                      onClick={slideRight}
+                      style={{
+                        background:
+                          index === images.length - 1 ? "#1354D3" : "",
+                        color: index === images.length - 1 ? "#fff" : "",
+                      }}
+                    ></span>
+                  </div>
+                </div>
+
+                <div className="col-lg-8 mt-5">
+                  <div className="row">
+                    <div className="col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
                       <div
-                        className="card card-hover shadow pt-3 pb-5 px-2"
+                        className="card card-hover  shadow pt-3 pb-5 px-2"
                         style={{
                           boxShadow:
                             "0px 4px 4px rgb(135 146 161 / 16%), 0px 6px 41px rgb(135 146 161 / 11%) !important",
@@ -835,16 +797,16 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                           <div className="col-3">
                             <img
                               className="avatar img-fluid"
-                              src={images[index + 1].image}
+                              src={images[index].image}
                               alt="avatar"
                             />
                           </div>
                           <div className="col-9">
                             <h4 style={{ margin: "0px" }}>
-                              {images[index + 1].title}
+                              {images[index].title}
                             </h4>
                             <p style={{ color: "#81909D" }}>
-                              {images[index + 1].social}
+                              {images[index].social}
                             </p>
                           </div>
                         </div>
@@ -853,23 +815,69 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
                           <hr />
                           <br />
                           <p className="tip">
-                            <span>{images[index + 1].content}</span>
-                            {images[index + 1].content.length > 200
-                              ? images[index + 1].content.substring(0, 200) +
-                                "..."
-                              : images[index + 1].content}
+                            <span>{images[index].content}</span>
+                            {images[index].content.length > 200
+                              ? images[index].content.substring(0, 200) + "..."
+                              : images[index].content}
                           </p>
                         </div>
                       </div>
                     </div>
-                  )}
+                    {images.length - 1 >= index + 1 && (
+                      <div className="d-lg-block d-md-block d-none col-md-6 col-sm-12 px-2 px-lg-3 mb-3 mb-lg-0 mt-3">
+                        <div
+                          className="card card-hover shadow pt-3 pb-5 px-2"
+                          style={{
+                            boxShadow:
+                              "0px 4px 4px rgb(135 146 161 / 16%), 0px 6px 41px rgb(135 146 161 / 11%) !important",
+                            height: "auto",
+                            border: "none",
+                          }}
+                        >
+                          <div
+                            className="row card-icon"
+                            style={{ marginBottom: "0 !important" }}
+                          >
+                            <div className="col-3">
+                              <img
+                                className="avatar img-fluid"
+                                src={images[index + 1].image}
+                                alt="avatar"
+                              />
+                            </div>
+                            <div className="col-9">
+                              <h4 style={{ margin: "0px" }}>
+                                {images[index + 1].title}
+                              </h4>
+                              <p style={{ color: "#81909D" }}>
+                                {images[index + 1].social}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div
+                            className="card-body"
+                            style={{ color: "#3A434B" }}
+                          >
+                            <hr />
+                            <br />
+                            <p className="tip">
+                              <span>{images[index + 1].content}</span>
+                              {images[index + 1].content.length > 200
+                                ? images[index + 1].content.substring(0, 200) +
+                                  "..."
+                                : images[index + 1].content}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
         </Zoom>
-
       </main>
 
       <Modal
@@ -1002,7 +1010,11 @@ const AppHomePage: React.SFC<AppHomePageProps> = ({ history }) => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose} className="btn-hover">
+          <Button
+            variant="secondary"
+            onClick={handleClose}
+            className="btn-hover"
+          >
             Close
           </Button>
           <Button
