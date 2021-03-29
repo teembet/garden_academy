@@ -345,7 +345,9 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
             >
               <div className="row" style={{ width: "100%" }}>
                 <div className="col-lg-8">
-                  <h1 className="d-none d-sm-block animated slideInDown">{course.name}</h1>
+                  <h1 className="d-none d-sm-block animated slideInDown">
+                    {course.name}
+                  </h1>
 
                   <h4 className="d-block d-sm-none">{course.name}</h4>
 
@@ -354,99 +356,105 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
                     <Rating rating={course.star_count}></Rating>
                   </p>
                   <p className="animated slideInUp">
-                    <i className="far fa-clock animated slideInDown"></i>&nbsp;{course.duration}
+                    <i className="far fa-clock animated slideInDown"></i>&nbsp;
+                    {course.duration}
                     &nbsp;&nbsp;&nbsp; &nbsp;
-                    <span className="animated slideInUp">{course.members_count} Students</span>
+                    <span className="animated slideInUp">
+                      {course.members_count} Students
+                    </span>
                   </p>
                 </div>
               </div>
             </div>
             <br />
             <Zoom>
-            <div className="container space-top-3 space-top-lg-3 space-bottom-2">
-              <div>
-                <div className="row ">
-                  <div className="space-right-3 space-top-4 space-bottom-2 col-lg-8">
-                    <div className="pad space-top-3">
-                      <div className="card details" style={{ height: "auto" }}>
-                        <div className="head col-lg-12">
-                          <h2 className="details-head">
-                            About the course you will learn
-                          </h2>
-                          {/* <p>
+              <div className="container space-top-3 space-top-lg-3 space-bottom-2">
+                <div>
+                  <div className="row ">
+                    <div className="space-right-3 space-top-4 space-bottom-2 col-lg-8">
+                      <div className="pad space-top-3">
+                        <div
+                          className="card details"
+                          style={{ height: "auto" }}
+                        >
+                          <div className="head col-lg-12">
+                            <h2 className="details-head">
+                              About the course you will learn
+                            </h2>
+                            {/* <p>
                             Students should have basic computer skills and be
                             comfortable navigating online.
                           </p> */}
-                        </div>
-                        <div className="bullet col-lg-12">
-                          <p
-                            dangerouslySetInnerHTML={{
-                              __html: course.description,
-                            }}
-                          ></p>
+                          </div>
+                          <div className="bullet col-lg-12">
+                            <p
+                              dangerouslySetInnerHTML={{
+                                __html: course.description,
+                              }}
+                            ></p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className=" space-bottom-2 col-lg-4">
-                    <div
-                      className="card"
-                      style={{
-                        padding: "0",
-                        borderRadius: "4%",
-                        border: "1px solid #D7DCE0",
-                        boxSizing: "border-box",
-                        height: "inherit",
-                      }}
-                    >
-                      <img
-                        className="img-fluid card-img-top"
-                        src={course.avatar}
-                        alt="product design"
+                    <div className=" space-bottom-2 col-lg-4">
+                      <div
+                        className="card"
                         style={{
-                          width: "100%",
-                          maxHeight: "20rem",
-                          minHeight: "20rem",
-                          objectFit: "cover",
+                          padding: "0",
+                          borderRadius: "4%",
+                          border: "1px solid #D7DCE0",
+                          boxSizing: "border-box",
+                          height: "inherit",
                         }}
-                      />
-                      <div className="card-body">
-                        <br />
-                        <h2>₦ {course.price}</h2>
-                        <br />
-                        <button
-                          type="submit"
+                      >
+                        <img
+                          className="img-fluid card-img-top"
+                          src={course.avatar}
+                          alt="product design"
                           style={{
-                            background: "#1E944D",
-                            border: "2px solid #1E944D",
+                            width: "100%",
+                            maxHeight: "20rem",
+                            minHeight: "20rem",
+                            objectFit: "cover",
                           }}
-                          onClick={handleShow}
-                          className="btn btn-block btn-primary transition-3d-hover"
-                          data-toggle="modal"
-                          data-target="#exampleModal"
-                        >
-                          Reserve Your Spot
-                        </button>
-                        <br />
-                        <h5>This course includes:</h5>
+                        />
+                        <div className="card-body">
+                          <br />
+                          <h2>₦ {course.price}</h2>
+                          <br />
+                          <button
+                            type="submit"
+                            style={{
+                              background: "#1E944D",
+                              border: "2px solid #1E944D",
+                            }}
+                            onClick={handleShow}
+                            className="btn btn-block btn-primary transition-3d-hover"
+                            data-toggle="modal"
+                            data-target="#exampleModal"
+                          >
+                            Reserve Your Spot
+                          </button>
+                          <br />
+                          <h5>This course includes:</h5>
 
-                        <ul>
-                          {modules.map((data: any, index: number) => {
-                            return (
-                              <li key={index}>
-                                <h5>{data.name}</h5>
-                                <p>{data.description}</p>
-                              </li>
-                            );
-                          })}
-                        </ul>
+                          <ul>
+                            {modules.map((data: any, index: number) => {
+                              return (
+                                <li key={index}>
+                                  <h5>{data.name}</h5>
+                                  <p>{data.description}</p>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
             </Zoom>
           </div>
         ) : (
@@ -473,30 +481,31 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
           </div>
         )}
         <Fade left>
-        <PaymentOptions>
-          <div
-            className="space-bottom-2"
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <button
-              type="submit"
+          <PaymentOptions>
+            <div
+              className="space-bottom-2"
               style={{
-                border: "2px solid #0F42A4",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
-              onClick={handleShow}
-              className="btn btn-outline-primary transition-3d-hover"
-              data-toggle="modal"
-              data-target="#exampleModal"
             >
-              Reserve Your Spot
-            </button>
-          </div>
-        </PaymentOptions></Fade>
+              <button
+                type="submit"
+                style={{
+                  border: "2px solid #0F42A4",
+                }}
+                onClick={handleShow}
+                className="btn btn-outline-primary transition-3d-hover"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                Reserve Your Spot
+              </button>
+            </div>
+          </PaymentOptions>
+        </Fade>
 
         {programs?.length > 0 && (
           <div className="session-four container space-2 space-top-xl-3 space-bottom-lg-3">
@@ -565,8 +574,10 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
                         placeholder="eg. Nataly"
                         required
                         value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        onBlur={(e) => firstNameValidation(e.target.value)}
+                        onChange={(e) => {
+                          setFirstName(e.target.value);
+                          firstNameValidation(e.target.value);
+                        }}
                       />
                       <p className="text-danger">{firstNameValid}</p>
                     </div>
@@ -585,8 +596,10 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
                         placeholder="eg. Gaga"
                         required
                         value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        onBlur={(e) => lastNameValidation(e.target.value)}
+                        onChange={(e) => {
+                          setLastName(e.target.value);
+                          lastNameValidation(e.target.value);
+                        }}
                       />
                       <p className="text-danger">{lastNameValid}</p>
                     </div>
@@ -605,8 +618,10 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
                         placeholder="08045275625"
                         required
                         value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        onBlur={(e) => phoneValidation(e.target.value)}
+                        onChange={(e) => {
+                          setPhone(e.target.value);
+                          phoneValidation(e.target.value);
+                        }}
                       />
                       <p className="text-danger">{phoneValid}</p>
                     </div>
@@ -625,8 +640,10 @@ const AppCourseDetails: React.SFC<AppCourseDetailsProps> = (props: any) => {
                         placeholder="admin@gmail.com"
                         required
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        onBlur={(e) => emailValidation(e.target.value)}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          emailValidation(e.target.value);
+                        }}
                       />
                       <p className="text-danger">{emailValid}</p>
                     </div>

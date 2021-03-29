@@ -48,6 +48,7 @@ const Search: React.SFC<SearchProps> = ({
           style={{ fontSize: "0.7em", height: "auto" }}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
 
         <div className="input-group-append">

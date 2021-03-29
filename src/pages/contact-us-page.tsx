@@ -309,8 +309,10 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                             placeholder="eg. Nataly"
                             required
                             value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
-                            onBlur={(e) => firstNameValidation(e.target.value)}
+                            onChange={(e) => {
+                              setFirstName(e.target.value);
+                              firstNameValidation(e.target.value);
+                            }}
                           />
                           <p className="text-danger">{firstNameValid}</p>
                         </div>
@@ -329,8 +331,10 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                             placeholder="eg. Gaga"
                             required
                             value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
-                            onBlur={(e) => lastNameValidation(e.target.value)}
+                            onChange={(e) => {
+                              setLastName(e.target.value);
+                              lastNameValidation(e.target.value);
+                            }}
                           />
                           <p className="text-danger">{lastNameValid}</p>
                         </div>
@@ -352,8 +356,10 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                             placeholder="eg. Kingsleyomin@gmail.com"
                             required
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            onBlur={(e) => emailValidation(e.target.value)}
+                            onChange={(e) => {
+                              setEmail(e.target.value);
+                              emailValidation(e.target.value);
+                            }}
                           />
                           <p className="text-danger">{emailValid}</p>
                         </div>
@@ -375,8 +381,10 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                             placeholder="eg. Facilitator enquiry"
                             required
                             value={subject}
-                            onChange={(e) => setSubject(e.target.value)}
-                            onBlur={(e) => subjectValidation(e.target.value)}
+                            onChange={(e) => {
+                              setSubject(e.target.value);
+                              subjectValidation(e.target.value);
+                            }}
                           />
                           <p className="text-danger">{subjectValid}</p>
                         </div>
@@ -397,8 +405,10 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                               placeholder="Enter message here"
                               required
                               value={message}
-                              onChange={(e) => setMessage(e.target.value)}
-                              onBlur={(e) => messageValidation(e.target.value)}
+                              onChange={(e) => {
+                                setMessage(e.target.value);
+                                messageValidation(e.target.value);
+                              }}
                             ></textarea>
                           </div>
                           <p>This field is limited to 300 characters</p>

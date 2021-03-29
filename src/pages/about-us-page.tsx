@@ -391,8 +391,10 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                     placeholder="eg. Nataly"
                     required
                     value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    onBlur={(e) => firstNameValidation(e.target.value)}
+                    onChange={(e) => {
+                      setFirstName(e.target.value);
+                      firstNameValidation(e.target.value);
+                    }}
                   />
                   <p className="text-danger">{firstNameValid}</p>
                 </div>
@@ -411,8 +413,10 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                     placeholder="eg. Gaga"
                     required
                     value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    onBlur={(e) => lastNameValidation(e.target.value)}
+                    onChange={(e) => {
+                      setLastName(e.target.value);
+                      lastNameValidation(e.target.value);
+                    }}
                   />
                   <p className="text-danger">{lastNameValid}</p>
                 </div>
@@ -431,8 +435,10 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                     placeholder="08045275625"
                     required
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    onBlur={(e) => phoneValidation(e.target.value)}
+                    onChange={(e) => {
+                      setPhone(e.target.value);
+                      phoneValidation(e.target.value);
+                    }}
                   />
                   <p className="text-danger">{phoneValid}</p>
                 </div>
@@ -451,8 +457,10 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                     placeholder="admin@gmail.com"
                     required
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    onBlur={(e) => emailValidation(e.target.value)}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      emailValidation(e.target.value);
+                    }}
                   />
                   <p className="text-danger">{emailValid}</p>
                 </div>
@@ -471,8 +479,10 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                     placeholder="https://drive.google.com/jfjfjfjfjjffff"
                     required
                     value={url}
-                    onChange={(e) => setUrl(e.target.value)}
-                    onBlur={(e) => urlValidation(e.target.value)}
+                    onChange={(e) => {
+                      setUrl(e.target.value);
+                      urlValidation(e.target.value);
+                    }}
                   />
                   <p className="text-danger">{urlValid}</p>
                 </div>

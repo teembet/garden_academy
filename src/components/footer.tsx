@@ -245,14 +245,14 @@ const AppFooter: React.SFC<AppFooterProps> = () => {
               className="d-none d-lg-block"
               style={{ padding: "2rem 0", color: "#051A52" }}
             >
-              © 2021 Garden Academy - All Rights Reserved.
+              © {new Date().getFullYear()} Garden Academy - All Rights Reserved.
             </p>
 
             <p
               className="d-lg-none"
               style={{ padding: "2rem 0", color: "#051A52" }}
             >
-              © 2021 Garden Academy - <br />
+              © {new Date().getFullYear()} Garden Academy - <br />
               All Rights Reserved.
             </p>
           </div>

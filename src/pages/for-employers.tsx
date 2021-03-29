@@ -540,8 +540,10 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                     placeholder="eg. Nataly"
                     required
                     value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    onBlur={(e) => firstNameValidation(e.target.value)}
+                    onChange={(e) => {
+                      setFirstName(e.target.value);
+                      firstNameValidation(e.target.value);
+                    }}
                   />
                   <p className="text-danger">{firstNameValid}</p>
                 </div>
@@ -560,8 +562,10 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                     placeholder="eg. Gaga"
                     required
                     value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    onBlur={(e) => lastNameValidation(e.target.value)}
+                    onChange={(e) => {
+                      setLastName(e.target.value);
+                      lastNameValidation(e.target.value);
+                    }}
                   />
                   <p className="text-danger">{lastNameValid}</p>
                 </div>
@@ -580,8 +584,10 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                     placeholder="08045275625"
                     required
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    onBlur={(e) => phoneValidation(e.target.value)}
+                    onChange={(e) => {
+                      setPhone(e.target.value);
+                      phoneValidation(e.target.value);
+                    }}
                   />
                   <p className="text-danger">{phoneValid}</p>
                 </div>
@@ -600,8 +606,10 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                     placeholder="admin@gmail.com"
                     required
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    onBlur={(e) => emailValidation(e.target.value)}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      emailValidation(e.target.value);
+                    }}
                   />
                   <p className="text-danger">{emailValid}</p>
                 </div>
