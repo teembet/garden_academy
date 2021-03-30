@@ -1,13 +1,15 @@
+// @ts-ignore
+import Fade from "react-reveal/Fade";
+// @ts-ignore
+import Zoom from "react-reveal/Zoom";
 import { useState, useEffect } from "react";
 
 import "../assets/css/programs.css";
 import PaymentOptions from "../components/payment-options";
 import Search from "../components/search";
 import CourseCardGridView from "../components/course-card-grid-view";
-// @ts-ignore
-import Fade from "react-reveal/Fade";
-// @ts-ignore
-import Zoom from "react-reveal/Zoom";
+import { getMethods, getCourses } from "../helpers/api";
+
 export interface AppProgramsPageProps {}
 
 const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
@@ -30,35 +32,24 @@ const AppProgramsPage: React.SFC<AppProgramsPageProps> = (props: any) => {
 
   useEffect(() => {
     const fetchPrograms = async () => {
-      const response = await fetch(
-        "https://demo.vigilearnlms.com/api/all/courses",
-        {
-          method: "POST", // *GET, POST, PUT, DELETE, etc.
-          mode: "cors", // no-cors, *cors, same-origin
-          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-          credentials: "same-origin", // include, *same-origin, omit
-          headers: {
-            "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          redirect: "follow", // manual, *follow, error
-          referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-          body: JSON.stringify({
-            username: "Tech@edutechng.com",
-            password: "Password_10",
-          }), // body data type must match "Content-Type" header
+      const tokenData = await getMethods("/Edulearn/token");
+
+      if (tokenData.status) {
+        const loginData = await getCourses(tokenData.token);
+
+        if (loginData.status) {
+          setPrograms(loginData.data);
+          setPrograms_store(loginData.data);
+          setPageStatus("data");
+        } else {
+          setPageStatus("data");
         }
-      );
 
-      let loginData = await response.json();
-      if (loginData.status) {
-        setPrograms(loginData.data);
-        setPrograms_store(loginData.data);
+        if (searchData) {
+          searchCourse(searchData);
+        }
+      } else {
         setPageStatus("data");
-      }
-
-      if (searchData) {
-        searchCourse(searchData);
       }
     };
 

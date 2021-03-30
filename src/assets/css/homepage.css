@@ -203,25 +203,41 @@ p.tip:hover span {
   text-decoration: none;
   border-radius: 10%;
 }
-.card-hover{
-   transition: box-shadow 0.2s ease-in-out, transform 0.35s ease-in-out;
+.card-hover {
+  transition: box-shadow 0.2s ease-in-out, transform 0.35s ease-in-out;
 }
-.card-hover:hover{
-  box-shadow: 0 11px 11px 0 rgba(0, 0, 0,.16) !important;
+.card-hover:hover {
+  box-shadow: 0 11px 11px 0 rgba(0, 0, 0, 0.16) !important;
   transform: translateY(-5px) !important;
 }
 
-.btn-hover{
-transition: 0.25s;;
+.btn-hover {
+  transition: 0.25s;
 }
-.btn-hover:hover{
-    box-shadow: 0 0.5em 0.5em -0.4em rgba(0, 0, 0,.16);
+.btn-hover:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em rgba(0, 0, 0, 0.16);
   transform: translateY(-0.25em);
 }
 
-.text-hover{
+.text-hover {
   color: #677788;
 }
-.text-hover:hover{
+.text-hover:hover {
   color: #041237;
+}
+
+.blog-title-image {
+  color: #fff;
+  background: #677788;
+  width: 4rem;
+  border-radius: 50%;
+  font-size: x-large;
+  text-align: center;
+  height: 4rem;
+  padding: 1rem 0.8rem;
+}
+
+.blog-name-placement {
+  display: flex;
+  align-items: center;
 }

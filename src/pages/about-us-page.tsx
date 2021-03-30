@@ -1,6 +1,8 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Alert } from "react-bootstrap";
 import { useState } from "react";
+// @ts-ignore
+import Zoom from "react-reveal/Zoom";
 
 import "../assets/css/aboutpage.css";
 import girl from "../assets/img/girl.png";
@@ -17,87 +19,176 @@ import i from "../assets/img/i.png";
 import j from "../assets/img/j.png";
 import k from "../assets/img/k.png";
 import study from "../assets/img/study.png";
-// @ts-ignore
-import Zoom from "react-reveal/Zoom";
+import { postMethods } from "../helpers/api";
 export interface AppAboutUsPageProps {}
 
 const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
-  const [firstName, setFirstName] = useState("");
-  const [firstNameValid, setFirstNameValid] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [lastNameValid, setLastNameValid] = useState("");
-  const [phone, setPhone] = useState("");
-  const [phoneValid, setPhoneValid] = useState("");
-  const [email, setEmail] = useState("");
-  const [emailValid, setEmailValid] = useState("");
-  const [url, setUrl] = useState("");
-  const [urlValid, setUrlValid] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    url: "https://",
+    firstNameValid: "",
+    lastNameValid: "",
+    phoneValid: "",
+    emailValid: "",
+    urlValid: "",
+  });
 
+  const [showAlert, setShowAlert] = useState({
+    text: "",
+    show: false,
+    color: "success",
+  });
+
+  const [buttonText, setButtonText] = useState({
+    text: "Submit",
+    disabled: false,
+  });
+
+  const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
 
-  const handleSubmit = () => {
-    if (firstNameValidation(firstName) !== true) {
-      return firstNameValidation(firstName);
+  const handleSubmit = async () => {
+    if (firstNameValidation(form.firstName) !== true) {
+      return firstNameValidation(form.firstName);
     }
 
-    if (lastNameValidation(lastName) !== true) {
-      return lastNameValidation(lastName);
+    if (lastNameValidation(form.lastName) !== true) {
+      return lastNameValidation(form.lastName);
     }
 
-    if (phoneValidation(phone) !== true) {
-      return phoneValidation(phone);
+    if (phoneValidation(form.phone) !== true) {
+      return phoneValidation(form.phone);
     }
 
-    if (emailValidation(email) !== true) {
-      return emailValidation(email);
+    if (emailValidation(form.email) !== true) {
+      return emailValidation(form.email);
     }
 
-    if (urlValidation(url) !== true) {
-      return urlValidation(url);
+    if (urlValidation(form.url) !== true) {
+      return urlValidation(form.url);
     }
 
-    handleClose();
-    alert("Success");
+    setButtonText({
+      text: "Loading ...",
+      disabled: true,
+    });
+
+    const facillatorData = await postMethods("/Edulearn/facilitator", {
+      firstName: form.firstName,
+      lastName: form.lastName,
+      email: form.email,
+      phoneNumber: form.phone,
+    });
+
+    setButtonText({
+      text: "Submit",
+      disabled: false,
+    });
+
+    if (facillatorData.requestSuccessful) {
+      setShowAlert({
+        text: "Facilitator request was submitted successfully",
+        show: true,
+        color: "success",
+      });
+      setTimeout(() => {
+        setShowAlert({
+          text: "",
+          show: false,
+          color: "primary",
+        });
+        handleClose();
+      }, 5000);
+
+      setForm({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        url: "https://",
+        firstNameValid: "",
+        lastNameValid: "",
+        phoneValid: "",
+        emailValid: "",
+        urlValid: "",
+      });
+    } else {
+      setShowAlert({
+        text: facillatorData.message,
+        show: true,
+        color: "danger",
+      });
+    }
   };
 
   const firstNameValidation = (fieldValue: string): boolean => {
     if (fieldValue.trim() === "") {
-      setFirstNameValid(`First name is required`);
+      setForm({
+        ...form,
+        firstNameValid: "First name is required",
+      });
       return false;
     }
 
     if (/[^a-zA-Z -]/.test(fieldValue)) {
-      setFirstNameValid("Invalid characters");
+      setForm({
+        ...form,
+        firstNameValid: "Invalid characters",
+      });
+
       return false;
     }
 
     if (fieldValue.trim().length < 3) {
-      setFirstNameValid(`First name needs to be at least three characters`);
+      setForm({
+        ...form,
+        firstNameValid: "First name needs to be at least three characters",
+      });
+
       return false;
     }
-    setFirstNameValid("");
+
+    setForm({
+      ...form,
+      firstNameValid: "",
+    });
+
     return true;
   };
 
   const lastNameValidation = (fieldValue: string): boolean => {
     if (fieldValue.trim() === "") {
-      setLastNameValid(`Last name is required`);
+      setForm({
+        ...form,
+        lastNameValid: "Last name is required",
+      });
       return false;
     }
 
     if (/[^a-zA-Z -]/.test(fieldValue)) {
-      setLastNameValid("Invalid characters");
+      setForm({
+        ...form,
+        lastNameValid: "Invalid characters",
+      });
       return false;
     }
 
     if (fieldValue.trim().length < 3) {
-      setLastNameValid(`Last name needs to be at least three characters`);
+      setForm({
+        ...form,
+        lastNameValid: "Last name needs to be at least three characters",
+      });
       return false;
     }
+    setForm({
+      ...form,
+      lastNameValid: "",
+    });
 
-    setLastNameValid("");
     return true;
   };
 
@@ -107,27 +198,46 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
         email
       )
     ) {
-      setEmailValid("");
+      setForm({
+        ...form,
+        emailValid: "",
+      });
       return true;
     }
     if (email.trim() === "") {
-      setEmailValid("Email is required");
+      setForm({
+        ...form,
+        emailValid: "Email is required",
+      });
+
       return false;
     }
-    setEmailValid("Please enter a valid email");
+    setForm({
+      ...form,
+      emailValid: "Please enter a valid email",
+    });
     return false;
   };
 
   const phoneValidation = (phone: string): boolean => {
     if (/^[0]\d{10}$/.test(phone)) {
-      setPhoneValid("");
+      setForm({
+        ...form,
+        phoneValid: "",
+      });
       return true;
     }
     if (phone.trim() === "") {
-      setPhoneValid("Phone is required");
+      setForm({
+        ...form,
+        phoneValid: "Phone is required",
+      });
       return false;
     }
-    setPhoneValid("Please enter a valid phone");
+    setForm({
+      ...form,
+      phoneValid: "Please enter a valid phone",
+    });
     return false;
   };
 
@@ -137,14 +247,23 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
         url
       )
     ) {
-      setUrlValid("");
+      setForm({
+        ...form,
+        urlValid: "",
+      });
       return true;
     }
     if (url.trim() === "") {
-      setUrlValid("Portfolio URL is required");
+      setForm({
+        ...form,
+        urlValid: "Portfolio URL is required",
+      });
       return false;
     }
-    setUrlValid("Please enter a valid URL");
+    setForm({
+      ...form,
+      urlValid: "Please enter a valid URL",
+    });
     return false;
   };
 
@@ -378,6 +497,18 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
         <Modal.Body>
           <form>
             <div className="row">
+              <div className="offset-2 col-sm-8">
+                <Alert
+                  show={showAlert.show}
+                  variant={showAlert.color}
+                  onClose={() => setShowAlert({ ...showAlert, show: false })}
+                  dismissible
+                >
+                  <Alert.Heading className="text-light">
+                    {showAlert.text}
+                  </Alert.Heading>
+                </Alert>
+              </div>
               <div className="col-sm-6">
                 <div className="js-form-message form-group">
                   <label htmlFor="firstName" className="input-label">
@@ -390,13 +521,15 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                     id="firstName"
                     placeholder="eg. Nataly"
                     required
-                    value={firstName}
+                    value={form.firstName}
                     onChange={(e) => {
-                      setFirstName(e.target.value);
+                      setForm({ ...form, firstName: e.target.value });
+                    }}
+                    onBlur={(e) => {
                       firstNameValidation(e.target.value);
                     }}
                   />
-                  <p className="text-danger">{firstNameValid}</p>
+                  <p className="text-danger">{form.firstNameValid}</p>
                 </div>
               </div>
 
@@ -412,13 +545,15 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                     id="lastName"
                     placeholder="eg. Gaga"
                     required
-                    value={lastName}
+                    value={form.lastName}
                     onChange={(e) => {
-                      setLastName(e.target.value);
+                      setForm({ ...form, lastName: e.target.value });
+                    }}
+                    onBlur={(e) => {
                       lastNameValidation(e.target.value);
                     }}
                   />
-                  <p className="text-danger">{lastNameValid}</p>
+                  <p className="text-danger">{form.lastNameValid}</p>
                 </div>
               </div>
 
@@ -434,13 +569,15 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                     id="firstName"
                     placeholder="08045275625"
                     required
-                    value={phone}
+                    value={form.phone}
                     onChange={(e) => {
-                      setPhone(e.target.value);
+                      setForm({ ...form, phone: e.target.value });
+                    }}
+                    onBlur={(e) => {
                       phoneValidation(e.target.value);
                     }}
                   />
-                  <p className="text-danger">{phoneValid}</p>
+                  <p className="text-danger">{form.phoneValid}</p>
                 </div>
               </div>
 
@@ -456,13 +593,15 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                     id="email"
                     placeholder="admin@gmail.com"
                     required
-                    value={email}
+                    value={form.email}
                     onChange={(e) => {
-                      setEmail(e.target.value);
+                      setForm({ ...form, email: e.target.value });
+                    }}
+                    onBlur={(e) => {
                       emailValidation(e.target.value);
                     }}
                   />
-                  <p className="text-danger">{emailValid}</p>
+                  <p className="text-danger">{form.emailValid}</p>
                 </div>
               </div>
 
@@ -478,24 +617,35 @@ const AppAboutUsPage: React.SFC<AppAboutUsPageProps> = () => {
                     id="url"
                     placeholder="https://drive.google.com/jfjfjfjfjjffff"
                     required
-                    value={url}
+                    value={form.url}
                     onChange={(e) => {
-                      setUrl(e.target.value);
+                      setForm({ ...form, url: e.target.value });
+                    }}
+                    onBlur={(e) => {
                       urlValidation(e.target.value);
                     }}
                   />
-                  <p className="text-danger">{urlValid}</p>
+                  <p className="text-danger">{form.urlValid}</p>
                 </div>
               </div>
             </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button
+            variant="secondary"
+            onClick={handleClose}
+            className="btn-hover"
+          >
             Close
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            Next
+          <Button
+            disabled={buttonText.disabled}
+            variant="primary"
+            onClick={handleSubmit}
+            className="btn-hover"
+          >
+            {buttonText.text}
           </Button>
         </Modal.Footer>
       </Modal>

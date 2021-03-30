@@ -1,1 +1,0 @@
-if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="front/assets/vendor/babel-polyfill/dist/polyfill.js"><\/script>');

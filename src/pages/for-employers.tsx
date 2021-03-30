@@ -1,6 +1,11 @@
 import { Modal, Button, Alert } from "react-bootstrap";
 import { useState } from "react";
+// @ts-ignore
+import Fade from "react-reveal/Fade";
+// @ts-ignore
+import Zoom from "react-reveal/Zoom";
 
+import { postMethods } from "../helpers/api";
 import homehero from "../assets/img/home-hero.svg";
 import womanPic from "../assets/img/woman.svg";
 import homecard1 from "../assets/img/homecard1.svg";
@@ -9,22 +14,21 @@ import homecard3 from "../assets/img/homecard3.svg";
 import facilitator from "../assets/img/facilitator.svg";
 import employer from "../assets/img/employer.svg";
 import classP from "../assets/img/class.svg";
-// @ts-ignore
-import Fade from "react-reveal/Fade";
-// @ts-ignore
-import Zoom from "react-reveal/Zoom";
 export interface AppForEmployersProps {}
 
 const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
-  const [firstName, setFirstName] = useState("");
-  const [firstNameValid, setFirstNameValid] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [lastNameValid, setLastNameValid] = useState("");
-  const [phone, setPhone] = useState("");
-  const [phoneValid, setPhoneValid] = useState("");
-  const [email, setEmail] = useState("");
-  const [emailValid, setEmailValid] = useState("");
-  const [message, setMessage] = useState("");
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    message: "",
+    firstNameValid: "",
+    lastNameValid: "",
+    phoneValid: "",
+    emailValid: "",
+    messageValid: "",
+  });
 
   const [showModal, setShowModal] = useState(false);
 
@@ -42,20 +46,20 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
   const handleSubmit = async () => {
-    if (firstNameValidation(firstName) !== true) {
-      return firstNameValidation(firstName);
+    if (firstNameValidation(form.firstName) !== true) {
+      return firstNameValidation(form.firstName);
     }
 
-    if (lastNameValidation(lastName) !== true) {
-      return lastNameValidation(lastName);
+    if (lastNameValidation(form.lastName) !== true) {
+      return lastNameValidation(form.lastName);
     }
 
-    if (phoneValidation(phone) !== true) {
-      return phoneValidation(phone);
+    if (phoneValidation(form.phone) !== true) {
+      return phoneValidation(form.phone);
     }
 
-    if (emailValidation(email) !== true) {
-      return emailValidation(email);
+    if (emailValidation(form.email) !== true) {
+      return emailValidation(form.email);
     }
 
     setButtonText({
@@ -63,30 +67,13 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
       disabled: true,
     });
 
-    const response = await fetch(
-      "https://educollect-api.edutechng.com/api/Edulearn/employer",
-      {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: "follow", // manual, *follow, error
-        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          phoneNumber: phone,
-          message,
-        }), // body data type must match "Content-Type" header
-      }
-    );
-
-    let emplyersData = await response.json();
+    let emplyersData = await postMethods("/Edulearn/employer", {
+      firstName: form.firstName,
+      lastName: form.lastName,
+      email: form.email,
+      phoneNumber: form.phone,
+      message: form.message,
+    });
 
     setButtonText({
       text: "Submit",
@@ -108,11 +95,18 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
         handleClose();
       }, 5000);
 
-      setEmail("");
-      setFirstName("");
-      setLastName("");
-      setPhone("");
-      setMessage("");
+      setForm({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        message: "",
+        firstNameValid: "",
+        lastNameValid: "",
+        phoneValid: "",
+        emailValid: "",
+        messageValid: "",
+      });
     } else {
       setShowAlert({
         text: emplyersData.message,
@@ -124,40 +118,68 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
 
   const firstNameValidation = (fieldValue: string): boolean => {
     if (fieldValue.trim() === "") {
-      setFirstNameValid(`First name is required`);
+      setForm({
+        ...form,
+        firstNameValid: "First name is required",
+      });
       return false;
     }
 
     if (/[^a-zA-Z -]/.test(fieldValue)) {
-      setFirstNameValid("Invalid characters");
+      setForm({
+        ...form,
+        firstNameValid: "Invalid characters",
+      });
+
       return false;
     }
 
     if (fieldValue.trim().length < 3) {
-      setFirstNameValid(`First name needs to be at least three characters`);
+      setForm({
+        ...form,
+        firstNameValid: "First name needs to be at least three characters",
+      });
+
       return false;
     }
-    setFirstNameValid("");
+
+    setForm({
+      ...form,
+      firstNameValid: "",
+    });
+
     return true;
   };
 
   const lastNameValidation = (fieldValue: string): boolean => {
     if (fieldValue.trim() === "") {
-      setLastNameValid(`Last name is required`);
+      setForm({
+        ...form,
+        lastNameValid: "Last name is required",
+      });
       return false;
     }
 
     if (/[^a-zA-Z -]/.test(fieldValue)) {
-      setLastNameValid("Invalid characters");
+      setForm({
+        ...form,
+        lastNameValid: "Invalid characters",
+      });
       return false;
     }
 
     if (fieldValue.trim().length < 3) {
-      setLastNameValid(`Last name needs to be at least three characters`);
+      setForm({
+        ...form,
+        lastNameValid: "Last name needs to be at least three characters",
+      });
       return false;
     }
+    setForm({
+      ...form,
+      lastNameValid: "",
+    });
 
-    setLastNameValid("");
     return true;
   };
 
@@ -167,27 +189,46 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
         email
       )
     ) {
-      setEmailValid("");
+      setForm({
+        ...form,
+        emailValid: "",
+      });
       return true;
     }
     if (email.trim() === "") {
-      setEmailValid("Email is required");
+      setForm({
+        ...form,
+        emailValid: "Email is required",
+      });
+
       return false;
     }
-    setEmailValid("Please enter a valid email");
+    setForm({
+      ...form,
+      emailValid: "Please enter a valid email",
+    });
     return false;
   };
 
   const phoneValidation = (phone: string): boolean => {
     if (/^[0]\d{10}$/.test(phone)) {
-      setPhoneValid("");
+      setForm({
+        ...form,
+        phoneValid: "",
+      });
       return true;
     }
     if (phone.trim() === "") {
-      setPhoneValid("Phone is required");
+      setForm({
+        ...form,
+        phoneValid: "Phone is required",
+      });
       return false;
     }
-    setPhoneValid("Please enter a valid phone");
+    setForm({
+      ...form,
+      phoneValid: "Please enter a valid phone",
+    });
     return false;
   };
 
@@ -530,7 +571,7 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
               <div className="col-sm-6">
                 <div className="js-form-message form-group">
                   <label htmlFor="firstName" className="input-label">
-                    Fullname
+                    First name
                   </label>
                   <input
                     type="text"
@@ -539,20 +580,22 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                     id="firstName"
                     placeholder="eg. Nataly"
                     required
-                    value={firstName}
+                    value={form.firstName}
                     onChange={(e) => {
-                      setFirstName(e.target.value);
+                      setForm({ ...form, firstName: e.target.value });
+                    }}
+                    onBlur={(e) => {
                       firstNameValidation(e.target.value);
                     }}
                   />
-                  <p className="text-danger">{firstNameValid}</p>
+                  <p className="text-danger">{form.firstNameValid}</p>
                 </div>
               </div>
 
               <div className="col-sm-6">
                 <div className="js-form-message form-group">
                   <label htmlFor={"lastName"} className="input-label">
-                    Company name
+                    Last name
                   </label>
                   <input
                     type="text"
@@ -561,13 +604,15 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                     id="lastName"
                     placeholder="eg. Gaga"
                     required
-                    value={lastName}
+                    value={form.lastName}
                     onChange={(e) => {
-                      setLastName(e.target.value);
+                      setForm({ ...form, lastName: e.target.value });
+                    }}
+                    onBlur={(e) => {
                       lastNameValidation(e.target.value);
                     }}
                   />
-                  <p className="text-danger">{lastNameValid}</p>
+                  <p className="text-danger">{form.lastNameValid}</p>
                 </div>
               </div>
 
@@ -583,13 +628,15 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                     id="firstName"
                     placeholder="08045275625"
                     required
-                    value={phone}
+                    value={form.phone}
                     onChange={(e) => {
-                      setPhone(e.target.value);
+                      setForm({ ...form, phone: e.target.value });
+                    }}
+                    onBlur={(e) => {
                       phoneValidation(e.target.value);
                     }}
                   />
-                  <p className="text-danger">{phoneValid}</p>
+                  <p className="text-danger">{form.phoneValid}</p>
                 </div>
               </div>
 
@@ -605,15 +652,18 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                     id="email"
                     placeholder="admin@gmail.com"
                     required
-                    value={email}
+                    value={form.email}
                     onChange={(e) => {
-                      setEmail(e.target.value);
+                      setForm({ ...form, email: e.target.value });
+                    }}
+                    onBlur={(e) => {
                       emailValidation(e.target.value);
                     }}
                   />
-                  <p className="text-danger">{emailValid}</p>
+                  <p className="text-danger">{form.emailValid}</p>
                 </div>
               </div>
+
               <div className="col-sm-12">
                 <div className="js-form-message form-group">
                   <label htmlFor={"lastName"} className="input-label">
@@ -623,8 +673,10 @@ const AppForEmployers: React.SFC<AppForEmployersProps> = () => {
                     className="form-control"
                     name="message"
                     id="message"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    value={form.message}
+                    onChange={(e) =>
+                      setForm({ ...form, message: e.target.value })
+                    }
                   />
                 </div>
               </div>

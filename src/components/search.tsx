@@ -31,7 +31,7 @@ const Search: React.SFC<SearchProps> = ({
     <>
       <form className="input-group">
         <input
-          type="search"
+          type="text"
           className="search-placeholder form-control d-none d-lg-block d-md-block"
           placeholder={" 🔍 " + search}
           aria-label="Search Front"
@@ -41,7 +41,7 @@ const Search: React.SFC<SearchProps> = ({
         />
 
         <input
-          type="search"
+          type="text"
           className="search-placeholder form-control d-block d-lg-none d-md-none"
           placeholder={" 🔍 " + search}
           aria-label="Search Front"

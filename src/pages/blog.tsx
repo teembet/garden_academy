@@ -110,13 +110,9 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
 
                     <div className="row " style={{ width: "100%" }}>
                       <div className="col-4">
-                        <img
-                          className="avatar img-fluid"
-                          src={person}
-                          alt="avatar"
-                        />
+                        <h1 className="blog-title-image">MG</h1>
                       </div>
-                      <div className="col-8">
+                      <div className="col-8 blog-name-placement">
                         <p style={{ color: "white" }}>Michael Georgiou</p>
                       </div>
                     </div>
@@ -189,13 +185,9 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
 
                       <div className="row" style={{ width: "100%" }}>
                         <div className="col-4">
-                          <img
-                            className="avatar img-fluid"
-                            src={person}
-                            alt="avatar"
-                          />
+                          <h1 className="blog-title-image">MS</h1>
                         </div>
-                        <div className="col-8">
+                        <div className="col-8 blog-name-placement">
                           <p style={{ color: "white" }}>Michael R. Solomon</p>
                         </div>
                       </div>
@@ -262,13 +254,9 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
 
                       <div className="row " style={{ width: "100%" }}>
                         <div className="col-4">
-                          <img
-                            className="avatar img-fluid"
-                            src={person}
-                            alt="avatar"
-                          />
+                          <h1 className="blog-title-image">JS</h1>
                         </div>
-                        <div className="col-8">
+                        <div className="col-8 blog-name-placement">
                           <p style={{ color: "white" }}>
                             Jose Maria Delos Santos
                           </p>
@@ -333,7 +321,8 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                         There are different schools of thought about the number
                         of phases during a project. Some claim there are 3
                         phases; others say it’s 5. At the base of it, the PMBOK
-                        points out that the number of phases is. ...
+                        points out that the number of phases is determined by
+                        project. ...
                       </p>
 
                       <div
@@ -341,14 +330,10 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                         style={{ marginBottom: "0 !important", width: "100%" }}
                       >
                         <div className="col-4">
-                          <img
-                            className="avatar img-fluid"
-                            src={person}
-                            alt="avatar"
-                          />
+                          <h1 className="blog-title-image">RP</h1>
                         </div>
-                        <div className="col-8">
-                          <p style={{ color: "white" }}>ROLI PATHAK</p>
+                        <div className="col-8 blog-name-placement">
+                          <p style={{ color: "white" }}>Roli Pathak</p>
                         </div>
                       </div>
                     </div>
@@ -415,13 +400,9 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                         style={{ marginBottom: "0 !important", width: "100%" }}
                       >
                         <div className="col-4">
-                          <img
-                            className="avatar img-fluid"
-                            src={person}
-                            alt="avatar"
-                          />
+                          <h1 className="blog-title-image">SJ</h1>
                         </div>
-                        <div className="col-8">
+                        <div className="col-8 blog-name-placement">
                           <p style={{ color: "white" }}>Sarah Johnson</p>
                         </div>
                       </div>
@@ -490,13 +471,9 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                         style={{ marginBottom: "0 !important", width: "100%" }}
                       >
                         <div className="col-4">
-                          <img
-                            className="avatar img-fluid"
-                            src={person}
-                            alt="avatar"
-                          />
+                          <h1 className="blog-title-image">PO</h1>
                         </div>
-                        <div className="col-8">
+                        <div className="col-8 blog-name-placement">
                           <p style={{ color: "white" }}>Paul Osborne</p>
                         </div>
                       </div>
@@ -564,13 +541,9 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                         style={{ marginBottom: "0 !important", width: "100%" }}
                       >
                         <div className="col-4">
-                          <img
-                            className="avatar img-fluid"
-                            src={person}
-                            alt="avatar"
-                          />
+                          <h1 className="blog-title-image">JJ</h1>
                         </div>
-                        <div className="col-8">
+                        <div className="col-8 blog-name-placement">
                           <p style={{ color: "white" }}>James Jorner</p>
                         </div>
                       </div>
@@ -644,13 +617,9 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                         style={{ marginBottom: "0 !important", width: "100%" }}
                       >
                         <div className="col-4">
-                          <img
-                            className="avatar img-fluid"
-                            src={person}
-                            alt="avatar"
-                          />
+                          <h1 className="blog-title-image">BC</h1>
                         </div>
-                        <div className="col-8">
+                        <div className="col-8 blog-name-placement">
                           <p style={{ color: "white" }}>Brian Coburn</p>
                         </div>
                       </div>
@@ -720,13 +689,9 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                         style={{ marginBottom: "0 !important", width: "100%" }}
                       >
                         <div className="col-4">
-                          <img
-                            className="avatar img-fluid"
-                            src={person}
-                            alt="avatar"
-                          />
+                          <h1 className="blog-title-image">HU</h1>
                         </div>
-                        <div className="col-8">
+                        <div className="col-8 blog-name-placement">
                           <p style={{ color: "white" }}>Holly Urban</p>
                         </div>
                       </div>
@@ -795,13 +760,9 @@ const AppBlog: React.SFC<AppBlogProps> = () => {
                         style={{ marginBottom: "0 !important", width: "100%" }}
                       >
                         <div className="col-4">
-                          <img
-                            className="avatar img-fluid"
-                            src={person}
-                            alt="avatar"
-                          />
+                          <h1 className="blog-title-image">SO</h1>
                         </div>
-                        <div className="col-8">
+                        <div className="col-8 blog-name-placement">
                           <p style={{ color: "white" }}>Stephanie Overby</p>
                         </div>
                       </div>

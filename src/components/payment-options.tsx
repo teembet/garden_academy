@@ -1,4 +1,4 @@
-import rect from "../assets/img/rect-bg.svg";
+import rect from "../assets/img/payment_icon.svg";
 export interface PaymentOptionsProps {}
 
 const PaymentOptions: React.SFC<PaymentOptionsProps> = ({ children }) => {
@@ -20,7 +20,7 @@ const PaymentOptions: React.SFC<PaymentOptionsProps> = ({ children }) => {
               </p>
 
               <div className="row">
-                <div className="col-md-3 mb-3" style={{ padding: "0px" }}>
+                <div className="col-md-3 mb-3">
                   <div className="card-icon">
                     <span>
                       <img src={rect} alt="" />

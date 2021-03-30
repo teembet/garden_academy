@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 import { Alert } from "react-bootstrap";
-import "../assets/css/contactpage.css";
-import Socials from "../components/socials";
 // @ts-ignore
 import Zoom from "react-reveal/Zoom";
+
+import "../assets/css/contactpage.css";
+import Socials from "../components/socials";
+import { postMethods } from "../helpers/api";
+
 export interface AppContactUsPageProps {}
 
 const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
-  const [firstName, setFirstName] = useState("");
-  const [firstNameValid, setFirstNameValid] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [lastNameValid, setLastNameValid] = useState("");
-  const [email, setEmail] = useState("");
-  const [emailValid, setEmailValid] = useState("");
-  const [subject, setSubject] = useState("");
-  const [subjectValid, setSubjectValid] = useState("");
-  const [message, setMessage] = useState("");
-  const [messageValid, setMessageValid] = useState("");
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    subject: "",
+    email: "",
+    message: "",
+    firstNameValid: "",
+    lastNameValid: "",
+    subjectValid: "",
+    emailValid: "",
+    messageValid: "",
+  });
 
   const [showAlert, setShowAlert] = useState({
     text: "",
@@ -30,24 +35,24 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
   });
 
   const handleSubmit = async () => {
-    if (firstNameValidation(firstName) !== true) {
-      return firstNameValidation(firstName);
+    if (firstNameValidation(form.firstName) !== true) {
+      return firstNameValidation(form.firstName);
     }
 
-    if (lastNameValidation(lastName) !== true) {
-      return lastNameValidation(lastName);
+    if (lastNameValidation(form.lastName) !== true) {
+      return lastNameValidation(form.lastName);
     }
 
-    if (emailValidation(email) !== true) {
-      return emailValidation(email);
+    if (emailValidation(form.email) !== true) {
+      return emailValidation(form.email);
     }
 
-    if (subjectValidation(subject) !== true) {
-      return subjectValidation(subject);
+    if (subjectValidation(form.subject) !== true) {
+      return subjectValidation(form.subject);
     }
 
-    if (messageValidation(message) !== true) {
-      return messageValidation(message);
+    if (messageValidation(form.message) !== true) {
+      return messageValidation(form.message);
     }
 
     setButtonText({
@@ -55,88 +60,97 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
       disabled: true,
     });
 
-    const response = await fetch(
-      "https://educollect-api.edutechng.com/api/MailingList/sendmail",
-      {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: "follow", // manual, *follow, error
-        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify({
-          recipientEmail: "info@gardenacademy.io",
-          name: "Edutech Support Page",
-          message: `First Name :   ${firstName}
+    const res = await postMethods("/MailingList/sendmail", {
+      recipientEmail: "info@gardenacademy.io",
+      name: "Edutech Support Page",
+      message: `First Name :   ${form.firstName}
                     <br/>
-                    Last Name:   ${lastName}
+                    Last Name:   ${form.lastName}
                     <br/>
-                    Email:   ${email}
+                    Email:   ${form.email}
                     <br/>
-                    Subject:   ${subject}
+                    Subject:   ${form.subject}
                     <br/>
-                    Message: ${message}`,
-        }), // body data type must match "Content-Type" header
-      }
-    );
-
-    setButtonText({
-      text: "Submit",
-      disabled: false,
+                    Message: ${form.message}`,
     });
 
-    setShowAlert({
-      text: "Contact us information was submitted successfully.",
-      show: true,
-      color: "success",
-    });
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setMessage("");
-    setSubject("");
+    if (res.status) {
+      setButtonText({
+        text: "Submit",
+        disabled: false,
+      });
+
+      setShowAlert({
+        text: "Contact us information was submitted successfully.",
+        show: true,
+        color: "success",
+      });
+
+      setForm({
+        firstName: "",
+        lastName: "",
+        subject: "",
+        email: "",
+        message: "",
+        firstNameValid: "",
+        lastNameValid: "",
+        subjectValid: "",
+        emailValid: "",
+        messageValid: "",
+      });
+    } else {
+      setShowAlert({
+        text: "Contact us information was not successful.",
+        show: true,
+        color: "danger",
+      });
+    }
   };
 
   const firstNameValidation = (fieldValue: string): boolean => {
     if (fieldValue.trim() === "") {
-      setFirstNameValid(`First name is required`);
+      setForm({ ...form, firstNameValid: "First name is required" });
+
       return false;
     }
 
     if (/[^a-zA-Z -]/.test(fieldValue)) {
-      setFirstNameValid("Invalid characters");
+      setForm({ ...form, firstNameValid: "Invalid characters" });
+
       return false;
     }
 
     if (fieldValue.trim().length < 3) {
-      setFirstNameValid(`First name needs to be at least 3 characters`);
+      setForm({
+        ...form,
+        firstNameValid: "First name needs to be at least 3 characters",
+      });
+
       return false;
     }
-    setFirstNameValid("");
+    setForm({ ...form, firstNameValid: "" });
     return true;
   };
 
   const lastNameValidation = (fieldValue: string): boolean => {
     if (fieldValue.trim() === "") {
-      setLastNameValid(`Last name is required`);
+      setForm({ ...form, lastNameValid: "Last name is required" });
       return false;
     }
 
     if (/[^a-zA-Z -]/.test(fieldValue)) {
-      setLastNameValid("Invalid characters");
+      setForm({ ...form, lastNameValid: "Invalid characters" });
       return false;
     }
 
     if (fieldValue.trim().length < 3) {
-      setLastNameValid(`Last name needs to be at least 3 characters`);
+      setForm({
+        ...form,
+        lastNameValid: "Last name needs to be at least 3 characters",
+      });
       return false;
     }
-
-    setLastNameValid("");
+    setForm({ ...form, lastNameValid: "" });
     return true;
   };
 
@@ -146,49 +160,57 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
         email
       )
     ) {
-      setEmailValid("");
+      setForm({ ...form, emailValid: "" });
       return true;
     }
     if (email.trim() === "") {
-      setEmailValid("Email is required");
+      setForm({ ...form, emailValid: "Email is required" });
       return false;
     }
-    setEmailValid("Please enter a valid email");
+    setForm({ ...form, emailValid: "Please enter a valid email" });
     return false;
   };
 
   const subjectValidation = (fieldValue: string): boolean => {
     if (fieldValue.trim() === "") {
-      setSubjectValid(`Subject is required`);
+      setForm({ ...form, subjectValid: "Subject is required" });
       return false;
     }
 
     if (fieldValue.trim().length < 10) {
-      setSubjectValid(`Subject needs to be at least 10 characters`);
+      setForm({
+        ...form,
+        subjectValid: "Subject needs to be at least 10 characters",
+      });
       return false;
     }
 
-    setSubjectValid("");
+    setForm({ ...form, subjectValid: "" });
     return true;
   };
 
   const messageValidation = (fieldValue: string): boolean => {
     if (fieldValue.trim() === "") {
-      setMessageValid(`Message is required`);
+      setForm({ ...form, messageValid: "Message is required" });
       return false;
     }
 
     if (fieldValue.trim().length < 50) {
-      setMessageValid(`Message needs to be at least 50 characters`);
+      setForm({
+        ...form,
+        messageValid: "Message needs to be at least 50 characters",
+      });
       return false;
     }
 
     if (fieldValue.trim().length > 300) {
-      setMessageValid(`Message is limited to 300 words, keep it short`);
+      setForm({
+        ...form,
+        messageValid: "Message is limited to 300 words, keep it short",
+      });
       return false;
     }
-
-    setMessageValid("");
+    setForm({ ...form, messageValid: "" });
     return true;
   };
 
@@ -308,13 +330,15 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                             id="firstName"
                             placeholder="eg. Nataly"
                             required
-                            value={firstName}
+                            value={form.firstName}
                             onChange={(e) => {
-                              setFirstName(e.target.value);
+                              setForm({ ...form, firstName: e.target.value });
+                            }}
+                            onBlur={(e) => {
                               firstNameValidation(e.target.value);
                             }}
                           />
-                          <p className="text-danger">{firstNameValid}</p>
+                          <p className="text-danger">{form.firstNameValid}</p>
                         </div>
                       </div>
 
@@ -330,13 +354,15 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                             id="lastName"
                             placeholder="eg. Gaga"
                             required
-                            value={lastName}
+                            value={form.lastName}
                             onChange={(e) => {
-                              setLastName(e.target.value);
+                              setForm({ ...form, lastName: e.target.value });
+                            }}
+                            onBlur={(e) => {
                               lastNameValidation(e.target.value);
                             }}
                           />
-                          <p className="text-danger">{lastNameValid}</p>
+                          <p className="text-danger">{form.lastNameValid}</p>
                         </div>
                       </div>
 
@@ -355,13 +381,15 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                             id="emailAddress"
                             placeholder="eg. Kingsleyomin@gmail.com"
                             required
-                            value={email}
+                            value={form.email}
                             onChange={(e) => {
-                              setEmail(e.target.value);
+                              setForm({ ...form, email: e.target.value });
+                            }}
+                            onBlur={(e) => {
                               emailValidation(e.target.value);
                             }}
                           />
-                          <p className="text-danger">{emailValid}</p>
+                          <p className="text-danger">{form.emailValid}</p>
                         </div>
                       </div>
 
@@ -380,13 +408,15 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                             id="emailAddress"
                             placeholder="eg. Facilitator enquiry"
                             required
-                            value={subject}
+                            value={form.subject}
                             onChange={(e) => {
-                              setSubject(e.target.value);
+                              setForm({ ...form, subject: e.target.value });
+                            }}
+                            onBlur={(e) => {
                               subjectValidation(e.target.value);
                             }}
                           />
-                          <p className="text-danger">{subjectValid}</p>
+                          <p className="text-danger">{form.subjectValid}</p>
                         </div>
                       </div>
 
@@ -404,15 +434,17 @@ const AppContactUsPage: React.SFC<AppContactUsPageProps> = () => {
                               id="message"
                               placeholder="Enter message here"
                               required
-                              value={message}
+                              value={form.message}
                               onChange={(e) => {
-                                setMessage(e.target.value);
+                                setForm({ ...form, message: e.target.value });
+                              }}
+                              onBlur={(e) => {
                                 messageValidation(e.target.value);
                               }}
                             ></textarea>
                           </div>
                           <p>This field is limited to 300 characters</p>
-                          <p className="text-danger">{messageValid}</p>
+                          <p className="text-danger">{form.messageValid}</p>
                         </div>
                       </div>
                     </div>

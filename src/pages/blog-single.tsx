@@ -41,7 +41,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
             <div style={{ backgroundColor: "black" }}>
               <div className="container space-bottom-2">
                 <div className="row space-top-3 space-bottom-2">
-                  <Fade left>
                   <div
                     className="col-lg-12"
                     style={{ padding: "5% 0", position: "relative" }}
@@ -57,25 +56,19 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       className="img-fluid img-data d-lg-none"
                     />
                   </div>
-</Fade>
+
                   <div
                     className="row space-top-1 "
                     style={{ marginBottom: "0 !important", width: "100%" }}
                   >
-                    <div className="col-1">
-                      <img
-                        className="avatar img-fluid"
-                        src={person}
-                        alt="avatar"
-                      />
-                    </div>
+                    <div className="col-1">{""}</div>
                     <div className="col-8">
                       <p style={{ margin: "0px", color: "white" }}>
                         Michael Georgiou
                       </p>
                     </div>
                   </div>
-<Fade right>
+
                   <div
                     className="col-lg-12"
                     style={{ padding: "5%", position: "relative" }}
@@ -302,7 +295,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       </p>
                     </div>
                   </div>
-                  </Fade>
                 </div>
               </div>
             </div>
@@ -333,7 +325,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
             <div style={{ backgroundColor: "black" }}>
               <div className="container space-bottom-2">
                 <div className="row space-top-3 space-bottom-2">
-                  <Fade left>
                   <div
                     className="col-lg-12"
                     style={{ padding: "5% 0", position: "relative" }}
@@ -349,25 +340,19 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       className="img-fluid img-data d-lg-none"
                     />
                   </div>
-</Fade>
+
                   <div
                     className="row space-top-1 "
                     style={{ marginBottom: "0 !important", width: "100%" }}
                   >
-                    <div className="col-1">
-                      <img
-                        className="avatar img-fluid"
-                        src={person}
-                        alt="avatar"
-                      />
-                    </div>
+                    <div className="col-1">{""}</div>
                     <div className="col-8">
                       <p style={{ margin: "0px", color: "white" }}>
                         Michael R. Solomon
                       </p>
                     </div>
                   </div>
-<Fade left>
+
                   <div
                     className="col-lg-12"
                     style={{ padding: "5%", position: "relative" }}
@@ -529,7 +514,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       </p>
                     </div>
                   </div>
-                  </Fade>
                 </div>
               </div>
             </div>
@@ -544,7 +528,9 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                 5 Phases of Project Management (PMP)
               </h1>
 
-              <p className="d-none d-sm-block animated slideInUp">PMP • January 11, 2021</p>
+              <p className="d-none d-sm-block animated slideInUp">
+                PMP • January 11, 2021
+              </p>
 
               <h4 className="d-block d-sm-none">
                 5 Phases of Project Management (PMP)
@@ -558,7 +544,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
             <div style={{ backgroundColor: "black" }}>
               <div className="container space-bottom-2">
                 <div className="row space-top-3 space-bottom-2">
-                  <Fade left>
                   <div
                     className="col-lg-12"
                     style={{ padding: "5% 0", position: "relative" }}
@@ -574,25 +559,19 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       className="img-fluid img-data d-lg-none"
                     />
                   </div>
-</Fade>
+
                   <div
                     className="row space-top-1 "
                     style={{ marginBottom: "0 !important", width: "100%" }}
                   >
-                    <div className="col-1">
-                      <img
-                        className="avatar img-fluid"
-                        src={person}
-                        alt="avatar"
-                      />
-                    </div>
+                    <div className="col-1">{""}</div>
                     <div className="col-8">
                       <p style={{ margin: "0px", color: "white" }}>
                         ROLI PATHAK
                       </p>
                     </div>
                   </div>
-<Fade left>
+
                   <div
                     className="col-lg-12"
                     style={{ padding: "5%", position: "relative" }}
@@ -738,7 +717,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       </p>
                     </div>
                   </div>
-                  </Fade>
                 </div>
               </div>
             </div>
@@ -769,7 +747,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
             <div style={{ backgroundColor: "black" }}>
               <div className="container space-bottom-2">
                 <div className="row space-top-3 space-bottom-2">
-                  <Fade left>
                   <div
                     className="col-lg-12"
                     style={{ padding: "5% 0", position: "relative" }}
@@ -785,27 +762,19 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       className="img-fluid img-data d-lg-none"
                     />
                   </div>
-</Fade>
-
 
                   <div
                     className="row space-top-1 "
                     style={{ marginBottom: "0 !important", width: "100%" }}
                   >
-                    <div className="col-1">
-                      <img
-                        className="avatar img-fluid"
-                        src={person}
-                        alt="avatar"
-                      />
-                    </div>
+                    <div className="col-1">{""}</div>
                     <div className="col-8">
                       <p style={{ margin: "0px", color: "white" }}>
                         Jose Maria Delos Santos
                       </p>
                     </div>
                   </div>
-<Fade left>
+
                   <div
                     className="col-lg-12"
                     style={{ padding: "5%", position: "relative" }}
@@ -966,7 +935,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       </p>
                     </div>
                   </div>
-                  </Fade>
                 </div>
               </div>
             </div>
@@ -997,7 +965,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
             <div style={{ backgroundColor: "black" }}>
               <div className="container space-bottom-2">
                 <div className="row space-top-3 space-bottom-2">
-                  <Fade left>
                   <div
                     className="col-lg-12"
                     style={{ padding: "5% 0", position: "relative" }}
@@ -1013,25 +980,19 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       className="img-fluid img-data d-lg-none"
                     />
                   </div>
-</Fade>
+
                   <div
                     className="row space-top-1 "
                     style={{ marginBottom: "0 !important", width: "100%" }}
                   >
-                    <div className="col-1">
-                      <img
-                        className="avatar img-fluid"
-                        src={person}
-                        alt="avatar"
-                      />
-                    </div>
+                    <div className="col-1">{""}</div>
                     <div className="col-8">
                       <p style={{ margin: "0px", color: "white" }}>
                         Sarah Johnson
                       </p>
                     </div>
                   </div>
-<Fade left>
+
                   <div
                     className="col-lg-12"
                     style={{ padding: "5%", position: "relative" }}
@@ -1299,7 +1260,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       </p>
                     </div>
                   </div>
-                  </Fade>
                 </div>
               </div>
             </div>
@@ -1330,7 +1290,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
             <div style={{ backgroundColor: "black" }}>
               <div className="container space-bottom-2">
                 <div className="row space-top-3 space-bottom-2">
-                  <Fade left>
                   <div
                     className="col-lg-12"
                     style={{ padding: "5% 0", position: "relative" }}
@@ -1346,25 +1305,19 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       className="img-fluid img-data d-lg-none"
                     />
                   </div>
-</Fade>
+
                   <div
                     className="row space-top-1 "
                     style={{ marginBottom: "0 !important", width: "100%" }}
                   >
-                    <div className="col-1">
-                      <img
-                        className="avatar img-fluid"
-                        src={person}
-                        alt="avatar"
-                      />
-                    </div>
+                    <div className="col-1">{""}</div>
                     <div className="col-8">
                       <p style={{ margin: "0px", color: "white" }}>
                         Paul Osborne
                       </p>
                     </div>
                   </div>
-<Fade left>
+
                   <div
                     className="col-lg-12"
                     style={{ padding: "5%", position: "relative" }}
@@ -1592,7 +1545,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       </p>
                     </div>
                   </div>
-                  </Fade>
                 </div>
               </div>
             </div>
@@ -1623,7 +1575,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
             <div style={{ backgroundColor: "black" }}>
               <div className="container space-bottom-2">
                 <div className="row space-top-3 space-bottom-2">
-                  <Fade left>
                   <div
                     className="col-lg-12"
                     style={{ padding: "5% 0", position: "relative" }}
@@ -1639,25 +1590,19 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       className="img-fluid img-data d-lg-none"
                     />
                   </div>
-</Fade>
+
                   <div
                     className="row space-top-1 "
                     style={{ marginBottom: "0 !important", width: "100%" }}
                   >
-                    <div className="col-1">
-                      <img
-                        className="avatar img-fluid"
-                        src={person}
-                        alt="avatar"
-                      />
-                    </div>
+                    <div className="col-1">{""}</div>
                     <div className="col-8">
                       <p style={{ margin: "0px", color: "white" }}>
                         James Jorner
                       </p>
                     </div>
                   </div>
-<Fade left>
+
                   <div
                     className="col-lg-12"
                     style={{ padding: "5%", position: "relative" }}
@@ -1831,7 +1776,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       </p>
                     </div>
                   </div>
-                  </Fade>
                 </div>
               </div>
             </div>
@@ -1862,7 +1806,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
             <div style={{ backgroundColor: "black" }}>
               <div className="container space-bottom-2">
                 <div className="row space-top-3 space-bottom-2">
-                  <Fade left>
                   <div
                     className="col-lg-12"
                     style={{ padding: "5% 0", position: "relative" }}
@@ -1878,25 +1821,19 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       className="img-fluid img-data d-lg-none"
                     />
                   </div>
-</Fade>
+
                   <div
                     className="row space-top-1 "
                     style={{ marginBottom: "0 !important", width: "100%" }}
                   >
-                    <div className="col-1">
-                      <img
-                        className="avatar img-fluid"
-                        src={person}
-                        alt="avatar"
-                      />
-                    </div>
+                    <div className="col-1">{""}</div>
                     <div className="col-8">
                       <p style={{ margin: "0px", color: "white" }}>
                         Holly Urban
                       </p>
                     </div>
                   </div>
-<Fade left>
+
                   <div
                     className="col-lg-12"
                     style={{ padding: "5%", position: "relative" }}
@@ -2121,7 +2058,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       </p>
                     </div>
                   </div>
-                  </Fade>
                 </div>
               </div>
             </div>
@@ -2152,7 +2088,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
             <div style={{ backgroundColor: "black" }}>
               <div className="container space-bottom-2">
                 <div className="row space-top-3 space-bottom-2">
-                  <Fade left>
                   <div
                     className="col-lg-12"
                     style={{ padding: "5% 0", position: "relative" }}
@@ -2168,25 +2103,19 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       className="img-fluid img-data d-lg-none"
                     />
                   </div>
-</Fade>
+
                   <div
                     className="row space-top-1 "
                     style={{ marginBottom: "0 !important", width: "100%" }}
                   >
-                    <div className="col-1">
-                      <img
-                        className="avatar img-fluid"
-                        src={person}
-                        alt="avatar"
-                      />
-                    </div>
+                    <div className="col-1">{""}</div>
                     <div className="col-8">
                       <p style={{ margin: "0px", color: "white" }}>
                         Stephanie Overby
                       </p>
                     </div>
                   </div>
-<Fade left>
+
                   <div
                     className="col-lg-12"
                     style={{ padding: "5%", position: "relative" }}
@@ -2510,7 +2439,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       </p>
                     </div>
                   </div>
-                  </Fade>
                 </div>
               </div>
             </div>
@@ -2543,7 +2471,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
             <div style={{ backgroundColor: "black" }}>
               <div className="container space-bottom-2">
                 <div className="row space-top-3 space-bottom-2">
-                  <Fade left>
                   <div
                     className="col-lg-12"
                     style={{ padding: "5% 0", position: "relative" }}
@@ -2559,25 +2486,19 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       className="img-fluid img-data d-lg-none"
                     />
                   </div>
-</Fade>
+
                   <div
                     className="row space-top-1 "
                     style={{ marginBottom: "0 !important", width: "100%" }}
                   >
-                    <div className="col-1">
-                      <img
-                        className="avatar img-fluid"
-                        src={person}
-                        alt="avatar"
-                      />
-                    </div>
+                    <div className="col-1">{""}</div>
                     <div className="col-8">
                       <p style={{ margin: "0px", color: "white" }}>
                         Brian Coburn
                       </p>
                     </div>
                   </div>
-<Fade left>
+
                   <div
                     className="col-lg-12"
                     style={{ padding: "5%", position: "relative" }}
@@ -2745,7 +2666,6 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
                       </p>
                     </div>
                   </div>
-                  </Fade>
                 </div>
               </div>
             </div>
@@ -2754,12 +2674,12 @@ const AppBlogSingle: React.SFC<AppBlogSingleProps> = (props: any) => {
           <div className="d-lg-flex align-items-lg-center space-top-2 space-lg-0 min-vh-lg-100">
             <div className="row" style={{ width: "100%" }}>
               <Zoom>
-              <div className="col-6 offset-3">
-                <h1 style={{ textAlign: "center" }}>Page Not Found</h1>
-                <Link to="/" className="btn btn-primary btn-block">
-                  Go to Home
-                </Link>
-              </div>
+                <div className="col-6 offset-3">
+                  <h1 style={{ textAlign: "center" }}>Page Not Found</h1>
+                  <Link to="/" className="btn btn-primary btn-block">
+                    Go to Home
+                  </Link>
+                </div>
               </Zoom>
             </div>
           </div>
